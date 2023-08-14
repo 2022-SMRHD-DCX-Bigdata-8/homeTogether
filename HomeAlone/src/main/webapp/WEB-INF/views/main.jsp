@@ -24,4 +24,8 @@
 		<a href="goJoin.do">
 		<strong>가입하기</strong>
 		</a>
+		
+		<a href="goUpdate.do">
+		<strong>회원정보수정</strong>
+		</a>
 

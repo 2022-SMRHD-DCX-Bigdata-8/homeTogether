@@ -5,8 +5,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.TB_Member;
-import com.ha.entity.TB_Member;
-import com.ha.entity.TB_Member;
+
+
 
 public class TB_MemberDAO {
 
@@ -31,14 +31,19 @@ public class TB_MemberDAO {
 	}
 
 	
-public TB_Member login(TB_Member member) {
+	public TB_Member login(TB_Member member) {
 	
 	SqlSession session = factory.openSession(true);
 	TB_Member result=session.selectOne("login", member);
 	session.close();
 	return result;
 	
-}
+	}
+	public void update() {
+		SqlSession session = factory.openSession(true);
+		
+		
+	}
 	
 	
 	
