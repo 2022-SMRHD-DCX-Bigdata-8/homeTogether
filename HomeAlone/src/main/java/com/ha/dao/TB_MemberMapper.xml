@@ -26,6 +26,15 @@
 	)
 </insert>
 
+<select id="login" parameterType="com.ha.entity.TB_Member"
+resultType="com.ha.entity.TB_Member">
+	
+	select * from tb_member
+	where id=#{id}
+	and pw=#{pw}
+
+</select>
+
 
 
 
