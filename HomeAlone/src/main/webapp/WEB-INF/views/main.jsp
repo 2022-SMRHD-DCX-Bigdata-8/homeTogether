@@ -25,6 +25,8 @@
 		<strong>가입하기</strong>
 		</a>
 		
+		<br><br><br><br><br><br><br>
+		
 		<a href="goUpdate.do">
 		<strong>회원정보수정</strong>
 		</a>

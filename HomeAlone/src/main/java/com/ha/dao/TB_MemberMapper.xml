@@ -42,14 +42,14 @@ resultType="com.ha.entity.TB_Member">
 
 </select>
 
-<update id="update" parameterType="com.smhrd.entity.Member">
+<update id="update" parameterType="com.ha.entity.TB_Member">
 		
 		UPDATE tb_member
-		SET pw = #{pw}
-		  , nick = #{nick}
-		  , addr = #{addr}
-		  , phone= #{phone}
-		  , gender= #{gender}
+		SET pw = #{pw}, 
+		nick = #{nick}, 
+		addr = #{addr}, 
+		phone= #{phone}, 
+		gender= #{gender}
 		where id=#{id}
 	
 	
