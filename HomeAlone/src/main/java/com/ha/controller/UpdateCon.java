@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ha.dao.TB_MemberDAO;
 import com.ha.entity.TB_Member;
 
 public class UpdateCon implements Controller {
@@ -29,7 +30,11 @@ public class UpdateCon implements Controller {
 		member.setNick(nick);
 		member.setPhone(tel);
 		member.setPw(pw);
-		
+		TB_MemberDAO dao = new TB_MemberDAO();
+		int cnt=dao.update(member);
+		if(cnt>0) {
+			
+		}
 		
 		
 		return null;

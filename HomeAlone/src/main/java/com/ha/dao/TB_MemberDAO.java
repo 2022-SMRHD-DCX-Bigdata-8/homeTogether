@@ -39,9 +39,11 @@ public class TB_MemberDAO {
 	return result;
 	
 	}
-	public void update() {
+	public int update(TB_Member member) {
 		SqlSession session = factory.openSession(true);
-		
+		int cnt=session.update("update",member);
+		session.close();
+		return cnt;
 		
 	}
 	

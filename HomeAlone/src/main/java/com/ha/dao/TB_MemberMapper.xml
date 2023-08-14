@@ -42,7 +42,7 @@ resultType="com.ha.entity.TB_Member">
 
 </select>
 
-<update id="update" parameterType="com.smhrd.entity.Member">
+<update id="update" parameterType="com.ha.entity.TB_Member">
 		
 		UPDATE tb_member
 		SET pw = #{pw}
