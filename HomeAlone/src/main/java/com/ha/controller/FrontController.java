@@ -16,6 +16,8 @@ import com.ha.controller.Controller;
 // 단 한개의 서블릿(FrontController)만 사용
 // == 모든요청을 단하나의 서블릿으로 처리!!!!!
 // *.do : .do로 끝나는 모든요청을 받겠다.
+// *.do : .do로 끝나는 모든요청을 받겠다.
+// *.do : .do로 끝나는 모든요청을 받겠다.
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
