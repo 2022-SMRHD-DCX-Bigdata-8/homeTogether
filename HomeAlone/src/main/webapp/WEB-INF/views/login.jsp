@@ -14,9 +14,10 @@
 		ID : <input type="text" name="id"> <br> 
 		PW : <input type="password" name="pw"> <br> 
 			 <input type="submit"value="로그인">
+			 <a href="">회원가입</a>
 	</form>
-
+		
 
 
 </body>
-</html>
+</html> 

@@ -9,8 +9,8 @@
 			#{id},
 			#{pw},
 			#{nick},
-			#{tel},
-			#{address},
+			#{addr},
+			#{phone},
 			#{gender}
 		
 		)
@@ -18,7 +18,12 @@
 	</insert>
 
 
-
+	<select id="login" parameterType="com.ha.entity.TB_Member"
+	resultType="com.ha.entity.TB_Member">
+		select * from tb_member
+		where id = #{}
+		  and pw = #{}
+	</select>
 
 
 

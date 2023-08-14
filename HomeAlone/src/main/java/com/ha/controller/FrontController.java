@@ -35,6 +35,7 @@ public class FrontController extends HttpServlet {
 		handler.put("/goLogin.do", new goLoginCon() );
 		handler.put("/goJoin.do", new goJoinCon() );
 		handler.put("/join.do", new joinCon() );
+		handler.put("/Login.do", new LoginCon() );
 		
 		
 		

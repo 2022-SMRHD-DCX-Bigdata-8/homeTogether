@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.TB_Member;
+import com.ha.entity.TB_Member;
 
 public class TB_MemberDAO {
 
@@ -23,4 +24,35 @@ public class TB_MemberDAO {
 
 	}
 
+
+	// 로그인
+	public TB_Member login(TB_Member tb_member) {
+		SqlSession session = factory.openSession();
+		TB_Member result = session.selectOne("login", tb_member);
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
