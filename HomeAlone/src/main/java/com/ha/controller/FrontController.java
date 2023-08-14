@@ -29,6 +29,7 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		// Servlet이 메모리에 등록되었을 때 단 한번만 실행
+		// Servlet이 메모리에 등록되었을 때 단 한번만 실행
 			handler = new HashMap<String, Controller>();
 			handler.put("/main.do", new goMainCon() );
 			handler.put("/goJoin.do", new goJoinCon() );
