@@ -33,11 +33,11 @@ public class UpdateCon implements Controller {
 		TB_MemberDAO dao = new TB_MemberDAO();
 		int cnt=dao.update(member);
 		if(cnt>0) {
+			return "redirect:/main.do";
+		}else {
 			
+			return "redirect:/goUpdate.do";
 		}
-		
-		
-		return null;
 	}
 
 }
