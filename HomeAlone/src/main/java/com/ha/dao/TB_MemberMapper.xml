@@ -15,7 +15,14 @@
 
 
 <insert id="join" parameterType="com.ha.entity.TB_Member">
-	insert into TB_MEMBER
+	insert into TB_MEMBER(
+	id,
+	pw,
+	nick,
+	addr,
+	phone,
+	gender
+	)
 	values(
 	#{id},
 	#{pw},

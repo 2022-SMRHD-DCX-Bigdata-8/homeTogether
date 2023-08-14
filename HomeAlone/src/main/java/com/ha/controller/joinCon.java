@@ -41,7 +41,7 @@ public class joinCon implements Controller {
 		// join기능 (리턴타입이 int형) 기능 실행하면 cnt가 0보다 큼 , 실패하면 else로 넘어감 
 		if(cnt > 0) {
 			// forward로 join_success.jsp로 이동
-			url = "redirect:/goMain.do";
+			url = "redirect:/main.do";
 		}else {
 			url = "redirect:/goJoin.do";
 		}

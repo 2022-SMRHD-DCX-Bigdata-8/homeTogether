@@ -17,16 +17,13 @@ public class TB_MemberDAO {
 
 		SqlSession session = factory.openSession(true);
 
-		int cnt = 0;
+		
 		// 프로젝트 진행 할 때 일일이 예외처리 진행해야 함
 		// 예외 상황이 발생해도 멈추지 않고 쭉 실행할 수 있도록
 		// select 문만 빼고 다 써줘야 함
-		try {
-			cnt = session.insert("join", tb_member);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("회원가입 실패");
-		}
+		
+		int	cnt = session.insert("join", tb_member);
+		
 		session.close();
 
 		return cnt;
