@@ -3,30 +3,6 @@
 <mapper namespace="com.ha.dao.TB_MemberDAO">
 
 
-	<insert id="join" parameterType="com.ha.entity.TB_Member">
-		insert into TB_MEMBER
-		values(
-			#{id},
-			#{pw},
-			#{nick},
-			#{addr},
-			#{phone},
-			#{gender}
-		
-		)
-	
-	</insert>
-
-
-	<select id="login" parameterType="com.ha.entity.TB_Member"
-	resultType="com.ha.entity.TB_Member">
-		select * from tb_member
-		where id = #{}
-		  and pw = #{}
-	</select>
-
-
-
 
 
 

@@ -12,7 +12,7 @@
 	<h1>Welcome Page!!</h1>
 	
 	<!-- jsp 엑션태그 : jsp에서 자주 쓰는 코드를 태그화 -->
-	<jsp:forward page="goJoin.do"></jsp:forward>
+	<jsp:forward page=""></jsp:forward>
 
 
 
