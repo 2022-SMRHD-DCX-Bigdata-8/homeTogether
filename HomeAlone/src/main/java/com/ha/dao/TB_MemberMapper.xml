@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ha.dao.TB_MemberDAO">
 
-
-
-
-
-
-
-
-
-
-
-
+<insert id="join" parameterType="com.ha.entity.TB_Member">
+	insert into TB_MEMBER
+	values(
+	#{id},
+	#{pw},
+	#{nick},
+	#{addr},
+	#{phone},
+	#{gender}
+	)
+</insert>
 
 
 
