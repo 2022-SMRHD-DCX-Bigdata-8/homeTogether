@@ -19,7 +19,7 @@ public class LogoutCon implements Controller {
 		
 		session.removeAttribute("user");
 		
-		return "redirect:/goMain.do";
+		return "redirect:/main.do";
 		
 	}
 
