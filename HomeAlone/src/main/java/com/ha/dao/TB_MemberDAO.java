@@ -14,7 +14,14 @@ public class TB_MemberDAO {
 
 	
 	
+public TB_Member login(TB_Member member) {
 	
+	SqlSession session = factory.openSession(true);
+	TB_Member result=session.selectOne("login", member);
+	session.close();
+	return result;
+	
+}
 	
 	
 	

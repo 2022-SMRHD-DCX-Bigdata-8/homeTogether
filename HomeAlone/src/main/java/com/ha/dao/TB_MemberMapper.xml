@@ -3,7 +3,14 @@
 <mapper namespace="com.ha.dao.TB_MemberDAO">
 
 
-
+	<select id="login" parameterType="com.ha.entity.TB_Member"
+	resultType="com.ha.entity.TB_Member">
+	
+		select * from TB_MEMBER
+		where id = #{ID}
+		and pw =#{PW}
+		
+	</select>
 
 
 
