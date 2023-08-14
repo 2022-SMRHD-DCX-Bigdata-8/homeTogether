@@ -20,8 +20,8 @@ public class LoginCon implements Controller {
 			String id=request.getParameter("id");
 			String pw=request.getParameter("pw");
 			TB_Member member = new TB_Member();
-			member.setID(id);
-			member.setPW(pw);
+			member.setId(id);
+			member.setPw(pw);
 			TB_MemberDAO dao = new TB_MemberDAO();
 			TB_Member result =dao.login(member);
 			
