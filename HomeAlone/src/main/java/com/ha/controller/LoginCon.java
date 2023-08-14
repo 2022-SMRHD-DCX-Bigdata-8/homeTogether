@@ -25,10 +25,11 @@ public class LoginCon implements Controller {
 			TB_MemberDAO dao = new TB_MemberDAO();
 			TB_Member result =dao.login(member);
 			
+			
 			if(result!=null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", result);
-				return "redirect:/goMain.do";
+				return "redirect:/main.do";
 								
 			}else {
 				System.out.println("로그인실패");
