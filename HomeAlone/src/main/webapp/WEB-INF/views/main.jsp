@@ -12,6 +12,10 @@
 </head>
 
 <body>
+<%
+	TB_Member user = (TB_Member)session.getAttribute("user");
+	
+%>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -122,9 +126,13 @@
             <li>
                 <pre><a href="#">장바구니       |</a></pre>
             </li>
+            <%if(user == null){ %>
             <li id="goLogin">
                 <pre><a href="#">       로그인</a></pre>
             </li>
+            <%}else{ %>
+            	<pre><a href="#">		마이페이지</a></pre>
+            <%} %>
         </ul>
     </div>
     <div class="hero_header">
