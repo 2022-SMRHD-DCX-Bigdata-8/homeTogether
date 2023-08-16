@@ -9,7 +9,7 @@
 <body>
 	<!--  세션 초기화 -->
     <% session.invalidate(); %>
-	<form action="login.do" method="post">
+	<form action="#" method="post">
 		<li><input type="text" name="id"  placeholder="id를 입력하세요"></li>
 		<li><input type="password" name="pw"  placeholder="비밀번호입력하세요"></li>
 		<li><input type="submit" value="LogIn"></li>

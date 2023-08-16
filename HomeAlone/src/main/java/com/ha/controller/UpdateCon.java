@@ -16,16 +16,22 @@ public class UpdateCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String pw=request.getParameter("pw");
-		String tel=request.getParameter("tel");
-		String address=request.getParameter("addr");
-		String gender=request.getParameter("gender");
+		String pw = request.getParameter("pw");
+		String tel = request.getParameter("tel");
 		String nick = request.getParameter("nick");
+		String zipCode = request.getParameter("zipCode");
+		String addr = request.getParameter("addr");
+		String addrDetail = request.getParameter("addrDetail");
+		String text = request.getParameter("text");
+		String gender = request.getParameter("gender");
 		
 		
 		HttpSession session = request.getSession();
 		TB_Member member = (TB_Member)session.getAttribute("user");
-		member.setAddr(address);
+		member.setAddr(addr);
+		member.setAddrDetail(addrDetail);
+		member.setText(text);
+		member.setZipCode(zipCode);
 		member.setGender(gender);
 		member.setNick(nick);
 		member.setPhone(tel);
