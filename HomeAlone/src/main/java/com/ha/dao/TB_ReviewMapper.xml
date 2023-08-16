@@ -15,7 +15,7 @@
 			#{p_number},
 			#{content},
 			#{nick},
-			#{ratings}		
+			#{ratings}
 		
 		)	
 	
