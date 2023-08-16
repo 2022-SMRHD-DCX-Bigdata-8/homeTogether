@@ -18,7 +18,8 @@
 		<br>
 		<li><button id="damgi" >담기</button></li>
 		
-		<li><input type="text" id="review"></li>
+		<li><input type="text" id="content"></li>
+		<li><input type="number" id="ratings" step="0.1"></li>
 		<li><button id="insert">올리기</button></li>
 	
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
@@ -71,8 +72,9 @@
 	});
 	
 	function inReview(){
-		let review =$('#review').val();
+		let content =$('#content').val();
 		let p_number=$('#pNumber').data();
+		let ratings =$('#ratings').val();
 		
 		
 		
@@ -80,8 +82,9 @@
 			url : 'inReview.do',
 			type: 'post',
 			data: {
-				"review" : review
+				"content" : content
 				"p_number" : p_number
+				"ratings" : ratings
 				
 			},
 			dataType: 'json',

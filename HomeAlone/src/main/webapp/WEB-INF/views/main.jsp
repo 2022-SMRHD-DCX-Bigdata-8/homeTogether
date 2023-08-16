@@ -116,7 +116,7 @@
         <ul id="menu">
             <li><a href="#">검색</a></li>
             <li><a href="#">게시판</a></li>
-            <li><a href="#">장바구니</a></li>
+            <li><a href="goBasket.do">장바구니</a></li>
             <%if(user == null){ %>
             <li id="goLogin">
                 <a href="#">로그인</a>

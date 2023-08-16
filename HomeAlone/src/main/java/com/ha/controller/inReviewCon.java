@@ -12,7 +12,7 @@ public class inReviewCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String review=request.getParameter("review");
+		String content=request.getParameter("content");
 		int pNum=Integer.parseInt(request.getParameter("p_number"));
 		
 		
