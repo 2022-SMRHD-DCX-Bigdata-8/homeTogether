@@ -22,6 +22,7 @@ public class inReviewCon implements Controller {
 		int p_number=Integer.parseInt(request.getParameter("p_number"));
 		int ratings=Integer.parseInt(request.getParameter("ratings"));
 		
+		System.out.println(content);
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick=member.getNick();
@@ -30,6 +31,7 @@ public class inReviewCon implements Controller {
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		dao.insert(review);
+		
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();

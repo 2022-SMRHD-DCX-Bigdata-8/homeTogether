@@ -10,10 +10,10 @@
 <body>
 
 
-	<p id="pNumber" data-value="0001">0001</p>
+	<p id="pNumber" data-value="5">0001</p>
 	<p id="pCnt" data-value="1">1</p>
-	<p id="pName" data-value="책상">책상</p>
-	<p id="pPrice" data-value="10000">10000</p>
+	<p id="pName" data-value="Gaming Mouse">책상</p>
+	<p id="pPrice" data-value="45000">10000</p>
 
 	<br>
 	<li><button id="damgi">담기</button></li>
