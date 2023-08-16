@@ -1,6 +1,7 @@
 package com.ha.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,10 @@ public class inReviewCon implements Controller {
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		dao.insert(review);
+		
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("true");
 		
 		
 		
