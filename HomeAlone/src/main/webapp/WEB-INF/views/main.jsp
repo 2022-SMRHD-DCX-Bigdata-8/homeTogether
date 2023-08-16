@@ -117,9 +117,7 @@
             <img src="img/logo/image2.png" height="75px">
         </a>
         <ul class="headnav">
-        	<li>
-                <pre><a href="goProduct.do">상품   |</a></pre>
-            </li>
+        	
             <li>
                 <pre><a href="#">검색   |</a></pre>
             </li>
@@ -162,7 +160,7 @@
 
     <h1>Our new Products</h1>
     <div class="products">
-        <a href="#">
+        <a href="goProduct.do">
             <img src="images/sunglasses.jpg">
             <p>Sunglasses</p>
             <p class="price">49,000</p>
