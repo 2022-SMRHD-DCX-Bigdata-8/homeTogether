@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<%  TB_Member user = (TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="login.do" method="post">
@@ -112,34 +113,23 @@
         <a class="logo" href="#">
             <img src="img/logo/image2.png" height="75px">
         </a>
-<<<<<<< HEAD
         <ul id="menu">
-            <li><a href="#home">검색</a></li>
-            <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
-            <li id="goLogin"><a href="#javascrript">로그인</a></li>
-=======
-        <ul class="headnav">
-        	
-            <li>
-                <pre><a href="#">검색   |</a></pre>
-            </li>
-            <li>
-                <pre><a href="#">게시판    |</a></pre>
-            </li>
-            <li>
-                <pre><a href="goBasket.do">장바구니       |</a></pre>
-            </li>
+            <li><a href="#">검색</a></li>
+            <li><a href="#">게시판</a></li>
+            <li><a href="#">장바구니</a></li>
             <%if(user == null){ %>
             <li id="goLogin">
-                <pre><a href="#">       로그인</a></pre>
+                <a href="#">로그인</a>
             </li>
             <%}else{ %>
             <li>
-            	<pre><a href="#">		마이페이지</a></pre>
+            	<a href="#">마이페이지</a>
             </li>
+            <li>
+            	<a href="#">로그아웃</a>
+            </li>
+            
             <%} %>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
         </ul>
     </div>
     <div class="hero_header">
