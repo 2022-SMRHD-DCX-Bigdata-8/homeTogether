@@ -35,7 +35,6 @@ public class FrontController extends HttpServlet {
 			handler.put("/main.do", new goMainCon() );
 			handler.put("/join.do", new joinCon() );
 			handler.put("/login.do", new LoginCon());
-			handler.put("/goLogin.do", new goLoginCon());
 			handler.put("/goUpdate.do", new goUpdateCon());
 			handler.put("/update.do", new UpdateCon());
 			handler.put("/goLogout.do", new LogoutCon());
@@ -45,10 +44,7 @@ public class FrontController extends HttpServlet {
 			handler.put("/goProduct.do", new goProductCon());
 			handler.put("/goBasket.do", new goBasketCon());
 			
-			
 
-		
-		
 	}
 	
 
