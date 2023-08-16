@@ -10,10 +10,10 @@
 <body>
 	
 	
-		<p id="pNumber" data-value="0001">0001</p>
-		<p id="pCnt" data-value="1">1</p>>
-		<p id="pName" data-value="책상">책상</p>
-		<p id="pPrice" data-value="10000">10000</p>
+		<p id="pNumber" value="0001">0001</p>
+		<p id="pCnt" value="1">1</p>>
+		<p id="pName" value="책상">책상</p>
+		<p id="pPrice" value="10000">10000</p>
 		
 		<br>
 		<li><button id="damgi" >담기</button></li>
@@ -27,23 +27,24 @@
 	$(document).ready(function(){
 		
 		$('#damgi').on('click', inCart );
+		$('#insert').on('click', inReview );
 	});
 	
 	function inCart(){
-		let p_cnt =$('#pCnt').data();
-		let p_name =$('#pName').data();
-		let p_number=$('#pNumber').data();
-		let p_price =$('#pPrice').data();
+		let p_cnt =$('#pCnt').val();
+		let p_name =$('#pName').val();
+		let p_number=$('#pNumber').val();
+		let p_price =$('#pPrice').val();
 		
 		
 		$.ajax({
 			url : 'inCart.do',
 			type: 'post',
 			data: {
-				"p_cnt" : p_cnt
-				"p_number" : p_number
-				"p_name" : p_name
-				"nick" :  nick
+				"p_cnt" : p_cnt ,
+				"p_number" : p_number,
+				"p_name" : p_name,
+				"nick" :  nick,
 				"p_price" : p_price
 			},
 			dataType: 'json',
@@ -62,15 +63,6 @@
 		});
 	
 	
-		
-		
-	</script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$('#insert').on('click', inReview );
-	});
-	
 	function inReview(){
 		let content =$('#content').val();
 		let p_number=$('#pNumber').data();
@@ -82,9 +74,9 @@
 			url : 'inReview.do',
 			type: 'post',
 			data: {
-				"content" : content
-				"p_number" : p_number
-				"ratings" : ratings
+				"content" : content,
+				"p_number" : p_number,
+				"ratings" : ratings,
 				
 			},
 			dataType: 'json',
