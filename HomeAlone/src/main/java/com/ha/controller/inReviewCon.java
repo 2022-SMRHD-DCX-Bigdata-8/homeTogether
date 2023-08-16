@@ -5,6 +5,11 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.ha.dao.TB_ReviewDAO;
+import com.ha.entity.TB_Member;
+import com.ha.entity.TB_Review;
 
 public class inReviewCon implements Controller {
 
@@ -13,7 +18,17 @@ public class inReviewCon implements Controller {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String content=request.getParameter("content");
-		int pNum=Integer.parseInt(request.getParameter("p_number"));
+		int p_number=Integer.parseInt(request.getParameter("p_number"));
+		int ratings=Integer.parseInt(request.getParameter("ratings"));
+		
+		HttpSession session = request.getSession();
+		TB_Member member=(TB_Member)session.getAttribute("user");
+		String nick=member.getNick();
+		
+		
+		TB_Review review = new TB_Review(nick, p_number, content, ratings);
+		TB_ReviewDAO dao = new TB_ReviewDAO();
+		dao.insert(review);
 		
 		
 		
