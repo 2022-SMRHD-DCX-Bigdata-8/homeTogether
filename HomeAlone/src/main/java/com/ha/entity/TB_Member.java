@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 public class TB_Member {
 
 	
-	private String id;
-	private String pw;
-	private String nick;
-	private String addr;
-	private String phone;
-	private String gender;
+	private String id; 	// 아이디
+	private String pw;	// 비밀번호
+	private String nick;	// 닉네임
+	private String addr;	// 주소
+	private String phone;	// 전화번호
+	private String gender;	// 성별
 
 	
 	
