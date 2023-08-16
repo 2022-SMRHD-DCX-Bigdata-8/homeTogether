@@ -26,6 +26,7 @@
 		<li> <a href="goLogout.do">로그아웃</a> </li>		
 		<li> <a href="goUpdate.do">회원정보수정</a> </li>
 		<li> <a href="goProduct.do">상품</a></li>
+		<li> <a href="goBasket.do">장바구니</a></li>
 		<% } %>
 
 
