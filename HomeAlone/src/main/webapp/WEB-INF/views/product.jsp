@@ -17,7 +17,9 @@
 		
 		<br>
 		<li><button id="damgi" >담기</button></li>
+		
 		<li><input type="text" id="review"></li>
+		<li><button id="insert">올리기</button></li>
 	
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
@@ -42,6 +44,45 @@
 				"p_name" : p_name
 				"nick" :  nick
 				"p_price" : p_price
+			},
+			dataType: 'json',
+			success : function(res){
+				
+				console.log('성공!!');
+					
+					
+				}
+				
+			},
+			error :  function(e){
+				console.log('요청실패!!!');
+			}
+			
+		});
+	
+	
+		
+		
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$('#insert').on('click', inReview );
+	});
+	
+	function inReview(){
+		let review =$('#review').val();
+		let p_number=$('#pNumber').data();
+		
+		
+		
+		$.ajax({
+			url : 'inReview.do',
+			type: 'post',
+			data: {
+				"review" : review
+				"p_number" : p_number
+				
 			},
 			dataType: 'json',
 			success : function(res){
