@@ -18,24 +18,7 @@
 </body>
 </html>	
 
-	<!--  	<br><br><br><br><br><br><br>
-		
-		<a href="goLogin.do">
-		<strong>로그인</strong>
-		</a>
-		
-		<br><br><br><br><br><br><br>
-		
-		<a href="goJoin.do">
-		<strong>가입하기</strong>
-		</a>
-		
-		<br><br><br><br><br><br><br>
-		
-		<a href="goUpdate.do">
-		<strong>회원정보수정</strong>
-		</a>
--->
+
 		<% if(user == null){ %>
 		<li> <a href="goLogin.do">로그인</a> </li>		
 		<li> <a href="goJoin.do">회원가입</a> </li>

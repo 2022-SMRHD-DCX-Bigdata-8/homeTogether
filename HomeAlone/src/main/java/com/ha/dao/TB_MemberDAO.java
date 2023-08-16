@@ -17,9 +17,13 @@ public class TB_MemberDAO {
 		// 프로젝트 진행 할 때 일일이 예외처리 진행해야 함
 		// 예외 상황이 발생해도 멈추지 않고 쭉 실행할 수 있도록
 		// select 문만 빼고 다 써줘야 함
+		int cnt = 0;
 
-		int cnt = session.insert("join", tb_member);
-
+		try {
+			cnt = session.insert("join", tb_member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		session.close();
 
 		return cnt;
@@ -29,23 +33,49 @@ public class TB_MemberDAO {
 	public TB_Member login(TB_Member member) {
 
 		SqlSession session = factory.openSession(true);
-		TB_Member result = session.selectOne("login", member);
+
+		TB_Member result = null;
+
+		try {
+			result = session.selectOne("login", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		session.close();
+
 		return result;
 
 	}
 
 	public int update(TB_Member member) {
+
 		SqlSession session = factory.openSession(true);
-		int cnt = session.update("update", member);
+
+		int cnt = 0;
+
+		try {
+			cnt = session.update("update", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		session.close();
+
 		return cnt;
 
 	}
 
 	public int delete(TB_Member member) {
 		SqlSession session = factory.openSession(true);
-		int cnt = session.delete("delete", member);
+
+		int cnt = 0;
+
+		try {
+			cnt = session.delete("delete", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		session.close();
 		return cnt;
 
