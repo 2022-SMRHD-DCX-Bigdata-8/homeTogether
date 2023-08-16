@@ -117,6 +117,7 @@
             <img src="img/logo/image2.png" height="75px">
         </a>
         <ul class="headnav">
+        	
             <li>
                 <pre><a href="#">검색   |</a></pre>
             </li>
@@ -124,14 +125,16 @@
                 <pre><a href="#">게시판    |</a></pre>
             </li>
             <li>
-                <pre><a href="#">장바구니       |</a></pre>
+                <pre><a href="goBasket.do">장바구니       |</a></pre>
             </li>
             <%if(user == null){ %>
             <li id="goLogin">
                 <pre><a href="#">       로그인</a></pre>
             </li>
             <%}else{ %>
+            <li>
             	<pre><a href="#">		마이페이지</a></pre>
+            </li>
             <%} %>
         </ul>
     </div>
@@ -157,7 +160,7 @@
 
     <h1>Our new Products</h1>
     <div class="products">
-        <a href="#">
+        <a href="goProduct.do">
             <img src="images/sunglasses.jpg">
             <p>Sunglasses</p>
             <p class="price">49,000</p>

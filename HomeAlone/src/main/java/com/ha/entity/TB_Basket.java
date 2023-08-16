@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class TB_Basket {
 
 	
-	private String nick;   // 닉네임
+	
 	private int p_cnt;     // 제품수량
 	private int p_number;  // 제품 번호
 	private String p_name; // 제품명

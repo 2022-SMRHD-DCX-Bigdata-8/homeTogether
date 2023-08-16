@@ -14,7 +14,7 @@
 	ArrayList<TB_Basket> list = (ArrayList<TB_Basket>)sesion.getAttribute("basket");
 	
 	%>
-	<div >
+	<div>
 		<table >
 			<tr>
 				<td>상품명</td>
