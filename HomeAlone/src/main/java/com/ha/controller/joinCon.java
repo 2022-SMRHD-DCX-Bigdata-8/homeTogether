@@ -42,8 +42,10 @@ public class joinCon implements Controller {
 		if(cnt > 0) {
 			// forward로 join_success.jsp로 이동
 			url = "redirect:/main.do";
+			System.out.println("회원가입 성공!");
 		}else {
-			url = "redirect:/goJoin.do";
+			url = "redirect:/main.do";
+			System.out.println("회원가입 실패!");
 		}
 
 	return url;
