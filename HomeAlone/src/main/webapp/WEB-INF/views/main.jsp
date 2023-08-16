@@ -59,14 +59,14 @@
                     <tr>
                         <td>PHONE</td>
                         <td>
-                            <input type="text" name="Phone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
+                            <input type="text" name="phone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>ADRESS</td>
                         <td>
-                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;" name="addr">
+                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;" name="zipCode">
                         </td>
                         <td>
                             <input id="post_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -76,14 +76,14 @@
                         <td></td>
                         <td>
                             <input type="text" id="sample6_address" placeholder="주소" name="addr">
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr">
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addrDetail">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr">
+                            <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="text">
                         </td>
                         <td></td>
                     </tr>

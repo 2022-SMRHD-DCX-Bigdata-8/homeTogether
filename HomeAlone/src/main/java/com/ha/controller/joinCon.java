@@ -21,12 +21,15 @@ public class joinCon implements Controller {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String nick = request.getParameter("nick");
+		String zipCode = request.getParameter("zipCode");
 		String addr = request.getParameter("addr");
+		String addrDetail = request.getParameter("addrDetail");
+		String text = request.getParameter("text");
 		String phone = request.getParameter("phone");
 		String gender = request.getParameter("gender");
 		
 		// 데이터 tb_member에 다 담기
-		TB_Member tb_member = new TB_Member(id, pw, nick, addr, phone, gender);
+		TB_Member tb_member = new TB_Member(id, pw, nick, zipCode, addr, addrDetail, text, phone, gender);
 		
 		// dao 불러오기
 		TB_MemberDAO dao = new TB_MemberDAO();
