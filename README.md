@@ -6,6 +6,7 @@ NewsData Project
 3. 존중과 배려로 서로의 미래를 만들자.
 4. 책임감과 신뢰를 바탕으로 코드에 기여하자.
 5. 공부하자 연봉이 바뀐다.
+6. 다들 힘들겠지만 화이팅!
 
 ![코딩해야지!](https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether/assets/140788067/712aecb9-6160-42ed-94f6-d57cc7e225cb)
 

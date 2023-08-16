@@ -23,7 +23,8 @@
 				 여<input type="radio" name="gender" value="W" ><br>
 		NICK : <input type="text" name="nick" value=<%=member.getNick() %>><br>
 		TEL : <input type="tel" name="tel" value=<%=member.getPhone() %>><br>
-		<input type="submit" value="회원정보수정">
+		<input type="submit" value="회원정보수정"> 
+		<button><a href="goDelete.do">회원 탈퇴 </a></button>
 	</form>
 
 </body>
