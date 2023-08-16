@@ -143,7 +143,7 @@
 
     <div id="categori">
         <ul>
-            <li><a href="testProduct.do"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
+            <li><a href="goProduct.do"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a></li>
