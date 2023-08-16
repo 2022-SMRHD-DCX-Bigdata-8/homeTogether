@@ -20,9 +20,9 @@ public class inCartCon implements Controller {
 		int pNum=Integer.parseInt(request.getParameter("pNumber"));
 		int pCnt=Integer.parseInt(request.getParameter("pCnt"));
 		
-		TB_Basket basket = new TB_Basket(nick, pCnt, pNum);
+		//TB_Basket basket = new TB_Basket(nick, pCnt, pNum);
 		TB_BasketDAO dao =  new TB_BasketDAO();
-		int cnt =dao.insert(basket);
+		//int cnt =dao.insert(basket);
 		
 		
 		return null;
