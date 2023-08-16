@@ -18,17 +18,17 @@
 %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
-        <form action="#" method="post">
+        <form action="login.do" method="post">
             <h1 id="login_h1">로그인</h1>
             <table id="login">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                     </tr>
                     <tr>
                         <td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -38,35 +38,35 @@
         </form>
         <h1 id="join_h1">회원가입</h1>
 
-        <form action="#" method="post">
+        <form action="join.do" method="post">
             <table id="join">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>NICK</td>
-                        <td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+                        <td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PHONE</td>
                         <td>
-                            <input type="text" name="cellPhone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
+                            <input type="text" name="Phone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>ADRESS</td>
                         <td>
-                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;">
+                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;" name="addr">
                         </td>
                         <td>
                             <input id="post_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -75,15 +75,15 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_address" placeholder="주소">
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                            <input type="text" id="sample6_address" placeholder="주소" name="addr">
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addr">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                            <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="addr">
                         </td>
                         <td></td>
                     </tr>
@@ -93,12 +93,12 @@
                         <td>GENDER</td>
                         <td>
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="apple">
+                                <input type="radio" name="gender" value="M">
                                 <span>남자</span>
                             </label>
 
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="banana">
+                                <input type="radio" name="gender" value="W">
                                 <span>여자</span>
                             </label>
                         </td>
