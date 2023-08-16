@@ -209,38 +209,39 @@ button:hover:after {
 
 /* 버튼 끝 */
 
-
-
-
-.navbar {
-  height: 60px;
-  padding-left: 30px;
+.logo{
+  width: 130px;
+}
+.logo> img{
+  width: 130px;
 }
 
-.logo {
-  line-height: 60px;
-  float: left;
-}
-
-.logo img {
-  vertical-align: middle;
-}
-
-.navbar ul {
-  float: right;
-}
-
-.navbar li {
+#menu{
   list-style-type: none;
+  float: right;
+  margin-right: 120px;
+  margin-top: 40px;
+}
+#menu > li
+{
+  margin-left: 10px;
   float: left;
-  margin-right: 30px;
+  border-right: thin solid #999999 ;
+  padding: 0px 16px;
+}
+#menu > li > a {
+text-decoration: none;
+color: black;
+font-size: 18px;
+}
+#menu::after{
+  content: "";
+  display: block;
+  clear: both;
 }
 
-.navbar a {
-  text-decoration: none;
-  color: black;
-  font-style: bold;
-  font-size: 13px;
+#menu >:last-child{
+  border-right: hidden;
 }
 
 /* hero_header 시작*/
