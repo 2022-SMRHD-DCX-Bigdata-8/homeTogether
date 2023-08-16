@@ -123,7 +123,7 @@
             </li>
             <%}else{ %>
             <li>
-            	<a href="#">마이페이지</a>
+            	<a href="goUpdate.do">마이페이지</a>
             </li>
             <li>
             	<a href="goLogout.do">로그아웃</a>
@@ -143,7 +143,7 @@
 
     <div id="categori">
         <ul>
-            <li><a href="#"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
+            <li><a href="testProduct.do"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a></li>
             <li><a href="#"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a></li>
@@ -154,7 +154,7 @@
 
     <h1>Our new Products</h1>
     <div class="products">
-        <a href="goProduct.do">
+        <a href="#">
             <img src="images/sunglasses.jpg">
             <p>Sunglasses</p>
             <p class="price">49,000</p>
