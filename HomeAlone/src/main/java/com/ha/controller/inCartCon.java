@@ -16,6 +16,7 @@ public class inCartCon implements Controller {
 			throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		
 		String nick=request.getParameter("nick");		
 		int pNum=Integer.parseInt(request.getParameter("pNumber"));
 		int pCnt=Integer.parseInt(request.getParameter("pCnt"));
