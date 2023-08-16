@@ -19,6 +19,7 @@ public class inCartCon implements Controller {
 		
 		ArrayList<TB_Basket> basket_List = new ArrayList<>();
 		request.setCharacterEncoding("UTF-8");
+		
 		String nick=request.getParameter("nick");		
 		int pNum=Integer.parseInt(request.getParameter("p_number"));
 		int pCnt=Integer.parseInt(request.getParameter("p_cnt"));
