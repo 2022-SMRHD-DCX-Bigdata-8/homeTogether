@@ -1,0 +1,41 @@
+/* 헤더 부분 시작 */
+.logo{
+    width: 130px;
+}
+.logo> img{
+    width: 130px;
+}
+
+#menu{
+    list-style-type: none;
+    float: right;
+    margin-right: 120px;
+    margin-top: 40px;
+}
+#menu > li
+{
+    margin-left: 10px;
+    float: left;
+    border-right: thin solid #999999 ;
+    padding: 0px 16px;
+}
+#menu > li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+#menu::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#menu >:last-child{
+    border-right: hidden;
+}
+/* 헤더 부분 끝 */
+
+/* categori 영역 시작 */
+
+
+/* categori 영역  끝 */
