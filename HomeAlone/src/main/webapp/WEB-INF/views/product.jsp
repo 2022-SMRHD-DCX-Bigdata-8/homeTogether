@@ -16,8 +16,11 @@
 		
 	%>
 	
-		<p id="pNumber" value="0001">p0001</p>
+		<p id="pNumber" value="0001">0001</p>
 		<p id="pCnt" value="1">1개</p>>
+		<p id="pName" value="책상">책상</p>
+		<p id="pPrice" value="10000">10000</p>
+		<br>
 		<li><button id="damgi" >담기</button></li>
 	
 	
@@ -29,17 +32,21 @@
 	});
 	
 	function inCart(){
-		let pCnt =$('#pCnt').val();
-		let name =$('#pNumber').val();
+		let p_cnt =$('#pCnt').val();
+		let p_name =$('#pName').val();
+		let p_number=$('#pNumber').val();
+		let p_price =$('#pPrice').val();
 		let nick = <%= nick %>
 		
 		$.ajax({
 			url : 'inCart.do',
 			type: 'post',
 			data: {
-				"pCnt" : pCnt
-				"pNumber" : pNumber
+				"p_cnt" : p_cnt
+				"p_number" : p_number
+				"p_name" : p_name
 				"nick" :  nick
+				"p_price" : p_price
 			},
 			dataType: 'json',
 			success : function(res){
