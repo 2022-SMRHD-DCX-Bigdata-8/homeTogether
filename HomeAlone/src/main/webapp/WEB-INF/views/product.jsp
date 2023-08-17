@@ -136,7 +136,18 @@
 			$('#damgi').on('click', inCart);
 			$('#insert').on('click', inReview);
 		});
+		
+		<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#damgi').on('click', inCart);
+	        $('#insert').on('click', inReview);
+	        $('#askQuestion').on('click', askQuestion);
+	    });
+		
+		
+		
 
+<<<<<<< HEAD
 
     $(document).ready(function(){
         $('#damgi').on('click', inCart);
@@ -210,14 +221,11 @@
             }
         });
     
+        }
 
-    
+		
+	</script>
 
-    }
-    
-
-    
-    </script>
 
 
 </body>
