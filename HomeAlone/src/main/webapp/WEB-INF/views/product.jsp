@@ -139,6 +139,16 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 			$('#damgi').on('click', inCart);
 			$('#insert').on('click', inReview);
 		});
+		
+		<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#damgi').on('click', inCart);
+	        $('#insert').on('click', inReview);
+	        $('#askQuestion').on('click', askQuestion);
+	    });
+		
+		
+		
 
 		function inCart() {
 			let p_cnt = $('#pCnt').data('value');
@@ -188,6 +198,30 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 			});
 
 		}
+		 function askQuestion() {
+		        let qNickname = $('#qNickname').data('value');
+		        let qContent = $('#qContent').val();
+		        
+		        $.ajax({
+		            url : 'question.do',
+		            type : 'post',
+		            data : {
+		                "q_nickname" : qNickname,
+		                "q_content" : qContent
+		            },
+		            dataType : 'json',
+		            success : function(res) {
+		                console.log('문의 성공!!');
+		            },
+		            error : function(e) {
+		                console.log('문의 요청 실패!!!');
+		            }
+		        });
+		    }
+		
+		
+		
+		
 	</script>
 
 </body>
