@@ -34,8 +34,9 @@
   Mapper 파일을 만들때 마다 추가해야한다.   
   -->
   <mappers>
-
+		<mapper resource="com/ha/dao/TB_ReviewMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_MemberMapper.xml"/>
+  	    <mapper resource="com/ha/dao/TB_ProductMapper.xml"/>
 
   </mappers>
 </configuration>

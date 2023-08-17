@@ -12,6 +12,7 @@
 </head>
 
 <body>
+<%  TB_Member user = (TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">

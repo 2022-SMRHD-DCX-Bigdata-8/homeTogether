@@ -1,3 +1,5 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Basket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,24 +12,39 @@
 </head>
 <body>
 	<% 
-	HttpSession sesion = request.getSession();
-	ArrayList<TB_Basket> list = (ArrayList<TB_Basket>)sesion.getAttribute("basket");
+	
+	ArrayList<TB_Basket> list = (ArrayList<TB_Basket>)session.getAttribute("basket");
 	
 	%>
 	<div>
-		<table >
+		<table border="1" >
 			<tr>
 				<td>상품명</td>
 				<td>상품가격</td>
 				<td>상품수량</td>
-				<td>상품가격</td>
+				<td>상품번호</td>
+				
 			</tr>
+			<% if(list !=null) {%>
+			<%for(int i = 0 ; i<list.size();i++) {%>
 			<tr>
-				<td>${list[0].P_name}</td>
-				<td>${list[0].P_price}</td>
-				<td>${list[0].P_cnt}</td>
-				<td>${list[0].P_price}</td>		
-			</tr>				
+				<td><%=list.get(i).getP_name() %></td>
+				<td><%=list.get(i).getP_price()%> </td>
+				<td><%=list.get(i).getP_cnt()%></td>
+				<td><%=list.get(i).getP_number()%></td>
+				<td><a href=></a></td>
+				
+			</tr>
+			<%} %>				
+			<%}else{ %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+			</tr>
+			<%}; %>
 			
 		</table>
 	</div>
