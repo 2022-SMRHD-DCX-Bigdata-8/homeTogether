@@ -108,11 +108,11 @@
 		</tr>
 		<tr>
 
-			<td><textarea id="qContent" rows="4" cols="50"></textarea></td>
+			<td><textarea id="q_content" rows="4" cols="50"></textarea></td>
 		</tr>
 	</table>
 	<br>
-	<button id="askQuestion">문의하기</button>
+	<button id="question">문의하기</button>
 	<br>
 
 
