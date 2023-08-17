@@ -33,6 +33,7 @@ public class inReviewCon implements Controller {
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
+		
 		System.out.println(num);
 		
 		response.setContentType("text/html;charset=utf-8");

@@ -36,6 +36,7 @@
   <mappers>
 		<mapper resource="com/ha/dao/TB_ReviewMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_MemberMapper.xml"/>
+  	    <mapper resource="com/ha/dao/TB_ProductMapper.xml"/>
 
   </mappers>
 </configuration>
