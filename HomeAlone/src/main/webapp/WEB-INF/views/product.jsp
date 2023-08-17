@@ -132,12 +132,13 @@
 		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	
-    $(document).ready(function(){
-        $('#damgi').on('click', inCart);
-        $('#insert').on('click', inReview);
-    });
-    
+
+		$(document).ready(function() {
+			$('#damgi').on('click', inCart);
+			$('#insert').on('click', inReview);
+		});
+
+
     function inCart(){
         let p_cnt = $('#pCnt').data('value');
         let p_name = $('#pName').data('value');
