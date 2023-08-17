@@ -13,12 +13,11 @@
 <title>Insert title here</title>
 </head>
 
-<<<<<<< HEAD
+
 	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
 	 
 	%>
-=======
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
 
 <body>
 		<h1>상품 정보</h1>
@@ -64,19 +63,19 @@
 			<td>리뷰 내용</td>
 			<td>별점</td>
 		</tr>
-<<<<<<< HEAD
+
 		<% if(list != null){ %>  
 		<%for(int i =0 ; i<list.size();i++){ %>
-=======
+
 	
-		<c:forEach var="tb_review" items="${list}">
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
+
 		<tr>
 			<td><%=list.get(i).getNick() %></td>
 			<td><%=list.get(i).getContent() %></td>
 			<td><%=list.get(i).getRatings() %></td>
 		</tr>
-<<<<<<< HEAD
+
 		<%}%>
 		<% }else{ %>
 				
@@ -86,10 +85,9 @@
 			<td></td>
 		</tr>
 		<%} %>   
-=======
-		</c:forEach>
+
 		
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
 	</table>
 
 
@@ -162,12 +160,12 @@
             }
         });
     
-<<<<<<< HEAD
-    };
-=======
+
+    
+
     }
     
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
     
     </script>
 
