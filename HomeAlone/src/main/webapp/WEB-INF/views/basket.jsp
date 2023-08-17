@@ -32,7 +32,7 @@
 				<td><%=list.get(i).getP_price()%> </td>
 				<td><%=list.get(i).getP_cnt()%></td>
 				<td><%=list.get(i).getP_number()%></td>
-				
+				<td><a href=></a></td>
 				
 			</tr>
 			<%} %>				
@@ -48,28 +48,6 @@
 			
 		</table>
 	</div>
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

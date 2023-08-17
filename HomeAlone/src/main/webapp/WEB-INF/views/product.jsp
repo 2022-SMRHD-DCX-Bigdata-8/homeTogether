@@ -12,7 +12,7 @@
 <table border="2">
 	<tr>
 		<td>상품 번호</td>		
-		<td>상품 갯수 </td>		
+		<td>상품 갯수</td>		
 		<td>상품 이름</td>		
 		<td>상품 가격</td>		
 	</tr>
