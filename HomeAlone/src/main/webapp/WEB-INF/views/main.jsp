@@ -9,12 +9,28 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="http://mooozi.github.io/css/reset.css">
 <link href="assets/css/main.css" rel="stylesheet" />
+<style type="text/css">
+@font-face {
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'GmarketSansMedium' !important;
+}
+</style>
 </head>
 
 <body>
 
-	<%  TB_Member user = (TB_Member)session.getAttribute("user"); %>
-	
+	<%
+	TB_Member user = (TB_Member) session.getAttribute("user");
+	%>
+
 	<div id="login_view">
 		<div id="back">
 			<img src="img/icon/back.png">
@@ -29,7 +45,8 @@
 					</tr>
 					<tr>
 						<td>PW</td>
-						<td><input type="password" name="pw" placeholder="비밀번호를 입력해주세요"></td>
+						<td><input type="password" name="pw"
+							placeholder="비밀번호를 입력해주세요"></td>
 					</tr>
 					<tr>
 						<td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -39,41 +56,43 @@
 		</form>
 		<h1 id="join_h1">회원가입</h1>
 
-		<form action="#" method="post">
+		<form action="join.do" method="post">
 			<table id="join">
 				<tbody>
 					<tr>
 						<td>ID</td>
-						<td><input type="text" placeholder="아이디를 입력해주세요"></td>
+						<td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>PW</td>
-						<td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+						<td><input type="password" placeholder="비밀번호를 입력해주세요"
+							name="pw"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>NICK</td>
-						<td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+						<td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>PHONE</td>
-						<td><input type="text" name="cellPhone" id="cellPhone"
-							placeholder="핸드폰번호 입력" maxlength="13" /></td>
+						<td><input type="text" name="phone" id="cellPhone"
+							placeholder="핸드폰번호 입력" maxlength="13"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>ADRESS</td>
-						<td><input type="text" id="sample6_postcode"
+						<td><input type="text" id="sample6_postcode" name="zipCode"
 							placeholder="우편번호" style="margin-right: 10px;"></td>
 						<td><input id="post_btn" type="button"
 							onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="text" id="sample6_address" placeholder="주소">
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+						<td><input type="text" id="sample6_address" placeholder="주소"
+							name="addr"> <input type="text"
+							id="sample6_detailAddress" placeholder="상세주소" name="addrDetail">
 						</td>
 						<td></td>
 					</tr>
@@ -88,9 +107,9 @@
 					<tr>
 						<td>GENDER</td>
 						<td><label class="test_obj"> <input type="radio"
-								name="fruit" value="apple"> <span>남자</span>
+								name="fruit" value="apple" name="gender"> <span>남자</span>
 						</label> <label class="test_obj"> <input type="radio" name="fruit"
-								value="banana"> <span>여자</span>
+								value="banana" name="gender"> <span>여자</span>
 						</label></td>
 					</tr>
 					<tr>
@@ -110,12 +129,18 @@
 			<li><a href="#home">검색</a></li>
 			<li><a href="#html">게시판</a></li>
 			<li><a href="#css">장바구니</a></li>
-			<%if(user == null){ %>
+			<%
+			if (user == null) {
+			%>
 			<li id="goLogin"><a href="#javascrript">로그인</a></li>
-			<%}else{ %>
+			<%
+			} else {
+			%>
 			<li><a href="#">마이페이지</a></li>
 			<li><a href="#">로그아웃</a></li>
-			<%} %>
+			<%
+			}
+			%>
 		</ul>
 	</div>
 	<div class="hero_header">
@@ -180,7 +205,8 @@
 
 
 
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		function sample6_execDaumPostcode() {
 			new daum.Postcode(
