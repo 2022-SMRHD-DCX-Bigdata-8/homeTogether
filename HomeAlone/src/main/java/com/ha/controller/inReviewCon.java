@@ -23,11 +23,14 @@ public class inReviewCon implements Controller {
 		double ratings=Double.parseDouble(request.getParameter("ratings"));
 		
 		System.out.println(content);
+		
+		
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
-		String nick=member.getNick();
+		String nick = member.getNick();
 		
 		System.out.println(ratings);
+		
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
