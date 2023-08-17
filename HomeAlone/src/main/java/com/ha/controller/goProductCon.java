@@ -24,9 +24,6 @@ public class goProductCon implements Controller {
 
 	
 
-
-	
-
 		
 		TB_Review review = new TB_Review();
 	

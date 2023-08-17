@@ -250,7 +250,6 @@
             }).open();
         }
     </script>
-</script>
     <!-- 스크립트 -->
     
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script> 

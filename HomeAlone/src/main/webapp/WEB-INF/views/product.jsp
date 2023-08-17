@@ -137,7 +137,7 @@
 			$('#insert').on('click', inReview);
 		});
 
-<<<<<<< HEAD
+
     $(document).ready(function(){
         $('#damgi').on('click', inCart);
         $('#insert').on('click', inReview);
