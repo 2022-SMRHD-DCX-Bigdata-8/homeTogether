@@ -20,17 +20,16 @@ public class inReviewCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String content=request.getParameter("content");
+		String content = request.getParameter("content");
 		int p_number=Integer.parseInt(request.getParameter("p_number"));
 		double ratings=Double.parseDouble(request.getParameter("ratings"));
 		
-		
+
 		
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick = member.getNick();
 		
-		System.out.println(nick);
 		
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
