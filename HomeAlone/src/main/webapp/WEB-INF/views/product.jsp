@@ -1,4 +1,6 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.ha.entity.TB_Review"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +13,9 @@
 <title>Insert title here</title>
 </head>
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); %>
+	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
+	 
+	%>
 
 <body>
 		<h1>상품 정보</h1>
@@ -57,35 +61,27 @@
 			<td>리뷰 내용</td>
 			<td>별점</td>
 		</tr>
-		<!--  
-		<c:forEach var="tb_review" items="${list}">
+		<% if(list != null){ %>  
+		<%for(int i =0 ; i<list.size();i++){ %>
 		<tr>
-			<td>${list.nick}</td>
-			<td>${list.review_content}</td>
-			<td>${list.ratings}</td>
+			<td><%=list.get(i).getNick() %></td>
+			<td><%=list.get(i).getContent() %></td>
+			<td><%=list.get(i).getRatings() %></td>
 		</tr>
-		</c:forEach>
-		   -->
+		<%}%>
+		<% }else{ %>
+				
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<%} %>   
 	</table>
 
 
 <p>=========================================================================================================================</p>
 <h1>상품문의</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -153,12 +149,7 @@
             }
         });
     
-    function 
-    
-    
-    }
-    
-    
+    };
     
     </script>
 

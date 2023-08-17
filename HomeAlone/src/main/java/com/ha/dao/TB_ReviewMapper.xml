@@ -10,7 +10,7 @@
 		review_content,
 		nick,
 		ratings
-
+		
 		)values(
 		#{p_number},
 		#{content},
@@ -28,7 +28,7 @@
 
 		select *
 		from tb_review
-		where prod_seq = #{prod_seq}
+		where prod_seq = #{p_number}
 
 	</select>
 

@@ -28,7 +28,7 @@ public class inReviewCon implements Controller {
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick = member.getNick();
 		
-		System.out.println(ratings);
+		System.out.println(nick);
 		
 		TB_Review review = new TB_Review(nick, p_number, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
