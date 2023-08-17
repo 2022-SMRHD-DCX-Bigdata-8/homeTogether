@@ -15,7 +15,7 @@
 <%  TB_Member user = (TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
-        <form action="#" method="post">
+        <form action="" method="post">
             <h1 id="login_h1">로그인</h1>
             <table id="login">
                 <tbody>
@@ -250,6 +250,7 @@
             }).open();
         }
     </script>
+</script>
     <!-- 스크립트 -->
     
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script> 
