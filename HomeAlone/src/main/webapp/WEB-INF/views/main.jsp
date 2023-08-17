@@ -114,10 +114,12 @@
             <img src="img/logo/image2.png" height="75px">
         </a>
         <ul id="menu">
-            <li><a href="#home">검색</a></li>
-            <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
-            <li id="goLogin"><a href="#javascrript">로그인</a></li>
+            <li><a href="#">검색</a></li>
+            <li><a href="#">게시판</a></li>
+            <li><a href="#">장바구니</a></li>
+            <li id="goLogin">
+            	<a href="#">로그인</a>
+            </li>
         </ul>
     </div>
     <div class="hero_header">

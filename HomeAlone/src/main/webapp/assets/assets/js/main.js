@@ -53,39 +53,36 @@ $(document).ready(function () {
         this.value = autoHypenPhone(_val);
     }
 
-    $('#post_btn').on("mouseenter", function (e) {
+    $('#post_btn').on("mouseenter", function () {
         $(this).css("background-color", "white");
         $(this).css("color", "black");
     })
-    $('#post_btn').on("mouseleave", function (e) {
+    $('#post_btn').on("mouseleave", function () {
         $(this).css("background-color", "#b2b278");
         $(this).css("color", "white");
     })
 
     //------------------------------------------------
 
-    $('#back').on("mouseenter", function (e) {
+    $('#back').on("mouseenter", function () {
         if ($("#back").css("opacity") != "0%") {
             $('#back > img').css("transform", "scale(1.2)");
             $('#back > img').css("opacity", "100%");
         }
     })
 
-    $('#back').on("mouseleave", function (e) {
+    $('#back').on("mouseleave", function () {
         if ($("#back").css("opacity") != "0%") {
             $('#back > img').css("transform", "scale(1)");
             $('#back > img').css("opacity", "50%");
         }
 
     })
-    $('#back').on("click", function (e) {
+    $('#back').on("click", function () {
         closer();
-        /* $("#login_view").css("width", "0px"); */
-        /* $(this).css("visibility", "hidden"); */
     })
-    $("#goLogin").on("click", function (e) {
+    $("#goLogin").on("click", function () {
         opener();
-        /* $("#back").css("visibility", "visible"); */
     })
     //-------------------------------------------------
     var $viewer = $("#login_view");

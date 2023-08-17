@@ -132,23 +132,7 @@
 		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#damgi').on('click', inCart);
-			$('#insert').on('click', inReview);
-		});
-		
-		<script type="text/javascript">
-	    $(document).ready(function() {
-	        $('#damgi').on('click', inCart);
-	        $('#insert').on('click', inReview);
-	        $('#askQuestion').on('click', askQuestion);
-	    });
-		
-		
-		
-
-<<<<<<< HEAD
-
+	
     $(document).ready(function(){
         $('#damgi').on('click', inCart);
         $('#insert').on('click', inReview);
