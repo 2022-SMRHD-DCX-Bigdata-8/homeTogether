@@ -18,7 +18,6 @@
 
 
 
-
 <body>
 	<h1>상품 정보</h1>
 	<table border="2">
@@ -53,7 +52,7 @@
 	<p>=========================================================================================================================</p>
 	<h1>상품 평</h1>
 
-	<li>댓글 : <input type="text" id="review_content"></li>
+	<li>댓글 : <input type="text" id="content"></li>
 	<li>평점 : <input type="number" id="ratings" step="0.5" min="0"
 		max="5"></li>
 	<br>
@@ -167,7 +166,7 @@
     }
     
     function inReview(){
-        let content = $('#review_content').val();
+        let content = $('#content').val();
         let prod_seq = $('#prod_seq').data('value');
         let ratings = $('#ratings').val();
         
@@ -175,7 +174,7 @@
             url : 'inReview.do',
             type: 'post',
             data: {
-                "review_content": review_content,
+                "content": content,
                 "prod_seq": prod_seq,
                 "ratings": ratings
             },
@@ -189,7 +188,7 @@
 					
 					tr= "<tr>";
 					tr += "<td>"+res[i].nick+"</td>"
-					tr += "<td>"+res[i].review_content+"</td>"
+					tr += "<td>"+res[i].content+"</td>"
 					tr += "<td>"+res[i].ratings+"</td>"
 					tr +="</tr>";
 					

@@ -19,6 +19,7 @@ public class inReviewCon implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		String review_content = request.getParameter("review_content");
 		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
