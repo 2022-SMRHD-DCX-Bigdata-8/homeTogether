@@ -1,3 +1,17 @@
+/* 글꼴 시작 */
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'GmarketSansMedium' !important;
+}
+
+/* 글꼴 끝 */
+
 @media(max-width : 776px) {
   .logo>img {
     height: 50px;
@@ -23,34 +37,36 @@ body {
 /* 로그인창 */
 
 /* 아이콘 */
-#del{
+#del {
   width: 80px;
   height: 80px;
   float: right;
   opacity: 50%;
 }
-#del > img{
+
+#del>img {
   width: 100%;
 
 }
 
-#back{
+#back {
   position: fixed;
-  width: 80px;  
+  width: 80px;
   float: left;
   top: 50%;
   left: 67%;
   transform: translateY(-50%);
   opacity: 0%;
 }
-#back>img{
+
+#back>img {
   width: 100%;
   opacity: 0%;
 }
 
 /* 아이콘 끝 */
 
-#login_view > form > h1 {
+#login_view>form>h1 {
   color: #b2b278;
 }
 
@@ -94,32 +110,38 @@ body {
 #login input:focus {
   background-color: lemonchiffon;
 }
+
 /* 로그인창 끝*/
-#login_h1{
+#login_h1 {
   margin: 45px 150px 0px;
   width: 225px;
 }
-#join{
+
+#join {
   width: 350px;
 
 }
+
 /* 회원가입 */
-#join_h1{
+#join_h1 {
   margin: 45px 150px 10px;
   width: 225px;
   color: #b2b278;
 }
 
-#join > tbody > tr >:last-child{
+#join>tbody>tr>:last-child {
   padding-left: 20px;
 }
-#join > tbody >:last-child > td > button{
+
+#join>tbody>:last-child>td>button {
   margin-top: 20px;
 }
-#join > tbody > tr > td{
+
+#join>tbody>tr>td {
   padding-top: 10px;
 }
-input[type=radio]{
+
+input[type=radio] {
   margin-left: 30px;
 }
 
@@ -132,7 +154,7 @@ input[type=radio]{
   display: none;
 }
 
-.test_obj input[type="radio"] + span {
+.test_obj input[type="radio"]+span {
   display: inline-block;
   padding: 15px 10px;
   border: 1px solid #b2b278;
@@ -142,22 +164,24 @@ input[type=radio]{
   cursor: pointer;
 }
 
-.test_obj input[type="radio"]:checked + span {
+.test_obj input[type="radio"]:checked+span {
   background-color: #b2b278;
   color: #ffffff;
 }
-.test_obj{
+
+.test_obj {
   margin-left: 10px;
 }
+
 /* radio 버튼 끝 */
 
 /* 버튼 */
-#post_btn{
+#post_btn {
   background-color: #b2b278;
   color: white;
 }
 
-#login_btn{
+#login_btn {
   padding-right: 0px !important;
   padding-left: 0px !important;
 }
@@ -209,38 +233,41 @@ button:hover:after {
 
 /* 버튼 끝 */
 
-.logo{
-  width: 130px;
-}
-.logo> img{
+.logo {
   width: 130px;
 }
 
-#menu{
+.logo>img {
+  width: 130px;
+}
+
+#menu {
   list-style-type: none;
   float: right;
   margin-right: 120px;
   margin-top: 40px;
 }
-#menu > li
-{
+
+#menu>li {
   margin-left: 10px;
   float: left;
-  border-right: thin solid #999999 ;
+  border-right: thin solid #999999;
   padding: 0px 16px;
 }
-#menu > li > a {
-text-decoration: none;
-color: black;
-font-size: 18px;
+
+#menu>li>a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
 }
-#menu::after{
+
+#menu::after {
   content: "";
   display: block;
   clear: both;
 }
 
-#menu >:last-child{
+#menu>:last-child {
   border-right: hidden;
 }
 
@@ -324,13 +351,15 @@ font-size: 18px;
 /* headnav 끝*/
 .headnav {
   margin-top: 30px;
-  width	: 350px;
+  width: 350px;
 }
-.headnav > li{
-	width : 70px;
-	margin : 0;
+
+.headnav>li {
+  width: 70px;
+  margin: 0;
 }
-.headnav > li > pre{
+
+.headnav>li>pre {
   width: 70px;
 }
 
