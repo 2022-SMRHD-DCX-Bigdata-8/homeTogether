@@ -14,9 +14,11 @@
 </head>
 
 
-<%
-ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
-%>
+
+	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)session.getAttribute("list"); 
+	 
+	%>
+
 
 
 <body>
@@ -67,11 +69,9 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 			<td>별점</td>
 		</tr>
 
-		<%
-		if (list != null) {
-		%>
-
-
+		<tbody id="tbd">
+		<% if(list != null){ %>  
+				
     <c:forEach var="review" items="${list}">
         <tr>
             <td>${review.nick}</td>
@@ -83,17 +83,14 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 		<%
 		} else {
 		%>
-
-
 		<tr>
 			<td></td>
 			<td></td>
 			<td></td>
 		</tr>
-		<%
-		}
-		%>
 
+		<%} %>   
+		</tbody>
 
 
 	</table>
@@ -149,6 +146,7 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 		
 		
 		
+
 
 		function inCart() {
 			let p_cnt = $('#pCnt').data('value');
@@ -223,6 +221,8 @@ ArrayList<TB_Review> list = (ArrayList<TB_Review>) request.getAttribute("list");
 		
 		
 	</script>
+
+
 
 </body>
 
