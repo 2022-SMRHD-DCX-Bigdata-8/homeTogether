@@ -3,7 +3,7 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,6 @@
 <title>Insert title here</title>
 </head>
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); %>
 
 <body>
 		<h1>상품 정보</h1>
@@ -57,7 +56,7 @@
 			<td>리뷰 내용</td>
 			<td>별점</td>
 		</tr>
-		<!--  
+	
 		<c:forEach var="tb_review" items="${list}">
 		<tr>
 			<td>${list.nick}</td>
@@ -65,7 +64,7 @@
 			<td>${list.ratings}</td>
 		</tr>
 		</c:forEach>
-		   -->
+		
 	</table>
 
 
@@ -153,11 +152,7 @@
             }
         });
     
-    function 
-    
-    
     }
-    
     
     
     </script>
