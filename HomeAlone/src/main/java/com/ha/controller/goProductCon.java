@@ -19,18 +19,17 @@ public class goProductCon implements Controller {
 			throws ServletException, IOException {
 		
 
-		
-
 	int p_number=Integer.parseInt(request.getParameter("p_number"));
-
+	
 		
 		TB_Review review = new TB_Review();
-		review.setP_number(p_number);
-				
+		review.setP_number(p_number); 
+		
 		
 		TB_ReviewDAO dao = new TB_ReviewDAO();
-        
+
 		List<TB_Review> list = dao.select(review);
+
 		
 	    request.setAttribute("list", list); 
 
