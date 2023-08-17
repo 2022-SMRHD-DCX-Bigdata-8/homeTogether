@@ -14,7 +14,7 @@
 </head>
 
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
+	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)session.getAttribute("list"); 
 	 
 	%>
 
@@ -63,7 +63,7 @@
 			<td>리뷰 내용</td>
 			<td>별점</td>
 		</tr>
-
+		<tbody id="tbd">
 		<% if(list != null){ %>  
 		<%for(int i =0 ; i<list.size();i++){ %>
 
@@ -85,7 +85,7 @@
 			<td></td>
 		</tr>
 		<%} %>   
-
+		</tbody>
 		
 
 	</table>
@@ -153,7 +153,27 @@
             },
             dataType: 'json',
             success: function(res){
-                console.log('성공!!');
+            	
+            	let tbody=$('#tbd');
+				tbody.html('');
+				
+				for(let i =0; i<res.length; i++){
+					
+					tr= "<tr>";
+					tr += "<td>"+res[i].nick+"</td>"
+					tr += "<td>"+res[i].content+"</td>"
+					tr += "<td>"+res[i].ratings+"</td>"
+					tr +="</tr>";
+					
+					// html('code') :덮어쓰기
+					// after('code'):닫는태그 바로뒤에 추가
+					// before('code'):여는태그 바로앞에 추가
+					// append('code'):자식요소로 추가
+					tbody.append(tr);
+					
+                        	
+            	
+            	
             },
             error: function(e){
                 console.log('요청실패!!!');

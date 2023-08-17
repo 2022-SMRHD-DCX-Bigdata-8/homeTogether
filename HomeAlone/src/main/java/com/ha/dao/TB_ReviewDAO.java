@@ -31,11 +31,15 @@ public class TB_ReviewDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Review> list = session.selectList("list", review);
+			
+	
+		
 		
 		session.close();
 		return list;
 		
 	}
+
 	
 	
 	
