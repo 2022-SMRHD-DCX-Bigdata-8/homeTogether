@@ -18,6 +18,7 @@
 
 
 
+
 <body>
 	<h1>상품 정보</h1>
 	<table border="2">
@@ -107,7 +108,7 @@
 			<td>문의 내용</td>
 		</tr>
 		<tr>
-			<td><p id="qNickname" data-value="user123"></p></td>
+
 			<td><textarea id="qContent" rows="4" cols="50"></textarea></td>
 		</tr>
 	</table>
@@ -197,10 +198,7 @@
 					// before('code'):여는태그 바로앞에 추가
 					// append('code'):자식요소로 추가
 					tbody.append(tr);
-				}	
-                        	
-            	
-            	
+
             },
             error: function(e){
                 console.log('요청실패!!!');
@@ -209,7 +207,10 @@
     
         }
 
-		
+
+        
+        
+        
 	</script>
 
 
