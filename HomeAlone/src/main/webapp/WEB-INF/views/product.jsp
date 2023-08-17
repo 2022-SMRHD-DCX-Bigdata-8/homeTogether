@@ -13,9 +13,10 @@
 <title>Insert title here</title>
 </head>
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
-	 
-	%>
+
+
+
+
 
 
 <body>
@@ -68,10 +69,10 @@
 
 		<tbody id="tbd">
 			<%
-			if (list != null) {
+			if ("${review}" != null) {
 			%>
 
-			<c:forEach var="review" items="${list}">
+			<c:forEach var="review" items="${review}">
 				<tr>
 					<td>${review.nick}</td>
 					<td>${review.content}</td>
