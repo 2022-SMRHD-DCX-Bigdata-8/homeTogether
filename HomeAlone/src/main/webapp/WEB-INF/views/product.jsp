@@ -75,7 +75,7 @@
 			<c:forEach var="review" items="${review}">
 				<tr>
 					<td>${review.nick}</td>
-					<td>${review.content}</td>
+					<td>${review.review_content}</td>
 					<td>${review.ratings}</td>
 				</tr>
 			</c:forEach>

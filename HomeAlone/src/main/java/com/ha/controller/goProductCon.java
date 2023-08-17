@@ -35,7 +35,7 @@ public class goProductCon implements Controller {
 		
 		List<TB_Review> list = dao.select(review);
 		
-		String cnt=list.get(1).getContent();
+		String cnt=list.get(1).getReview_content();
 		System.out.println(cnt);
 		
 		request.setAttribute("review", list);
