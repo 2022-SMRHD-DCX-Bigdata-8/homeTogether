@@ -19,13 +19,6 @@ public class goProductCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-
-	
-
-	
-
-		
 
 
 		int p_number = Integer.parseInt(request.getParameter("p_number"));

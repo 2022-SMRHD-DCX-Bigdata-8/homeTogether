@@ -25,12 +25,17 @@
 </style>
 </head>
 
+
+
+
+
+
 <body>
 
    <%
    TB_Member user = (TB_Member) session.getAttribute("user");
    %>
-
+<!-- ★로그인★ -->
    <div id="login_view">
       <div id="back">
          <img src="img/icon/back.png">
@@ -54,6 +59,7 @@
             </tbody>
          </table>
       </form>
+<!-- ★회원가입★ -->      
       <h1 id="join_h1">회원가입</h1>
 
       <form action="join.do" method="post">
@@ -125,6 +131,7 @@
       <a class="logo" href="#"> <img src="img/logo/image2.png"
          height="75px">
       </a>
+<!-- ★검색,게시판,장바구니★ -->
       <ul id="menu">
          <li><a href="#home">검색</a></li>
          <li><a href="#html">게시판</a></li>
@@ -136,6 +143,7 @@
          <%
          } else {
          %>
+<!-- ★마이페이지,로그아웃★ -->
          <li><a href="#">마이페이지</a></li>
          <li><a href="goLogout.do">로그아웃</a></li>
          <%
@@ -143,6 +151,7 @@
          %>
       </ul>
    </div>
+<!-- ★★ -->
    <div class="hero_header">
       <ul class="slideshow">
          <!-- Add the .slideshow class here -->
@@ -152,7 +161,7 @@
          <li><img src="img/shopa/이미지18.jpg" alt="가구 사진3"></li>
       </ul>
    </div>
-
+<!-- ★★ -->
    <div id="categori">
       <ul>
          <li><a href="#"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
@@ -163,7 +172,7 @@
          <li><a href="#"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a></li>
       </ul>
    </div>
-
+<!-- ★★ -->
    <h1>Our new Products</h1>
    <div class="products">
       <a href="goProduct.do?p_number=5"> <img src="images/sunglasses.jpg">

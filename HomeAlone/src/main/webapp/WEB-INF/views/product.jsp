@@ -15,7 +15,7 @@
 
 
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)session.getAttribute("list"); 
+	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
 	 
 	%>
 
@@ -106,7 +106,7 @@
 			<td>문의 내용</td>
 		</tr>
 		<tr>
-			<td><p id="qNickname" data-value="user123">${review.nick}</p></td>
+			<td><p id="nick" data-value="user123">${review.nick}</p></td>
 			<td><textarea id="qContent" rows="4" cols="50"></textarea></td>
 		</tr>
 	</table>
@@ -196,10 +196,7 @@
 					// before('code'):여는태그 바로앞에 추가
 					// append('code'):자식요소로 추가
 					tbody.append(tr);
-					
-                        	
-            	
-            	
+
             },
             error: function(e){
                 console.log('요청실패!!!');
@@ -208,7 +205,10 @@
     
         }
 
-		
+
+        
+        
+        
 	</script>
 
 
