@@ -32,15 +32,9 @@ public class inReviewCon implements Controller {
 		String nick = member.getNick();
 		
 		
-		TB_Review review = new TB_Review();
-	
-		//nick, review_content, ratings, prod_seq
-		
-		review.setNick(nick);
-		review.setReview_content(review_content);
-		review.setRatings(ratings);
-		review.setProd_seq(prod_seq);
-	
+
+		TB_Review review = new TB_Review(nick, prod_seq, review_content, ratings);
+
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
 		
