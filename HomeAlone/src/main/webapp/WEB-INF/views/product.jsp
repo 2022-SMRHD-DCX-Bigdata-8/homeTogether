@@ -1,6 +1,5 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.ha.entity.TB_Review"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,7 +51,7 @@
 	<p>=========================================================================================================================</p>
 	<h1>상품 평</h1>
 
-	<li>댓글 : <input type="text" id="content"></li>
+	<li>댓글 : <input type="text" id="review_content"></li>
 	<li>평점 : <input type="number" id="ratings" step="0.5" min="0"
 		max="5"></li>
 	<br>
@@ -166,7 +165,7 @@
     }
     
     function inReview(){
-        let content = $('#content').val();
+        let review_content = $('#review_content').val();
         let prod_seq = $('#prod_seq').data('value');
         let ratings = $('#ratings').val();
         
@@ -174,13 +173,14 @@
             url : 'inReview.do',
             type: 'post',
             data: {
-                "content": content,
+                "review_content": review_content,
                 "prod_seq": prod_seq,
                 "ratings": ratings
             },
+            
             dataType: 'json',
             success: function(res){
-            	console.log('요청성공!!!');
+            	console.log('요청성공');
             	let tbody=$('#tbd');
 				tbody.html('');
 				

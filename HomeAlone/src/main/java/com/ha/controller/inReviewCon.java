@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+
 import com.ha.dao.TB_ReviewDAO;
 import com.ha.entity.TB_Member;
 import com.ha.entity.TB_Review;
@@ -24,6 +25,7 @@ public class inReviewCon implements Controller {
 		String review_content = request.getParameter("review_content");
 		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
 		double ratings=Double.parseDouble(request.getParameter("ratings"));
+		System.out.println(review_content);
 		
 
 		
@@ -33,7 +35,8 @@ public class inReviewCon implements Controller {
 		
 		
 
-		TB_Review review = new TB_Review(nick, prod_seq, review_content, ratings);
+		TB_Review review = new TB_Review(prod_seq, review_content, nick, ratings);
+		
 
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
@@ -44,10 +47,13 @@ public class inReviewCon implements Controller {
 		List<TB_Review> list = dao.select(review);
 		
 		PrintWriter out = response.getWriter();
+		
+		
+		
 		Gson gson = new Gson();
 		String json= gson.toJson(list);
-				
-		response.setContentType("text/html;charset=utf-8");
+			
+		response.setContentType("text/html ; charset=UTF-8");
 		
 		out.print(json);
 		
