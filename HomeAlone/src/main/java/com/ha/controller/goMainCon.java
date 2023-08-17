@@ -12,6 +12,7 @@ public class goMainCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		return "main";
 	}
 

@@ -14,21 +14,22 @@
 <body>
 
 	<%  TB_Member user = (TB_Member)session.getAttribute("user"); %>
+	
 	<div id="login_view">
 		<div id="back">
 			<img src="img/icon/back.png">
 		</div>
-		<form action="#" method="post">
+		<form action="login.do" method="post">
 			<h1 id="login_h1">로그인</h1>
 			<table id="login">
 				<tbody>
 					<tr>
 						<td>ID</td>
-						<td><input type="text" placeholder="아이디를 입력해주세요"></td>
+						<td><input type="text" name="id" placeholder="아이디를 입력해주세요"></td>
 					</tr>
 					<tr>
 						<td>PW</td>
-						<td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+						<td><input type="password" name="pw" placeholder="비밀번호를 입력해주세요"></td>
 					</tr>
 					<tr>
 						<td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -109,7 +110,12 @@
 			<li><a href="#home">검색</a></li>
 			<li><a href="#html">게시판</a></li>
 			<li><a href="#css">장바구니</a></li>
+			<%if(user == null){ %>
 			<li id="goLogin"><a href="#javascrript">로그인</a></li>
+			<%}else{ %>
+			<li><a href="#">마이페이지</a></li>
+			<li><a href="#">로그아웃</a></li>
+			<%} %>
 		</ul>
 	</div>
 	<div class="hero_header">
