@@ -13,7 +13,7 @@ public class TB_Review {
 	private int prod_seq;
 	private String  review_content;
 	private double ratings;
-	private int shares;
+	
 	
 
 }
