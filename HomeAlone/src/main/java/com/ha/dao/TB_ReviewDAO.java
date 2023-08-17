@@ -1,5 +1,7 @@
 package com.ha.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -25,4 +27,19 @@ public class TB_ReviewDAO {
 		
 	}
 
+	public List<TB_Review> select(TB_Review review) {
+		SqlSession session = factory.openSession(true);
+		
+		List<TB_Review> list = session.selectList("list", review);
+		
+		session.close();
+		return list;
+		
+	}
+	
+	
+	
+	
+	
+	
 }

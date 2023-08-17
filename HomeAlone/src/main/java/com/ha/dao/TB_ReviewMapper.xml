@@ -6,21 +6,35 @@
 
 	<insert id="insert" parameterType="com.ha.entity.TB_Review">
 		insert into tb_review(
-			prod_seq,
-			review_content,
-			nick,
-			ratings
-		
+		prod_seq,
+		review_content,
+		nick,
+		ratings
+
 		)values(
-			#{p_number},
-			#{content},
-			#{nick},
-			#{ratings}
-		
-		)	
-	
-	
+		#{p_number},
+		#{content},
+		#{nick},
+		#{ratings}
+
+		)
+
 	</insert>
+
+
+
+	<select id="list" resultType="com.ha.entity.TB_Review"
+	parameterType="com.ha.entity.TB_Review">
+
+		select *
+		from tb_review
+		where prod_seq = #{prod_seq}
+
+	</select>
+
+
+
+
 
 
 </mapper>
