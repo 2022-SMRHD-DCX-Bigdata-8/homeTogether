@@ -20,16 +20,21 @@ public class goProductCon implements Controller {
 			throws ServletException, IOException {
 		
 		int prod_seq = Integer.parseInt(request.getParameter("prod_seq"));
-
+		
 		TB_Review review = new TB_Review();
 		
 		review.setProd_seq(prod_seq);
 		
 		TB_ReviewDAO dao = new TB_ReviewDAO();
-
+		
 		List<TB_Review> list = dao.select(review);
-
+		
+		String cnt=list.get(1).getContent();
+		System.out.println(cnt);
+		
 		request.setAttribute("review", list);
+		
+		
 		
 		return "product";
 	}
