@@ -8,7 +8,7 @@
     <title>SimpleShop</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="http://mooozi.github.io/css/reset.css">
-    <link href="/assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/main.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -111,7 +111,7 @@
 
     <div class="navbar">
         <a class="logo" href="#">
-            <img src="/img/logo/image2.png" height="75px">
+            <img src="img/logo/image2.png" height="75px">
         </a>
         <ul id="menu">
             <li><a href="#home">검색</a></li>
