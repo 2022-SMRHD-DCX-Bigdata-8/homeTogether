@@ -15,13 +15,9 @@
 	
 	ArrayList<TB_Basket> list = (ArrayList<TB_Basket>)session.getAttribute("basket");
 	
-	out.print(list.get(0));
-	
-
-	
 	%>
 	<div>
-		<table >
+		<table border="1" >
 			<tr>
 				<td>상품명</td>
 				<td>상품가격</td>
@@ -29,15 +25,26 @@
 				<td>상품번호</td>
 				
 			</tr>
-			
+			<% if(list !=null) {%>
+			<%for(int i = 0 ; i<list.size();i++) {%>
 			<tr>
-				<td><%=list.get(0).getP_name() %></td>
-				<td><%=list.get(0).getP_price()%> </td>
-				<td><%=list.get(0).getP_cnt()%></td>
-				<td><%=list.get(0).getP_number()%></td>
+				<td><%=list.get(i).getP_name() %></td>
+				<td><%=list.get(i).getP_price()%> </td>
+				<td><%=list.get(i).getP_cnt()%></td>
+				<td><%=list.get(i).getP_number()%></td>
 				
 				
-			</tr>				
+			</tr>
+			<%} %>				
+			<%}else{ %>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				
+			</tr>
+			<%}; %>
 			
 		</table>
 	</div>
