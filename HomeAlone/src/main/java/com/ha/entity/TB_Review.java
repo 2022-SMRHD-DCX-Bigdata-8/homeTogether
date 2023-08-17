@@ -11,8 +11,9 @@ public class TB_Review {
 	
 	private String nick;
 	private int prod_seq;
-	private String content;
+	private String  review_content;
 	private double ratings;
+	private int shares;
 	
 
 }

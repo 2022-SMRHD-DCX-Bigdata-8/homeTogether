@@ -13,7 +13,7 @@
 		
 		)values(
 		#{prod_seq},
-		#{content},
+		#{review_content},
 		#{nick},
 		#{ratings}
 

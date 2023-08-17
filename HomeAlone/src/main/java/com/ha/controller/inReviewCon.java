@@ -20,7 +20,7 @@ public class inReviewCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String content = request.getParameter("content");
+		String review_content = request.getParameter("review_content");
 		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
 		double ratings=Double.parseDouble(request.getParameter("ratings"));
 		
@@ -31,7 +31,7 @@ public class inReviewCon implements Controller {
 		String nick = member.getNick();
 		
 		
-		TB_Review review = new TB_Review(nick, prod_seq, content, ratings);
+		TB_Review review = new TB_Review(nick, prod_seq, review_content, ratings, prod_seq);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
 		
