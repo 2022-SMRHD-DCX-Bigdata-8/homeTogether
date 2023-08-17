@@ -21,7 +21,7 @@ public class inReviewCon implements Controller {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String content = request.getParameter("content");
-		int p_number=Integer.parseInt(request.getParameter("p_number"));
+		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
 		double ratings=Double.parseDouble(request.getParameter("ratings"));
 		
 
@@ -31,13 +31,13 @@ public class inReviewCon implements Controller {
 		String nick = member.getNick();
 		
 		
-		TB_Review review = new TB_Review(nick, p_number, content, ratings);
+		TB_Review review = new TB_Review(nick, prod_seq, content, ratings);
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		int num=dao.insert(review);
 		
 		System.out.println(num);
 		
-		int pNum=review.getP_number();
+		
 		List<TB_Review> list = dao.select(review);
 		
 		PrintWriter out = response.getWriter();

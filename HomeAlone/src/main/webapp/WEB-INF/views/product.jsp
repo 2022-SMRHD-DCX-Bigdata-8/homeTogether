@@ -13,12 +13,9 @@
 <title>Insert title here</title>
 </head>
 
-
-
 	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)request.getAttribute("list"); 
 	 
 	%>
-
 
 
 <body>
@@ -31,10 +28,10 @@
 			<td>상품 가격</td>
 		</tr>
 		<tr>
-			<td><p id="pNumber" data-value="5">p-5</p></td>
-			<td><p id="pCnt" data-value="1">1</p></td>
-			<td><p id="pName" data-value="Gaming Mouse">Gaming Mouse</p></td>
-			<td><p id="pPrice" data-value="45000">45000</p></td>
+			<td><p id="prod_seq" data-value="5">p-5</p></td>
+			<td><p id="prod_cnt" data-value="1">1</p></td>
+			<td><p id="prod_name" data-value="Gaming Mouse">Gaming Mouse</p></td>
+			<td><p id="prod_price" data-value="45000">45000</p></td>
 		</tr>
 		<tr>
 			<td>상품 평</td>
@@ -70,26 +67,30 @@
 		</tr>
 
 		<tbody id="tbd">
-		<% if(list != null){ %>  
-				
-    <c:forEach var="review" items="${list}">
-        <tr>
-            <td>${review.nick}</td>
-            <td>${review.content}</td>
-            <td>${review.ratings}</td>
-        </tr>
-    </c:forEach>
+			<%
+			if (list != null) {
+			%>
 
-		<%
-		} else {
-		%>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+			<c:forEach var="review" items="${list}">
+				<tr>
+					<td>${review.nick}</td>
+					<td>${review.content}</td>
+					<td>${review.ratings}</td>
+				</tr>
+			</c:forEach>
 
-		<%} %>   
+			<%
+			} else {
+			%>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<%
+			}
+			%>
 		</tbody>
 
 
@@ -106,7 +107,7 @@
 			<td>문의 내용</td>
 		</tr>
 		<tr>
-			<td><p id="nick" data-value="user123">${review.nick}</p></td>
+
 			<td><textarea id="qContent" rows="4" cols="50"></textarea></td>
 		</tr>
 	</table>
@@ -140,19 +141,19 @@
 
 
     function inCart(){
-        let p_cnt = $('#pCnt').data('value');
-        let p_name = $('#pName').data('value');
-        let p_number = $('#pNumber').data('value');
-        let p_price = $('#pPrice').data('value');
+        let prod_cnt = $('#prod_cnt').data('value');
+        let prod_name = $('#prod_name').data('value');
+        let prod_seq = $('#prod_seq').data('value');
+        let prod_price = $('#prod_price').data('value');
         
         $.ajax({
             url : 'inCart.do',
             type: 'post',
             data: {
-                "p_cnt": p_cnt,
-                "p_number": p_number,
-                "p_name": p_name,
-                "p_price": p_price
+                "prod_cnt": prod_cnt,
+                "prod_seq": prod_seq,
+                "prod_name": prod_name,
+                "prod_price": prod_price
             },
             dataType: 'json',
             success: function(res){
@@ -166,7 +167,7 @@
     
     function inReview(){
         let content = $('#content').val();
-        let p_number = $('#pNumber').data('value');
+        let prod_seq = $('#prod_seq').data('value');
         let ratings = $('#ratings').val();
         
         $.ajax({
@@ -174,12 +175,12 @@
             type: 'post',
             data: {
                 "content": content,
-                "p_number": p_number,
+                "prod_seq": prod_seq,
                 "ratings": ratings
             },
             dataType: 'json',
             success: function(res){
-            	
+            	console.log('요청성공!!!');
             	let tbody=$('#tbd');
 				tbody.html('');
 				
