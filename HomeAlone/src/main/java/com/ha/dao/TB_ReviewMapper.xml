@@ -10,7 +10,6 @@
 			review_content,
 			nick,
 			ratings
-					
 		
 		)values(
 			#{p_number},
@@ -22,15 +21,6 @@
 	
 	
 	</insert>
-
-
-
-
-
-
-
-
-
 
 
 </mapper>
