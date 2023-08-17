@@ -18,29 +18,19 @@ public class goProductCon implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		
-
-	
-
-	
-
-		
-
-
-		int p_number = Integer.parseInt(request.getParameter("p_number"));
-
+		int prod_seq = Integer.parseInt(request.getParameter("prod_seq"));
 
 		TB_Review review = new TB_Review();
-
-		review.setP_number(p_number);
-
+		
+		review.setProd_seq(prod_seq);
+		
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 
 		List<TB_Review> list = dao.select(review);
 
-		request.setAttribute("list", list);
-
+		request.setAttribute("review", list);
+		
 		return "product";
 	}
 

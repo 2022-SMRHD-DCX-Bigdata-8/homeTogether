@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class TB_Review {
 	
-	
 	private String nick;
-	private int p_number;
+	private int prod_seq;
 	private String content;
 	private double ratings;
 	

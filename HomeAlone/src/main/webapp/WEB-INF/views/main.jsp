@@ -166,7 +166,7 @@
 
    <h1>Our new Products</h1>
    <div class="products">
-      <a href="goProduct.do?p_number=5"> <img src="images/sunglasses.jpg">
+      <a href="goProduct.do?prod_seq=5"> <img src="images/sunglasses.jpg">
          <p>Sunglasses</p>
          <p class="price">49,000</p>
       </a> <a href="#"> <img src="images/tassel_loafer.jpg">
