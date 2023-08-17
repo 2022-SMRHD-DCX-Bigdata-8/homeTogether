@@ -24,7 +24,6 @@ public class inReviewCon implements Controller {
 		
 		System.out.println(content);
 		
-		
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick = member.getNick();
