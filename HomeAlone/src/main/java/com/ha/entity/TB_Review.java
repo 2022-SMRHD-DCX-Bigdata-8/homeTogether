@@ -13,6 +13,7 @@ public class TB_Review {
 	private String  review_content;
 	private String nick;
 	private double ratings;
+	private int review_seq;
 	
 	
 

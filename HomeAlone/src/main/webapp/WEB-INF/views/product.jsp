@@ -61,6 +61,7 @@
 
 	<table border="2">
 		<tr>
+			<td>리뷰번호</td>
 			<td>닉네임</td>
 			<td>리뷰 내용</td>
 			<td>별점</td>
@@ -73,6 +74,7 @@
 
 			<c:forEach var="review" items="${review}">
 				<tr>
+					<td id="review_seq">${review.review_seq}</td>
 					<td>${review.nick}</td>
 					<td>${review.review_content}</td>
 					<td>${review.ratings}</td>

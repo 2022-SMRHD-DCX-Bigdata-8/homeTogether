@@ -34,7 +34,11 @@ public class inReviewCon implements Controller {
       
       
 
-      TB_Review review = new TB_Review(prod_seq, review_content, nick, ratings);
+      TB_Review review = new TB_Review();
+      review.setNick(nick);
+      review.setProd_seq(prod_seq);
+      review.setRatings(ratings);
+      review.setReview_content(review_content);
       
 
       TB_ReviewDAO dao = new TB_ReviewDAO();
