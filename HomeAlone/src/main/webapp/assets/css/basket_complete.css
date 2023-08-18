@@ -1,102 +1,229 @@
 /* 헤더 부분 시작 */
- @font-face {
+@font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-} 
- 
-
- * {
-	font-family: 'GmarketSansMedium';
-} 
+}
 
 
+* {
+    font-family: 'GmarketSansMedium';
+}
+
+@media (max-width: 1350px) {
+    #ad>div {
+        width: 28% !important;
+    }
+
+    #ad>p {
+        font-size: 16px !important;
+    }
+
+    #ad strong {
+        font-size: 13px !important;
+    }
+
+    .total {
+        width: 250px !important;
+    }
+}
+
+@media (max-width: 1120px) {
+    #ad>div {
+        width: 25% !important;
+    }
+
+    #ad>p {
+        font-size: 15px !important;
+    }
+
+    #ad strong {
+        font-size: 11px !important;
+    }
+}
 
 
 
-.logo{
+.logo {
     width: 130px;
 
 }
-.logo> img{
+
+.logo>img {
     width: 130px;
 }
 
-#menu{
+#menu {
     list-style-type: none;
     float: right;
     margin-right: 120px;
     margin-top: 40px;
 }
-#menu > li
-{
+
+#menu>li {
     margin-left: 10px;
     float: left;
-    border-right: thin solid #999999 ;
+    border-right: thin solid #999999;
     padding: 0px 16px;
 }
-#menu > li > a {
-  text-decoration: none;
-  color: black;
-  font-size: 18px;
+
+#menu>li>a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
 }
-#menu::after{
+
+#menu::after {
     content: "";
     display: block;
     clear: both;
 }
 
-#menu >:last-child{
+#menu>:last-child {
     border-right: hidden;
 }
+
+.navbar {
+    border-bottom: 1px solid #999999;
+}
+
 /* 헤더 부분 끝 */
 
 /* 본문 */
 
-    .cart > div > h1{
-        font-size: 28px;
-        font-style: bold;
+.cart>div>h1 {
+    font-size: 28px;
+    font-style: bold;
 
-    }
-    .flex-container{
-        margin-top: 20px;
-    }
-    #customer{
-       position: absolute;
-       right: 45px;
-       top: 85px;
-    }
-    #c_name{
-        position: absolute;
-        right: 50px;
-        font-size: 1.5em;
-        font-style: bold;
-    }
-    #selectAll > button{
-        width: 50%;
-    }
-    tbody > tr > td{
-        position: relative;
-    }
-    .basket > td:nth-child(n+3) > h1{
-    }
-    .number > h1{
-        left: 65px;
-    }
-    .fr_send > span{
-        left: 49px;
-    }
-    .basket > td > input[type = checkbox]{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    h2 > a {
-        text-decoration: none;
-        color: black;
-    }
- 
+}
+
+#product {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.flex-container {
+    margin-top: 20px;
+    display: inline;
+}
+
+.cart>:first-child::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.cart>:first-child>:first-child {
+    display: inline-block;
+}
+
+#wrap::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#wrap {
+    position: relative;
+}
+
+#customer {
+    float: right;
+}
+
+#span_block {
+    display: inline;
+    float: right;
+    margin-bottom: -10px;
+}
+
+#span_block::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#c_name {
+    float: right;
+    line-height: 2em;
+    font-size: 20px;
+}
+
+#selectAll>button {
+    width: 50%;
+}
+
+tbody>tr>td {
+    position: relative;
+}
+
+.basket>td:nth-child(n+3)>h1 {}
+
+.number>h1 {
+    left: 65px;
+}
+
+.fr_send>span {
+    left: 49px;
+}
+
+.basket>td>input[type=checkbox] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+h2>a {
+    text-decoration: none;
+    color: black;
+}
+
 /* 본문 끝 */
 
+/* 광고 시작 */
+#ad {
+    width: 60%;
+    margin-top: 15px;
+    margin-left: 40px;
+    margin-bottom: 100px;
+}
 
+#ad>p {
+    font-size: 20px;
+}
+
+#ad::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+#ad>div {
+    margin-right: 10px;
+    float: left;
+    width: 30%;
+    text-align: center;
+}
+
+#ad>div>a {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 25%;
+}
+
+#ad>div>a>img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+#ad>div>a:hover,
+#ad>div>a>img:hover {
+    transform: scale(105%, 105%);
+}
+
+/* 광고 끝 */
