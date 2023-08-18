@@ -265,17 +265,17 @@
                                             <img src="assets/img/test/KakaoTalk_20230817_155756756_01.jpg" alt="1">
                                         </a>
                                         <div>
-                                            <h2 ><a href="#"><%=list.get(i).getProd_name() %></a></h2>
+                                            <h2 ><a href="goProduct"><%=list.get(i).getProd_name() %></a></h2>
                                             <p>상품설명</p>
                                         </div>
                                     </article>
                                 </td>
 
-                                <td><span>1</span></td>
+                                <td><span><%=i+1 %></span></td>
                                 <td class="number"><span><%=list.get(i).getProd_seq() %></span></td>
-                                <td><span><%=list.get(i).getProd_cnt() %></span></td>
+                                <td><span><%=list.get(i).getProd_cnt() %>개</span></td>
                                 <td class="fr_send"><span>무료배송</span></td>
-                                <td id="price"><span><%=list.get(i).getProd_price()*list.get(i).getProd_cnt() %></span></td>
+                                <td id="price"><span><%=list.get(i).getProd_price()*list.get(i).getProd_cnt() %>원</span></td>
                             </tr>
                             	<% } %>
 							<% } %>  
@@ -286,14 +286,14 @@
                         <div class="total">
                             <h2>전체합계</h2>
                             <table>
-                                <tr>
-                                    <td></td>
+                                <tr>                                    
                                     <td>상품개수</td>
+                                    <td id="selectedCount"></td>
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
                                     
-                                    <td>상품총금액</td>
+                                    <td id="productsPrice"></td>
                                     
                                 </tr>
 
@@ -336,8 +336,10 @@
         <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
         <script src="assets/js/products.js"></script>
         
+ 
  <script>
-    function updateTotalPrice() {
+    // 체크 표시했을때 가격 올라가는 코드
+ 	function updateTotalPrice() {
         var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         var total = 0;
 
@@ -350,8 +352,8 @@
                 total += price;
             }
         }
-
-        document.getElementById('totalPrice').textContent = total.toLocaleString(); // 총 가격 표시
+        document.getElementById('productsPrice').textContent = total.toLocaleString()+'원';
+        document.getElementById('totalPrice').textContent = total.toLocaleString()+'원'; // 총 가격 표시
     }
 
     $(function () {
@@ -362,6 +364,25 @@
 
         $(":checkbox").click(function () {
             updateTotalPrice();
+        });
+    });
+</script>
+<script>
+ 	//체크했을때 체크한 상품개수 올라가는 메서드
+    function updateSelectedCount() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        var selectedCount = checkboxes.length;
+        document.getElementById('selectedCount').textContent = selectedCount+'개';
+    }
+
+    $(function () {
+        $("button").click(function () {
+            $(":checkbox").attr("checked", "checked");
+            updateSelectedCount();
+        });
+
+        $(":checkbox").click(function () {
+            updateSelectedCount();
         });
     });
 </script>
