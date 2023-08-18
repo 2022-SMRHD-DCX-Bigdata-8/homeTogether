@@ -59,44 +59,54 @@
    <li><button id="insert">올리기</button></li>
    <br>
 
-   <table border="2">
-      <tr>
-         <td>리뷰번호</td>
-         <td>닉네임</td>
-         <td>리뷰 내용</td>
-         <td>별점</td>
-      </tr>
+	<table border="2">
+		<tr>
+			<td>리뷰번호</td>
+			<td>닉네임</td>
+			<td>리뷰 내용</td>
+			<td>별점</td>
+			<td>수정</td>
+		</tr>
 
-      <tbody id="tbd">
-         <%
+		<tbody id="tbd">
+			<%
          if ("${review}" != null) {
          %>
 
-         <c:forEach var="review" items="${review}">
-            <tr>
-               <td id="review_seq">${review.review_seq}</td>
-               <td>${review.nick}</td>
-               <td>${review.review_content}</td>
-               <td>${review.ratings}</td>
-            </tr>
-         </c:forEach>
+			<c:forEach var="review" items="${review}">
+				<tr>
+					<td id="review_seq">${review.review_seq}</td>
+					<td>${review.nick}</td>
+					<td>${review.review_content}</td>
+					<td>${review.ratings}</td>
+					<td>
+						<button class="updateButton" data-review-id="${review.review_seq}">수정</button>
+					</td>
+				</tr>
+			</c:forEach>
 
-         <%
-         } else {
-         %>
-         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-         </tr>
+			<%
+			} else {
+			%>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 
-         <%
+			<%
          }
          %>
-      </tbody>
+		</tbody>
 
 
-   </table>
+	</table>
+	<div class="updateForm" style="display: none;">
+		<input type="text" class="updateContent"> <input
+			type="number" class="updateRatings" step="0.5" min="0" max="5">
+		<button class="saveButton">수정 완료</button>
+	</div>
+
 
 
 <p>=============================================================================================================================================================================</p>
@@ -147,6 +157,10 @@
         $('#damgi').on('click', inCart);
         $('#insert').on('click', inReview);
         $('#question').on('click', inQuestion); 
+        $('.updateButton').on('click', showUpdateForm);
+        $('.saveButton').on('click', updateReview);
+        
+        
     });
 
     
@@ -202,9 +216,9 @@
             dataType: 'json',
             success: function(res){
                console.log('요청성공');
+               
                let tbody=$('#tbd');
             tbody.html('');
-            console.log(res[0].review_content)
             
             for(let i =0; i<res.length; i++){
                
@@ -266,8 +280,76 @@ function inQuestion() {
     
 //====================================================================================================================================        
     
+    // 리뷰 수정 창 보이기
+    function showUpdateForm() {
+        let reviewId = $(this).data('review-id');
+        let reviewContent = $(this).closest('tr').find('td:eq(2)').text();
+        let ratings = $(this).closest('tr').find('td:eq(3)').text();
+
+        $('.updateContent').val(reviewContent);
+        $('.updateRatings').val(ratings);
+
+        $('.updateForm').show();
+        $('.saveButton').data('review-id', reviewId);
+    }
+
     
-    
+//====================================================================================================================================        
+    	
+ // 리뷰 수정
+    function updateReview() {
+        let reviewId = $(this).data('review-id');
+        let updatedContent = $('.updateContent').val();
+        let updatedRatings = $('.updateRatings').val();
+		
+        console.log(reviewId);
+		console.log(updatedContent);
+		console.log(updatedRatings);
+		
+        $.ajax({
+            url: 'updateReview.do',
+            type: 'post',
+            data: {
+                "review_seq": reviewId,
+                "review_content": updatedContent,
+                "ratings": updatedRatings
+            },
+            dataType: 'json',
+            success: function(res) {
+                
+                console.log('요청성공');
+                
+                // 업데이트 성공 후 필요한 동작 수행
+                let tbody=$('#tbd');
+                tbody.html('');
+                
+                for(let i =0; i<res.length; i++){
+                   
+                   tr= "<tr>";
+                   tr += "<td>"+res[i].review_seq+"</td>"
+                   tr += "<td>"+res[i].nick+"</td>"
+                   tr += "<td>"+res[i].review_content+"</td>"
+                   tr += "<td>"+res[i].ratings+"</td>"
+                   tr +="</tr>";
+                   
+                   // html('code') :덮어쓰기
+                   // after('code'):닫는태그 바로뒤에 추가
+                   // before('code'):여는태그 바로앞에 추가
+                   // append('code'):자식요소로 추가
+                   tbody.append(tr);
+				
+                }
+            },
+            error: function(e) {
+                console.log('요청실패!!!');
+            }
+        });
+
+        // 수정 폼 숨기기
+        $('.updateForm').hide();
+    }	
+	
+
    </script>
 
 

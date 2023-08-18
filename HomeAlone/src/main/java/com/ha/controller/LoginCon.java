@@ -33,7 +33,9 @@ public class LoginCon implements Controller {
 			if(result!=null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", result);
+				System.out.println(result);
 				System.out.println("로그인성공");
+				
 				return "redirect:/main.do";
 								
 			}else {
