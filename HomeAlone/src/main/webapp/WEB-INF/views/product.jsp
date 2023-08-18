@@ -97,24 +97,31 @@
 
 
 	<p>=========================================================================================================================</p>
-	<h1>상품문의</h1>
+<h1>상품문의</h1>
 
+<table border="2">
+    <tr>
+        <td>질문자</td>
+        <td>문의 내용</td>
+    </tr>
+    <tr>
+        <td><textarea id="q_content" rows="4" cols="50"></textarea></td>
+    </tr>
+</table>
+<br>
+<button id="question">문의하기</button>
+<br>
 
-	<table border="2">
-		<tr>
-			<td>질문자</td>
-			<td>문의 내용</td>
-		</tr>
-		<tr>
+<table border="2">
+    <tr>
+        <td>질문자</td>
+        <td>문의 내용</td>
+    </tr>
 
-			<td><textarea id="q_content" rows="4" cols="50"></textarea></td>
-		</tr>
-	</table>
-	<br>
-	<button id="question">문의하기</button>
-	<br>
-
-
+    <tbody id="q_tbd">
+        <!-- 문의 목록이 여기에 추가될 것임 -->
+    </tbody>
+</table>
 
 
 
@@ -148,6 +155,7 @@
         $.ajax({
             url : 'inCart.do',
             type: 'post',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: {
                 "prod_cnt": prod_cnt,
                 "prod_seq": prod_seq,
@@ -172,6 +180,7 @@
         $.ajax({
             url : 'inReview.do',
             type: 'post',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: {
                 "review_content": review_content,
                 "prod_seq": prod_seq,
@@ -183,6 +192,7 @@
             	console.log('요청성공');
             	let tbody=$('#tbd');
 				tbody.html('');
+				console.log(res[0].review_content)
 				
 				for(let i =0; i<res.length; i++){
 					

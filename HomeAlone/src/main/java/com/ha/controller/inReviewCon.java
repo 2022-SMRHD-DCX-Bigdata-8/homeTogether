@@ -28,7 +28,6 @@ public class inReviewCon implements Controller {
 		System.out.println(review_content);
 		
 
-		
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick = member.getNick();
@@ -43,19 +42,19 @@ public class inReviewCon implements Controller {
 		
 		System.out.println(num);
 		
-		
 		List<TB_Review> list = dao.select(review);
 		
+
+		response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
 		
-		response.setContentType("text/html ; charset=UTF-8");
+
 		PrintWriter out = response.getWriter();
-				
+			
+		
+
 		Gson gson = new Gson();
 		String json= gson.toJson(list);
-		
-		System.out.println(json);
-		
-		
+			
 		
 		out.print(json);
 		

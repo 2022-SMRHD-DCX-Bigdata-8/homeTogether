@@ -178,7 +178,7 @@
       <a href="goProduct.do?prod_seq=5"> <img src="images/sunglasses.jpg">
          <p>Sunglasses</p>
          <p class="price">49,000</p>
-      </a> <a href="#"> <img src="images/tassel_loafer.jpg">
+      </a> <a href="productpage.do"> <img src="images/tassel_loafer.jpg">
          <p>Tassel Loafer</p>
          <p class="price">89,000</p>
       </a> <a href="#"> <img src="images/beige_bag.jpg">
