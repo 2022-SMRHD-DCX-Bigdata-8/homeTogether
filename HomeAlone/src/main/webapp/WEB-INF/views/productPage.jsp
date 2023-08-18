@@ -85,7 +85,7 @@
                 </li>
                 <li>
                     <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_07.jpg" alt="랄로!?">
+                        <img class="hover_image" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/168498830970609029.jpg?gif=1&w=640&h=640&c=c&webp=1" alt="랄로!?">
                     </a>
                     <div><span>80억 날린 청년</span></div>
                     <div><strong>랄로를 몰라!?</strong></div>
