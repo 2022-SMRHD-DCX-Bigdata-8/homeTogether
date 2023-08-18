@@ -22,6 +22,7 @@ public class inReviewCon implements Controller {
          throws ServletException, IOException {
       
       request.setCharacterEncoding("UTF-8");
+      
       String review_content = request.getParameter("review_content");
       int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
       double ratings=Double.parseDouble(request.getParameter("ratings"));

@@ -28,6 +28,7 @@
 		select *
 		from TB_review
 		where prod_seq = #{prod_seq}
+		order by review_seq desc 
 
 	</select>
 	
