@@ -15,36 +15,10 @@
 <link rel="stylesheet" href="assets/css/basket_complete.css">
 <link rel="stylesheet"
 	href="http://mooozi.github.io/css/reset.css%22%3E">
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-	$(function() {
-		$("button").click(function() {
-			$(":checkbox").attr("checked", "checked")
-		})
-	});
-</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-</style>
 
-<script>
-	function toggleAll(source) {
-		var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-		for (var i = 0; i < checkboxes.length; i++) {
-			if (checkboxes[i] !== source) {
-				checkboxes[i].checked = source.checked;
-			}
-		}
-	}
-	function deleteSelected() {
-		var checkboxes = document
-				.querySelectorAll('input[type="checkbox"]:checked');
-		for (var i = 0; i < checkboxes.length; i++) {
-			checkboxes[i].parentNode.parentNode.remove(); // Remove the entire row
-		}
-		document.getElementById('totalPrice').textContent = 0;
-	}
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <style>
 #product>.cart>form>table {
 	width: 100%;
@@ -198,7 +172,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 
 <body>
 	<div class="navbar">
-		<a class="logo" href="#"> <img src="/img/logo/image2.png"
+		<a class="logo" href="main.do"> <img src="img/logo/image2.png"
 			height="75px">
 		</a>
 		<ul id="menu">
@@ -222,9 +196,15 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 						<h1 id="customer">구매자</h1>
 					</div>
 					<div id="wrap">
+					 <% if(member!=null){ %>
 						<div id="span_block">
 							<span id="c_name"><%=member.getNick()%></span>
 						</div>
+						<%}else{ %>
+						<div id="span_block">
+							<span id="c_name">비회원</span>
+						</div>
+						<% } %>
 						<div class="flex-container">
 							<p>HOME >> 장바구니</p>
 						</div>
@@ -267,7 +247,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 									<article>
 										<a href="goProduct.do?prod_seq=<%=list.get(i).getProd_seq()%>">
 											<img
-											src="assets/img/test/KakaoTalk_20230817_155756756_01.jpg"
+											src="img/test/KakaoTalk_20230817_155756756_0<%=i+1 %>.jpg"
 											alt="1">
 										</a>
 										<div>
@@ -294,6 +274,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 							%>
 
 						</table>
+
 						<input type="button" name="del" value="선택삭제"
 							onclick="deleteSelected()">
 
@@ -313,7 +294,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 
 								<tr>
 									<td>배송비</td>
-									<td>0</td>
+									<td>무료배송</td>
 								</tr>
 
 								<tr>
@@ -346,6 +327,34 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 		</div>
 		<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
 		<script src="assets/js/products.js"></script>
+		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+			$(function() {
+				$("button").click(function() {
+					$(":checkbox").attr("checked", "checked")
+				})
+			});
+		</script>
+
+		<script>
+			function toggleAll(source) {
+				var checkboxes = document
+						.querySelectorAll('input[type="checkbox"]');
+				for (var i = 0; i < checkboxes.length; i++) {
+					if (checkboxes[i] !== source) {
+						checkboxes[i].checked = source.checked;
+					}
+				}
+			}
+			function deleteSelected() {
+				var checkboxes = document
+						.querySelectorAll('input[type="checkbox"]:checked');
+				for (var i = 0; i < checkboxes.length; i++) {
+					checkboxes[i].parentNode.parentNode.remove(); // Remove the entire row
+				}
+				document.getElementById('totalPrice').textContent = 0;
+			}
+		</script>
 
 
 		<script>
