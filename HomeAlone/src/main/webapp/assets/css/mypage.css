@@ -1,0 +1,216 @@
+/* 헤더 부분 시작 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 
+ 
+
+ * {
+	font-family: 'GmarketSansMedium';
+} 
+
+
+
+
+
+.logo{
+    width: 130px;
+
+}
+.logo> img{
+    width: 130px;
+}
+
+#menu{
+    list-style-type: none;
+    float: right;
+    margin-right: 120px;
+    margin-top: 40px;
+}
+#menu > li
+{
+    margin-left: 10px;
+    float: left;
+    border-right: thin solid #999999 ;
+    padding: 0px 16px;
+}
+#menu > li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+#menu::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#menu >:last-child{
+    border-right: hidden;
+}
+
+
+
+body{
+    padding: 0;
+    margin: 0;
+  }
+  div{
+    box-sizing: border-box;
+  }
+  
+  /* alert badge */
+  .circle{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: #ff0000;
+    position: absolute;
+    top: -5px;
+    left: 110%;
+  }
+  
+  /* 녹색 텍스트 */
+  .number{
+    color: black;
+  }
+  
+  .wrap{
+    background-color: #F8F8F8;  
+  }
+  /* 녹색배경 */
+    .Container{  
+    height: 132px;
+    background-color: #f3f3e6;    
+    
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  
+  .Container .name{
+     font-size: 20px;
+    font-weight: bold;
+    color: balck;
+  } 
+  .Container .modify{
+    margin-left: auto;
+  }
+  
+  .shippingStatusContainer{
+    padding: 21px 16px;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+  
+  /* 주문/배송조회 타이틀 */
+  .shippingStatusContainer .title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* 장바구니 결제완료 배송중 구매확정 [로우] */
+  .shippingStatusContainer .status{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 21px;
+  }
+  /* 장바구니 결제완료 배송중 구매확정 [아이템]  */
+  .shippingStatusContainer .item{
+    display: flex;
+  }
+  
+  .shippingStatusContainer .number{
+    font-size: 31px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .shippingStatusContainer .text{
+    font-size: 12px;
+    font-weight: normal;
+    color: #c2c2c2;
+    text-align: center;
+  }
+  .shippingStatusContainer .icon{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 16px;
+    height: 16px;
+  }
+  .listContainer{  
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  .listContainer .item{  
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: black;
+    text-decoration: none;  
+    height: 56px;
+    box-sizing: border-box;
+  }
+  .listContainer .icon{  
+    margin-right: 14px;
+  }
+  .listContainer .text{
+    font-size: 23px;
+    position: relative;
+  }
+  .listContainer .right{
+    margin-left: auto;
+  }
+  .listContainer .smallLight{
+    font-size: 14px;
+    color: #c2c2c2;
+  }
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* div .listContainer{
+    position: absolute; 
+} */
+.email-box {
+    border: 1px solid black;
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    position: relative;
+    top: 50%;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+p {
+    margin-top: 10px;
+}
+h3 { text-align: center; }
+
+
