@@ -200,6 +200,7 @@
             for(let i =0; i<res.length; i++){
                
                tr= "<tr>";
+               tr += "<td>"+res[i].review_seq+"</td>"
                tr += "<td>"+res[i].nick+"</td>"
                tr += "<td>"+res[i].review_content+"</td>"
                tr += "<td>"+res[i].ratings+"</td>"
