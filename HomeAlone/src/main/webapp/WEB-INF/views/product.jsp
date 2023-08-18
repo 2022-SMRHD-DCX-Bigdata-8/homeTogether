@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,82 +17,84 @@
 
 
 <body>
-   <h1>상품 정보</h1>
-   <table border="2">
-      <tr>
-         <td>상품 번호</td>
-         <td>상품 갯수</td>
-         <td>상품 이름</td>
-         <td>상품 가격</td>
-      </tr>
-      <tr>
-         <td><p id="prod_seq" data-value="5">p-5</p></td>
-         <td><p id="prod_cnt" data-value="1">1</p></td>
-         <td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
-         <td><p id="prod_price" data-value="180000">180000</p></td>
-      </tr>
-      <tr>
-         <td>상품 평</td>
-         <td>23개</td>
-      </tr>
-      <tr>
-         <td>별점</td>
-         <td>2.7</td>
-      </tr>
-   </table>
-   <br>
-   <li>장바구니
-      <button id="damgi">담기</button>
-   </li>
+
+	<h1>상품 정보</h1>
+	<table border="2">
+		<tr>
+			<td>상품 번호</td>
+			<td>상품 갯수</td>
+			<td>상품 이름</td>
+			<td>상품 가격</td>
+		</tr>
+		<tr>
+			<td><p id="prod_seq" data-value="5">p-5</p></td>
+			<td><p id="prod_cnt" data-value="1">1</p></td>
+			<td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
+			<td><p id="prod_price" data-value="180000">180000</p></td>
+		</tr>
+		<tr>
+			<td>상품 평</td>
+			<td>23개</td>
+		</tr>
+		<tr>
+			<td>별점</td>
+			<td>2.7</td>
+		</tr>
+	</table>
+	<br>
+	<li>장바구니
+		<button id="damgi">담기</button>
+	</li>
+
 
 
 
 	<p>=========================================================================================================================</p>
- <h1>상품 평</h1>
+	<h1>상품 평</h1>
 
-   <li>댓글 : <input type="text" id="review_content"></li>
-   <li>평점 : <input type="number" id="ratings" step="0.5" min="0"
-      max="5"></li>
-   <br>
-   <li><button id="insert">올리기</button></li>
-   <br>
+	<li>댓글 : <input type="text" id="review_content"></li>
+	<li>평점 : <input type="number" id="ratings" step="0.5" min="0"
+		max="5"></li>
+	<br>
+	<li><button id="insert">올리기</button></li>
+	<br>
 
-   <table border="2">
-      <tr>
-         <td>닉네임</td>
-         <td>리뷰 내용</td>
-         <td>별점</td>
-      </tr>
+	<table border="2">
+		<tr>
+			<td>닉네임</td>
+			<td>리뷰 내용</td>
+			<td>별점</td>
+		</tr>
 
-      <tbody id="tbd">
-         <%
+		<tbody id="tbd">
+			<%
          if ("${review}" != null) {
          %>
 
-         <c:forEach var="review" items="${review}">
-            <tr>
-               <td>${review.nick}</td>
-               <td>${review.review_content}</td>
-               <td>${review.ratings}</td>
-            </tr>
-         </c:forEach>
+			<c:forEach var="review" items="${review}">
+				<tr>
+					<td>${review.nick}</td>
+					<td>${review.review_content}</td>
+					<td>${review.ratings}</td>
+				</tr>
+			</c:forEach>
 
-         <%
+			<%
          } else {
          %>
-         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-         </tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 
-         <%
+			<%
          }
          %>
-      </tbody>
+		</tbody>
 
 
-   </table>
+	</table>
 
 
 	<p>=========================================================================================================================</p>
@@ -134,10 +136,10 @@
 
 
 
-   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"></script>
-   <script type="text/javascript">
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
 
     $(document).ready(function() {
         $('#damgi').on('click', inCart);

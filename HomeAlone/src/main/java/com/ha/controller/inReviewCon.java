@@ -44,16 +44,16 @@ public class inReviewCon implements Controller {
 		
 		List<TB_Review> list = dao.select(review);
 		
+
 		response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
 		
+
 		PrintWriter out = response.getWriter();
-		
-		
-		Gson gson = new Gson();
-		String json= gson.toJson(list);
-		
 			
+		Gson gson = new Gson();
 		
+		String json= gson.toJson(list);
+			
 		
 		out.print(json);
 		

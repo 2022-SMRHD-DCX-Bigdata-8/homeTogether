@@ -135,7 +135,7 @@
       <ul id="menu">
          <li><a href="#home">검색</a></li>
          <li><a href="#html">게시판</a></li>
-         <li><a href="#css">장바구니</a></li>
+         <li><a href="goBasket.do">장바구니</a></li>
          <%
          if (user == null) {
          %>
