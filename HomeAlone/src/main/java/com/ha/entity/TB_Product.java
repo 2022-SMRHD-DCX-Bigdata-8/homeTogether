@@ -24,9 +24,8 @@ public class TB_Product {
 	// 제품 이미지
 	private String prod_img;
 
-	
 	// 제품 가격
-	private Double prod_price;
+	private int prod_price;
 
 	
 }
