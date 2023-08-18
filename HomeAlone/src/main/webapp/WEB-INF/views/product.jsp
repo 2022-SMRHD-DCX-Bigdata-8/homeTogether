@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -190,25 +190,24 @@
             
             dataType: 'json',
             success: function(res){
-            	console.log('요청성공');
-            	let tbody=$('#tbd');
-				tbody.html('');
-
-				console.log(res[0].review_content)
-				
-				for(let i =0; i<res.length; i++){
-					
-					tr= "<tr>";
-					tr += "<td>"+res[i].nick+"</td>"
-					tr += "<td>"+res[i].review_content+"</td>"
-					tr += "<td>"+res[i].ratings+"</td>"
-					tr +="</tr>";
-					
-					// html('code') :덮어쓰기
-					// after('code'):닫는태그 바로뒤에 추가
-					// before('code'):여는태그 바로앞에 추가
-					// append('code'):자식요소로 추가
-					tbody.append(tr);
+               console.log('요청성공');
+               let tbody=$('#tbd');
+            tbody.html('');
+            console.log(res[0].review_content)
+            
+            for(let i =0; i<res.length; i++){
+               
+               tr= "<tr>";
+               tr += "<td>"+res[i].nick+"</td>"
+               tr += "<td>"+res[i].review_content+"</td>"
+               tr += "<td>"+res[i].ratings+"</td>"
+               tr +="</tr>";
+               
+               // html('code') :덮어쓰기
+               // after('code'):닫는태그 바로뒤에 추가
+               // before('code'):여는태그 바로앞에 추가
+               // append('code'):자식요소로 추가
+               tbody.append(tr);
 
             } 
             },
@@ -218,15 +217,15 @@
         });
     
         }
-
-    function inQuestion() {
+    
+function inQuestion() {
         let q_content = $('#q_content').val();
-
+        let prod_seq = $('#prod_seq').data('value');
         $.ajax({
             url: 'question.do',
             type: 'post',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: {
+            	"prod_seq": prod_seq,
                 "q_content": q_content
             },
             dataType: 'json',
@@ -234,7 +233,7 @@
                 console.log('요청성공');
                 let tbody = $('#qna_tbd');
                 tbody.html('');
-
+				console.log(res)
                 for (let i = 0; i < res.length; i++) {
                     tr = "<tr>";
                     tr += "<td>" + res[i].nick + "</td>"

@@ -19,7 +19,7 @@ public class TB_QNADAO {
 		SqlSession session = factory.openSession(true);
 		int cnt=0;
 		try {
-			cnt=session.insert("insert", qna);
+			cnt=session.insert("insertqna", qna);
 			
 		} catch (Exception e) {
 			System.out.println("실패!");
@@ -31,7 +31,7 @@ public class TB_QNADAO {
 	}
 	
 	public List<TB_QNA> selectQNA(TB_QNA qna) {
-		SqlSession session = factory.openSession();
+		SqlSession session = factory.openSession(true);
 		List<TB_QNA>list = session.selectList("qna", qna);
 	
 		session.close();
