@@ -51,7 +51,7 @@ public class inReviewCon implements Controller {
 		
 		Gson gson = new Gson();
 		String json= gson.toJson(list);
-		System.out.println(json);
+		
 			
 		
 		
