@@ -188,7 +188,7 @@
 					
 					tr= "<tr>";
 					tr += "<td>"+res[i].nick+"</td>"
-					tr += "<td>"+res[i].content+"</td>"
+					tr += "<td>"+res[i].review_content+"</td>"
 					tr += "<td>"+res[i].ratings+"</td>"
 					tr +="</tr>";
 					

@@ -46,14 +46,16 @@ public class inReviewCon implements Controller {
 		
 		List<TB_Review> list = dao.select(review);
 		
+		
+		response.setContentType("text/html ; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		
-		
+				
 		Gson gson = new Gson();
 		String json= gson.toJson(list);
-			
-		response.setContentType("text/html ; charset=UTF-8");
+		
+		System.out.println(json);
+		
+		
 		
 		out.print(json);
 		
