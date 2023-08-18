@@ -49,6 +49,7 @@ public class FrontController extends HttpServlet {
 			
 			handler.put("/productpage.do", new goProduct2Con());
 			handler.put("/question.do", new questionCon());
+			handler.put("/updateReview.do", new updateReviewCon());
 			
 
 			

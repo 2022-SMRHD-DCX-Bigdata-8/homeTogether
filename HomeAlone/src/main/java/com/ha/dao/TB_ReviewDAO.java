@@ -36,7 +36,17 @@ public class TB_ReviewDAO {
 		
 	}
 
-	
+	public int update(TB_Review review) {
+		
+		SqlSession session = factory.openSession();
+		
+		int cnt = session.update("updateReview" , review);
+		
+		session.close();
+		return cnt;
+
+		
+	}
 	
 	
 	
