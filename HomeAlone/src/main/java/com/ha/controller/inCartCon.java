@@ -24,14 +24,14 @@ public class inCartCon implements Controller {
 		ArrayList<TB_Basket> basket_List = new ArrayList<>();
 		
 				  
-		int pNum=Integer.parseInt(request.getParameter("p_number")); // 상품 번호
-		int pCnt=Integer.parseInt(request.getParameter("p_cnt"));    // 상품 수량
-		String pName = request.getParameter("p_name");     // 상품 이름
+		int prod_seq=Integer.parseInt(request.getParameter("prod_seq")); // 상품 번호
+		int prod_cnt=Integer.parseInt(request.getParameter("prod_cnt"));    // 상품 수량
+		String prod_name = request.getParameter("prod_name");     // 상품 이름
 
-		int pPrice=Integer.parseInt(request.getParameter("p_price"));
+		int prod_price=Integer.parseInt(request.getParameter("prod_price"));
 		
 		
-		TB_Basket basket = new TB_Basket(pCnt, pNum, pName, pPrice);
+		TB_Basket basket = new TB_Basket(prod_cnt, prod_seq, prod_name, prod_price);
 		basket_List.add(basket);
 		HttpSession session = request.getSession();
 		session.setAttribute("basket", basket_List);

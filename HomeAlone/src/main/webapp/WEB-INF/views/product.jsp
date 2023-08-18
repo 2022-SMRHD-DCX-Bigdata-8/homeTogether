@@ -1,6 +1,5 @@
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="com.ha.entity.TB_Review"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,9 +14,6 @@
 
 
 
-	<% 	ArrayList<TB_Review> list = (ArrayList<TB_Review>)session.getAttribute("list"); 
-	 
-	%>
 
 
 
@@ -31,10 +27,10 @@
 			<td>상품 가격</td>
 		</tr>
 		<tr>
-			<td><p id="pNumber" data-value="5">p-5</p></td>
-			<td><p id="pCnt" data-value="1">1</p></td>
-			<td><p id="pName" data-value="Gaming Mouse">Gaming Mouse</p></td>
-			<td><p id="pPrice" data-value="45000">45000</p></td>
+			<td><p id="prod_seq" data-value="5">p-5</p></td>
+			<td><p id="prod_cnt" data-value="1">1</p></td>
+			<td><p id="prod_name" data-value="Gaming Mouse">Gaming Mouse</p></td>
+			<td><p id="prod_price" data-value="45000">45000</p></td>
 		</tr>
 		<tr>
 			<td>상품 평</td>
@@ -55,7 +51,7 @@
 	<p>=========================================================================================================================</p>
 	<h1>상품 평</h1>
 
-	<li>댓글 : <input type="text" id="content"></li>
+	<li>댓글 : <input type="text" id="review_content"></li>
 	<li>평점 : <input type="number" id="ratings" step="0.5" min="0"
 		max="5"></li>
 	<br>
@@ -70,26 +66,30 @@
 		</tr>
 
 		<tbody id="tbd">
-		<% if(list != null){ %>  
-				
-    <c:forEach var="review" items="${list}">
-        <tr>
-            <td>${review.nick}</td>
-            <td>${review.content}</td>
-            <td>${review.ratings}</td>
-        </tr>
-    </c:forEach>
+			<%
+			if ("${review}" != null) {
+			%>
 
-		<%
-		} else {
-		%>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+			<c:forEach var="review" items="${review}">
+				<tr>
+					<td>${review.nick}</td>
+					<td>${review.review_content}</td>
+					<td>${review.ratings}</td>
+				</tr>
+			</c:forEach>
 
-		<%} %>   
+			<%
+			} else {
+			%>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<%
+			}
+			%>
 		</tbody>
 
 
@@ -106,12 +106,12 @@
 			<td>문의 내용</td>
 		</tr>
 		<tr>
-			<td><p id="qNickname" data-value="user123">${review.nick}</p></td>
-			<td><textarea id="qContent" rows="4" cols="50"></textarea></td>
+
+			<td><textarea id="q_content" rows="4" cols="50"></textarea></td>
 		</tr>
 	</table>
 	<br>
-	<button id="askQuestion">문의하기</button>
+	<button id="question">문의하기</button>
 	<br>
 
 
@@ -140,19 +140,19 @@
 
 
     function inCart(){
-        let p_cnt = $('#pCnt').data('value');
-        let p_name = $('#pName').data('value');
-        let p_number = $('#pNumber').data('value');
-        let p_price = $('#pPrice').data('value');
+        let prod_cnt = $('#prod_cnt').data('value');
+        let prod_name = $('#prod_name').data('value');
+        let prod_seq = $('#prod_seq').data('value');
+        let prod_price = $('#prod_price').data('value');
         
         $.ajax({
             url : 'inCart.do',
             type: 'post',
             data: {
-                "p_cnt": p_cnt,
-                "p_number": p_number,
-                "p_name": p_name,
-                "p_price": p_price
+                "prod_cnt": prod_cnt,
+                "prod_seq": prod_seq,
+                "prod_name": prod_name,
+                "prod_price": prod_price
             },
             dataType: 'json',
             success: function(res){
@@ -165,21 +165,22 @@
     }
     
     function inReview(){
-        let content = $('#content').val();
-        let p_number = $('#pNumber').data('value');
+        let review_content = $('#review_content').val();
+        let prod_seq = $('#prod_seq').data('value');
         let ratings = $('#ratings').val();
         
         $.ajax({
             url : 'inReview.do',
             type: 'post',
             data: {
-                "content": content,
-                "p_number": p_number,
+                "review_content": review_content,
+                "prod_seq": prod_seq,
                 "ratings": ratings
             },
+            
             dataType: 'json',
             success: function(res){
-            	
+            	console.log('요청성공');
             	let tbody=$('#tbd');
 				tbody.html('');
 				
@@ -196,10 +197,8 @@
 					// before('code'):여는태그 바로앞에 추가
 					// append('code'):자식요소로 추가
 					tbody.append(tr);
-					
-                        	
-            	
-            	
+
+            } 
             },
             error: function(e){
                 console.log('요청실패!!!');
@@ -208,7 +207,10 @@
     
         }
 
-		
+
+        
+        
+        
 	</script>
 
 

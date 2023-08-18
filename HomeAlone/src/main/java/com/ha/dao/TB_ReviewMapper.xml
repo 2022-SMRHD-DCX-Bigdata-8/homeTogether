@@ -12,8 +12,8 @@
 		ratings
 		
 		)values(
-		#{p_number},
-		#{content},
+		#{prod_seq},
+		#{review_content},
 		#{nick},
 		#{ratings}
 
@@ -23,12 +23,11 @@
 
 
 
-	<select id="list" resultType="com.ha.entity.TB_Review"
-	parameterType="com.ha.entity.TB_Review">
+	<select id="review" parameterType="com.ha.entity.TB_Review" resultType="com.ha.entity.TB_Review" >
 
 		select *
-		from tb_review
-		where prod_seq = #{p_number}
+		from TB_review
+		where prod_seq = #{prod_seq}
 
 	</select>
 	

@@ -7,15 +7,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class TB_Review {
-	
-	private int prod_seq;
-	private String  review_content;
+public class TB_Answer {
+
+	private int q_seq;
+	private String a_content;
 	private String nick;
-	private double ratings;
 	
 	
-
+	
 }
-
-

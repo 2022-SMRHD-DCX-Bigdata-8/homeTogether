@@ -12,10 +12,10 @@ public class TB_Basket {
 
 	
 	
-	private int p_cnt;     // 제품수량
-	private int p_number;  // 제품 번호
-	private String p_name; // 제품명
-	private int p_price;   // 제품가격
+	private int prod_cnt;     // 제품수량
+	private int prod_seq;  // 제품 번호
+	private String prod_name; // 제품명
+	private int prod_price;   // 제품가격
 	
 	
 	
