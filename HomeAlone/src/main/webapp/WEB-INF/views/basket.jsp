@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.ArrayList"%>
@@ -39,6 +40,7 @@
             for (var i = 0; i < checkboxes.length; i++) {
                 checkboxes[i].parentNode.parentNode.remove(); // Remove the entire row
             }
+            document.getElementById('totalPrice').textContent = 0; 
         }
     </script>
     <style>
@@ -185,6 +187,15 @@
     </style>
 </head>
 
+
+<% 
+	
+	List<TB_Basket> list = (List<TB_Basket>)session.getAttribute("basket");
+	
+	
+%>
+
+
 <body>
     <div class="navbar">
         <a class="logo" href="#">
@@ -238,10 +249,14 @@
                                 <th>배송비</th>
                                 <th>소계</th>
                             </tr>
+                           <%if(list ==null){ %>
+                            
                             <tr class="empty">
                                 <td colspan="7">장바구니에 상품이 없습니다.</td>
                             </tr>
-
+							
+                            <%}else{ %>
+                            <% for(int i=0 ; i<list.size() ; i++){ %>
                             <tr class="basket">
                                 <td><input type="checkbox" name="1"></td>
                                 <td>
@@ -250,58 +265,21 @@
                                             <img src="assets/img/test/KakaoTalk_20230817_155756756_01.jpg" alt="1">
                                         </a>
                                         <div>
-                                            <h2><a href="#">상품명</a></h2>
+                                            <h2 ><a href="#"><%=list.get(i).getProd_name() %></a></h2>
                                             <p>상품설명</p>
                                         </div>
                                     </article>
                                 </td>
 
                                 <td><span>1</span></td>
-                                <td class="number"><span>homealone1</span></td>
-                                <td><span>1</span></td>
+                                <td class="number"><span><%=list.get(i).getProd_seq() %></span></td>
+                                <td><span><%=list.get(i).getProd_cnt() %></span></td>
                                 <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
+                                <td id="price"><span><%=list.get(i).getProd_price()*list.get(i).getProd_cnt() %></span></td>
                             </tr>
-
-                            <tr class="basket">
-                                <td><input type="checkbox" name="2"></td>
-                                <td>
-                                    <article>
-                                        <a href="#">
-                                            <img src="assets/img/test/KakaoTalk_20230817_155756756_03.jpg" alt="1">
-                                        </a>
-                                        <div>
-                                            <h2><a href="#">상품명</a></h2>
-                                            <p>상품설명</p>
-                                        </div>
-                                    </article>
-                                </td>
-                                <td><span>2</span></td>
-                                <td class="number"><span> homealone2</span></td>
-                                <td><span>1</span></td>
-                                <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
-                            </tr>
-
-                            <tr class="basket">
-                                <td><input type="checkbox" name="3"></td>
-                                <td>
-                                    <article>
-                                        <a href="#">
-                                            <img src="assets/img/test/KakaoTalk_20230817_155802481_07.jpg" alt="1">
-                                        </a>
-                                        <div>
-                                            <h2><a href="#">상품명</a></h2>
-                                            <p>상품설명</p>
-                                        </div>
-                                    </article>
-                                </td>
-                                <td><span>3</span></td>
-                                <td class="number"><span>homealone3</span></td>
-                                <td><span>1</span></td>
-                                <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
-                            </tr>
+                            	<% } %>
+							<% } %>  
+                           
                         </table>
                         <input type="button" name="del" value="선택삭제" onclick="deleteSelected()">
 
@@ -309,12 +287,14 @@
                             <h2>전체합계</h2>
                             <table>
                                 <tr>
-                                    <td>상품수</td>
-                                    <td>1</td>
+                                    <td></td>
+                                    <td>상품개수</td>
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td>27,000</td>
+                                    
+                                    <td>상품총금액</td>
+                                    
                                 </tr>
 
                                 <tr>
@@ -324,7 +304,7 @@
 
                                 <tr>
                                     <td>전체주문금액</td>
-                                    <td>27,000</td>
+                                    <td id="totalPrice"></td>
                                 </tr>
                             </table>
                             <input type="submit" value="주문하기">
@@ -355,6 +335,36 @@
         </div>
         <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
         <script src="assets/js/products.js"></script>
+        
+ <script>
+    function updateTotalPrice() {
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        var total = 0;
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            var row = checkboxes[i].parentNode.parentNode;
+            var priceCell = row.querySelector('#price'); // 가격이 들어있는 열 선택
+
+            if (priceCell) {
+                var price = parseInt(priceCell.textContent.replace(/[^0-9]/g, '')); // 문자열에서 숫자 추출
+                total += price;
+            }
+        }
+
+        document.getElementById('totalPrice').textContent = total.toLocaleString(); // 총 가격 표시
+    }
+
+    $(function () {
+        $("button").click(function () {
+            $(":checkbox").attr("checked", "checked");
+            updateTotalPrice();
+        });
+
+        $(":checkbox").click(function () {
+            updateTotalPrice();
+        });
+    });
+</script>
 
 </body>
 

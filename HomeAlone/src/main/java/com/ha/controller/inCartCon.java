@@ -31,11 +31,16 @@ public class inCartCon implements Controller {
 		int prod_price=Integer.parseInt(request.getParameter("prod_price"));
 		
 		
+		
 		TB_Basket basket = new TB_Basket(prod_cnt, prod_seq, prod_name, prod_price);
 		basket_List.add(basket);
+		
+		TB_Basket basket2 = new TB_Basket(2, 1, "편안한 의자", 150000 );
+		basket_List.add(basket2);
 		HttpSession session = request.getSession();
 		session.setAttribute("basket", basket_List);
 		
+		System.out.println(basket_List.get(0).getProd_name());
 		
 		
 		response.setContentType("text/html;charset=utf-8");

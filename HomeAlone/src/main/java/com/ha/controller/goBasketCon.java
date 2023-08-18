@@ -16,8 +16,7 @@ public class goBasketCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		List<TB_Basket> list = (List<TB_Basket>)session.getAttribute("basket");
+		
 		
 		
 		return "basket";

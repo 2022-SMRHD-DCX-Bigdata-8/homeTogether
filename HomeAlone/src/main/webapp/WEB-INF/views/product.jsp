@@ -29,8 +29,8 @@
 		<tr>
 			<td><p id="prod_seq" data-value="5">p-5</p></td>
 			<td><p id="prod_cnt" data-value="1">1</p></td>
-			<td><p id="prod_name" data-value="Gaming Mouse">Gaming Mouse</p></td>
-			<td><p id="prod_price" data-value="45000">45000</p></td>
+			<td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
+			<td><p id="prod_price" data-value="180000">180000</p></td>
 		</tr>
 		<tr>
 			<td>상품 평</td>
