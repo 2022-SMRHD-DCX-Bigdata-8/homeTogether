@@ -193,12 +193,12 @@
 						<h1 id="customer">구매자</h1>
 					</div>
 					<div id="wrap">
-						
+
 						<div id="span_block">
 							<span id="c_name">${user_name}</span>
 						</div>
-						
-						
+
+
 						<div class="flex-container">
 							<p>HOME >> 장바구니</p>
 						</div>
@@ -222,40 +222,38 @@
 								<th>소계</th>
 							</tr>
 							<c:if test="${list_empty}">
-							<tr>
-								<td colspan="7">장바구니에 상품이없습니다</td>
-							</tr>
+								<tr>
+									<td colspan="7">장바구니에 상품이없습니다</td>
+								</tr>
 							</c:if>
-							
-							<c:if test="${!list_empty}">
-							<c:forEach var="list" items="${list}">
-							
-							<tr class="basket">
-								<td><input type="checkbox" name="1"></td>
-								<td>
-									<article>
-										<a href="goProduct.do?prod_seq=${list.prod_seq}">
-											<img
-											src="img/test/KakaoTalk_20230817_155756756_0${list.prod_seq}.jpg"
-											alt="1">
-										</a>
-										<div>
-											<h2>
-												<a
-													href="goProduct.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
-											</h2>
-											<p>상품설명</p>
-										</div>
-									</article>
-								</td>
 
-								<td><span></span></td>
-								<td class="number"><span>${list.prod_seq}</span></td>
-								<td><span>${list.prod_cnt}개</span></td>
-								<td class="fr_send"><span>무료배송</span></td>
-								<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
-							</tr>
-							</c:forEach>
+							<c:if test="${!list_empty}">
+								<c:forEach var="list" items="${list}">
+
+									<tr class="basket">
+										<td><input type="checkbox" name="1"></td>
+										<td>
+											<article>
+												<a href="goProduct.do?prod_seq=${list.prod_seq}"> <img
+													src="img/test/KakaoTalk_20230817_155756756_0${list.prod_seq}.jpg"
+													alt="1">
+												</a>
+												<div>
+													<h2>
+														<a href="goProduct.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
+													</h2>
+													<p>상품설명</p>
+												</div>
+											</article>
+										</td>
+
+										<td><span></span></td>
+										<td class="number"><span>${list.prod_seq}</span></td>
+										<td><span>${list.prod_cnt}개</span></td>
+										<td class="fr_send"><span>무료배송</span></td>
+										<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
+									</tr>
+								</c:forEach>
 							</c:if>
 
 						</table>
@@ -331,15 +329,15 @@
 					}
 				}
 			}
-		
-			
+
 			function deleteSelected() {
 				//전체선택 체크박스 누르고 선택삭제했을때  전체선택 체크박스에 체크상태로 남아있었는데
 				//체크 풀어주는 코드
-				var selectAllCheckbox = document.querySelector('#selectAll input[type="checkbox"]');
-			        selectAllCheckbox.checked = false;
-				
-			    var checkboxes = document
+				var selectAllCheckbox = document
+						.querySelector('#selectAll input[type="checkbox"]');
+				selectAllCheckbox.checked = false;
+
+				var checkboxes = document
 						.querySelectorAll('input[type="checkbox"]:checked');
 				var selectAllCheckbox = document
 						.querySelector('#selectAll input[type="checkbox"]');
@@ -352,11 +350,10 @@
 					}
 				}
 
-			updateSelectedCount(); // 선택된 상품 개수 업데이트
+				updateSelectedCount(); // 선택된 상품 개수 업데이트
 				updateTotalPrice(); // 가격 업데이트
-				
+
 			}
-			
 		</script>
 
 

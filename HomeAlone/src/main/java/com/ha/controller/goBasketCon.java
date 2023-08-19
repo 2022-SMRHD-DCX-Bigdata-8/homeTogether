@@ -21,7 +21,7 @@ public class goBasketCon implements Controller {
 		TB_Member member = (TB_Member)session.getAttribute("user");
 		List<TB_Basket> list = (List<TB_Basket>) session.getAttribute("basket");
 		
-		System.out.println(list.get(0).getProd_name());
+		
 		
 		if(member !=null) {
 			request.setAttribute("user_name", member.getNick());
@@ -36,7 +36,7 @@ public class goBasketCon implements Controller {
 		}else {
 			request.setAttribute("list_empty", false);
 			request.setAttribute("list", list);
-			System.out.println(list.get(0).getProd_name());
+			
 		}
 		
 		
