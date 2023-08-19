@@ -6,6 +6,7 @@
 <%@page import="com.ha.entity.TB_Basket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
 
@@ -164,10 +165,6 @@
 </head>
 
 
-<%
-List<TB_Basket> list = (List<TB_Basket>) session.getAttribute("basket");
-TB_Member member = (TB_Member) session.getAttribute("user");
-%>
 
 
 <body>
@@ -196,15 +193,12 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 						<h1 id="customer">구매자</h1>
 					</div>
 					<div id="wrap">
-					 <% if(member!=null){ %>
+						
 						<div id="span_block">
-							<span id="c_name"><%=member.getNick()%></span>
+							<span id="c_name">${user_name}</span>
 						</div>
-						<%}else{ %>
-						<div id="span_block">
-							<span id="c_name">비회원</span>
-						</div>
-						<% } %>
+						
+						
 						<div class="flex-container">
 							<p>HOME >> 장바구니</p>
 						</div>
@@ -217,7 +211,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 
 					<form action="#">
 						<table>
-							<tr>
+							<tr id="selectAll">
 								<td id="selectAll"><input type="checkbox"
 									onclick="toggleAll(this)"></td>
 								<th>상품명</th>
@@ -227,51 +221,42 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 								<th>배송비</th>
 								<th>소계</th>
 							</tr>
-							<%
-							if (list == null) {
-							%>
-
-							<tr class="empty">
-								<td colspan="7">장바구니에 상품이 없습니다.</td>
+							<c:if test="${list_empty}">
+							<tr>
+								<td colspan="7">장바구니에 상품이없습니다</td>
 							</tr>
-
-							<%
-							} else {
-							%>
-							<%
-							for (int i = 0; i < list.size(); i++) {
-							%>
+							</c:if>
+							
+							<c:if test="${!list_empty}">
+							<c:forEach var="list" items="${list}">
+							
 							<tr class="basket">
 								<td><input type="checkbox" name="1"></td>
 								<td>
 									<article>
-										<a href="goProduct.do?prod_seq=<%=list.get(i).getProd_seq()%>">
+										<a href="goProduct.do?prod_seq=${list.prod_seq}">
 											<img
-											src="img/test/KakaoTalk_20230817_155756756_0<%=i+1 %>.jpg"
+											src="img/test/KakaoTalk_20230817_155756756_0${list.prod_seq}.jpg"
 											alt="1">
 										</a>
 										<div>
 											<h2>
 												<a
-													href="goProduct.do?prod_seq=<%=list.get(i).getProd_seq()%>"><%=list.get(i).getProd_name()%></a>
+													href="goProduct.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
 											</h2>
 											<p>상품설명</p>
 										</div>
 									</article>
 								</td>
 
-								<td><span><%=i + 1%></span></td>
-								<td class="number"><span><%=list.get(i).getProd_seq()%></span></td>
-								<td><span><%=list.get(i).getProd_cnt()%>개</span></td>
+								<td><span></span></td>
+								<td class="number"><span>${list.prod_seq}</span></td>
+								<td><span>${list.prod_cnt}개</span></td>
 								<td class="fr_send"><span>무료배송</span></td>
-								<td id="price"><span><%=list.get(i).getProd_price() * list.get(i).getProd_cnt()%>원</span></td>
+								<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
 							</tr>
-							<%
-							}
-							%>
-							<%
-							}
-							%>
+							</c:forEach>
+							</c:if>
 
 						</table>
 
@@ -346,14 +331,32 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 					}
 				}
 			}
+		
+			
 			function deleteSelected() {
-				var checkboxes = document
+				//전체선택 체크박스 누르고 선택삭제했을때  전체선택 체크박스에 체크상태로 남아있었는데
+				//체크 풀어주는 코드
+				var selectAllCheckbox = document.querySelector('#selectAll input[type="checkbox"]');
+			        selectAllCheckbox.checked = false;
+				
+			    var checkboxes = document
 						.querySelectorAll('input[type="checkbox"]:checked');
+				var selectAllCheckbox = document
+						.querySelector('#selectAll input[type="checkbox"]');
+
+				// 체크박스 상품 사라지게하는 code !!!전체선택 체크박스 <tr>태그는 사라지지않게!! 
 				for (var i = 0; i < checkboxes.length; i++) {
-					checkboxes[i].parentNode.parentNode.remove(); // Remove the entire row
+					var row = checkboxes[i].parentNode.parentNode;
+					if (row !== selectAllCheckbox.closest('tr')) {
+						row.remove();
+					}
 				}
-				document.getElementById('totalPrice').textContent = 0;
+
+			updateSelectedCount(); // 선택된 상품 개수 업데이트
+				updateTotalPrice(); // 가격 업데이트
+				
 			}
+			
 		</script>
 
 
@@ -413,6 +416,7 @@ TB_Member member = (TB_Member) session.getAttribute("user");
 				}
 			}
 
+			//체크박스 클릭했을때 체크되는 함수
 			$(function() {
 				$("button").click(function() {
 					$(":checkbox").attr("checked", "checked");
