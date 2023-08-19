@@ -65,7 +65,7 @@
 			<td>닉네임</td>
 			<td>리뷰 내용</td>
 			<td>별점</td>
-			<td>수정</td>
+			<td>수정 / 삭제</td>
 		</tr>
 
 		<tbody id="tbd">
@@ -81,6 +81,7 @@
 					<td>${review.ratings}</td>
 					<td>
 						<button class="updateButton" data-review-id="${review.review_seq}">수정</button>
+						<button class="deleteButton" data-review-id="${review.review_seq}">삭제</button>
 					</td>
 				</tr>
 			</c:forEach>
@@ -159,7 +160,7 @@
         $('#question').on('click', inQuestion); 
         $('.updateButton').on('click', showUpdateForm);
         $('.saveButton').on('click', updateReview);
-        
+        $('.deleteButton').on('click', deleteReview);
         
     });
 
@@ -338,7 +339,13 @@ function inQuestion() {
                    // append('code'):자식요소로 추가
                    tbody.append(tr);
 				
+                   
                 }
+                
+                // 댓글 업데이트 후 페이지 새로고침
+                location.reload();
+                
+                
             },
             error: function(e) {
                 console.log('요청실패!!!');
@@ -347,7 +354,53 @@ function inQuestion() {
 
         // 수정 폼 숨기기
         $('.updateForm').hide();
-    }	
+    }
+
+    
+//====================================================================================================================================        
+     
+	
+ // 댓글 삭제
+    function deleteReview() {
+        let reviewId = $(this).data('review-id');
+        let rowToRemove = $(this).closest('tr'); // 선택된 버튼의 부모 행을 가져옴
+
+        $.ajax({
+            url: 'deleteReview.do',
+            type: 'post',
+            data: {
+                "review_seq": reviewId
+            },
+            dataType: 'json',
+            success: function(res) {
+                console.log('삭제 요청 성공');
+
+                // 선택된 행 삭제
+                rowToRemove.remove();
+            },
+            error: function(e) {
+                console.log('삭제 요청 실패!!!');
+            }
+        });
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
    </script>

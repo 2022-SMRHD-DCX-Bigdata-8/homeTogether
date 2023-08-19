@@ -49,6 +49,17 @@ public class TB_ReviewDAO {
 		
 	}
 	
+	public int delete(TB_Review review) {
+		
+		SqlSession session = factory.openSession(true);
+		
+		int cnt = session.delete("deleteReview",review);
+		
+		session.close();
+		
+		return cnt;
+		
+	}
 	
 	
 	
