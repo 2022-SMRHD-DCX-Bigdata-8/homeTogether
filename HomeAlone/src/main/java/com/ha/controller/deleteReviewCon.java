@@ -23,11 +23,6 @@ public class deleteReviewCon implements Controller {
 		
 		int review_seq = Integer.parseInt(request.getParameter("review_seq")); 
 	
-		HttpSession session = request.getSession();
-		TB_Member member = (TB_Member) session.getAttribute("user");
-		String nick = member.getNick();
-		System.out.println(nick);
-	
 		TB_Review review = new TB_Review();
 		
 		review.setReview_seq(review_seq);

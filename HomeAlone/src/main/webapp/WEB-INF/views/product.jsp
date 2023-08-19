@@ -147,8 +147,8 @@
 
 
 <p>=============================================================================================================================================================================</p>
-
-
+	<!-- 세션에 저장된 유저 닉네임 사용하려고 가져온 스크립트 태그 -->
+	<script>var userNick = "${sessionScope.user.nick}";</script>
    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
       crossorigin="anonymous"></script>
@@ -237,6 +237,10 @@
                tbody.append(tr);
 
             } 
+            
+            // 글을 작성하고 난 후에 새로고침 실행
+            location.reload();
+            
             },
             error: function(e){
                 console.log('요청실패!!!');
@@ -251,6 +255,7 @@
 function inQuestion() {
         let q_content = $('#q_content').val();
         let prod_seq = $('#prod_seq').data('value');
+     
         $.ajax({
             url: 'question.do',
             type: 'post',
@@ -271,11 +276,15 @@ function inQuestion() {
                     tr += "</tr>";
                     tbody.append(tr);
                 }
+         // 문의글을 작성하고 난 후에 새로고침 실행
+            location.reload();
+            
             },
             error: function(e) {
                 console.log('요청실패!!!');
             }
         });
+
         
     }
     
@@ -303,9 +312,8 @@ function inQuestion() {
         let updatedContent = $('.updateContent').val();
         let updatedRatings = $('.updateRatings').val();
 		
-        console.log(reviewId);
-		console.log(updatedContent);
-		console.log(updatedRatings);
+     // 세션에 저장된 사용자의 nick
+        let userNick = "${sessionScope.user.nick}";
 		
         $.ajax({
             url: 'updateReview.do',
@@ -317,29 +325,26 @@ function inQuestion() {
             },
             dataType: 'json',
             success: function(res) {
-                
                 console.log('요청성공');
                 
                 // 업데이트 성공 후 필요한 동작 수행
                 let tbody=$('#tbd');
                 tbody.html('');
-                
-                for(let i =0; i<res.length; i++){
-                   
-                   tr= "<tr>";
-                   tr += "<td>"+res[i].review_seq+"</td>"
-                   tr += "<td>"+res[i].nick+"</td>"
-                   tr += "<td>"+res[i].review_content+"</td>"
-                   tr += "<td>"+res[i].ratings+"</td>"
-                   tr +="</tr>";
-                   
-                   // html('code') :덮어쓰기
-                   // after('code'):닫는태그 바로뒤에 추가
-                   // before('code'):여는태그 바로앞에 추가
-                   // append('code'):자식요소로 추가
-                   tbody.append(tr);
-				
-                   
+
+                for(let i = 0; i < res.length; i++){
+                    // 리뷰 작성자와 세션 사용자 일치 여부 확인
+                    if (res[i].nick === userNick) {
+                        // 리뷰 작성자와 세션 사용자가 일치하는 경우에만 리뷰 수정
+                        tr = "<tr>";
+                        tr += "<td>"+res[i].review_seq+"</td>"
+                        tr += "<td>"+res[i].nick+"</td>"
+                        tr += "<td>"+res[i].review_content+"</td>"
+                        tr += "<td>"+res[i].ratings+"</td>"
+                        tr += "<td><button class='updateButton' data-review-id='"+res[i].review_seq+"'>수정</button></td>";
+                        tr += "<td><button class='deleteButton' data-review-id='"+res[i].review_seq+"'>삭제</button></td>";
+                        tr +="</tr>";
+                        tbody.append(tr);
+                    }
                 }
                 
                 // 댓글 업데이트 후 페이지 새로고침
@@ -363,8 +368,11 @@ function inQuestion() {
  // 댓글 삭제
     function deleteReview() {
         let reviewId = $(this).data('review-id');
-        let rowToRemove = $(this).closest('tr'); // 선택된 버튼의 부모 행을 가져옴
-
+        // 선택된 버튼의 부모 행을 가져옴
+        let rowToRemove = $(this).closest('tr'); 
+        // 세션에 저장된 사용자의 nick
+        let userNick = "${sessionScope.user.nick}";
+        
         $.ajax({
             url: 'deleteReview.do',
             type: 'post',
@@ -375,8 +383,12 @@ function inQuestion() {
             success: function(res) {
                 console.log('삭제 요청 성공');
 
-                // 선택된 행 삭제
-                rowToRemove.remove();
+                // 삭제된 리뷰 제거
+                $('#review_seq').filter(function() {
+                    return $(this).text() === reviewId.toString();
+                }).closest('tr').remove();
+                // 삭제후 새로고침
+                location.reload();
             },
             error: function(e) {
                 console.log('삭제 요청 실패!!!');

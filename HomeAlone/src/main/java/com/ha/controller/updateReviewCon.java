@@ -31,10 +31,6 @@ public class updateReviewCon implements Controller {
 		System.out.println(review_seq);
 		System.out.println(ratings);
 		
-		HttpSession session = request.getSession();
-		TB_Member member = (TB_Member) session.getAttribute("user");
-		String nick = member.getNick();
-		System.out.println(nick);
 
 		TB_Review review = new TB_Review();
 
