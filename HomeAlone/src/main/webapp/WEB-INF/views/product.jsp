@@ -276,8 +276,6 @@ function inQuestion() {
                     tr += "</tr>";
                     tbody.append(tr);
                 }
-         // 문의글을 작성하고 난 후에 새로고침 실행
-            location.reload();
             
             },
             error: function(e) {
