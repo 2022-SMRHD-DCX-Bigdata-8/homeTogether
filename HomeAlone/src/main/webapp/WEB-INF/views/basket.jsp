@@ -228,10 +228,10 @@
 							</c:if>
 
 							<c:if test="${!list_empty}">
-								<c:forEach var="list" items="${list}">
+								<c:forEach var="list" items="${sessionScope.basket}">
 
 									<tr class="basket">
-										<td><input type="checkbox" name="1"></td>
+										<td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
 										<td>
 											<article>
 												<a href="goProduct.do?prod_seq=${list.prod_seq}"> <img
@@ -308,9 +308,11 @@
 			</main>
 
 		</div>
-		<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+		
+		
 		<script src="assets/js/products.js"></script>
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+		
 		<script>
 			$(function() {
 				$("button").click(function() {
@@ -341,17 +343,49 @@
 						.querySelectorAll('input[type="checkbox"]:checked');
 				var selectAllCheckbox = document
 						.querySelector('#selectAll input[type="checkbox"]');
-
+				
+				var checkedProducts = [];
+				
+				// 체크된 상품정보 담을 리스트 생성
+		        //$('input[type="checkbox"]:checked').each(function () {
+		        	//체크태그에 있는 상품정보(prod_seq)가져와서 리스트에 담기
+		        //	checkedProducts.push($(this).data('product-id'));
+		        	
+		        //});
+				console.log("성공");
 				// 체크박스 상품 사라지게하는 code !!!전체선택 체크박스 <tr>태그는 사라지지않게!! 
 				for (var i = 0; i < checkboxes.length; i++) {
+					
+					checkedProducts.push(checkboxes[i].getAttribute('data-product-id'));
+					
 					var row = checkboxes[i].parentNode.parentNode;
 					if (row !== selectAllCheckbox.closest('tr')) {
 						row.remove();
 					}
 				}
-
+				
 				updateSelectedCount(); // 선택된 상품 개수 업데이트
 				updateTotalPrice(); // 가격 업데이트
+				
+				var checkedProductsString = checkedProducts.join(',');
+					//리스트에 정보가 담겨있을때  ajax실행
+		        if (checkedProducts.length > 0) {
+		            $.ajax({
+		                url: "deleteCart.do", // 장바구니 세션에서 상품지우는 컨트롤러
+		                type: 'POST',
+		                
+		                data: { "checkedProductsString" : checkedProductsString },
+		                success: function(res) {
+		                    console.log("삭제성공")
+		                    
+		                },
+		                error: function(e) {
+		                    console.log('요청실패!!!');
+		                }
+		            });
+		        }else{
+		        	console.log("실패");
+		        }
 
 			}
 		</script>
