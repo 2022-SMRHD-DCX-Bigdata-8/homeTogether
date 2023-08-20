@@ -35,7 +35,7 @@ public class goBasketCon implements Controller {
 			
 		}else {
 			request.setAttribute("list_empty", false);
-			request.setAttribute("list", list);
+			
 			
 		}
 		

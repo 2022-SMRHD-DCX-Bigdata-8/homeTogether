@@ -23,6 +23,7 @@ public class inReviewCon implements Controller {
       
       request.setCharacterEncoding("UTF-8");
       
+      
       String review_content = request.getParameter("review_content");
       int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
       double ratings=Double.parseDouble(request.getParameter("ratings"));
