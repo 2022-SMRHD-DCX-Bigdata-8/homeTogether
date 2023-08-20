@@ -52,9 +52,9 @@
 <p>=============================================================================================================================================================================</p>
    <h1>상품 평</h1>
 
-   <li>댓글 : <input type="text" id="review_content"></li>
+   <li>댓글 : <input type="text" id="review_content" placeholder="댓글을 입력해주세요"></li>
    <li>평점 : <input type="number" id="ratings" step="0.5" min="0"
-      max="5"></li>
+      max="5" value="5.0"></li>
    <br>
    <li><button id="insert">올리기</button></li>
    <br>
