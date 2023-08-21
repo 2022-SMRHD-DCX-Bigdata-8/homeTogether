@@ -20,7 +20,7 @@ public class goBeddingCon implements Controller {
 		
 		request.setAttribute("bedding", list);
 		
-		return "productcell";
+		return "productPage";
 	}
 
 }

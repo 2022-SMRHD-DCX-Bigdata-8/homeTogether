@@ -114,40 +114,54 @@
 
 
 	<p>=============================================================================================================================================================================</p>
-	<h1>상품문의</h1>
+   <h1>상품문의</h1>
 
-	<div style="margin-bottom: 10px;">
-		<textarea id="q_content" rows="4" cols="50" style="width: 50%;"></textarea>
-	</div>
+<div style="margin-bottom: 10px;">
+    <textarea id="q_content" rows="4" cols="50" style="width: 50%;"></textarea>
+</div>
 
-	<button id="question">문의하기</button>
+<button id="question">문의하기</button>
 
-	<br>
-	<br>
+<br>
+<br>
 
-	<table border="1" style="width: 50%;">
-		<thead>
-			<tr>
-				<th style="width: 5%;">문의번호</th>
-				<th style="width: 10%;">질문자</th>
-				<th style="width: 85%;">문의 내용</th>
-				<th style="width: 10%;">댓글</th>
-			</tr>
-		</thead>
-		<tbody id="qna_tbd">
-			<c:forEach var="qna" items="${qna}">
-				<tr>
-					<td>${qna.q_seq}</td>
-					<td>${qna.nick}</td>
-					<td>${qna.q_content}</td>
-					<td><c:if test="${sessionScope.user.m_type == 'A'}">
-							<button class="answerButton" data-qna-id="${qna.q_seq}">댓글
-								추가</button>
-						</c:if></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+<table border="1" style="width: 50%;">
+    <thead>
+        <tr>
+            <th style="width: 5%;">문의번호</th>
+            <th style="width: 10%;">질문자</th>
+            <th style="width: 80%;">문의 내용</th>
+            <th style="width: 15%;">댓글</th>
+        </tr>
+    </thead>
+    <tbody id="qna_tbd">
+        <c:forEach var="qna" items="${qna}">
+            <tr>
+                <td>${qna.q_seq}</td>
+                <td>${qna.nick}</td>
+                <td>${qna.q_content}</td>
+                
+                <td>
+                    <c:if test="${sessionScope.user.m_type == 'A'}">
+                        <button class="answerButton" data-qna-id="${qna.q_seq}">댓글</button>
+                    </c:if>
+                </td>
+            </tr>
+            
+            <!-- 댓글 폼과 댓글 표시 영역 -->
+            <tr class="commentRow" style="display: none;">
+                <td colspan="4">
+                    <div class="commentForm" style="margin-top: 10px;">
+                        <input type="text" class="a_content">
+                        <button class="addAnswerButton">댓글</button>
+                    </div>
+                    <div class="comments" style="margin-top: 10px;"></div>
+                </td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
 
 
 
@@ -170,6 +184,14 @@
         $('.updateButton').on('click', showUpdateForm);
         $('.saveButton').on('click', updateReview);
         $('.deleteButton').on('click', deleteReview);
+        $('.answerButton').on('click', function() {
+            let isAdmin = "${sessionScope.user.m_type}" === 'A';
+            
+            if (isAdmin) {
+                let row = $(this).closest('tr');
+                row.next('.commentRow').toggle();
+            }
+        });
         
     });
 

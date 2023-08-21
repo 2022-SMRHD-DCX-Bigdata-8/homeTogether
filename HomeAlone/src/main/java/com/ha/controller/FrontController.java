@@ -63,6 +63,9 @@ public class FrontController extends HttpServlet {
 			handler.put("/goBedding.do", new goBeddingCon());
 			handler.put("/goGajun.do", new goGajunCon());
 			
+			//카테고리안 세부분류
+			handler.put("/goLighting.do", new goLightingCon());
+			
 			
 			
 			

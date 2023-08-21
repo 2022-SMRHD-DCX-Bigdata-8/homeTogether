@@ -25,7 +25,7 @@
     </header>
     <nav id="nav">
         <ul id="categori">
-            <li><a href="#"><span>조명</span></a></li>
+            <li><a href="goLighting.do"><span>조명</span></a></li>
             <li><a href="#"><span>책상</span></a></li>
             <li><a href="#"><span>테이블</span></a></li>
             <li><a href="#"><span>소파</span></a></li>
@@ -71,9 +71,9 @@
                     <a href="" class="image_container">
                         <img class="hover_image" src="img/test/unnamed.jpg" alt="랄로!?">
                     </a>
-                    <div><span>80억 날린 청년</span></div>
+                    <div><span>${ lighting[0].prod_name }</span></div>
                     <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
+                    <div><strong>${lighting[0].prod_price }원</strong></div>
                 </li>
                 <li>
                     <a href="" class="image_container">

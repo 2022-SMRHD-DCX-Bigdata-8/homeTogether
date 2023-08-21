@@ -20,7 +20,7 @@ public class goTableCon implements Controller {
 		List<TB_Product> list = dao.TableSelect();
 		
 		request.setAttribute("table", list);
-		return "productcell";
+		return "productPage";
 	}
 
 }

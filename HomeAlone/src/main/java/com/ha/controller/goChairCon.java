@@ -21,7 +21,7 @@ public class goChairCon implements Controller {
 		
 		request.setAttribute("chair", list);
 		
-		return "productcell";
+		return "productPage";
 	}
 
 }
