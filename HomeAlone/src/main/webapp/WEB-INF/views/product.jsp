@@ -168,188 +168,6 @@
 
 
 
-
-
-
-
-
-
-
-	<p>=============================================================================================================================================================================</p>
-	<!-- 세션에 저장된 유저 닉네임 사용하려고 가져온 스크립트 태그 -->
-	<script>var userNick = "${sessionScope.user.nick}";</script>
-	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-		crossorigin="anonymous"></script>
-	<script type="text/javascript">
-
-    $(document).ready(function() {
-        $('#damgi').on('click', inCart);
-        $('#insert').on('click', inReview);
-        $('#question').on('click', inQuestion); 
-        $('.updateButton').on('click', showUpdateForm);
-        $('.saveButton').on('click', updateReview);
-        $('.deleteButton').on('click', deleteReview);
-        $('.answerButton').on('click', function() {
-            let isAdmin = "${sessionScope.user.m_type}" === 'A';
-            
-            if (isAdmin) {
-                let row = $(this).closest('tr');
-                row.next('.commentRow').toggle();
-            }
-        });
-        
-    });
-
-    
-    
-// ====================================================================================================================================        
-    
-    
-    function inCart(){
-        let prod_cnt = $('#prod_cnt').data('value');
-        let prod_name = $('#prod_name').data('value');
-        let prod_seq = $('#prod_seq').data('value');
-        let prod_price = $('#prod_price').data('value');
-        
-        $.ajax({
-            url : 'inCart.do',
-            type: 'post',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: {
-                "prod_cnt": prod_cnt,
-                "prod_seq": prod_seq,
-                "prod_name": prod_name,
-                "prod_price": prod_price
-            },
-            dataType: 'json',
-            success: function(res){
-                console.log('성공!!');
-            },
-            error: function(e){
-                console.log('요청실패!!!');
-            }
-        });
-    }
-    
-    
-// ====================================================================================================================================    
-
-	 
-    function inReview(){
-        let review_content = $('#review_content').val();
-        let prod_seq = $('#prod_seq').data('value');
-        let ratings = $('#ratings').val();
-        
-        $.ajax({
-            url : 'inReview.do',
-            type: 'post',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: {
-                "review_content": review_content,
-                "prod_seq": prod_seq,
-                "ratings": ratings
-            },
-            
-            dataType: 'json',
-            success: function(res){
-               console.log('요청성공');
-               
-               let tbody=$('#tbd');
-            tbody.html('');
-            
-            for(let i =0; i<res.length; i++){
-               
-               tr= "<tr>";
-               tr += "<td>"+res[i].review_seq+"</td>"
-               tr += "<td>"+res[i].nick+"</td>"
-               tr += "<td>"+res[i].review_content+"</td>"
-               tr += "<td>"+res[i].ratings+"</td>"
-               tr +="</tr>";
-               
-               // html('code') :덮어쓰기
-               // after('code'):닫는태그 바로뒤에 추가
-               // before('code'):여는태그 바로앞에 추가
-               // append('code'):자식요소로 추가
-               tbody.append(tr);
-
-            } 
-            
-            // 글을 작성하고 난 후에 새로고침 실행
-            location.reload();
-            
-            },
-            error: function(e){
-                console.log('요청실패!!!');
-            }
-        });
-    
-        }
-  
-    
-// ====================================================================================================================================    
-
-function inQuestion() {
-        let q_content = $('#q_content').val();
-        let prod_seq = $('#prod_seq').data('value');
-     
-        $.ajax({
-            url: 'question.do',
-            type: 'post',
-            data: {
-                "q_content": q_content,
-               "prod_seq": prod_seq,
-            	
-            },
-            dataType: 'json',
-            success: function(res) {
-                console.log('요청성공');
-                let tbody = $('#qna_tbd');
-                tbody.html('');
-            console.log(res)
-                for (let i = 0; i < res.length; i++) {
-                    tr = "<tr>";
-                    tr += "<td>" + res[i].q_seq + "</td>"
-                    tr += "<td>" + res[i].nick + "</td>"
-                    tr += "<td>" + res[i].q_content + "</td>"
-                    tr += "</tr>";
-                    tbody.append(tr);
-                }
-            
-            },
-            error: function(e) {
-                console.log('요청실패!!!');
-            }
-        });
-
-        
-    }
-    
-//====================================================================================================================================        
-    
-    // 리뷰 수정 창 보이기
-    function showUpdateForm() {
-        let reviewId = $(this).data('review-id');
-        let reviewContent = $(this).closest('tr').find('td:eq(2)').text();
-        let ratings = $(this).closest('tr').find('td:eq(3)').text();
-
-        $('.updateContent').val(reviewContent);
-        $('.updateRatings').val(ratings);
-
-        $('.updateForm').show();
-        $('.saveButton').data('review-id', reviewId);
-    }
-
-    
-//====================================================================================================================================        
-    	
- // 리뷰 수정
-    function updateReview() {
-        let reviewId = $(this).data('review-id');
-        let updatedContent = $('.updateContent').val();
-        let updatedRatings = $('.updateRatings').val();
-=======
-		<p>=============================================================================================================================================================================</p>
 		<!-- 세션에 저장된 유저 닉네임 사용하려고 가져온 스크립트 태그 -->
 		<script>
 			var userNick = "${sessionScope.user.nick}";
@@ -358,7 +176,7 @@ function inQuestion() {
 			integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 			crossorigin="anonymous"></script>
 		<script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
 		
 		
 			$(document).ready(function() {
@@ -528,8 +346,7 @@ function inQuestion() {
 				// 세션에 저장된 사용자의 nick
 				let userNick = "${sessionScope.user.nick}";
 
-				$
-						.ajax({
+				$.ajax({
 							url : 'updateReview.do',
 							type : 'post',
 							data : {
