@@ -282,15 +282,15 @@
                     </div>
                     <div id="email_boxes">
                         <div class="email-box">
-                            <p>안녕하세요. <strong th:text="${name}">smhrd</strong>님의 결제내역입니다.</p>
+                            <p>안녕하세요. <strong >smhrd</strong>님의 결제내역입니다.</p>
                             <h3>결제 내역</h3>
                             <table>
-                                <tr th:each="orderItem : ${orderItemList}" th:with="result=${orderItem.price}">
+                                <tr >
                                     <td>
-                                        <span th:text="${orderItem.name}">푹신푹신 쇼파</span>
+                                        <span >푹신푹신 쇼파</span>
                                     </td>
                                     <td>
-                                        <span th:text="${#numbers.formatCurrency(orderItem.price)}">￦9,000</span>원
+                                        <span >￦9,000</span>원
                                     </td>
                                 </tr>
                                 <tr>
@@ -303,25 +303,25 @@
                             <p>
                                 전체 결제금액
                                 <span
-                                    th:text="${#numbers.formatCurrency(#aggregates.sum(orderItemList.![price]))}">￦18,000</span>원
+                                    >￦18,000</span>원
                             </p>
                             <p>
                                 구매일
-                                <span th:text="${#dates.format(orderDate, 'yyyy-MM-dd HH:mm:ss')}">2023-08-17
+                                <span >2023-08-17
                                     11:11:11</span>
                             </p>
                             <p>감사합니다.</p>
                         </div>
                         <div class="email-box">
-                            <p>안녕하세요. <strong th:text="${name}">smhrd</strong>님의 결제내역입니다.</p>
+                            <p>안녕하세요. <strong >smhrd</strong>님의 결제내역입니다.</p>
                             <h3>결제 내역</h3>
                             <table>
-                                <tr th:each="orderItem : ${orderItemList}" th:with="result=${orderItem.price}">
+                                <tr >
                                     <td>
-                                        <span th:text="${orderItem.name}">푹신푹신 쇼파</span>
+                                        <span >푹신푹신 쇼파</span>
                                     </td>
                                     <td>
-                                        <span th:text="${#numbers.formatCurrency(orderItem.price)}">￦9,000</span>원
+                                        <span >￦9,000</span>원
                                     </td>
                                 </tr>
                                 <tr>
@@ -334,25 +334,25 @@
                             <p>
                                 전체 결제금액
                                 <span
-                                    th:text="${#numbers.formatCurrency(#aggregates.sum(orderItemList.![price]))}">￦18,000</span>원
+                                    >￦18,000</span>원
                             </p>
                             <p>
                                 구매일
-                                <span th:text="${#dates.format(orderDate, 'yyyy-MM-dd HH:mm:ss')}">2023-08-17
+                                <span >2023-08-17
                                     11:11:11</span>
                             </p>
                             <p>감사합니다.</p>
                         </div>
                         <div class="email-box">
-                            <p>안녕하세요. <strong th:text="${name}">smhrd</strong>님의 결제내역입니다.</p>
+                            <p>안녕하세요. <strong >smhrd</strong>님의 결제내역입니다.</p>
                             <h3>결제 내역</h3>
                             <table>
-                                <tr th:each="orderItem : ${orderItemList}" th:with="result=${orderItem.price}">
+                                <tr >
                                     <td>
-                                        <span th:text="${orderItem.name}">푹신푹신 쇼파</span>
+                                        <span >푹신푹신 쇼파</span>
                                     </td>
                                     <td>
-                                        <span th:text="${#numbers.formatCurrency(orderItem.price)}">￦9,000</span>원
+                                        <span >￦9,000</span>원
                                     </td>
                                 </tr>
                                 <tr>
@@ -365,11 +365,11 @@
                             <p>
                                 전체 결제금액
                                 <span
-                                    th:text="${#numbers.formatCurrency(#aggregates.sum(orderItemList.![price]))}">￦18,000</span>원
+                                    >￦18,000</span>원
                             </p>
                             <p>
                                 구매일
-                                <span th:text="${#dates.format(orderDate, 'yyyy-MM-dd HH:mm:ss')}">2023-08-17
+                                <span >2023-08-17
                                     11:11:11</span>
                             </p>
                             <p>감사합니다.</p>
