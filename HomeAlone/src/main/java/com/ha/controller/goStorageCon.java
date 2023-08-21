@@ -22,7 +22,7 @@ public class goStorageCon implements Controller {
 		
 		
 		
-		return "productcell";
+		return "productPage";
 		
 	}
 

@@ -33,6 +33,8 @@
   2. Mapper태그를 추가해서 xml파일 경로를 알려주어야 한다.
   Mapper 파일을 만들때 마다 추가해야한다.   
   -->
+  
+  
   <mappers>
   	    <mapper resource="com/ha/dao/TB_MemberMapper.xml"/>
 		<mapper resource="com/ha/dao/TB_ReviewMapper.xml"/>
@@ -40,8 +42,13 @@
   	    <mapper resource="com/ha/dao/TB_ProductListMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_QNAMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_AnswerMapper.xml"/>
+		
+
+  	   
+  	    
 
   	    
+
 
 
 

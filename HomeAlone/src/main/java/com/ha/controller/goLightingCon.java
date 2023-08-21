@@ -23,7 +23,7 @@ public class goLightingCon implements Controller {
 		
 		
 		
-		return "productcell";
+		return "productPage";
 	}
 
 }

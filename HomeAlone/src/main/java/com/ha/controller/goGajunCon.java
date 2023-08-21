@@ -21,7 +21,7 @@ public class goGajunCon implements Controller {
 		
 		request.setAttribute("gajun", list);
 		
-		return "productcell";
+		return "productPage";
 	}
 
 }
