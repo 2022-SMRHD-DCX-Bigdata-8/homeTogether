@@ -13,7 +13,6 @@
 		text,
 		phone,
 		gender
-		m_type
 		)
 		values(
 		#{id},
@@ -24,8 +23,7 @@
 		#{addrDetail},
 		#{text},
 		#{phone},
-		#{gender},
-		U
+		#{gender}
 		)
 	</insert>
 

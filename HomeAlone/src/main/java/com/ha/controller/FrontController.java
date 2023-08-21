@@ -32,6 +32,7 @@ public class FrontController extends HttpServlet {
 	public void init() throws ServletException {
 		// Servlet이 메모리에 등록되었을 때 단 한번만 실행
 			handler = new HashMap<String, Controller>();
+			//회원 기능 핸들러
 			handler.put("/main.do", new goMainCon() );
 			handler.put("/join.do", new joinCon() );
 			handler.put("/login.do", new LoginCon());
@@ -39,21 +40,14 @@ public class FrontController extends HttpServlet {
 			handler.put("/update.do", new UpdateCon());
 			handler.put("/goLogout.do", new LogoutCon());
 			
+			// 장바구니 핸들러
 			handler.put("/inCart.do", new inCartCon());
 			handler.put("/deleteCart.do", new deleteCartCon());
 			
-			handler.put("/goDelete.do", new goDeleteCon());
-			handler.put("/delete.do", new deleteCon());
-			handler.put("/goProduct.do", new goProductCon());
-			handler.put("/goBasket.do", new goBasketCon());
+			//리뷰 핸들러
 			handler.put("/inReview.do", new inReviewCon());
-			
-			handler.put("/productpage.do", new goProduct2Con());
-
-			handler.put("/question.do", new questionCon());
 			handler.put("/updateReview.do", new updateReviewCon());
 			handler.put("/deleteReview.do", new deleteReviewCon());
-			
 			
 			//카테고리별 상품
 			handler.put("/goLighting.do", new goLightingCon());
@@ -62,10 +56,23 @@ public class FrontController extends HttpServlet {
 			handler.put("/goStorage.do", new goStorageCon());
 			handler.put("/goBedding.do", new goBeddingCon());
 			handler.put("/goGajun.do", new goGajunCon());
+
+			//QNA 핸들러
+			handler.put("/question.do", new questionCon());
+			handler.put("/addAnswer.do", new addAnswerCon());
 			
+
 			//카테고리안 세부분류
-			handler.put("/goLighting.do", new goLightingCon());
 			
+			
+
+			handler.put("/goDelete.do", new goDeleteCon());
+			handler.put("/goProduct.do", new goProductCon());
+			handler.put("/goBasket.do", new goBasketCon());
+			handler.put("/delete.do", new deleteCon());
+			
+			handler.put("/productpage.do", new goProduct2Con());
+
 			
 			
 			

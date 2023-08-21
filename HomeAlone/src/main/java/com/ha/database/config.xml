@@ -43,5 +43,14 @@
   	    <mapper resource="com/ha/dao/TB_ProductListMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_AnswerMapper.xml"/>
 		
+
+  	   
+  	    
+
+  	    
+
+
+
+
   </mappers>
 </configuration>
