@@ -28,7 +28,7 @@
     <header>
         <div>
             <div id="wrapper">
-                <a class="logo" href="#">
+                <a class="logo" href="main.do">
                     <img src="img/logo/image2.png" height="75px">
                 </a>
                 <ul id="menu">
@@ -114,7 +114,7 @@
                                     <tbody>
                                         <tr>
                                             <td>ID</td>
-                                            <td><input type="text" readonly="사용자 아이디" placeholder="사용자 아이디"></td>
+                                            <td><input type="text" readonly="${session.user.id }"> </td>
                                             <td></td>
                                         </tr>
                                         <tr>
