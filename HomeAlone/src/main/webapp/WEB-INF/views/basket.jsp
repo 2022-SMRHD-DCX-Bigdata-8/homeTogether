@@ -222,7 +222,7 @@
 								<th>소계</th>
 							</tr>
 							<c:if test="${list_empty}">
-								<tr>
+								<tr class="basket">
 									<td colspan="7">장바구니에 상품이없습니다</td>
 								</tr>
 							</c:if>
@@ -346,12 +346,9 @@
 				
 				var checkedProducts = [];
 				
-				// 체크된 상품정보 담을 리스트 생성
-		        //$('input[type="checkbox"]:checked').each(function () {
-		        	//체크태그에 있는 상품정보(prod_seq)가져와서 리스트에 담기
-		        //	checkedProducts.push($(this).data('product-id'));
+				
 		        	
-		        //});
+		        
 				console.log("성공");
 				// 체크박스 상품 사라지게하는 code !!!전체선택 체크박스 <tr>태그는 사라지지않게!! 
 				for (var i = 0; i < checkboxes.length; i++) {
@@ -376,7 +373,18 @@
 		                
 		                data: { "checkedProductsString" : checkedProductsString },
 		                success: function(res) {
-		                    console.log("삭제성공")
+		                	if (res === "true") {		                    
+		                    var td  = "<tr class='basket'>";
+		                    td += "<td colspan='7'>"		                      
+							td +="장바구니에 상품이없습니다"
+							td +="</td></tr>"
+							 
+		                      
+							$('#selectAll').after(td);
+		                	}else{
+		                		
+		                	}
+		                    console.log("상품이없습니다!")
 		                    
 		                },
 		                error: function(e) {

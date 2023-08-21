@@ -3,6 +3,7 @@ package com.ha.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ public class deleteCartCon implements Controller {
 		
 		
 		String checkedProductsString = request.getParameter("checkedProductsString");
+		System.out.println(checkedProductsString);
 		String[] products = checkedProductsString.split(",");
 		
 		
@@ -38,20 +40,41 @@ public class deleteCartCon implements Controller {
 				
 				int prod =Integer.parseInt(products[j]);
 				if(list.get(i).getProd_seq()==prod) {
-					remove_idx.add(i);
+					remove_idx.add(prod);
 				}
 			}
 		}
 		
 		
-		// 장바구니에서 삭제할 인덱스 list로  삭제하는 코드
-		 for (int i : remove_idx) {
-	            list.remove(i);
-	        }
-		 if(list==null) {
-			 
+		Iterator<TB_Basket> iterator = list.iterator();
+		
+		while (iterator.hasNext()) {
+		    TB_Basket basket = iterator.next();
+		   for(int i=0;i<remove_idx.size() ; i++) {
+		    if (basket.getProd_seq() == remove_idx.get(i)) {
+		        iterator.remove(); // prod_seq가 일치하는 객체 삭제
+		        
+		    }
+		   }
+		}
+		if(list.size()!=0) {
+			System.out.println("장바구니안에 상품이있어");
+		}else {
+			System.out.println("장바구니가 비어있어!");
+		}
+		 
+		 if(list.size()==0) {
+		 
+			 response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
+		     PrintWriter out = response.getWriter();
+		     out.print("true");
+		     out.close();
+		     
+		     
+		 }else {
 			 
 		 }
+		 
 		 
 		
 		

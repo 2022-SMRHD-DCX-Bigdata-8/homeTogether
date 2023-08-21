@@ -54,7 +54,18 @@ public class FrontController extends HttpServlet {
 			handler.put("/updateReview.do", new updateReviewCon());
 			handler.put("/deleteReview.do", new deleteReviewCon());
 			
-
+			
+			//카테고리별 상품
+			handler.put("/goLighting.do", new goLightingCon());
+			handler.put("/goTable.do", new goTableCon());
+			handler.put("/goChair.do", new goChairCon());
+			handler.put("/goStorage.do", new goStorageCon());
+			handler.put("/goBedding.do", new goBeddingCon());
+			handler.put("/goGajun.do", new goGajunCon());
+			
+			
+			
+			
 			
 
 	}
