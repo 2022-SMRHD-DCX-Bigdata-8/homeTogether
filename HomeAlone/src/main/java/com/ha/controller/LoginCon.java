@@ -31,9 +31,19 @@ public class LoginCon implements Controller {
 			
 			
 			if(result!=null) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", result);
-				System.out.println("로그인성공");
+				//로그인 성공 시 완전한 회원 정보 조회
+				 TB_Member fullMemberInfo = dao.getMemberInfo(result.getId());
+				
+				
+				
+				if(fullMemberInfo != null) {
+					 HttpSession session = request.getSession();
+			            session.setAttribute("user", fullMemberInfo);
+			            System.out.println("로그인성공");
+			            System.out.println(fullMemberInfo);
+				
+				}
+				
 				
 				return "redirect:/main.do";
 								

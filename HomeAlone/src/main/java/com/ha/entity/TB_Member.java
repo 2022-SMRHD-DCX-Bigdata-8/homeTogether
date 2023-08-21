@@ -19,6 +19,7 @@ public class TB_Member {
 	private String text;       // 참고항목
 	private String phone;	   // 전화번호
 	private String gender;	   // 성별
+	private String m_type;     // 멤버 타입
 
 	
 	

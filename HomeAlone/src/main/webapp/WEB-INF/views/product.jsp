@@ -3,7 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -18,46 +18,47 @@
 
 <body>
 
-   <h1>상품 정보</h1>
-   <table border="2">
-      <tr>
-         <td>상품 번호</td>
-         <td>상품 갯수</td>
-         <td>상품 이름</td>
-         <td>상품 가격</td>
-      </tr>
-      <tr>
-         <td><p id="prod_seq" data-value="5">p-5</p></td>
-         <td><p id="prod_cnt" data-value="1">1</p></td>
-         <td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
-         <td><p id="prod_price" data-value="180000">180000</p></td>
-      </tr>
-      <tr>
-         <td>상품 평</td>
-         <td>23개</td>
-      </tr>
-      <tr>
-         <td>별점</td>
-         <td>2.7</td>
-      </tr>
-   </table>
-   <br>
-   <li>장바구니
-      <button id="damgi">담기</button>
-   </li>
+	<h1>상품 정보</h1>
+	<table border="2">
+		<tr>
+			<td>상품 번호</td>
+			<td>상품 갯수</td>
+			<td>상품 이름</td>
+			<td>상품 가격</td>
+		</tr>
+		<tr>
+			<td><p id="prod_seq" data-value="5">p-5</p></td>
+			<td><p id="prod_cnt" data-value="1">1</p></td>
+			<td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
+			<td><p id="prod_price" data-value="180000">180000</p></td>
+		</tr>
+		<tr>
+			<td>상품 평</td>
+			<td>23개</td>
+		</tr>
+		<tr>
+			<td>별점</td>
+			<td>2.7</td>
+		</tr>
+	</table>
+	<br>
+	<li>장바구니
+		<button id="damgi">담기</button>
+	</li>
 
 
 
 
-<p>=============================================================================================================================================================================</p>
-   <h1>상품 평</h1>
+	<p>=============================================================================================================================================================================</p>
+	<h1>상품 평</h1>
 
-   <li>댓글 : <input type="text" id="review_content"></li>
-   <li>평점 : <input type="number" id="ratings" step="0.5" min="0"
-      max="5"></li>
-   <br>
-   <li><button id="insert">올리기</button></li>
-   <br>
+	<li>댓글 : <input type="text" id="review_content"
+		placeholder="댓글을 입력해주세요"></li>
+	<li>평점 : <input type="number" id="ratings" step="0.5" min="0"
+		max="5" value="5.0"></li>
+	<br>
+	<li><button id="insert">올리기</button></li>
+	<br>
 
 	<table border="2">
 		<tr>
@@ -78,11 +79,13 @@
 					<td id="review_seq">${review.review_seq}</td>
 					<td>${review.nick}</td>
 					<td>${review.review_content}</td>
-					<td>${review.ratings}</td>
+					<td>${review.ratings}</td> 
+					<c:if test="${review.nick eq sessionScope.user.nick}">
 					<td>
 						<button class="updateButton" data-review-id="${review.review_seq}">수정</button>
 						<button class="deleteButton" data-review-id="${review.review_seq}">삭제</button>
 					</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 
@@ -103,56 +106,62 @@
 
 	</table>
 	<div class="updateForm" style="display: none;">
-		<input type="text" class="updateContent"> <input
-			type="number" class="updateRatings" step="0.5" min="0" max="5">
+		<input type="text" class="updateContent"> <input type="number"
+			class="updateRatings" step="0.5" min="0" max="5">
 		<button class="saveButton">수정 완료</button>
 	</div>
 
 
 
-<p>=============================================================================================================================================================================</p>
-   <h1>상품문의</h1>
+	<p>=============================================================================================================================================================================</p>
+	<h1>상품문의</h1>
 
-   <div style="margin-bottom: 10px;">
-      <textarea id="q_content" rows="4" cols="50" style="width: 50%;"></textarea>
-   </div>
+	<div style="margin-bottom: 10px;">
+		<textarea id="q_content" rows="4" cols="50" style="width: 50%;"></textarea>
+	</div>
 
-   <button id="question">문의하기</button>
+	<button id="question">문의하기</button>
 
-   <br>
-   <br>
+	<br>
+	<br>
 
-   <table border="1" style="width: 50%;">
-      <thead>
-         <tr>
-            <th style="width: 20%;">질문자</th>
-            <th style="width: 80%;">문의 내용</th>
-         </tr>
-      </thead>
-      <tbody id="qna_tbd">
+	<table border="1" style="width: 50%;">
+		<thead>
+			<tr>
+				<th style="width: 5%;">문의번호</th>
+				<th style="width: 10%;">질문자</th>
+				<th style="width: 85%;">문의 내용</th>
+				<th style="width: 10%;">댓글</th>
+			</tr>
+		</thead>
+		<tbody id="qna_tbd">
+			<c:forEach var="qna" items="${qna}">
+				<tr>
+					<td>${qna.q_seq}</td>
+					<td>${qna.nick}</td>
+					<td>${qna.q_content}</td>
+					<td><c:if test="${sessionScope.user.m_type == 'A'}">
+							<button class="answerButton" data-qna-id="${qna.q_seq}">댓글
+								추가</button>
+						</c:if></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
-         <c:forEach var="qna" items="${qnaList}">
-            <tr>
-               <td>${qna.nick}</td>
-               <td>${qna.q_content}</td>
-            </tr>
-         </c:forEach>
-      </tbody>
-   </table>
 
 
 
 
 
 
-
-<p>=============================================================================================================================================================================</p>
+	<p>=============================================================================================================================================================================</p>
 	<!-- 세션에 저장된 유저 닉네임 사용하려고 가져온 스크립트 태그 -->
 	<script>var userNick = "${sessionScope.user.nick}";</script>
-   <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-      crossorigin="anonymous"></script>
-   <script type="text/javascript">
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+		integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+		crossorigin="anonymous"></script>
+	<script type="text/javascript">
 
     $(document).ready(function() {
         $('#damgi').on('click', inCart);
@@ -260,8 +269,9 @@ function inQuestion() {
             url: 'question.do',
             type: 'post',
             data: {
+                "q_content": q_content,
                "prod_seq": prod_seq,
-                "q_content": q_content
+            	
             },
             dataType: 'json',
             success: function(res) {
@@ -271,6 +281,7 @@ function inQuestion() {
             console.log(res)
                 for (let i = 0; i < res.length; i++) {
                     tr = "<tr>";
+                    tr += "<td>" + res[i].q_seq + "</td>"
                     tr += "<td>" + res[i].nick + "</td>"
                     tr += "<td>" + res[i].q_content + "</td>"
                     tr += "</tr>";

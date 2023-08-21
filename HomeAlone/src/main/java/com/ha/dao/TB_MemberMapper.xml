@@ -13,6 +13,7 @@
 		text,
 		phone,
 		gender
+		m_type
 		)
 		values(
 		#{id},
@@ -23,7 +24,8 @@
 		#{addrDetail},
 		#{text},
 		#{phone},
-		#{gender}
+		#{gender},
+		U
 		)
 	</insert>
 
@@ -58,6 +60,31 @@
 		id=#{id}
 		and pw= #{pw}
 	</delete>
+
+
+
+	
+	<select id="getMemberInfo" parameterType="string"
+		resultType="com.ha.entity.TB_Member">
+		SELECT * FROM tb_member WHERE id=#{id}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -81,4 +81,19 @@ public class TB_MemberDAO {
 
 	}
 
+	public TB_Member getMemberInfo(String id) {
+		SqlSession session = factory.openSession();
+		TB_Member memberInfo = null;
+		
+		try {
+            memberInfo = session.selectOne("getMemberInfo", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return memberInfo;
+	}
+
 }

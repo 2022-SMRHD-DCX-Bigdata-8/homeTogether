@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ha.dao.TB_ProductDAO;
+import com.ha.dao.TB_QNADAO;
 import com.ha.dao.TB_ReviewDAO;
+import com.ha.entity.TB_QNA;
 import com.ha.entity.TB_Review;
 
 public class goProductCon implements Controller {
@@ -28,16 +30,20 @@ public class goProductCon implements Controller {
 
 
 		TB_Review review = new TB_Review();
-		
 		review.setProd_seq(prod_seq);
+
+		TB_QNA qna = new TB_QNA();
+		qna.setProd_seq(prod_seq);
 		
-		TB_ReviewDAO dao = new TB_ReviewDAO();
+		TB_ReviewDAO reviewdao = new TB_ReviewDAO();
+		TB_QNADAO qnadao = new TB_QNADAO();
 		
-		List<TB_Review> list = dao.select(review);
 		
+		List<TB_Review> list = reviewdao.select(review);
+		List<TB_QNA>qnalist = qnadao.selectQNA(qna);
 				
 		request.setAttribute("review", list);
-		
+		request.setAttribute("qna", qnalist);
 		
 		
 		return "product";
