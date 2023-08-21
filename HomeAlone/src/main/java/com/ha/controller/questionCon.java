@@ -33,13 +33,17 @@ public class questionCon implements Controller {
 			prod_seq = Integer.parseInt(prodSeqParam);
 		}
 		String q_content = request.getParameter("q_content");
-
-
         
         
         // TB_QNA 객체 생성
-        TB_QNA qna = new TB_QNA(prod_seq, q_content, nick);
-
+        TB_QNA qna = new TB_QNA();
+        qna.setQ_content(q_content);
+        qna.setNick(nick);
+        qna.setProd_seq(prod_seq);
+        
+        
+        
+        
         // DAO 생성
         TB_QNADAO dao = new TB_QNADAO();
         

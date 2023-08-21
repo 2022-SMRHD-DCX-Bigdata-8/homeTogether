@@ -37,11 +37,36 @@ public class TB_QNADAO {
 		session.close();
 		
 		return list;
-		
-		
-		
-		
+
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

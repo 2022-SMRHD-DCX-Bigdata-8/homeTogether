@@ -13,5 +13,5 @@ public class TB_QNA {
 	private int prod_seq;
 	private String q_content;
 	private String nick;	
-	
+	private int q_seq;
 }

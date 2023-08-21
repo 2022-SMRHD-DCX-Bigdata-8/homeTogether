@@ -26,9 +26,23 @@
 		select *
 		from tb_qna
 		where prod_seq = #{prod_seq}
+		order by q_seq desc 
 
 	</select>
 
+
+	<update id="updateqna" parameterType="com.ha.entity.TB_QNA">
+		update tb_qna
+		set q_content = #{q_content}
+		where q_seq = #{q_seq}
+	</update>
+	
+	
+	
+	<delete id="deleteqna" parameterType="com.ha.entity.TB_QNA">
+		delete from tb_qna
+		where q_seq = #{q_seq}
+	</delete>
 
 
 
