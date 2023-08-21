@@ -71,7 +71,7 @@
                     <a href="" class="image_container">
                         <img class="hover_image" src="img/test/unnamed.jpg" alt="랄로!?">
                     </a>
-                    <div><span>${ lighting[0].prod_name }</span></div>
+                    <div><span>허허허허</span></div>
                     <div><strong>랄로를 몰라!?</strong></div>
                     <div><strong>${lighting[0].prod_price }원</strong></div>
                 </li>

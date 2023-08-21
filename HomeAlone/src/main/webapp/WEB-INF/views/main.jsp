@@ -144,7 +144,7 @@
          } else {
          %>
 <!-- ★마이페이지,로그아웃★ -->
-         <li><a href="#">마이페이지</a></li>
+         <li><a href="goMypage.do">마이페이지</a></li>
          <li><a href="goLogout.do">로그아웃</a></li>
          <%
          }
