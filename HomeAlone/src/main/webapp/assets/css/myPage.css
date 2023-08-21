@@ -1,0 +1,497 @@
+/* 헤더 부분 시작 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 
+ 
+
+ * {
+	font-family: 'GmarketSansMedium';
+} 
+
+/* 헤더 부분 시작 */
+#wrapper{
+  border-bottom: 1px solid black
+  
+}
+.logo{
+    width: 130px;
+}
+.logo> img{
+    width: 130px;
+}
+
+#menu{
+    list-style-type: none;
+    float: right;
+    margin-right: 120px;
+    margin-top: 40px;
+}
+#menu > li
+{
+    margin-left: 10px;
+    float: left;
+    border-right: thin solid #999999 ;
+    padding: 0px 16px;
+}
+#menu > li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+#menu::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#menu >:last-child{
+    border-right: hidden;
+}
+/* 헤더 부분 끝 */
+
+body{
+    padding: 0;
+    margin: 8px;
+  }
+  div{
+    box-sizing: border-box;
+  }
+  
+  /* alert badge */
+  .circle{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 2.5px;
+    background-color: #ff0000;
+    position: absolute;
+    top: -5px;
+    left: 110%;
+  }
+  
+  /* 녹색 텍스트 */
+  .number{
+    color: black;
+  }
+  
+  .wrap{
+    background-color: #F8F8F8;  
+  }
+  /* 녹색배경 */
+    .Container{  
+    height: 132px;
+    background-color: #f3f3e6;    
+    
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  
+  .Container .name{
+     font-size: 20px;
+    font-weight: bold;
+    color: balck;
+  } 
+  .Container .modify{
+    margin-left: auto;
+  }
+  
+  .shippingStatusContainer{
+    padding: 21px 40px 21px 20px;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+  
+  /* 주문/배송조회 타이틀 */
+  .shippingStatusContainer .title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* 장바구니 결제완료 배송중 구매확정 [로우] */
+  .shippingStatusContainer .status{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 21px;
+  }
+  /* 장바구니 결제완료 배송중 구매확정 [아이템]  */
+  .shippingStatusContainer .item{
+    display: flex;
+  }
+  
+  .shippingStatusContainer .number{
+    font-size: 31px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .shippingStatusContainer .text{
+    font-size: 12px;
+    font-weight: normal;
+    color: #c2c2c2;
+    text-align: center;
+  }
+  .shippingStatusContainer .icon{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 16px;
+    height: 16px;
+  }
+  .listContainer .item{  
+    align-items: center;
+    padding: 10px;
+    color: black;
+    text-decoration: none;  
+    height: 56px;
+    box-sizing: border-box;
+    line-height: 1.2em;
+  }
+  .listContainer .text{
+    font-size: 23px;
+  }
+  .listContainer .right{
+    margin-left: auto;
+  }
+  .listContainer .smallLight{
+    font-size: 14px;
+    color: #c2c2c2;
+  }
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+/* 수정 시작 */
+  #review,
+ .listContainer,
+ .email-boxes{
+  float: left;
+ }
+ #content_wrap{
+  margin-top: 30px;
+ }
+ #content_wrap::after{
+  content: "";
+  clear: both;
+  display: block;
+ }
+ .listContainer{
+  height: 100%;
+  display: block;
+ }
+ .listContainer > a {
+  margin-bottom: 10px;
+ }
+ .item > div{
+  float: left;
+ }
+ .item::after{
+  content: "";
+  clear: both;
+  display: block;
+ }
+ .item{
+  display: inherit;
+ }
+ .listContainer > .item > .icon{
+  margin-right: 20px;
+ }
+ #review{
+  width: 80%;
+ }
+/* 수정 끝 */
+.email-box {
+    border: 1px solid black;
+    padding: 20px;
+    max-width: 700px;
+    margin: 10px auto 20px;
+    font-family: Arial, sans-serif;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+p {
+    margin-top: 10px;
+}
+h3 { text-align: center; }
+
+/* footer 시작 */
+#footer{
+  margin-top: 60px;
+  padding: 30px;
+  background-color: whitesmoke;
+  bottom: 0px;
+  width: 100%;
+}
+#foot_wrap{
+  width: 80%;
+  margin: 0 auto;
+}
+#foot_wrap::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#foot_left{
+  float: left;
+  padding: 30px 2%;
+  text-align: left;
+  border-right: 1px solid #999999;
+  height: 180px;
+  width: 32%;
+  box-sizing: border-box;
+}
+#foot_left>:first-child{
+  font-weight: bold;
+  font-size: 22px;
+}
+#foot_left>:nth-child(2){
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+#foot_left>:nth-child(2)>p{
+  margin: 14px;
+}
+#foot_left>:last-child{
+  text-align: left;
+  font-size: 12px;
+}
+
+#foot_center{
+  font-style: none;
+  float: left;
+  padding: 30px 3% 30px 4%;
+  font-size: 14px;
+  height: 180px;
+  border-right: 1px solid #999999;
+  width: 32%;
+  box-sizing: border-box;
+}
+#foot_right{
+  float: left;
+  display: flex;
+  width: 32%;
+  box-sizing: border-box;
+  padding: 30px 2%;
+  font-size: 10px;
+  margin-top: 40px;
+}
+#foot_center > div > p{
+  margin: 14px 0px;
+}
+/* footer 끝 */
+
+/* review  시작*/
+#review > ul > li{
+ list-style: none;
+ margin-bottom: 20px;
+ background-color: #F8F8F8;
+ padding: 20px;
+ border-top: 1px solid rgb(187, 180, 180);
+
+}
+#review > ul > li > h1{
+  text-align: center;
+}
+/* review  끝 */
+/* paging 시작 */
+.paging {
+  width: 100%;
+  padding: 30px 0;
+  text-align: center;
+  
+}
+.paging > span > a { 
+  color: #777;
+  font-size: 11px;
+  letter-spacing: -1px;
+}
+.paging > .num > a {
+  display: inline-block;
+  min-width: 14px;
+  margin: 0 2px;
+  padding: 8px 9px;
+  border: 1px solid #c4c4c4;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+.paging > .num > a.on {
+  color: #fe434c;
+  font-weight: bold;
+}
+/* paging 끝 */
+
+/* 회원정보 수정 시작 */
+#login_view{
+  float: left;
+  width: 80%;
+}
+#login_view > h1{
+  text-align: center;
+}
+/* #login_view > form{
+  width: 80%;
+} */
+#login_view > form > table > tbody > tr > td{
+  border: none;
+}
+#login_view > form > #join{
+  width: 60%;
+  margin: 0 auto;
+}
+
+
+/* radio 버튼 */
+.test_obj input[type="radio"] {
+  display: none;
+}
+
+.test_obj input[type="radio"]+span {
+  display: inline-block;
+  padding: 15px 10px;
+  border: 1px solid #b2b278;
+  border-radius: 50%;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.test_obj input[type="radio"]:checked+span {
+  background-color: #b2b278;
+  color: #ffffff;
+}
+
+.test_obj {
+  margin-left: 10px;
+}
+
+/* radio 버튼 끝 */
+
+/* 버튼 */
+#post_btn {
+  background-color: #b2b278;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: all 800ms ease;
+}
+
+#join > tbody > tr >:last-child > button{
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+} 
+input[type="button"]{
+  color: white;
+}
+button{
+  background: #b2b278;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 60px;
+  font-size: 1.6em;
+  padding: 0 2em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+button:hover{
+  background: #fff;
+  color: #b2b278;
+}
+
+button:before,
+button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #b2b278;
+  transition: 400ms ease all;
+}
+
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+button:hover:before,
+button:hover:after {
+  width: 100%;
+  transition: 400ms ease all;
+}
+
+/* 버튼 끝 */
+#hidden_line{
+  opacity: 0%;
+  transition: 2000ms ease all;
+}
+#float{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0%;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 800ms ease;
+}
+#float > div{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  z-index: 10;
+}
+#float > div > h1 , #float > div >h3{
+  text-align: center;
+}
+#float > div > div>::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+#float > div > div > button{
+  float: left;
+  width: 40%;
+  margin: 5%;
+}
+
+/* 회원정보 수정 끝 */
+
