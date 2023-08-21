@@ -444,12 +444,12 @@
           dataType: 'json',
           success: function(res) {
           console.log('댓글 추가 성공');
-         
+          	
           // 추가된 댓글 화면에 표시
-          let commentTbody = row.find('.comments');
-          let commentRow = `<div>${res.nick}: ${res.a_content}</div>`;
-          commentTbody.append(commentRow); // append를 사용하여 댓글을 추가합니다
-
+          let ttt = $('.comments');
+          commentRow = "<tr><td>" + res.a_content + "</td></tr>";
+          
+		  ttt.after(commentRow);	
           // 댓글 입력 필드 초기화
           row.find('.a_content').val('');
           },

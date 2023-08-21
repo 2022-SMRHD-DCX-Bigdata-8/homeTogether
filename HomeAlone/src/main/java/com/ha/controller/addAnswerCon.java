@@ -42,8 +42,10 @@ public class addAnswerCon implements Controller {
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
 	    String json= gson.toJson(answer);
+		out.print(json);
 		
 		return null;
+		
 	}
 
 }

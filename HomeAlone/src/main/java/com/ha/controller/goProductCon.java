@@ -46,6 +46,7 @@ public class goProductCon implements Controller {
 		request.setAttribute("qna", qnalist);
 		
 		
+		
 		return "product";
 	}
 

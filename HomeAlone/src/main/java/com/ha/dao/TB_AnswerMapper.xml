@@ -3,7 +3,7 @@
 <mapper namespace="com.ha.dao.TB_AnswerDAO">
 
 
-	<insert id="insertAnswer" parameterType="com.ha.entity.TB_Answer">
+	<insert id="insertanswer" parameterType="com.ha.entity.TB_Answer">
 		insert into tb_answer(
 		q_seq,
 		a_content,
