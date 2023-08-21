@@ -82,7 +82,7 @@ public class TB_MemberDAO {
 	}
 
 	public TB_Member getMemberInfo(String id) {
-		SqlSession session = factory.openSession();
+		SqlSession session = factory.openSession(true);
 		TB_Member memberInfo = null;
 		
 		try {

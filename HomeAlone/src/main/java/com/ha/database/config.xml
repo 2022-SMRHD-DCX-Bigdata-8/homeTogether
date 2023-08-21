@@ -38,11 +38,11 @@
   	    <mapper resource="com/ha/dao/TB_MemberMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_ProductMapper.xml"/>
   	    <mapper resource="com/ha/dao/TB_QNAMapper.xml"/>
+  	    <mapper resource="com/ha/dao/TB_AnswerMapper.xml"/>
+  	    <mapper resource="com/ha/dao/TB_ProductListMapper.xml"/>
 
-  	    <mapper resource="com.ha.dao.TB_ProductListMapper"/>
   	    
 
-  	    <mapper resource="com/ha/dao/TB_AnswerMapper.xml"/>
 
 
   </mappers>
