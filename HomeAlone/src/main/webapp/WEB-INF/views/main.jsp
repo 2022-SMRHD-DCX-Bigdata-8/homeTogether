@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+<%@page import="java.util.ArrayList"%>
+>>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 <%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="utf-8">
 
@@ -16,7 +21,10 @@
 </head>
 
 <body>
+
 	<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
+
+
 
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
@@ -40,35 +48,35 @@
         </form>
         <h1 id="join_h1">회원가입</h1>
 
-        <form action="#" method="post">
+        <form action="join.do" method="post">
             <table id="join">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>NICK</td>
-                        <td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+                        <td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PHONE</td>
                         <td>
-                            <input type="text" name="cellPhone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
+                            <input type="text" name="phone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>ADRESS</td>
                         <td>
-                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;">
+                            <input type="text" id="sample6_postcode" name="zipCode" placeholder="우편번호" style="margin-right: 10px;">
                         </td>
                         <td>
                             <input id="post_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -77,15 +85,15 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_address" placeholder="주소">
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                            <input type="text" id="sample6_address" name="addr" placeholder="주소">
+                            <input type="text" id="sample6_detailAddress" name="addrDetail" placeholder="상세주소">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                            <input type="text" id="sample6_extraAddress" name="text" placeholder="참고항목">
                         </td>
                         <td></td>
                     </tr>
@@ -95,12 +103,12 @@
                         <td>GENDER</td>
                         <td>
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="apple">
+                                <input type="radio" name="gender" value="M">
                                 <span>남자</span>
                             </label>
 
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="banana">
+                                <input type="radio" name="gender" value="W">
                                 <span>여자</span>
                             </label>
                         </td>
@@ -115,23 +123,24 @@
     </div>
 
     <div class="navbar">
-        <a class="logo" href="#">
-            <img src="img/logo/image2.png" height="75px">
-        </a>
-      <ul id="menu">
-         
-         <li><a href="#home">검색</a></li>
-         <li><a href="goBasket.do">장바구니</a></li>
-         <li><a href="goMypage.do">마이페이지</a></li>
-         <% if (user == null) {   %>
-         <li id="goLogin"><a href="#javascript">로그인</a></li>
-         <% } else { %>
-         <li><a href="#javascript">로그아웃</a></li>
-         <% } %>
+
+		<a class="logo" href="#"> <img src="img/logo/image2.png"
+			height="75px">
+		</a>
+		<ul id="menu">
+			<li><a href="#home">검색</a></li>
+			<li><a href="goBasket.do">장바구니</a></li>
+			<% if (user == null) {	%>
+			<li id=goLogin><a href="#">로그인</a></li>
+			<% } else { %>
+			<li><a href="goMypage.do">마이페이지</a></li>
+			<li><a href="goLogout.do">로그아웃</a></li>
+			<% } %>
 
 
-      </ul>
-    </div>
+		</ul>
+	</div>
+
     <div class="hero_header">
         <ul class="slideshow"> <!-- Add the .slideshow class here -->
             <li> <img src="img/shopa/이미지0.jpg" alt="가구 사진1"> </li>
@@ -159,7 +168,7 @@
             <p>Sunglasses</p>
             <p class="price">49,000</p>
         </a>
-        <a href="#">
+        <a href="productpage.do">
             <img src="images/tassel_loafer.jpg">
             <p>Tassel Loafer</p>
             <p class="price">89,000</p>

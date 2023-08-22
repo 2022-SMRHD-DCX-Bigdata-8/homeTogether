@@ -20,6 +20,7 @@ public class LoginCon implements Controller {
 			
 			String id=request.getParameter("id");
 			String pw=request.getParameter("pw");
+			System.out.println(id);
 			
 			TB_Member member = new TB_Member();
 			
@@ -40,8 +41,8 @@ public class LoginCon implements Controller {
 					 HttpSession session = request.getSession();
 			            session.setAttribute("user", fullMemberInfo);
 			            System.out.println("로그인성공");
+			           
 			            System.out.println(fullMemberInfo);
-				
 				}
 				
 				

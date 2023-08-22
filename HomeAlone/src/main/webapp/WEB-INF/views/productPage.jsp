@@ -1,3 +1,4 @@
+<%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -12,6 +13,7 @@
 </head>
 
 <body>
+<% TB_Member user = (TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -111,11 +113,15 @@
         <a class="logo" href="#">
             <img src="/img/logo/image2.png" height="75px">
         </a>
-        <ul id="menu">
-            <li><a href="#home">검색</a></li>
-            <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
-            <li id="goLogin"><a href="#javascrript">로그인</a></li>
+		<ul id="menu">
+			<li><a href="#home">검색</a></li>
+			<li><a href="goBasket.do">장바구니</a></li>
+			<% if (user == null) {	%>
+			<li id=goLogin><a href="#">로그인</a></li>
+			<% } else { %>
+			<li><a href="goMypage.do">마이페이지</a></li>
+			<li><a href="goLogout.do">로그아웃</a></li>
+			<% } %>
         </ul>
     </header>
     <nav id="nav">
@@ -163,7 +169,7 @@
         <div>
             <ul id="goods_lists">
                 <li>
-                    <a href="" class="image_container">
+                    <a href="goProductcell.do" class="image_container">
                         <img class="hover_image" src="img/test/unnamed.jpg" alt="랄로!?">
                     </a>
                     <div><span>80억 날린 청년</span></div>
