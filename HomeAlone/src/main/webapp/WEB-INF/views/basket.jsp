@@ -209,7 +209,7 @@
 
 
 
-					<form action="#">
+					<form action="goPayment.do">
 						<table>
 							<tr id="selectAll">
 								<td id="selectAll"><input type="checkbox"
