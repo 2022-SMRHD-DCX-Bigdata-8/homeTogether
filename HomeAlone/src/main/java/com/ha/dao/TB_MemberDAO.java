@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.TB_Member;
 
+
 public class TB_MemberDAO {
 
 	private SqlSessionFactory factory = SqlSessionManager.getSqlSessionFactory();
@@ -82,7 +83,7 @@ public class TB_MemberDAO {
 	}
 
 	public TB_Member getMemberInfo(String id) {
-		SqlSession session = factory.openSession(true);
+		SqlSession session = factory.openSession();
 		TB_Member memberInfo = null;
 		
 		try {
@@ -94,6 +95,15 @@ public class TB_MemberDAO {
         }
 
         return memberInfo;
+	}
+	
+	public TB_Member check(String id) {
+		
+		SqlSession session = factory.openSession(true);
+		TB_Member list = session.selectOne("check", id);
+		session.close();
+		
+		return list;
 	}
 
 }

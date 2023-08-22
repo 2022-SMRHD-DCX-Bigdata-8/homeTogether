@@ -67,8 +67,8 @@
             <tbody>
                <tr>
                   <td>ID</td>
-                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
-                  <td></td>
+                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id" id="checkId"></td>                  
+                  <td id="checkResult"></td>
                </tr>
                <tr>
                   <td>PW</td>
@@ -216,6 +216,8 @@
 
    <script
       src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+   <script src="assets/js/main.js"></script>
    <script>
       function sample6_execDaumPostcode() {
          new daum.Postcode(
@@ -271,10 +273,46 @@
                }).open();
       }
    </script>
-   <!-- 스크립트 -->
+   <script type="text/javascript">
+				
+   $(document).ready(function() {
+	    var input = $('#checkId');
 
-   <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-   <script src="assets/js/main.js"></script>
+	    input.on('input', idCheck);
+	});
+
+	function idCheck() {
+	    var value = $('#checkId').val();
+	    var p = $('#checkResult');
+
+	    if (value === "") {
+	        p.html(''); 
+	    } else {
+	        $.ajax({
+	            url: 'idCheck.do',
+	            type: 'post',
+	            data: {
+	                "id": value
+	            },
+	            success: function(res) {
+	                if (res == "true") {
+	                    p.html('사용가능합니다').css({"font-size": "12px", "color": "black"});
+	                } else {
+	                    p.html('사용불가능합니다').css({"font-size": "12px", "color": "red"});
+	                }
+	            },
+	            error: function(e) {
+	                alert('실패');
+	            }
+	        });
+	    }
+	}
+			
+			
+			</script>
+
+
+   
 
 </body>
 

@@ -39,6 +39,8 @@ public class FrontController extends HttpServlet {
 			handler.put("/goUpdate.do", new goUpdateCon());
 			handler.put("/update.do", new UpdateCon());
 			handler.put("/goLogout.do", new LogoutCon());
+			handler.put("/delete.do", new deleteCon());
+			
 			
 			// 장바구니 핸들러
 			handler.put("/inCart.do", new inCartCon());
@@ -69,12 +71,16 @@ public class FrontController extends HttpServlet {
 			handler.put("/goDelete.do", new goDeleteCon());
 			handler.put("/goProduct.do", new goProductCon());
 			handler.put("/goBasket.do", new goBasketCon());
-			handler.put("/delete.do", new deleteCon());
 			
 			handler.put("/productpage.do", new goProduct2Con());
 
 			//마이페이지
 			handler.put("/goMypage.do", new goMypageCon());
+			handler.put("/myPageReview.do", new myPageReviewCon());
+			
+			//id 중복확인
+			handler.put("/idCheck.do", new idCheckCon());
+			
 			
 			
 

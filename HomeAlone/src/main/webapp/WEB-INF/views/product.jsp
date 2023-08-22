@@ -181,7 +181,7 @@
       
          $(document).ready(function() {
 
-         $('#damgi').on('click', inCart);
+         	$('#damgi').on('click', inCart);
             $('#insert').on('click', inReview);
             $('#question').on('click', inQuestion);
             $('.updateButton').on('click', showUpdateForm);
