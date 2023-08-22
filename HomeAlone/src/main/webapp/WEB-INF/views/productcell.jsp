@@ -10,7 +10,6 @@
     <title>HomeTogether</title>
     <link rel="stylesheet" href="assets/css/productcell.css">
 
-
 </head>
 
 <body>
@@ -115,16 +114,16 @@
             <a class="logo" href="#">
                 <img src="img/logo/image2.png" height="75px">
             </a>
-		<ul id="menu">
-			<li><a href="#home">검색</a></li>
-			<li><a href="goBasket.do">장바구니</a></li>
-			<% if (user == null) {	%>
-			<li id=goLogin><a href="#">로그인</a></li>
-			<% } else { %>
-			<li><a href="goMypage.do">마이페이지</a></li>
-			<li><a href="goLogout.do">로그아웃</a></li>
-			<% } %>
-		</ul>
+      <ul id="menu">
+         <li><a href="#home">검색</a></li>
+         <li><a href="goBasket.do">장바구니</a></li>
+         <% if (user == null) {   %>
+         <li id=goLogin><a href="#">로그인</a></li>
+         <% } else { %>
+         <li><a href="goMypage.do">마이페이지</a></li>
+         <li><a href="goLogout.do">로그아웃</a></li>
+         <% } %>
+      </ul>
         </div>
 
     </div>
@@ -314,26 +313,38 @@
             <article class="review">
 				<div id=re-form>
 
-					<nav>
-						<h2>상품리뷰</h2>
-					</nav>
-				</div>
-				<ul>
-					<li id="tbd">
-					<c:forEach var="review" items="${review}">
-							<div>
-								<div>
-									<h5></h5>
-									<span><h5>[res[i].review_seq] res[i].nick
-											res[i].created_at 평점 : res[i].ratings</h5></span>
-								</div>
-								<p>
-								<h4>res[i].review_content</h4>
-								</p>
-							</div>
-						</c:forEach>
-						</li>
-
+                    <nav>
+                        <h2>상품리뷰</h2>
+                    </nav>
+                </div>
+                <ul>
+                   <li id="tbd">
+                   <c:forEach var="review" items="${review}">
+                    <li>
+                        <div>
+                            <h5 class="rating star4">상품평</h5>
+                            <span id="review_seq">${review.nick}  ${review.created_at}, ${review.review_seq}<button class="updateButton"
+                        data-review-id="${review.review_seq}">수정</button>
+                     <button class="deleteButton"
+                        data-review-id="${review.review_seq}">삭제</button></span>
+                        </div>
+                        
+                        <h3>상품명1/BLUE/L/상품평점:${review.ratings}</h3>
+                        <p>${review.review_content}</p>
+                    </li>
+                    </c:forEach>
+                     </li>
+                    
+                    
+                    <div class="qa-form">
+                        <h2>리뷰 작성</h2>
+                        <div class="input-container">
+                            <input type="text" id="review_content" placeholder="고객님의 리뷰는 힘이 됩니다.">
+                            <button id="review_Button">작성하기</button>
+                            <p id="number_check">평점 :</p> 
+                            <input type="number" id="ratings" step="0.5" min="0" max="5" value="5.0">
+                        </div>
+                    </div>
 
 					<div class="qa-form">
 						<h2>리뷰 작성</h2>
@@ -472,34 +483,17 @@
   
 
     
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="assets/js/productCell.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-         crossorigin="anonymous"></script>
-
-	<script>
-         var userNick = "${sessionScope.user.nick}";
-      </script>
-	
-	<script type="text/javascript">
-     
-     
-     
     
+   <script type="text/javascript">
     $(document).ready(function() {
- 			
- 			  $('#review_Button').on('click', inReview);
-   
-   
-   
-   
+            $('#review_Button').on('click', inReview);
         });
-
-
 //====================================================================================================================================        
         
-	function sample6_execDaumPostcode() {
+   function sample6_execDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -563,9 +557,9 @@
             inputField.value = currentValue + 1;
         });
          
-//====================================================================================================================================        	
+//====================================================================================================================================           
         
-	  function inReview() {
+     function inReview() {
             let review_content = $('#review_content').val();
             let prod_seq = $('#prod_seq').data('value');
             let ratings = $('#ratings').val();
@@ -602,12 +596,10 @@
                            // before('code'):여는태그 바로앞에 추가
                            // append('code'):자식요소로 추가
                            tbody.append(tr);
-
                         }
-
                         // 글을 작성하고 난 후에 새로고침 실행
-                       // location.reload();
-
+                        //location.reload();
+						//github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
                      },
                      error : function(e) {
                         console.log('요청실패!!!');
@@ -615,11 +607,6 @@
                   });
 
          }
-        
-        
-        
-        
-
         </script>
 
 </body>

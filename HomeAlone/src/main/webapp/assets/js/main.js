@@ -99,4 +99,8 @@ $(document).ready(function () {
         $("#back").animate({ "opacity": "0%" }, 500);
     }
 
+    $("#search_btn").click(function(){
+        $("#search").toggleClass("on")
+
+    })
 });
