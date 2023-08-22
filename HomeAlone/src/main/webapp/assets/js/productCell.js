@@ -89,6 +89,7 @@ $(document).ready(function () {
         target.toggleClass("on");
     })
     //-------------------------------------------------------
+    
     $("#review_prev > a").click(function () {
         var aTags = $("#review_num").children();
         var len = aTags.length;
@@ -154,5 +155,35 @@ $(document).ready(function () {
         }
     })
     //-----------------------------------------------------------
-    
+    $("#QnA_append > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    $("#QnA_prev > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    $("#review_append > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    $("#review_prev > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    $("#QnA_num > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    $("#review_num > a").on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    })
+    //---------------------------------------------------------------
+    $("#top_img > a").click(function(){
+        $('html, body').animate({scrollTop: 0 }, 'slow');
+    })
+    $("#down_img > a").click(function(){
+        $('html, body').animate({scrollTop: $(document).height() }, 'slow');
+    })
 })

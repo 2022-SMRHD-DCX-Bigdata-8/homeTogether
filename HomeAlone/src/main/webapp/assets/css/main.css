@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  margin: 8px;
+  margin: 0px 8px;
   min-width: 992px;
   font-family: "Helvetica";
 }
@@ -337,14 +337,14 @@ button:hover:after {
 }
 
 #categori>ul>li>a {
-  display: inline-block;
+  display: block;
   width: 100%;
 }
 
 
 #categori>ul>li>a>img {
-  width: 150px;
-  height: 150px;
+  display: block;
+  width: 100%;
 }
 
 #categori>ul {
@@ -362,6 +362,7 @@ button:hover:after {
   padding: 3%;
   width: 16.6%;
   float: left;
+  text-align: center;
 }
 
 /* headnav 끝*/
@@ -487,3 +488,29 @@ body h1 {
   margin: 14px 0px;
 }
 /* footer 끝 */
+
+#menu{
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
