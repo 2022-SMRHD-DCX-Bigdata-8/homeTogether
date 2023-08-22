@@ -1,5 +1,7 @@
+<%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +14,7 @@
 </head>
 
 <body>
+<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -112,12 +115,16 @@
             <a class="logo" href="#">
                 <img src="img/logo/image2.png" height="75px">
             </a>
-            <ul id="menu">
-                <li><a href="#home">검색</a></li>
-                <li><a href="#html">게시판</a></li>
-                <li><a href="#css">장바구니</a></li>
-                <li><a href="#javascrript" id="goLogin">로그인</a></li>
-            </ul>
+		<ul id="menu">
+			<li><a href="#home">검색</a></li>
+			<li><a href="goBasket.do">장바구니</a></li>
+			<% if (user == null) {	%>
+			<li id=goLogin><a href="#">로그인</a></li>
+			<% } else { %>
+			<li><a href="goMypage.do">마이페이지</a></li>
+			<li><a href="goLogout.do">로그아웃</a></li>
+			<% } %>
+		</ul>
         </div>
 
     </div>
@@ -136,7 +143,7 @@
                 <h1>상품보기</h1>
                 <p>
                     HOME >>
-                    <span>가구/의자</span>
+                    <span >가구/의자</span>
                     >>
                     <strong>리클라이너</strong>
                 </p>
@@ -148,22 +155,22 @@
                 <div class="summary">
                     <h2>
                         상품번호 :
-                        <span>20230000</span>
+                        <span id="prod_seq" data-value="5">5</span>
                     </h2>
                     <h1>(주)판매자명</h1>
 
                     <nav>
-                        <h3>리클라이너 의자</h3>
+                        <h3 id="prod_name" data-value="사무용 의자">리클라이너 의자</h3>
                         <p>상품설명 출력</p>
 
                     </nav>
                     <nav id="price">
                         <div class="org_price">
-                            <del>30,000</del>
+                            <del >30,000</del>
                             <span>10%</span>
                         </div>
                         <div class="dis_price">
-                            <ins>27,000</ins>
+                            <ins id="prod_price" data-value="27000">27,000</ins>
                         </div>
                     </nav>
                     <nav id="free_baesong">
@@ -176,7 +183,7 @@
                     </nav>
                     <div class="count">
                         <button class="decrease">-<i class="fas fa-minus"></i></button>
-                        <input type="text" name="num" value="1" readonly>
+                        <input type="text" id="prod_cnt" name="num" value="1" readonly >
                         <button class="increase">+<i class="fas fa-plus"></i></button>
                     </div>
                     <div class="total">
@@ -312,73 +319,32 @@
                     </nav>
                 </div>
                 <ul>
+                   <li id="tbd">
+                   <c:forEach var="review" items="${review}">
                     <li>
                         <div>
                             <h5 class="rating star4">상품평</h5>
-                            <span>jun****** 2023-08-18</span>
+                            <span id="review_seq">${review.nick}  ${review.created_at}, ${review.review_seq}<button class="updateButton"
+                        data-review-id="${review.review_seq}">수정</button>
+                     <button class="deleteButton"
+                        data-review-id="${review.review_seq}">삭제</button></span>
                         </div>
-                        <h3>상품명1/BLUE/L</h3>
-                        <p> 푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                        </p>
-
+                        
+                        <h3>상품명1/BLUE/L/상품평점:${review.ratings}</h3>
+                        <p>${review.review_content}</p>
                     </li>
-                    <li>
-                        <div>
-                            <h5 class="rating star4">상품평</h5>
-                            <span>jun****** 2023-08-18</span>
-                        </div>
-                        <h3>상품명1/BLUE/L</h3>
-                        <p> 푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                        </p>
-                    </li>
-                    <li>
-                        <div>
-                            <h5 class="rating star4">상품평</h5>
-                            <span>jun****** 2023-08-18</span>
-                        </div>
-                        <h3>상품명1/BLUE/L</h3>
-                        <p> 푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                        </p>
-                    </li>
-                    <li>
-                        <div>
-                            <h5 class="rating star4">상품평</h5>
-                            <span>jun****** 2023-08-18</span>
-                        </div>
-                        <h3>상품명1/BLUE/L</h3>
-                        <p> 푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                        </p>
-                    </li>
-                    <li>
-                        <div>
-                            <h5 class="rating star4">상품평</h5>
-                            <span>jun****** 2023-08-18</span>
-                        </div>
-                        <h3>상품명1/BLUE/L</h3>
-                        <p> 푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                            푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-                        </p>
-                    </li>
+                    </c:forEach>
+                     </li>
+                    
+                    
                     <div class="qa-form">
                         <h2>리뷰 작성</h2>
                         <div class="input-container">
                             <p>이름</p>
-                            <input type="text" id="questionInput" placeholder="고객님의 리뷰는 힘이 됩니다.">
-                            <button id="askButton">작성하기</button>
+                            <input type="text" id="review_content" placeholder="고객님의 리뷰는 힘이 됩니다.">
+                              평점 : <input type="number" id="ratings" step="0.5" min="0"
+      max="5" value="5.0">
+                            <button id="review_Button">작성하기</button>
                         </div>
                     </div>
 
@@ -512,13 +478,37 @@
 
     </footer>
 
-    </div>
+  
 
-    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    
     <script src="assets/js/productCell.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        function sample6_execDaumPostcode() {
+     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+         crossorigin="anonymous"></script>
+
+	<script>
+         var userNick = "${sessionScope.user.nick}";
+      </script>
+	
+	<script type="text/javascript">
+     
+     
+     
+    
+    $(document).ready(function() {
+ 			
+ 			  $('#review_Button').on('click', inReview);
+   
+   
+   
+   
+        });
+
+
+//====================================================================================================================================        
+        
+	function sample6_execDaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -565,8 +555,7 @@
                 }
             }).open();
         }
-    </script>
-    <script>
+
         const decreaseButton = document.querySelector('.decrease');
         const increaseButton = document.querySelector('.increase');
         const inputField = document.querySelector('input[name="num"]');
@@ -582,8 +571,67 @@
             const currentValue = parseInt(inputField.value);
             inputField.value = currentValue + 1;
         });
-    </script>
-    
+         
+//====================================================================================================================================        	
+        
+	  function inReview() {
+            let review_content = $('#review_content').val();
+            let prod_seq = $('#prod_seq').data('value');
+            let ratings = $('#ratings').val();
+
+            $.ajax({
+                     url : 'inReview.do',
+                     type : 'post',
+                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                     data : {
+                        "review_content" : review_content,
+                        "prod_seq" : prod_seq,
+                        "ratings" : ratings
+                     },
+
+                     dataType : 'json',
+                     success : function(res) {
+                        console.log('요청성공');
+
+                        let tbody = $('#tbd');
+                        tbody.html('');
+
+                        for (let i = 0; i < res.length; i++) {
+
+                           tr = "<div>";
+                           tr += "<div>"
+                           tr += "<h5>" + "" + "</h5>"
+                           tr += "<span><h5>" + "[" + res[i].review_seq +"]"+ "\t" + res[i].nick  + "\t"+ res[i].created_at + "\t"  + " 평점 : " + res[i].ratings  +"</h5></span>"
+                           tr +=  "</div>"
+                           tr += "<p><h4>" + res[i].review_content + "</h4></p>"
+                           tr += "</div>";
+
+                           // html('code') :덮어쓰기
+                           // after('code'):닫는태그 바로뒤에 추가
+                           // before('code'):여는태그 바로앞에 추가
+                           // append('code'):자식요소로 추가
+                           tbody.append(tr);
+
+                        }
+
+                        // 글을 작성하고 난 후에 새로고침 실행
+                        //location.reload();
+
+                     },
+                     error : function(e) {
+                        console.log('요청실패!!!');
+                     }
+                  });
+
+         }
+        
+        
+        
+        
+
+        </script>
+
 </body>
+
 
 </html>

@@ -1006,4 +1006,7 @@ ul > li{
     font-size: 18px;
     display: none;
 }
+#tbd > li{
+	border-top: 1px solid #999999;
+}
 /* 수정 끝 */
