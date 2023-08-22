@@ -133,8 +133,6 @@
 			<li><a href="goMypage.do">마이페이지</a></li>
 			<li><a href="goLogout.do">로그아웃</a></li>
 			<% } %>
-
-
 		</ul>
 	</div>
 
