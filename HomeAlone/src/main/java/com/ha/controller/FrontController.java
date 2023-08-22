@@ -71,6 +71,9 @@ public class FrontController extends HttpServlet {
 			handler.put("/goBasket.do", new goBasketCon());
 			handler.put("/delete.do", new deleteCon());
 			
+			
+			
+			handler.put("/goPayment.do", new goPaymentCon());
 			handler.put("/productpage.do", new goProduct2Con());
 
 			//마이페이지

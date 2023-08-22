@@ -27,7 +27,7 @@
          <td>상품 가격</td>
       </tr>
       <tr>
-         <td><p id="prod_seq" data-value="5">p-5</p></td>
+         <td><p id="prod_seq" data-value="0">p-5</p></td>
          <td><p id="prod_cnt" data-value="1">1</p></td>
          <td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
          <td><p id="prod_price" data-value="180000">180000</p></td>
@@ -235,8 +235,7 @@
             let prod_seq = $('#prod_seq').data('value');
             let ratings = $('#ratings').val();
 
-            $
-                  .ajax({
+            $.ajax({
                      url : 'inReview.do',
                      type : 'post',
                      contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -433,13 +432,15 @@
           let row = $(this).closest('.commentRow');
           let q_seq = row.prev('tr').find('td:eq(0)').text(); // 문의번호 가져오기
           let a_content = row.find('.a_content').val(); // 댓글 내용 가져오기
-
+          let prod_seq = $('#prod_seq').data('value');
+          
           $.ajax({
           url: 'addAnswer.do',
           type: 'post',
           data: {
           "q_seq": q_seq,
-          "a_content": a_content
+          "a_content": a_content,
+          "prod_seq" : prod_seq
           },
           dataType: 'json',
           success: function(res) {
@@ -453,6 +454,7 @@
 
           // 댓글 입력 필드 초기화
           row.find('.a_content').val('');
+
           },
           error: function(e) {
           console.log('댓글 추가 실패');

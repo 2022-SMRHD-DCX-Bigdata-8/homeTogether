@@ -12,7 +12,7 @@ public class TB_Answer {
 	private int q_seq;
 	private String a_content;
 	private String nick;
-	
+	private int prod_seq;
 	
 	
 }
