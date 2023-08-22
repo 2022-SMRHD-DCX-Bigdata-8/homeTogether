@@ -487,3 +487,6 @@ body h1 {
   margin: 14px 0px;
 }
 /* footer 끝 */
+.products > p, .products > a{
+	width : 225px;
+}

@@ -1,6 +1,7 @@
 package com.ha.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -32,12 +33,22 @@ public class goMainCon implements Controller {
 				}
 			}
 		}
-		for (int i=0 ;  i<9 ; i++) {
-			System.out.println(rannum[i]);
+		ArrayList<TB_Product> main_list = new ArrayList<>();
+		for (int i=0 ;  i<list.size() ; i++) {
+			for(int j=0; j<9 ; j++) {
+			if(list.get(i).getProd_seq()==rannum[j]) {
+				main_list.add(list.get(i));
+			}
+			}
 		}
 		
-		request.setAttribute("rannum", rannum);
-		request.setAttribute("products", list);
+		for(int i=0 ;  i<9 ; i++) {
+			System.out.println(main_list.get(i).getProd_seq());			
+		}
+		
+		request.setAttribute("mainlist", main_list);
+		
+		
 		
 		
 		
