@@ -312,62 +312,53 @@
                 </p>
             </article>
             <article class="review">
-                <div id=re-form>
+				<div id=re-form>
 
-                    <nav>
-                        <h2>상품리뷰</h2>
-                    </nav>
-                </div>
-                <ul>
-                   <li id="tbd">
-                   <c:forEach var="review" items="${review}">
-                    <li>
-                        <div>
-                            <h5 class="rating star4">상품평</h5>
-                            <span id="review_seq">${review.nick}  ${review.created_at}, ${review.review_seq}<button class="updateButton"
-                        data-review-id="${review.review_seq}">수정</button>
-                     <button class="deleteButton"
-                        data-review-id="${review.review_seq}">삭제</button></span>
-                        </div>
-                        
-                        <h3>상품명1/BLUE/L/상품평점:${review.ratings}</h3>
-                        <p>${review.review_content}</p>
-                    </li>
-                    </c:forEach>
-                     </li>
-                    
-                    
-                    <div class="qa-form">
-                        <h2>리뷰 작성</h2>
-                        <div class="input-container">
-                            <p>이름</p>
-                            <input type="text" id="review_content" placeholder="고객님의 리뷰는 힘이 됩니다.">
-                              평점 : <input type="number" id="ratings" step="0.5" min="0"
-      max="5" value="5.0">
-                            <button id="review_Button">작성하기</button>
-                        </div>
-                    </div>
+					<nav>
+						<h2>상품리뷰</h2>
+					</nav>
+				</div>
+				<ul>
+					<li id="tbd">
+					<c:forEach var="review" items="${review}">
+							<div>
+								<div>
+									<h5></h5>
+									<span><h5>[res[i].review_seq] res[i].nick
+											res[i].created_at 평점 : res[i].ratings</h5></span>
+								</div>
+								<p>
+								<h4>res[i].review_content</h4>
+								</p>
+							</div>
+						</c:forEach>
+						</li>
 
-                    <article class="next">
-                        <div class="paging">
-                            <span class="prev" id="review_prev">
-                                <a href="#">이전</a>
-                            </span>
-                            <span class="num" id="review_num">
-                                <a href="#" class="on">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a href="#">7</a>
-                            </span>
-                            <span class="next" id="review_append">
-                                <a href="#">다음 ></a>
-                            </span>
-                        </div>
-                </ul>
-            </article>
+
+					<div class="qa-form">
+						<h2>리뷰 작성</h2>
+						<div class="input-container">
+							<p>이름</p>
+							<input type="text" id="review_content"
+								placeholder="고객님의 리뷰는 힘이 됩니다."> 평점 : <input
+								type="number" id="ratings" step="0.5" min="0" max="5"
+								value="5.0">
+							<button id="review_Button">작성하기</button>
+						</div>
+					</div>
+
+					<article class="next">
+						<div class="paging">
+							<span class="prev" id="review_prev"> <a href="#">이전</a>
+							</span> <span class="num" id="review_num"> <a href="#" class="on">1</a>
+								<a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a
+								href="#">5</a> <a href="#">6</a> <a href="#">7</a>
+							</span> <span class="next" id="review_append"> <a href="#">다음
+									></a>
+							</span>
+						</div>
+				</ul>
+			</article>
             <article class="QandA">
                 <nav>
                     <h1>QandA</h1>
@@ -592,7 +583,7 @@
                      dataType : 'json',
                      success : function(res) {
                         console.log('요청성공');
-
+						console.log(res)
                         let tbody = $('#tbd');
                         tbody.html('');
 
@@ -615,7 +606,7 @@
                         }
 
                         // 글을 작성하고 난 후에 새로고침 실행
-                        //location.reload();
+                       // location.reload();
 
                      },
                      error : function(e) {
