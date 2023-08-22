@@ -30,5 +30,13 @@ public class TB_ProductDAO {
 		return product;
 		
 	}
+	public List<TB_Product> productList() {
+		SqlSession session = factory.openSession(true);
+		List<TB_Product> list = session.selectList("select");
+		session.close();
+		
+		return list;
+		
+	}
 
 }
