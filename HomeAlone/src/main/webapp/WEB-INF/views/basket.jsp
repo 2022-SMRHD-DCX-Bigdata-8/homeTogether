@@ -159,12 +159,42 @@
         .cart {
             margin-top: 40px;
         }
+        #menu {
+            position: relative;
+        }
+
+        #search {
+            position: absolute;
+            left: -280px;
+            bottom: -5px;
+            margin-bottom: 0px;
+        }
+
+        #menu>.on {
+            top: -10px;
+            border-bottom: 1px solid black;
+        }
+
+        #search {
+            transition: all 800ms ease;
+            top: -100px;
+        }
+
+        #search>#search_content {
+            border: none 0;
+            outline: none;
+            padding: 0px;
+        }
+
+        #search>#search_img {
+            width: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-	<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
+   <%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
 
 
     <div id="login_view">
@@ -264,20 +294,25 @@
     </div>
     <div class="navbar">
         <a class="logo" href="main.do">
-            <img src="/img/logo/image2.png" height="75px">
+            <img src="img/logo/image2.png" height="75px">
         </a>
 
        
 
-		<ul id="menu">
-			<li><a href="#home">검색</a></li>
-			<li><a href="goBasket.do">장바구니</a></li>
-			<% if (user == null) {	%>
-			<li id=goLogin><a href="#">로그인</a></li>
-			<% } else { %>
-			<li><a href="goMypage.do">마이페이지</a></li>
-			<li><a href="goLogout.do">로그아웃</a></li>
-			<% } %>
+      <ul id="menu">
+         <div id="search">
+            <span>Search</span>
+            <input type="text" id="search_content">
+            <input id="search_img" type="image" src="img/icon/search2.png">
+         </div>
+         <li id="search_btn"><a href="#home">검색</a></li>
+         <li><a href="goBasket.do">장바구니</a></li>
+         <% if (user == null) {   %>
+         <li id=goLogin><a href="#">로그인</a></li>
+         <% } else { %>
+         <li><a href="goMypage.do">마이페이지</a></li>
+         <li><a href="goLogout.do">로그아웃</a></li>
+         <% } %>
 
         </ul>
     </div>
@@ -317,11 +352,11 @@
                                 <th>배송비</th>
                                 <th>소계</th>
                             </tr>
-                     		<c:if test="${list_empty}">
-                        		<tr class="basket">
-                           			<td colspan="7">장바구니에 상품이없습니다</td>
-                       			 </tr>
-                     		</c:if>
+                           <c:if test="${list_empty}">
+                              <tr class="basket">
+                                    <td colspan="7">장바구니에 상품이없습니다</td>
+                                 </tr>
+                           </c:if>
 
                      <c:if test="${!list_empty}">
                         <c:forEach var="list" items="${sessionScope.basket}">
@@ -386,21 +421,14 @@
 
                     <div id="ad">
                         <p>추천 상품</p>
+                        <c:forEach var="prodlist" items="${prodlist}">
                         <div>
-                            <a href=""><img src="img/shopa/이미지10.jpg" alt="쇼파1"></a>
-                            <strong>제품 이름입니다만</strong><br>
-                            <strong>제품 가격인데 얼마임?</strong>
+                            <a href="goProduct.do?prod_seq=${prodlist.prod_seq}"><img src="${prodlist.prod_img}" alt="쇼파1"></a>
+                            <strong>${prodlist.prod_name}</strong><br>
+                            <strong>${prodlist.prod_price}</strong>
                         </div>
-                        <div>
-                            <a href=""><img src="img/shopa/이미지14.jpg" alt="쇼파2"></a>
-                            <strong>제품 이름</strong><br>
-                            <strong>제품 가격</strong>
-                        </div>
-                        <div>
-                            <a href=""><img src="img/shopa/이미지11.jpg" alt="쇼파2"></a>
-                            <strong>제품 이름</strong><br>
-                            <strong>제품 가격</strong>
-                        </div>
+                        </c:forEach>
+                        
                     </div>
                 </section>
         </div>
@@ -496,14 +524,18 @@
             }).open();
         }
     </script>
-	
+   
    
     
       <script>
          $(function() {
             $("button").click(function() {
                $(":checkbox").attr("checked", "checked")
-            })
+            });
+            $("#search_btn").click(function () {
+                $("#search").toggleClass("on")
+
+            });
          });
       </script>
 
@@ -567,7 +599,7 @@
                       
                           var select= $('#selectAll').parent();
                           select.after(td);
-                     	  console.log("상품이없습니다!")
+                          console.log("상품이없습니다!")
                          }else{
                             
                          }
