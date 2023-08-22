@@ -5,12 +5,92 @@
     font-weight: normal;
     font-style: normal;
 } 
+@media(max-width : 1360px){
+  .email-box{
+    width: 50%;
+    margin-left: 250px !important;
+    margin-right: 150px !important;
+  }
+  #email_boxes{
+    width: 800px !important;
+  }
+  #review{
+    width: 70% !important;
+  }
+  #login_view{
+    width: 800px !important;
+  }
+  .login_btn > button{
+    font-size: 16px ;
+  }
+  .status{
+    margin-left: 25% !important;
+  }
+}
+@media(max-width : 1200px){
+  .email-box{
+    width: 40%;
+    margin-left: 180px !important;
+    margin-right: 100px !important;
+  }
+  .listContainer{
+    margin-right: 10px !important;
+  }
+  #email_boxes{
+    width: 600px !important;
+  }
+  #foot_wrap p {
+    font-size: 8px !important;
+  }
+  #login_view{
+    width: 600px !important;
+  }
+  .login_btn > button{
+    font-size: 14px ;
+  }
+  .status{
+    margin-left: 20% !important;
+  }
+}
+
+
+@media(max-width : 900px){
+  .email-box{
+    width: 450px;
+    margin-left: 150px !important;
+    margin-right: 0px !important;
+  }
+  .listContainer{
+    margin-right: 0px !important;
+  }
+  #email_boxes{
+    width: 500px !important;
+  }
+  .icon{
+    display: none;
+  }
+  .text{
+    font-size: 18px !important;
+  }
+  .status{
+    margin-left: 10% !important;
+    font-size: 0.8em;
+  }
+}
+@media(max-width : 700px){
+  .wrap{
+    width: 700px !important;
+    
+  }
+}
  
 
  * {
 	font-family: 'GmarketSansMedium';
 } 
-
+header{
+  min-width: 670px !important;
+}
 /* 헤더 부분 시작 */
 #wrapper{
   border-bottom: 1px solid black
@@ -103,6 +183,7 @@ body{
     padding: 21px 40px 21px 20px;
     background-color: white;
     margin-bottom: 10px;
+    width: 100%;
   }
   
   /* 주문/배송조회 타이틀 */
@@ -111,10 +192,26 @@ body{
     font-weight: bold;
     margin-bottom: 15px;
   }
+  .status > .item > .icon{
+    margin-left: 50px;
+  }
+  .status > .item{
+    float: left;
+    margin-right: 50px;
+  }
+  .status{
+    margin-left: 30%;
+    width: 100% ;
+    min-width: 780px;
+  }
+  .status::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
   
   /* 장바구니 결제완료 배송중 구매확정 [로우] */
   .shippingStatusContainer .status{
-    display: flex;
     justify-content: space-between;
     margin-bottom: 21px;
   }
@@ -173,6 +270,7 @@ body{
   float: left;
  }
  #content_wrap{
+  min-width: 775px;
   margin-top: 30px;
  }
  #content_wrap::after{
@@ -180,12 +278,18 @@ body{
   clear: both;
   display: block;
  }
+
  .listContainer{
   height: 100%;
-  display: block;
+  margin-right: 20px;
+  box-sizing: border-box;
  }
  .listContainer > a {
   margin-bottom: 10px;
+ }
+ #email_boxes{
+  float: left;
+  width: 80%;
  }
  .item > div{
   float: left;
@@ -208,6 +312,7 @@ body{
 .email-box {
     border: 1px solid black;
     padding: 20px;
+    min-width: 390px;
     max-width: 700px;
     margin: 10px auto 20px;
     font-family: Arial, sans-serif;

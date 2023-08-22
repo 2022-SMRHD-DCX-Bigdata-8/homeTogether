@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: 8px;
   min-width: 992px;
   font-family: "Helvetica";
 }
@@ -86,7 +86,7 @@ body {
 }
 
 #login_view>form>table {
-  margin: 3% 150px;
+  margin: 14px auto;
 }
 
 #login>tbody>tr>td {
@@ -103,7 +103,7 @@ body {
 #login input[type=password],
 #join input {
   border-radius: 10px;
-  height: 2.5em;
+  height: 30px;
   border: 1px solid #b2b278;
 }
 
@@ -113,7 +113,7 @@ body {
 
 /* 로그인창 끝*/
 #login_h1 {
-  margin: 45px 150px 0px;
+  margin: 45px auto 0px;
   width: 225px;
 }
 
@@ -124,13 +124,21 @@ body {
 
 /* 회원가입 */
 #join_h1 {
-  margin: 45px 150px 10px;
+  margin: 45px auto 10px;
   width: 225px;
   color: #b2b278;
 }
+#join > tbody{
+  padding-left: 80px;
+  display: block;
+}
+#join > tbody > tr{
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
 #join>tbody>tr>:last-child {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 #join>tbody>:last-child>td>button {
@@ -139,6 +147,7 @@ body {
 
 #join>tbody>tr>td {
   padding-top: 10px;
+  box-sizing: border-box;
 }
 
 input[type=radio] {
@@ -233,11 +242,19 @@ button:hover:after {
 
 /* 버튼 끝 */
 
-.logo {
-  width: 130px;
+/* header 시작 */
+/* header 끝 */
+.navbar{
+  border-bottom: 1px solid #999999;
+  margin-bottom: 0px;
 }
 
-.logo>img {
+.logo {
+  width: 130px;
+  display: inline-block;
+}
+
+.logo>img {  
   width: 130px;
 }
 
@@ -284,7 +301,6 @@ button:hover:after {
   overflow: hidden;
   height: 450px;
   width: 500%;
-  padding: 10px;
 }
 
 .hero_header>ul::after {
@@ -404,9 +420,70 @@ body h1 {
   clear: both;
 }
 
-#footer {
-  text-align: center;
-  padding-top: 10em;
-  width: 100%;
+/* footer 시작 */
+#footer{
+  margin-top: 60px;
+  padding: 30px;
   background-color: whitesmoke;
+  bottom: 0px;
+  width: 100%;
 }
+#foot_wrap{
+  width: 80%;
+  margin: 0 auto;
+}
+#foot_wrap::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#foot_left{
+  float: left;
+  padding: 30px 2%;
+  text-align: left;
+  border-right: 1px solid #999999;
+  height: 180px;
+  width: 32%;
+  box-sizing: border-box;
+}
+#foot_left>:first-child{
+  font-weight: bold;
+  font-size: 22px;
+}
+#foot_left>:nth-child(2){
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+#foot_left>:nth-child(2)>p{
+  margin: 14px;
+}
+#foot_left>:last-child{
+  text-align: left;
+  font-size: 12px;
+}
+
+#foot_center{
+  font-style: none;
+  float: left;
+  padding: 30px 3% 30px 4%;
+  font-size: 14px;
+  height: 180px;
+  border-right: 1px solid #999999;
+  width: 32%;
+  box-sizing: border-box;
+}
+#foot_right{
+  float: left;
+  display: flex;
+  width: 32%;
+  box-sizing: border-box;
+  padding: 30px 2%;
+  font-size: 10px;
+  margin-top: 40px;
+}
+#foot_center > div > p{
+  margin: 14px 0px;
+}
+/* footer 끝 */
