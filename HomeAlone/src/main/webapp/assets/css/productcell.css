@@ -271,7 +271,7 @@ button:hover:after {
 }
 
 .total {
-    margin-right: 15px;
+    margin-right: 50px;
 }
 
 .detail>div {
@@ -493,7 +493,7 @@ input[name="num"] {
     display: block;
     width: 100px;
     height: 22px;
-    padding: 10px 0 0;
+    padding: 20px 0 0;
     font-size: 16px;
     line-height: 22px;
     color: #5e636d;
@@ -520,11 +520,23 @@ input[name="num"] {
     background: #fff;
     border: 1px solid #d9d9d9;
     color: #ebc882;
+    transition: all ease 800ms;
+}
+
+#product>.view>.info>.summary .button>.cart:hover {
+    background: #000000;
+    color: #fff;
 }
 
 #product>.view>.info>.summary .button>.order {
     background: #ebc882;
     border: 1px solid #f0cb90;
+    color: #fff;
+    
+    transition: all ease 800ms;
+}
+#product>.view>.info>.summary .button>.order:hover {
+    background: #000000;
     color: #fff;
 }
 
@@ -669,7 +681,7 @@ input[name="num"] {
 }
 
 body {
-    margin: 0;
+    margin: 0px 8px;
     padding: 0;
 }
 
@@ -1009,39 +1021,31 @@ ul > li{
     display: none;
 }
 /* 수정 끝 */
-/* 장바구니  바로가기 시작 */
-#float_basket{
-    position: fixed;
-    bottom: 300px;
-    right: 30px;
-}
-#top_img, #down_img{
-    width: 35px;
-    height: 35px;
-    margin: 3px auto;
-}
-#top_img > a, #down_img > a, #basket_img > a{
-    display: block;
-    width: 100%;
-    overflow: hidden;
-}
-#top_img > a > img, #down_img > a > img, #basket_img > a> img{
-    display: block;
-    width: 100%;
-}
-#basket_img{
-    width: 80px;
-    height: 80px;
-    padding-right: 10px;
-    box-sizing: border-box;
-}
-#basket_img > a >img:hover{
-    transition: all ease-out 800ms;
-    transform: scale(1.1);
-}
-#top_img > a >img:hover,
-#down_img > a >img:hover{
-    transition: all ease-out 800ms;
-    transform: scale(1.3);
-} 
-/* 장바구니  바로가기 끝 */
+
+/* 검색 창 시작 */
+#menu{
+    position: relative;
+  }
+  #search{
+    position: absolute;
+    left: -280px;
+    bottom: -5px;
+    margin-bottom: 0px;
+  }
+  #menu > .on{
+    top: -10px;
+    border-bottom: 1px solid black;
+  }
+  #search{
+    transition: all 800ms ease;
+    top: -100px;
+  }
+  #search > #search_content{
+      border: none 0;
+      outline: none;
+      padding: 0px;
+  }
+  #search > #search_img{
+    width: 20px;
+  }
+  /* 검색 창 끝 */
