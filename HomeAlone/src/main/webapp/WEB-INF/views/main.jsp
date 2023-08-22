@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 <%@page import="java.util.ArrayList"%>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 <%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
