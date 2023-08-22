@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    margin: 0px;
+}
+* {
+	font-family: 'GmarketSansMedium';
+} 
+
+
+/* footer 시작 */
+#footer{
+    margin-top: 60px;
+    padding: 30px;
+    background-color: whitesmoke;
+    bottom: 0px;
+    width: 100%;
+  }
+  #foot_wrap{
+    width: 80%;
+    margin: 0 auto;
+  }
+  #foot_wrap::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  #foot_left{
+    float: left;
+    padding: 30px 2%;
+    text-align: left;
+    border-right: 1px solid #999999;
+    height: 180px;
+    width: 32%;
+    box-sizing: border-box;
+  }
+  #foot_left>:first-child{
+    font-weight: bold;
+    font-size: 22px;
+  }
+  #foot_left>:nth-child(2){
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+  }
+  #foot_left>:nth-child(2)>p{
+    margin: 14px;
+  }
+  #foot_left>:last-child{
+    text-align: left;
+    font-size: 12px;
+  }
+  
+  #foot_center{
+    font-style: none;
+    float: left;
+    padding: 30px 3% 30px 4%;
+    font-size: 14px;
+    height: 180px;
+    border-right: 1px solid #999999;
+    width: 32%;
+    box-sizing: border-box;
+  }
+  #foot_right{
+    float: left;
+    display: flex;
+    width: 32%;
+    box-sizing: border-box;
+    padding: 30px 2%;
+    font-size: 10px;
+    margin-top: 40px;
+  }
+  #foot_center > div > p{
+    margin: 14px 0px;
+  }
+  /* footer 끝 */
