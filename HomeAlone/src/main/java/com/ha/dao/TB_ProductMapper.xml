@@ -13,7 +13,7 @@
 	<select id="prodName" resultType="com.ha.entity.TB_Product">
 	
 		select * from tb_product
-		where prd_seq = #{prod_seq}
+		where prod_seq = #{prod_seq}
 		
 	
 	

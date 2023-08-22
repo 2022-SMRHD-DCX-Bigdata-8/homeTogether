@@ -151,7 +151,7 @@
 									<tr>
 										<td>NICK</td>
 										<td><input type="text" value="${sessionScope.user.nick}"
-											placeholder="닉네임을 입력해주세요" name="nick"></td>
+											 name="nick" readonly></td>
 										<td></td>
 									</tr>
 									<tr>
@@ -405,10 +405,27 @@
    <script>
    $(document).ready(function() {
        $('#review_QnA').on('click', function() {
-           reviewList(); // 클릭 시 reviewList 함수 실행
+           qnaList();// 클릭 시 reviewList 함수 실행
+           reviewList();
        });
    });
 
+  
+   function qnaList() {
+       $.ajax({
+           url : 'myPageQna.do',
+           type : 'get',
+           data : {},
+           dataType : 'json',
+           success : function(res) {
+                                 
+               
+           },
+           error : function(e) {
+               console.log('요청실패!!!', e);
+           }
+       });
+   }
    function reviewList() {
        $.ajax({
            url : 'myPageReview.do',
@@ -421,15 +438,14 @@
                for (let i = 0; i < res.length; i++) {
                    let tr = "<li>";
                    tr += "<h1>리뷰</h1>";
-                   tr += "<div><h5 class='rating star4'>상품평</h5>";
+                   tr += "<div><h5 class='rating star4'>리뷰</h5>";
                    tr += "<span>" + "${sessionScope.user.id}" + "</span></div>";
-                   tr += "<h3></h3>";  //"${sessionScope.products[i].prod_name}"
-                   tr += "<p>" + res[i].review_content + "</p>";
+                   tr += "<h3></h3>"//${sessionScope.products[i].prod_name}
+                   tr += "<p>"+res[i].review_content+"</p>";
                    tr += "</li>";
-                   review.prepend(tr); 
-                   
-                   
+               	   review.prepend(tr);                                 
                }
+               
            },
            error : function(e) {
                console.log('요청실패!!!', e);

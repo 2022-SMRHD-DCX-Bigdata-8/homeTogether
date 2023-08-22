@@ -81,6 +81,7 @@ public class FrontController extends HttpServlet {
 			//마이페이지
 			handler.put("/goMypage.do", new goMypageCon());
 			handler.put("/myPageReview.do", new myPageReviewCon());
+			handler.put("/myPageQna.do", new myPageQnaCon());
 			
 			//id 중복확인
 			handler.put("/idCheck.do", new idCheckCon());

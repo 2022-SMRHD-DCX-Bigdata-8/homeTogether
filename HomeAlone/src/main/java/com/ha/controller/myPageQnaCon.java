@@ -1,4 +1,3 @@
-
 package com.ha.controller;
 
 import java.io.IOException;
@@ -13,24 +12,27 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.ha.dao.TB_ProductDAO;
+import com.ha.dao.TB_QNADAO;
 import com.ha.dao.TB_ReviewDAO;
 import com.ha.entity.TB_Member;
 import com.ha.entity.TB_Product;
+import com.ha.entity.TB_QNA;
 import com.ha.entity.TB_Review;
 
-public class myPageReviewCon implements Controller {
+public class myPageQnaCon implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		TB_Member member=(TB_Member)session.getAttribute("user");
 		String nick=member.getNick();
 		TB_ProductDAO pdao = new TB_ProductDAO();
-		TB_ReviewDAO dao = new TB_ReviewDAO();
-		List<TB_Review> list =dao.myPageReview(nick);
+		TB_QNADAO dao = new TB_QNADAO();
+		List<TB_QNA> list = dao.myPageQna(nick);
 		List<TB_Product> products = new ArrayList<>();
-		System.out.println(list.get(0).getProd_seq());
+		System.out.println("여기까지오나요?");
 		
 		for(int i=0 ; i<list.size() ;i++) {
 			
@@ -38,28 +40,22 @@ public class myPageReviewCon implements Controller {
 		products.add(product);
 		
 		}
+		session.setAttribute("qna", list);
+		session.setAttribute("product_qna", products);
 		
-		session.setAttribute("product_review", products);
 		
-		response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
-	      
-		
-	    PrintWriter out = response.getWriter();
 	         
 	      
 
-	    Gson gson = new Gson();
-	    String json= gson.toJson(list);
-	         
-	      
-	    out.print(json);
-		
 		
 		
 		
 		
 		return null;
+		
+		
+		
+		
 	}
 
 }
-
