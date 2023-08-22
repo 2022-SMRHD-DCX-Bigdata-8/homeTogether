@@ -386,21 +386,14 @@
 
                     <div id="ad">
                         <p>추천 상품</p>
+                        <c:forEach var="prodlist" items="${prodlist}">
                         <div>
-                            <a href=""><img src="img/shopa/이미지10.jpg" alt="쇼파1"></a>
-                            <strong>제품 이름입니다만</strong><br>
-                            <strong>제품 가격인데 얼마임?</strong>
+                            <a href="goProduct.do?prod_seq=${prodlist.prod_seq}"><img src="${prodlist.prod_img}" alt="쇼파1"></a>
+                            <strong>${prodlist.prod_name}</strong><br>
+                            <strong>${prodlist.prod_price}</strong>
                         </div>
-                        <div>
-                            <a href=""><img src="img/shopa/이미지14.jpg" alt="쇼파2"></a>
-                            <strong>제품 이름</strong><br>
-                            <strong>제품 가격</strong>
-                        </div>
-                        <div>
-                            <a href=""><img src="img/shopa/이미지11.jpg" alt="쇼파2"></a>
-                            <strong>제품 이름</strong><br>
-                            <strong>제품 가격</strong>
-                        </div>
+                        </c:forEach>
+                        
                     </div>
                 </section>
         </div>
