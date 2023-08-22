@@ -209,7 +209,7 @@
 
 
 
-					<form action="goPayment.do">
+					<form action="goPayment.do" method="post">
 						<table>
 							<tr id="selectAll">
 								<td id="selectAll"><input type="checkbox"
@@ -251,7 +251,7 @@
 										<td class="number"><span>${list.prod_seq}</span></td>
 										<td><span>${list.prod_cnt}개</span></td>
 										<td class="fr_send"><span>무료배송</span></td>
-										<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
+										<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td> <!-- 전체금액 -->
 									</tr>
 								</c:forEach>
 							</c:if>
@@ -308,7 +308,7 @@
 			</main>
 
 		</div>
-		
+	
 		
 		<script src="assets/js/products.js"></script>
 		<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -468,6 +468,32 @@
 				});
 			});
 		</script>
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 </body>
 
 </html>

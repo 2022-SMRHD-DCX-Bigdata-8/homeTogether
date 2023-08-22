@@ -1,3 +1,4 @@
+<%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,10 +26,10 @@ $(document).ready(function() {
             name : '기울어진 마라탕', // 결제창에서 보여질 이름
             amount : 2400, // 실제 결제되는 가격
             buyer_email : 'iamport@siot.do',
-            buyer_name : '김찬호',
-            buyer_tel : '010-1234-5678',
-            buyer_addr : '광주 남구 송암로 60',
-            buyer_postcode : '123-456'
+            buyer_name : ${user.nick},
+            buyer_tel : ${user.phone},
+            buyer_addr : ${user.addr},
+            buyer_postcode : ${user.ziqcode}
         }, function(rsp) {
             if (rsp.success) {
             	 jQuery.ajax({
@@ -295,6 +296,11 @@ table>tr>td {
 </head>
 
 <body>
+		   <%
+   TB_Member user = (TB_Member) session.getAttribute("user");
+   %>
+
+
 
 	<a class="logo" href="#"> <img src="/PROJECT/pj_images/logogo.png"
 		height="75px">
@@ -302,8 +308,20 @@ table>tr>td {
 	<ul id="menu">
 		<li><a href="#home">검색</a></li>
 		<li><a href="#html">게시판</a></li>
-		<li><a href="#css">장바구니</a></li>
-		<li><a href="#javascrript">로그인</a></li>
+		<li><a href="goBasket.do">장바구니</a></li>
+		         <%
+         if (user == null) {
+         %>
+         <li id="goLogin"><a href="#javascrript">로그인</a></li>
+         <%
+         } else {
+         %>
+<!-- ★마이페이지,로그아웃★ -->
+         <li><a href="goMypage.do">마이페이지</a></li>
+         <li><a href="goLogout.do">로그아웃</a></li>
+         <%
+         }
+         %>
 	</ul>
 
 	<div id="wrapper">
@@ -319,9 +337,9 @@ table>tr>td {
 		<section class="cart">
 			<div>
 				<h1>주문내역</h1>
-				<h1 id="customer">구매자</h1>
+				<h1 id="customer">주문자</h1>
 			</div>
-			<span id="c_name">smhrd</span>
+			<span id="c_name">${user.nick}</span>
 			<div class="flex-container">
 				<p>HOME >> 장바구니 >> 주문내역</p>
 			</div>
@@ -350,7 +368,7 @@ table>tr>td {
 											</a>
 											<div>
 												<h2>
-													상품명</a>
+													<a>상품명</a>
 												</h2>
 												<p>상품설명</p>
 											</div>
@@ -381,24 +399,7 @@ table>tr>td {
 									<td class="fr_send">무료배송</td>
 									<td>9000</td>
 								</tr>
-								<tr class="basket">
-									<td><article>
-											<a href="#"> <img src="/PROJECT/pj_images/이미지0.jpg"
-												alt="1">
-											</a>
-											<div>
-												<h2>
-													<a>상품명</a>
-												</h2>
-												<p>상품설명</p>
-											</div>
-										</article></td>
-									<td class="num">3</td>
-									<td class="number"><span>homealone3</span></td>
-									<td>1</td>
-									<td class="fr_send"><span>무료배송</span></td>
-									<td>9000</td>
-								</tr>
+
 							</table>
 
 
