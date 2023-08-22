@@ -23,7 +23,12 @@
 
 	<select id="review" parameterType="com.ha.entity.TB_Review" resultType="com.ha.entity.TB_Review" >
 
-		select *
+		select review_seq
+		      ,prod_seq
+		      ,review_content
+		      ,TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at
+		      ,nick
+		      ,ratings
 		from TB_review
 		where prod_seq = #{prod_seq}
 		order by review_seq desc 
@@ -48,7 +53,13 @@
 	
 	<select id="myPageReviewSelect" resultType="com.ha.entity.TB_Review">
 		
-		select * from tb_review
+		select review_seq
+		      ,prod_seq
+		      ,review_content
+		      ,TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at
+		      ,nick
+		      ,ratings
+        from tb_review
 		where nick=#{nick}
 		
 	</select>
