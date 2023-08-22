@@ -39,7 +39,15 @@ public class TB_QNADAO {
 		return list;
 
 	}
-	
+public List<TB_QNA> myPageQna(String nick) {
+		
+		SqlSession session = factory.openSession(true);
+		List<TB_QNA> list = session.selectList("myPageQnaSelect",nick);
+		session.close();
+		
+		return list;
+		
+	}
 	
 	
 	

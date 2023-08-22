@@ -44,6 +44,14 @@
 		where q_seq = #{q_seq}
 	</delete>
 
+	<!-- mypage Qna출력 -->
+	
+	<select id="myPageQnaSelect" resultType="com.ha.entity.TB_QNA">
+		
+		select * from tb_qna
+		where nick=#{nick}
+		
+	</select>
 
 
 

@@ -263,7 +263,7 @@
 
     </div>
     <div class="navbar">
-        <a class="logo" href="#">
+        <a class="logo" href="main.do">
             <img src="/img/logo/image2.png" height="75px">
         </a>
 
