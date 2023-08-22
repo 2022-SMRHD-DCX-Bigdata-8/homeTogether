@@ -162,40 +162,18 @@
 			<li><a href="#"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a></li>
 		</ul>
 	</div>
-
-	<h1>Our new Products</h1>
-	<div class="products">
-		<a href="goProduct.do?prod_seq=5"> <img
-			src="images/sunglasses.jpg">
-			<p>Sunglasses</p>
-			<p class="price">49,000</p>
-		</a> <a href="productpage.do"> <img src="images/tassel_loafer.jpg">
-			<p>Tassel Loafer</p>
-			<p class="price">89,000</p>
-		</a> <a href="#"> <img src="images/beige_bag.jpg">
-			<p>Begie Bag</p>
-			<p class="price">69,000</p>
-		</a> <a href="#"> <img src="images/sneakers.jpg">
-			<p>Sneakers</p>
-			<p class="price">79,000</p>
-		</a> <a href="#"> <img src="images/slippers.jpg">
-			<p>Slippers</p>
-			<p class="price">29,000</p>
-		</a> <a href="#"> <img src="images/wrist_watch.jpg">
-			<p>Wrist Watch</p>
-			<p class="price">99,000</p>
-		</a> <a href="#"> <img src="images/fedora_hat.jpg">
-			<p>Fedora Hat</p>
-			<p class="price">39,000</p>
-		</a> <a href="#"> <img src="images/classic_loafer.jpg">
-			<p>Classic Loafer</p>
-			<p class="price">99,000</p>
-		</a> <a href="#"> <img src="images/pink_bag.jpg">
-			<p>Pink Bag</p>
-			<p class="price">79,000</p>
-		</a>
-		<div class="clearfix"></div>
-	</div>
+    <h1>Our new Products</h1>
+    <div class="products">
+    	<c:forEach var="mainlist" items="${mainlist}">
+        <a href="goProduct.do?prod_seq=${mainlist.prod_seq}">
+            <img src="${mainlist.prod_img}">
+            <p>${mainlist.prod_name}</p>
+            <p class="price">${mainlist.prod_price}원</p>
+        </a>
+        </c:forEach>
+      
+        <div class="clearfix"></div>
+    </div>
 
 	<footer id="footer">
 		<div id="foot_wrap">
