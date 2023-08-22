@@ -111,7 +111,7 @@
     </div>
     <header>
         <a class="logo" href="#">
-            <img src="/img/logo/image2.png" height="75px">
+            <img src="img/logo/image2.png" height="75px">
         </a>
 		<ul id="menu">
 			<li><a href="#home">검색</a></li>
@@ -135,7 +135,7 @@
         </ul>
     </nav>
     <div class="goods_list_title">
-        <h2>조명</h2>
+        <h2>${product[0].prod_type}</h2>
     </div>
     <div id="filter_box">
         <ul id="filter">
@@ -168,14 +168,16 @@
     <div id="content">
         <div>
             <ul id="goods_lists">
+                <!--  <c:forEach var="products" items="${product}">-->
                 <li>
-                    <a href="goProductcell.do?prod_seq=5" class="image_container">
-                        <img class="hover_image" src="img/test/unnamed.jpg" alt="랄로!?">
+                    <a href="goProductcell.do?prod_seq=${product[1].prod_seq}" class="image_container">
+                        <img class="hover_image" src="${product[1].prod_img}" alt="랄로!?">
                     </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
+                    <div><span>${product[1].prod_name}</span></div>
+                    <div><strong>이게 되면 성공</strong></div>
+                    <div><strong>${product[1].prod_price}</strong></div>
                 </li>
+                <!--  </c:forEach>-->
                 <li>
                     <a href="" class="image_container">
                         <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_08.jpg" alt="랄로!?">

@@ -19,9 +19,9 @@ public class goLightingCon implements Controller {
 		TB_ProductListDAO dao = new TB_ProductListDAO();
 		List<TB_Product> list = dao.LightingSelect();
 		
-		request.setAttribute("lighting", list);
+		request.setAttribute("product", list);
 		
-		
+		System.out.println(list.size());
 		
 		return "productPage";
 	}

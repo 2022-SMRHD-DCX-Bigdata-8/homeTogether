@@ -19,7 +19,7 @@ public class goGajunCon implements Controller {
 		TB_ProductListDAO dao = new TB_ProductListDAO();
 		List<TB_Product> list = dao.GajunSelect();
 		
-		request.setAttribute("gajun", list);
+		request.setAttribute("product", list);
 		
 		return "productPage";
 	}
