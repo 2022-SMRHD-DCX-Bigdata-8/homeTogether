@@ -39,8 +39,7 @@
 	<update id="update" parameterType="com.ha.entity.TB_Member">
 
 		UPDATE tb_member
-		SET pw =
-		#{pw},
+		SET pw =#{pw},
 		nick = #{nick},
 		zipCode = #{zipCode},
 		addr = #{addr},
@@ -67,6 +66,14 @@
 		SELECT * FROM tb_member WHERE id=#{id}
 	</select>
 
+	
+	<!-- id 중복확인 -->
+	<select id="check" resultType="com.ha.entity.TB_Member">
+		
+		select * from TB_MEMBER
+		where id= #{id}	
+	
+	</select>
 
 
 

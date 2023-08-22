@@ -4,6 +4,7 @@
   <artifactId>HomeAlone</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
   	<dependencies>
 		  
 		<dependency>
@@ -39,10 +40,17 @@
           <version>1.18.28</version>
           <scope>provided</scope>
       </dependency>
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
   </dependencies>
   
-  
-  
+
   <build>
     <plugins>
       <plugin>

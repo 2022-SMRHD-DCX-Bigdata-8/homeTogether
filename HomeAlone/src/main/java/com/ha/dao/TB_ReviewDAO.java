@@ -61,6 +61,17 @@ public class TB_ReviewDAO {
 		
 	}
 	
+	//mypage review 불러오는 메서드
+	public List<TB_Review> myPageReview(String nick) {
+		
+		SqlSession session = factory.openSession(true);
+		List<TB_Review> list = session.selectList("myPageReviewSelect",nick);
+		session.close();
+		
+		return list;
+		
+	}
+	
 	
 	
 	

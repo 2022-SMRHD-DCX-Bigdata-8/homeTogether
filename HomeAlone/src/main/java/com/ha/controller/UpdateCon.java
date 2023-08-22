@@ -16,8 +16,10 @@ public class UpdateCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		
+		
 		String pw = request.getParameter("pw");
-		String tel = request.getParameter("tel");
+		String phone = request.getParameter("phone");
 		String nick = request.getParameter("nick");
 		String zipCode = request.getParameter("zipCode");
 		String addr = request.getParameter("addr");
@@ -28,21 +30,29 @@ public class UpdateCon implements Controller {
 		
 		HttpSession session = request.getSession();
 		TB_Member member = (TB_Member)session.getAttribute("user");
+		if(gender!=null) {
+			member.setGender(gender);
+		}
+		
+		
 		member.setAddr(addr);
 		member.setAddrDetail(addrDetail);
 		member.setText(text);
 		member.setZipCode(zipCode);
-		member.setGender(gender);
+		
 		member.setNick(nick);
-		member.setPhone(tel);
+		member.setPhone(phone);
 		member.setPw(pw);
+		
+		
 		TB_MemberDAO dao = new TB_MemberDAO();
 		int cnt=dao.update(member);
+		System.out.println(cnt);
 		if(cnt>0) {
 			return "redirect:/main.do";
 		}else {
 			
-			return "redirect:/goUpdate.do";
+			return null;
 		}
 	}
 

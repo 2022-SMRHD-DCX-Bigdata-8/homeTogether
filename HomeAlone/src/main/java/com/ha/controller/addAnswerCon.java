@@ -27,12 +27,14 @@ public class addAnswerCon implements Controller {
 		
 		int q_seq = Integer.parseInt(request.getParameter("q_seq"));
 		String a_content = request.getParameter("a_content");
+		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
 		
 		TB_Answer answer = new TB_Answer();
 		
 		answer.setA_content(a_content);
 		answer.setQ_seq(q_seq);
 		answer.setNick(nick);
+		answer.setProd_seq(prod_seq);
 		
 		TB_AnswerDAO dao = new TB_AnswerDAO();
 		int cnt = dao.insertAnswer(answer);
@@ -44,6 +46,9 @@ public class addAnswerCon implements Controller {
 	    String json= gson.toJson(answer);
 		out.print(json);
 		
+	    out.print(json);
+	    
+	    
 		return null;
 		
 	}
