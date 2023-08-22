@@ -83,4 +83,4 @@ $(document).ready(function(){
         member_data.css("display", "none");
         member_data.css("display", "block");
     })
-})	
+})
