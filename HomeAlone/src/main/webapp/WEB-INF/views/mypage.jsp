@@ -35,7 +35,7 @@
 		<div>
 			<div id="wrapper">
 
-				<a class="logo" href="#"> <img src="img/logo/image2.png"
+				<a class="logo" href="main.do"> <img src="img/logo/image2.png"
 					height="75px">
 				</a>
 
@@ -144,7 +144,7 @@
 									<tr>
 										<td>PW</td>
 										<td><input type="password"
-											value="${sessionScope.user.pw }" placeholder="비밀번호를 입력해주세요"
+											value="${sessionScope.user.pw}" placeholder="비밀번호를 입력해주세요"
 											name="pw"></td>
 										<td></td>
 									</tr>
@@ -291,7 +291,7 @@
 					<div id="email_boxes">
 						<div class="email-box">
 							<p>
-								<<<<<<< HEAD 안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
+								 안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
 							</p>
 							<h3>결제 내역</h3>
 							<table>
@@ -312,7 +312,7 @@
 							</p>
 							<p>감사합니다.</p>
 						</div>
-						<div id="email_boxes">
+						
 							<div class="email-box">
 								<p>
 									안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
@@ -395,120 +395,9 @@
 			</div>
 		</div>
 	</footer>
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-	<script src="assets/js/myPage.js"></script>
-	<script>
-   $(document).ready(function() {
-       $('#review_QnA').on('click', function() {
-           reviewList(); // 클릭 시 reviewList 함수 실행
-       });
-   });
-
-								안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-							</p>
-							<h3>결제 내역</h3>
-							<table>
-								<tr>
-									<td><span>푹신푹신 쇼파</span></td>
-									<td><span>￦9,000</span>원</td>
-								</tr>
-								<tr>
-									<td><span>반짝반짝 조명</span></td>
-									<td>￦9,000원</td>
-								</tr>
-							</table>
-							<p>
-								전체 결제금액 <span>￦18,000</span>원
-							</p>
-							<p>
-								구매일 <span>2023-08-17 11:11:11</span>
-							</p>
-							<p>감사합니다.</p>
-						</div>
-						<div class="email-box">
-							<p>
-								안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-							</p>
-							<h3>결제 내역</h3>
-							<table>
-								<tr>
-									<td><span>푹신푹신 쇼파</span></td>
-									<td><span>￦9,000</span>원</td>
-								</tr>
-								<tr>
-									<td><span>반짝반짝 조명</span></td>
-									<td>￦9,000원</td>
-								</tr>
-							</table>
-							<p>
-								전체 결제금액 <span>￦18,000</span>원
-							</p>
-							<p>
-								구매일 <span>2023-08-17 11:11:11</span>
-							</p>
-							<p>감사합니다.</p>
-						</div>
-						<div class="email-box">
-							<p>
-								안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-							</p>
-							<h3>결제 내역</h3>
-							<table>
-								<tr>
-									<td><span>푹신푹신 쇼파</span></td>
-									<td><span>￦9,000</span>원</td>
-								</tr>
-								<tr>
-									<td><span>반짝반짝 조명</span></td>
-									<td>￦9,000원</td>
-								</tr>
-							</table>
-							<p>
-								전체 결제금액 <span>￦18,000</span>원
-							</p>
-							<p>
-								구매일 <span>2023-08-17 11:11:11</span>
-							</p>
-							<p>감사합니다.</p>
-						</div>
-					</div>
-				</div>
-	</header>
-	<footer id="footer">
-		<div id="foot_wrap">
-			<div id="foot_left">
-				<div>
-					<Strong>고객센터</Strong>
-				</div>
-				<div>
-					<p>010-8927-0775</p>
-					<p>09:00~18:00</p>
-				</div>
-				<div>
-					<p>
-						평일 : 전체 문의 상담 가능<br> 주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
-					</p>
-				</div>
-			</div>
-			<div id="foot_center">
-				<div>
-					<p>상호명: HomeTogether</p>
-					<p>대표자: 김찬호</p>
-					<p>광주 남구 송암로 60 CGI 센터 2400층</p>
-					<p>사업자 등록번호 : 2400-2400-2400</p>
-				</div>
-			</div>
-			<div id="foot_right">
-				<p>
-					(주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
-					지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
-					<br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
-				</p>
-			</div>
-		</div>
-	</footer>
+							
+	
+	
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>

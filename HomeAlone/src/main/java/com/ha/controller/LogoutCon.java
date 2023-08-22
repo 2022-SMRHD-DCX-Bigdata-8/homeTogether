@@ -15,12 +15,12 @@ public class LogoutCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String referer = request.getHeader("Referer"); //요청이온 url주소
 		HttpSession session = request.getSession();
-		
 		session.removeAttribute("user");
 		session.removeAttribute("basket");
-		
-		return "redirect:/main.do";
+		response.sendRedirect(referer);
+		return null;
 		
 	}
 
