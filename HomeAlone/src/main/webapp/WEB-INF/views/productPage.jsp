@@ -12,6 +12,101 @@
 </head>
 
 <body>
+    <div id="login_view">
+        <div id="back"><img src="img/icon/back.png"></div>
+        <form action="#" method="post">
+            <h1 id="login_h1">로그인</h1>
+            <table id="login">
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <td>PW</td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                    </tr>
+                    <tr>
+                        <td id="login_btn" colspan="2"><button>LOGIN</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <h1 id="join_h1">회원가입</h1>
+
+        <form action="#" method="post">
+            <table id="join">
+                <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PW</td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>NICK</td>
+                        <td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PHONE</td>
+                        <td>
+                            <input type="text" name="cellPhone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>ADRESS</td>
+                        <td>
+                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;">
+                        </td>
+                        <td>
+                            <input id="post_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="text" id="sample6_address" placeholder="주소">
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                        </td>
+                        <td></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>GENDER</td>
+                        <td>
+                            <label class="test_obj">
+                                <input type="radio" name="fruit" value="apple">
+                                <span>남자</span>
+                            </label>
+
+                            <label class="test_obj">
+                                <input type="radio" name="fruit" value="banana">
+                                <span>여자</span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="login_btn" colspan="2"><button>JOIN US</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div>
     <header>
         <a class="logo" href="#">
             <img src="/img/logo/image2.png" height="75px">
@@ -20,12 +115,12 @@
             <li><a href="#home">검색</a></li>
             <li><a href="#html">게시판</a></li>
             <li><a href="#css">장바구니</a></li>
-            <li><a href="#javascrript">로그인</a></li>
+            <li id="goLogin"><a href="#javascrript">로그인</a></li>
         </ul>
     </header>
     <nav id="nav">
         <ul id="categori">
-            <li><a href="goLighting.do"><span>조명</span></a></li>
+            <li><a class="on" href="#"><span>조명</span></a></li>
             <li><a href="#"><span>책상</span></a></li>
             <li><a href="#"><span>테이블</span></a></li>
             <li><a href="#"><span>소파</span></a></li>
@@ -71,9 +166,9 @@
                     <a href="" class="image_container">
                         <img class="hover_image" src="img/test/unnamed.jpg" alt="랄로!?">
                     </a>
-                    <div><span>허허허허</span></div>
+                    <div><span>80억 날린 청년</span></div>
                     <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>${lighting[0].prod_price }원</strong></div>
+                    <div><strong>80억</strong></div>
                 </li>
                 <li>
                     <a href="" class="image_container">
@@ -85,7 +180,7 @@
                 </li>
                 <li>
                     <a href="" class="image_container">
-                        <img class="hover_image" src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/168498830970609029.jpg?gif=1&w=640&h=640&c=c&webp=1" alt="랄로!?">
+                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_07.jpg" alt="랄로!?">
                     </a>
                     <div><span>80억 날린 청년</span></div>
                     <div><strong>랄로를 몰라!?</strong></div>
@@ -190,7 +285,7 @@
             </ul>
             <div id="goods_paging">
                 <ul id="buttons">
-                    <li><span>1</span></li>
+                    <li class="click"><span>1</span></li>
                     <li><span>2</span></li>
                     <li><span>3</span></li>
                     <li><span>4</span></li>
@@ -199,9 +294,41 @@
             </div>
         </div>
     </div>
-    <div id="footer">
-
-    </div>
+    <footer id="footer">
+        <div id="foot_wrap">
+            <div id="foot_left">
+                <div><Strong>고객센터</Strong></div>
+                <div>
+                    <p>010-8927-0775</p>
+                    <p>09:00~18:00</p>
+                </div>
+                <div>
+                    <p>
+                        평일 : 전체 문의 상담 가능<br>
+                        주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
+                    </p>
+                </div>
+            </div>
+            <div id="foot_center">
+                <div>
+                    <p>상호명: HomeTogether</p>
+                    <p>대표자: 김찬호</p>
+                    <p>광주 남구 송암로 60 CGI 센터 2400층</p>
+                    <p>사업자 등록번호 : 2400-2400-2400</p>
+                </div>
+            </div>
+            <div id="foot_right">
+                <p>
+                    (주)HomeTogether는 통신판매중개자로 거래당사자가아니므로,
+                    판매자가 등록한 상품정보 및 거래 등에 대해 책임을 지지 않습니다.
+                    단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다.
+                    <br>
+                    <br>
+                    &copy 2023 HomeTogether, Co., Ltd.All rights reserved
+                </p>
+            </div>
+        </div>
+    </footer>
 
 
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>

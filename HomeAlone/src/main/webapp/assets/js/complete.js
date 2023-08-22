@@ -1,58 +1,4 @@
 $(document).ready(function () {
-    var $list = $(".slideshow");
-    var $hero_header = $("#hero_header");
-    var timeID = window.setInterval(slide, 3500);
-
-    function slide() {
-        $list.animate({ "marginLeft": "-33.33333%" }, 1500, function () {
-            $(this).css("marginLeft", 0).find("li:first").appendTo($list);
-        });
-    }
-
-    $hero_header.hover(
-        function () {
-            clearInterval(timeID);
-        },
-        function () {
-            timeID = window.setInterval(slide, 2500);
-        }
-    );
-
-    function autoHypenPhone(str) {
-        str = str.replace(/[^0-9]/g, '');
-        var tmp = '';
-        if (str.length < 4) {
-            return str;
-        } else if (str.length < 7) {
-            tmp += str.substr(0, 3);
-            tmp += '-';
-            tmp += str.substr(3);
-            return tmp;
-        } else if (str.length < 11) {
-            tmp += str.substr(0, 3);
-            tmp += '-';
-            tmp += str.substr(3, 3);
-            tmp += '-';
-            tmp += str.substr(6);
-            return tmp;
-        } else {
-            tmp += str.substr(0, 3);
-            tmp += '-';
-            tmp += str.substr(3, 4);
-            tmp += '-';
-            tmp += str.substr(7);
-            return tmp;
-        }
-        return str;
-    }
-
-    var cellPhone = document.getElementById('cellPhone');
-    cellPhone.onkeyup = function (event) {
-        event = event || window.event;
-        var _val = this.value.trim();
-        this.value = autoHypenPhone(_val);
-    }
-
     $('#post_btn').on("mouseenter", function (e) {
         $(this).css("background-color", "white");
         $(this).css("color", "black");
@@ -98,5 +44,4 @@ $(document).ready(function () {
         $viewer.animate({ "width": "0%" }, 400);
         $("#back").animate({ "opacity": "0%" }, 500);
     }
-
-});
+})

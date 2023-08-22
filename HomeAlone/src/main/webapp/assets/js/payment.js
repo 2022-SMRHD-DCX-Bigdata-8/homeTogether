@@ -1,23 +1,10 @@
-$(document).ready(function () {
-    var $list = $(".slideshow");
-    var $hero_header = $("#hero_header");
-    var timeID = window.setInterval(slide, 3500);
+$(document).ready(function(){
 
-    function slide() {
-        $list.animate({ "marginLeft": "-33.33333%" }, 1500, function () {
-            $(this).css("marginLeft", 0).find("li:first").appendTo($list);
-        });
-    }
-
-    $hero_header.hover(
-        function () {
-            clearInterval(timeID);
-        },
-        function () {
-            timeID = window.setInterval(slide, 2500);
-        }
-    );
-
+    $(function () {
+        $("button").click(function () {
+            $(":checkbox").attr("checked", "checked")
+        })
+    });
     function autoHypenPhone(str) {
         str = str.replace(/[^0-9]/g, '');
         var tmp = '';
@@ -99,4 +86,4 @@ $(document).ready(function () {
         $("#back").animate({ "opacity": "0%" }, 500);
     }
 
-});
+})
