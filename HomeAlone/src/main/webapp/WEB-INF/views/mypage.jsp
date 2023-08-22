@@ -1,4 +1,6 @@
 
+<%@page import="com.ha.entity.TB_QNA"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,6 +19,9 @@
 
 	<%
 	TB_Member user = (TB_Member) session.getAttribute("user");
+	String id=user.getId();
+	id=id.substring(0, 4);
+	
 	%>
 
 	<div id="float">
@@ -217,66 +222,7 @@
 
 					<div id="review" style="display: none;">
 						<ul>
-							<li>
-								<h1>리뷰</h1>
-								<div>
-									<h5 class="rating star4">상품평</h5>
-									<span>jun****** 2023-08-18</span>
-								</div>
-								<h3>상품명1/BLUE/L</h3>
-								<p>푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신</p>
-							</li>
-							<li>
-								<h1>리뷰</h1>
-								<div>
-									<h5 class="rating star4">상품평</h5>
-									<span>jun****** 2023-08-18</span>
-								</div>
-								<h3>상품명1/BLUE/L</h3>
-								<p>푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신</p>
-							</li>
-							<li>
-								<h1>QnA</h1>
-								<div>
-									<h5 class="rating star4">상품평</h5>
-									<span>jun****** 2023-08-18</span>
-								</div>
-								<h3>상품명1/BLUE/L</h3>
-								<p>푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신</p>
-							</li>
-							<li>
-								<h1>QnA</h1>
-								<div>
-									<h5 class="rating star4">상품평</h5>
-									<span>jun****** 2023-08-18</span>
-								</div>
-								<h3>상품명1/BLUE/L</h3>
-								<p>푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신</p>
-							</li>
-							<li>
-								<h1>QnA</h1>
-								<div>
-									<h5 class="rating star4">상품평</h5>
-									<span>jun****** 2023-08-18</span>
-								</div>
-								<h3>상품명1/BLUE/L</h3>
-								<p>푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신
-									푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신푹신</p>
-							</li>
+							
 							<article class="next">
 								<div class="paging">
 									<span class="prev"> <a href="#">이전</a>
@@ -405,7 +351,7 @@
    <script>
    $(document).ready(function() {
        $('#review_QnA').on('click', function() {
-           qnaList();// 클릭 시 reviewList 함수 실행
+          // qnaList();// 클릭 시 reviewList 함수 실행
            reviewList();
        });
    });
@@ -432,19 +378,38 @@
            type : 'get',
            data : {},
            dataType : 'json',
-           success : function(res) {
+           success : function(response) {
                let review = $('#review>ul');
                
-               for (let i = 0; i < res.length; i++) {
+               var reviewList = response.reviewList; // 리뷰 리스트
+               var qnaList = response.qnaList; // QNA 리스트
+               var reviewProd = response.product_review;
+               var qnaProd = response.product_qna;
+               
+               
+               
+               for (let i = 0; i < reviewList.length; i++) {
                    let tr = "<li>";
                    tr += "<h1>리뷰</h1>";
                    tr += "<div><h5 class='rating star4'>리뷰</h5>";
-                   tr += "<span>" + "${sessionScope.user.id}" + "</span></div>";
-                   tr += "<h3></h3>"//${sessionScope.products[i].prod_name}
-                   tr += "<p>"+res[i].review_content+"</p>";
+                   tr += "<span>" + "${sessionScope.user.nick}"+" "+reviewList[i].created_at + "</span></div>";
+                   tr += "<h3>" + reviewProd[i].prod_name + "</h3>"                           
+                   tr += "<p>"+reviewList[i].review_content+"</p>";
                    tr += "</li>";
                	   review.prepend(tr);                                 
                }
+               for (let i = 0; i < qnaList.length; i++) {
+                   let tr = "<li>";
+                   tr += "<h1>QnA</h1>";
+                   tr += "<div><h5 class='rating star4'>QnA</h5>";
+                   tr += "<span>" + "${sessionScope.user.nick}"+" "+qnaList[i].created_at + "</span></div>";
+                   tr += "<h3>" + qnaProd[i].prod_name + "</h3>"                           
+                   tr += "<p>"+qnaList[i].q_content+"</p>";
+                   tr += "</li>";
+               	   review.prepend(tr);                                 
+               } 
+              
+               
                
            },
            error : function(e) {

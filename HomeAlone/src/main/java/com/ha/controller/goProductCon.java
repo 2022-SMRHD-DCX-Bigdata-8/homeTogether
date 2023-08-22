@@ -48,6 +48,8 @@ public class goProductCon implements Controller {
 		
 		
 		
+		
+		
 		List<TB_Review> list = reviewdao.select(review);
 		List<TB_QNA>qnalist = qnadao.selectQNA(qna);
 				
