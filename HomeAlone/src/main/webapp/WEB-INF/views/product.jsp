@@ -319,7 +319,7 @@
                      tr += "</tr>";
                      tbody.append(tr);
                   }
-
+                  location.reload();
                },
                error : function(e) {
                   console.log('요청실패!!!');
