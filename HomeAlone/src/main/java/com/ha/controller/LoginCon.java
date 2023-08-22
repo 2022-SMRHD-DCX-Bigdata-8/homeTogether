@@ -18,6 +18,7 @@ public class LoginCon implements Controller {
 		
 			request.setCharacterEncoding("UTF-8");
 			
+			String referer = request.getHeader("Referer"); //요청이온페이지url
 			String id=request.getParameter("id");
 			String pw=request.getParameter("pw");
 			System.out.println(id);
@@ -37,25 +38,27 @@ public class LoginCon implements Controller {
 				
 				
 				
-				if(fullMemberInfo != null) {
+				if(fullMemberInfo != null && referer != null) {
 					 HttpSession session = request.getSession();
 			            session.setAttribute("user", fullMemberInfo);
 			            System.out.println("로그인성공");
 			           
 			            System.out.println(fullMemberInfo);
+			            response.sendRedirect(referer);
 				}
 				
 				
-				return "redirect:/main.do";
+				
 								
 			}else {
 				System.out.println("로그인실패");
 				HttpSession session = request.getSession();
 				session.invalidate();
-				return "redirect:/main.do";
+				response.sendRedirect(referer);
+				
 			}
 			
-			
+			return null;
 			
 		
 			

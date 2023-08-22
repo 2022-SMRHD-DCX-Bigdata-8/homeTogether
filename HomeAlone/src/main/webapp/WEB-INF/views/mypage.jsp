@@ -291,7 +291,7 @@
 					<div id="email_boxes">
 						<div class="email-box">
 							<p>
-								<<<<<<< HEAD 안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
+								 안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
 							</p>
 							<h3>결제 내역</h3>
 							<table>
@@ -312,7 +312,7 @@
 							</p>
 							<p>감사합니다.</p>
 						</div>
-						<div id="email_boxes">
+						
 							<div class="email-box">
 								<p>
 									안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
