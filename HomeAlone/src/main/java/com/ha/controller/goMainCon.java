@@ -42,9 +42,6 @@ public class goMainCon implements Controller {
 			}
 		}
 		
-		for(int i=0 ;  i<9 ; i++) {
-			System.out.println(main_list.get(i).getProd_seq());			
-		}
 		
 		request.setAttribute("mainlist", main_list);
 		
