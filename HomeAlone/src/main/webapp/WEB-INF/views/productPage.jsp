@@ -111,7 +111,7 @@
     </div>
     <header>
         <a class="logo" href="#">
-            <img src="/img/logo/image2.png" height="75px">
+            <img src="img/logo/image2.png" height="75px">
         </a>
 		<ul id="menu">
 			<li><a href="#home">검색</a></li>

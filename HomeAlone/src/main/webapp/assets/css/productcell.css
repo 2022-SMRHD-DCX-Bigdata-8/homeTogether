@@ -168,7 +168,6 @@ button {
     color: #fff;
     border: none;
     position: relative;
-    height: 40px;
     font-size: 1.6em;
     padding: 0 2em;
     cursor: pointer;
@@ -731,7 +730,7 @@ h1 {
 }
 
 .qa-form input[type="text"] {
-    width: 80%;
+    width: 70%;
     /* 입력란의 너비 늘리기 */
     padding: 10px;
     /* 내부 여백 키우기 */
@@ -880,7 +879,7 @@ nav {
 }
 
 .input-container p {
-    margin-right: 20px;
+    margin-right: 10	px;
     /* 오른쪽 여백 추가 */
     margin-top: 13px;
     font-size: 20px;
@@ -999,7 +998,7 @@ ul > li{
     list-style: none;
 }
 #askButton{
-    height: 100%;
+    height: 100% ;
 }
 #wrapper{
     min-width: 720px !important;
@@ -1049,3 +1048,11 @@ ul > li{
     width: 20px;
   }
   /* 검색 창 끝 */
+  /* jsp에서 수정 시작 */
+  .input-container > #number_check{
+   margin: 10px 15px 10px 10px;
+  }
+  .input-container > #ratings{
+  margin-top : 15px;
+  }
+  /* jsp에서 수정 끝 */

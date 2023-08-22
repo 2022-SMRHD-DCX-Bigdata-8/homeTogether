@@ -10,7 +10,6 @@
     <title>HomeTogether</title>
     <link rel="stylesheet" href="assets/css/productcell.css">
 
-
 </head>
 
 <body>
@@ -340,11 +339,10 @@
                     <div class="qa-form">
                         <h2>리뷰 작성</h2>
                         <div class="input-container">
-                            <p>이름</p>
                             <input type="text" id="review_content" placeholder="고객님의 리뷰는 힘이 됩니다.">
-                              평점 : <input type="number" id="ratings" step="0.5" min="0"
-      max="5" value="5.0">
                             <button id="review_Button">작성하기</button>
+                            <p id="number_check">평점 :</p> 
+                            <input type="number" id="ratings" step="0.5" min="0" max="5" value="5.0">
                         </div>
                     </div>
 
@@ -481,31 +479,14 @@
   
 
     
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="assets/js/productCell.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-         crossorigin="anonymous"></script>
-
-   <script>
-         var userNick = "${sessionScope.user.nick}";
-      </script>
-   
-   <script type="text/javascript">
-     
-     
-     
     
+   <script type="text/javascript">
     $(document).ready(function() {
-          
             $('#review_Button').on('click', inReview);
-   
-   
-   
-   
         });
-
-
 //====================================================================================================================================        
         
    function sample6_execDaumPostcode() {
@@ -611,12 +592,9 @@
                            // before('code'):여는태그 바로앞에 추가
                            // append('code'):자식요소로 추가
                            tbody.append(tr);
-
                         }
-
                         // 글을 작성하고 난 후에 새로고침 실행
                         //location.reload();
-
                      },
                      error : function(e) {
                         console.log('요청실패!!!');
@@ -624,11 +602,6 @@
                   });
 
          }
-        
-        
-        
-        
-
         </script>
 
 </body>

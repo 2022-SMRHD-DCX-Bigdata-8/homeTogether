@@ -43,7 +43,6 @@ $(document).ready(function () {
         $(this).css("color", "white");
     })
 
-    //------------------------------------------------
 
     $('#back').on("mouseenter", function (e) {
         if ($("#back").css("opacity") != "0%") {
@@ -67,7 +66,6 @@ $(document).ready(function () {
         opener();
         /* $("#back").css("visibility", "visible"); */
     })
-    //-------------------------------------------------
     var $viewer = $("#login_view");
     function opener() {
         $viewer.animate({ "width": "35%" }, 400);
@@ -86,9 +84,8 @@ $(document).ready(function () {
     $("#QnA_num > a").click(function (e) {
         var target = $(e.target);
         $("#QnA_num > a").removeClass("on");
-        target.toggleClass("on");
+	        target.toggleClass("on");
     })
-    //-------------------------------------------------------
     
     $("#review_prev > a").click(function () {
         var aTags = $("#review_num").children();
@@ -154,7 +151,6 @@ $(document).ready(function () {
             }
         }
     })
-    //-----------------------------------------------------------
     $("#QnA_append > a").on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -179,11 +175,8 @@ $(document).ready(function () {
         e.preventDefault();
         e.stopPropagation();
     })
-    //---------------------------------------------------------------
-    $("#top_img > a").click(function(){
-        $('html, body').animate({scrollTop: 0 }, 'slow');
-    })
-    $("#down_img > a").click(function(){
-        $('html, body').animate({scrollTop: $(document).height() }, 'slow');
+    $("#search_btn").click(function(){
+        $("#search").toggleClass("on")
+
     })
 })
