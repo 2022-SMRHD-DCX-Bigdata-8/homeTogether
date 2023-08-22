@@ -18,6 +18,10 @@
 
 <body>
 
+
+
+
+
    <h1>상품 정보</h1>
    <table border="2">
       <tr>
@@ -27,7 +31,7 @@
          <td>상품 가격</td>
       </tr>
       <tr>
-         <td><p id="prod_seq" data-value="0">p-5</p></td>
+         <td><p id="prod_seq" data-value="5">p-5</p></td>
          <td><p id="prod_cnt" data-value="1">1</p></td>
          <td><p id="prod_name" data-value="사무용 의자">사무용 의자</p></td>
          <td><p id="prod_price" data-value="180000">180000</p></td>
@@ -64,7 +68,8 @@
       <tr>
          <td>리뷰번호</td>
          <td>닉네임</td>
-         <td>리뷰 내용</td>
+         <td>날짜</td>
+         <td>댓글 내용</td>
          <td>별점</td>
          <td>수정 / 삭제</td>
       </tr>
@@ -78,6 +83,7 @@
             <tr>
                <td id="review_seq">${review.review_seq}</td>
                <td>${review.nick}</td>
+               <td>${review.created_at}</td>
                <td>${review.review_content}</td>
                <td>${review.ratings}</td>
                <c:if test="${review.nick eq sessionScope.user.nick}">
@@ -131,15 +137,17 @@
     <thead>
         <tr>
             <th style="width: 5%;">문의번호</th>
+            <th style="width: 10%;">날짜</th>
             <th style="width: 10%;">질문자</th>
-            <th style="width: 80%;">문의 내용</th>
-            <th style="width: 15%;">댓글</th>
+            <th style="width: 75%;">문의 내용</th>
+            <th style="width: 10%;">댓글</th>
         </tr>
     </thead>
     <tbody id="qna_tbd">
         <c:forEach var="qna" items="${qna}">
             <tr>
                 <td>${qna.q_seq}</td>
+                <td>${qna.created_at}</td>
                 <td>${qna.nick}</td>
                 <td>${qna.q_content}</td>
                 
@@ -257,6 +265,7 @@
                            tr = "<tr>";
                            tr += "<td>" + res[i].review_seq + "</td>"
                            tr += "<td>" + res[i].nick + "</td>"
+                           tr += "<td>" + res[i].created_at + "</td>"
                            tr += "<td>" + res[i].review_content
                                  + "</td>"
                            tr += "<td>" + res[i].ratings + "</td>"
@@ -304,6 +313,7 @@
                   for (let i = 0; i < res.length; i++) {
                      tr = "<tr>";
                      tr += "<td>" + res[i].q_seq + "</td>"
+                     tr += "<td>" + res[i].created_at + "</td>"
                      tr += "<td>" + res[i].nick + "</td>"
                      tr += "<td>" + res[i].q_content + "</td>"
                      tr += "</tr>";
@@ -369,6 +379,7 @@
                               tr += "<td>" + res[i].review_seq
                                     + "</td>"
                               tr += "<td>" + res[i].nick + "</td>"
+                              tr += "<td>" + res[i].created_at + "</td>"
                               tr += "<td>" + res[i].review_content
                                     + "</td>"
                               tr += "<td>" + res[i].ratings + "</td>"
