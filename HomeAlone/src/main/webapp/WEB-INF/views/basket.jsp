@@ -18,25 +18,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    </style>
-
-    <script>
-        function toggleAll(source) {
-            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i] !== source) {
-                    checkboxes[i].checked = source.checked;
-                }
-            }
-        }
-        function deleteSelected() {
-            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].parentNode.parentNode.remove(); // Remove the entire row
-            }
-        }
-    </script>
-    <style>
+    
         #product>.cart>form>table {
             width: 100%;
             border-bottom: 1px solid #d3d3d3;
@@ -181,19 +163,20 @@
 </head>
 
 <body>
+	<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
-        <form action="#" method="post">
+        <form action="login.do" method="post">
             <h1 id="login_h1">로그인</h1>
             <table id="login">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                     </tr>
                     <tr>
                         <td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -203,35 +186,35 @@
         </form>
         <h1 id="join_h1">회원가입</h1>
 
-        <form action="#" method="post">
+        <form action="join.do" method="post">
             <table id="join">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>NICK</td>
-                        <td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+                        <td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>PHONE</td>
                         <td>
-                            <input type="text" name="cellPhone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
+                            <input type="text" name="phone" id="cellPhone" placeholder="핸드폰번호 입력" maxlength="13" />
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>ADRESS</td>
                         <td>
-                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;">
+                            <input type="text" id="sample6_postcode" placeholder="우편번호" style="margin-right: 10px;" name="zipCode">
                         </td>
                         <td>
                             <input id="post_btn" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
@@ -240,15 +223,15 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_address" placeholder="주소">
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                            <input type="text" id="sample6_address" placeholder="주소" name="addr">
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addrDetail">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                            <input type="text" id="sample6_extraAddress" placeholder="참고항목" name="text">
                         </td>
                         <td></td>
                     </tr>
@@ -258,12 +241,12 @@
                         <td>GENDER</td>
                         <td>
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="apple">
+                                <input type="radio" name="gender" value="apple">
                                 <span>남자</span>
                             </label>
 
                             <label class="test_obj">
-                                <input type="radio" name="fruit" value="banana">
+                                <input type="radio" name="gender" value="banana">
                                 <span>여자</span>
                             </label>
                         </td>
@@ -283,9 +266,13 @@
         <ul id="menu">
             <li><a href="#home">검색</a></li>
             <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
+            <li><a href="goBasket.do">장바구니</a></li>
             <li id="goLogin">
-                <a href="#">로그인</a>
+                <% if(user==null){ %>
+                <a href="#javascrript">로그인</a>
+                <%}else{ %>
+                <a href="goLogout.do">로그아웃</a>
+                <% } %>
             </li>
         </ul>
     </div>
@@ -304,7 +291,7 @@
                     </div>
                     <div id="wrap">
                         <div id="span_block">
-                            <span id="c_name">smhrd</span>
+                            <span id="c_name">${user_name}</span>
                         </div>
                         <div class="flex-container">
                             <p>HOME
@@ -325,70 +312,41 @@
                                 <th>배송비</th>
                                 <th>소계</th>
                             </tr>
-                            <tr class="empty">
-                                <td colspan="7">장바구니에 상품이 없습니다.</td>
-                            </tr>
+                     		<c:if test="${list_empty}">
+                        		<tr class="basket">
+                           			<td colspan="7">장바구니에 상품이없습니다</td>
+                       			 </tr>
+                     		</c:if>
 
-                            <tr class="basket">
-                                <td><input type="checkbox" name="1"></td>
-                                <td>
-                                    <article>
-                                        <a href="#">
-                                            <img src="assets/img/test/KakaoTalk_20230817_155756756_01.jpg" alt="1">
-                                        </a>
-                                        <div>
-                                            <h2><a href="#">상품명</a></h2>
-                                            <p>상품설명</p>
-                                        </div>
-                                    </article>
-                                </td>
+                     <c:if test="${!list_empty}">
+                        <c:forEach var="list" items="${sessionScope.basket}">
 
-                                <td><span>1</span></td>
-                                <td class="number"><span>homealone1</span></td>
-                                <td><span>1</span></td>
-                                <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
-                            </tr>
+                           <tr class="basket">
+                              <td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
+                              <td>
+                                 <article>
+                                    <a href="goProduct.do?prod_seq=${list.prod_seq}"> <img
+                                       src="img/test/KakaoTalk_20230817_155756756_0${list.prod_seq}.jpg"
+                                       alt="1">
+                                    </a>
+                                    <div>
+                                       <h2>
+                                          <a href="goProduct.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
+                                       </h2>
+                                       <p>상품설명</p>
+                                    </div>
+                                 </article>
+                              </td>
 
-                            <tr class="basket">
-                                <td><input type="checkbox" name="2"></td>
-                                <td>
-                                    <article>
-                                        <a href="#">
-                                            <img src="assets/img/test/KakaoTalk_20230817_155756756_03.jpg" alt="1">
-                                        </a>
-                                        <div>
-                                            <h2><a href="#">상품명</a></h2>
-                                            <p>상품설명</p>
-                                        </div>
-                                    </article>
-                                </td>
-                                <td><span>2</span></td>
-                                <td class="number"><span> homealone2</span></td>
-                                <td><span>1</span></td>
-                                <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
-                            </tr>
+                              <td><span></span></td>
+                              <td class="number"><span>${list.prod_seq}</span></td>
+                              <td><span>${list.prod_cnt}개</span></td>
+                              <td class="fr_send"><span>무료배송</span></td>
+                              <td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
+                           </tr>
+                        </c:forEach>
+                     </c:if>
 
-                            <tr class="basket">
-                                <td><input type="checkbox" name="3"></td>
-                                <td>
-                                    <article>
-                                        <a href="#">
-                                            <img src="assets/img/test/KakaoTalk_20230817_155802481_07.jpg" alt="1">
-                                        </a>
-                                        <div>
-                                            <h2><a href="#">상품명</a></h2>
-                                            <p>상품설명</p>
-                                        </div>
-                                    </article>
-                                </td>
-                                <td><span>3</span></td>
-                                <td class="number"><span>homealone3</span></td>
-                                <td><span>1</span></td>
-                                <td class="fr_send"><span>무료배송</span></td>
-                                <td><span>9000</span></td>
-                            </tr>
                         </table>
                         <input type="button" name="del" value="선택삭제" onclick="deleteSelected()">
 
@@ -397,21 +355,24 @@
                             <table>
                                 <tr>
                                     <td>상품수</td>
-                                    <td>1</td>
+                                    <td id="selectedCount"></td>
+
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td>27,000</td>
+                                    <td id="productsPrice"></td>
+
                                 </tr>
 
                                 <tr>
                                     <td>배송비</td>
-                                    <td>0</td>
+                                    <td>무료배송</td>
                                 </tr>
 
                                 <tr>
                                     <td>전체주문금액</td>
-                                    <td>27,000</td>
+                                    <td id="totalPrice"></td>
+
                                 </tr>
                             </table>
                             <input type="submit" value="주문하기">
@@ -479,6 +440,8 @@
 
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="assets/js/products.js"></script>
     <script>
         function sample6_execDaumPostcode() {
             new daum.Postcode({
@@ -528,20 +491,165 @@
             }).open();
         }
     </script>
+	
+   
+    
+      <script>
+         $(function() {
+            $("button").click(function() {
+               $(":checkbox").attr("checked", "checked")
+            })
+         });
+      </script>
 
-    <script src="//code.jquery.com/jquery-3.3.1.min.js">
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(function () {
-                $("button").click(function () {
-                    $(":checkbox").attr("checked", "checked")
-                })
+      <script>
+         function toggleAll(source) {
+            var checkboxes = document
+                  .querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+               if (checkboxes[i] !== source) {
+                  checkboxes[i].checked = source.checked;
+               }
+            }
+         }
+
+         function deleteSelected() {
+            //전체선택 체크박스 누르고 선택삭제했을때  전체선택 체크박스에 체크상태로 남아있었는데
+            //체크 풀어주는 코드
+            var selectAllCheckbox = document
+                  .querySelector('#selectAll input[type="checkbox"]');
+            selectAllCheckbox.checked = false;
+
+            var checkboxes = document
+                  .querySelectorAll('input[type="checkbox"]:checked');
+            var selectAllCheckbox = document
+                  .querySelector('#selectAll input[type="checkbox"]');
+            
+            var checkedProducts = [];
+            
+            
+                 
+              
+            console.log("성공");
+            // 체크박스 상품 사라지게하는 code !!!전체선택 체크박스 <tr>태그는 사라지지않게!! 
+            for (var i = 0; i < checkboxes.length; i++) {
+               
+               checkedProducts.push(checkboxes[i].getAttribute('data-product-id'));
+               
+               var row = checkboxes[i].parentNode.parentNode;
+               if (row !== selectAllCheckbox.closest('tr')) {
+                  row.remove();
+               }
+            }
+            
+            updateSelectedCount(); // 선택된 상품 개수 업데이트
+            updateTotalPrice(); // 가격 업데이트
+            
+            var checkedProductsString = checkedProducts.join(',');
+               //리스트에 정보가 담겨있을때  ajax실행
+              if (checkedProducts.length > 0) {
+                  $.ajax({
+                      url: "deleteCart.do", // 장바구니 세션에서 상품지우는 컨트롤러
+                      type: 'POST',
+                      
+                      data: { "checkedProductsString" : checkedProductsString },
+                      success: function(res) { 
+                         if (res === "true") {                          
+                          var td  = "<tr class='basket'>";
+                          td += "<td colspan='7'>"                            
+                          td +="장바구니에 상품이없습니다"
+                          td +="</td></tr>"
+                      
+                          var select= $('#selectAll').parent();
+                          select.after(td);
+                     	  console.log("상품이없습니다!")
+                         }else{
+                            
+                         }
+                          console.log("상품이없습니다!")
+                          
+                      },
+                      error: function(e) {
+                          console.log('요청실패!!!');
+                      }
+                  });
+              }else{
+                 console.log("실패");
+              }
+
+         }
+      </script>
+
+
+      <script>
+         // 체크 표시했을때 가격 올라가는 코드
+         function updateTotalPrice() {
+            var checkboxes = document
+                  .querySelectorAll('input[type="checkbox"]:checked');
+            var total = 0;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+               var row = checkboxes[i].parentNode.parentNode;
+               var priceCell = row.querySelector('#price'); // 가격이 들어있는 열 선택
+
+               if (priceCell) {
+                  var price = parseInt(priceCell.textContent.replace(
+                        /[^0-9]/g, '')); // 문자열에서 숫자 추출
+                  total += price;
+               }
+            }
+            document.getElementById('productsPrice').textContent = total
+                  .toLocaleString()
+                  + '원';
+            document.getElementById('totalPrice').textContent = total
+                  .toLocaleString()
+                  + '원'; // 총 가격 표시
+         }
+
+         $(function() {
+            $("button").click(function() {
+               $(":checkbox").attr("checked", "checked");
+               updateTotalPrice();
             });
-        })
-    </script>
-    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-    <script src="assets/js/products.js"></script>
+
+            $(":checkbox").click(function() {
+               updateTotalPrice();
+            });
+         });
+      </script>
+      <script>
+         //체크했을때 체크한 상품개수 올라가는 메서드
+
+         function updateSelectedCount() {
+            var checkboxes = document
+                  .querySelectorAll('input[type="checkbox"]');
+            var selectedCheckboxes = document
+                  .querySelectorAll('input[type="checkbox"]:checked');
+            var selectedCount = selectedCheckboxes.length;
+            var totalCount = checkboxes.length;
+
+            if (selectedCount === totalCount) {
+               document.getElementById('selectedCount').textContent = (selectedCount - 1)
+                     + '개';
+            } else {
+               document.getElementById('selectedCount').textContent = selectedCount
+                     + '개';
+            }
+         }
+
+         //체크박스 클릭했을때 체크되는 함수
+         $(function() {
+            $("button").click(function() {
+               $(":checkbox").attr("checked", "checked");
+               updateSelectedCount();
+            });
+
+            $(":checkbox").click(function() {
+               updateSelectedCount();
+            });
+         });
+      </script>
+    
 
 </body>
 

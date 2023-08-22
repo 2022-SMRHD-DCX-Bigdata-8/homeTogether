@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -15,20 +16,21 @@
 </head>
 
 <body>
+	<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
 
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
-        <form action="#" method="post">
+        <form action="login.do" method="post">
             <h1 id="login_h1">로그인</h1>
             <table id="login">
                 <tbody>
                     <tr>
                         <td>ID</td>
-                        <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                        <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                     </tr>
                     <tr>
                         <td>PW</td>
-                        <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                        <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                     </tr>
                     <tr>
                         <td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -116,14 +118,19 @@
         <a class="logo" href="#">
             <img src="img/logo/image2.png" height="75px">
         </a>
-        <ul id="menu">
-            <li><a href="#home">검색</a></li>
-            <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
-            <li id="goLogin">
-                <a href="#javascrript">로그인</a>
-            </li>
-        </ul>
+      <ul id="menu">
+         
+         <li><a href="#home">검색</a></li>
+         <li><a href="goBasket.do">장바구니</a></li>
+         <li><a href="goMypage.do">마이페이지</a></li>
+         <% if (user == null) {   %>
+         <li id="goLogin"><a href="#javascript">로그인</a></li>
+         <% } else { %>
+         <li><a href="#javascript">로그아웃</a></li>
+         <% } %>
+
+
+      </ul>
     </div>
     <div class="hero_header">
         <ul class="slideshow"> <!-- Add the .slideshow class here -->
@@ -147,7 +154,7 @@
 
     <h1>Our new Products</h1>
     <div class="products">
-        <a href="#">
+        <a href="goProduct.do?prod_seq=5">
             <img src="images/sunglasses.jpg">
             <p>Sunglasses</p>
             <p class="price">49,000</p>
