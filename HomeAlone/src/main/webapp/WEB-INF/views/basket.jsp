@@ -181,6 +181,7 @@
 </head>
 
 <body>
+	<% TB_Member user = (TB_Member)session.getAttribute("user"); %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -280,13 +281,15 @@
         <a class="logo" href="#">
             <img src="/img/logo/image2.png" height="75px">
         </a>
-        <ul id="menu">
-            <li><a href="#home">검색</a></li>
-            <li><a href="#html">게시판</a></li>
-            <li><a href="#css">장바구니</a></li>
-            <li id="goLogin">
-                <a href="#">로그인</a>
-            </li>
+		<ul id="menu">
+			<li><a href="#home">검색</a></li>
+			<li><a href="goBasket.do">장바구니</a></li>
+			<% if (user == null) {	%>
+			<li id=goLogin><a href="#">로그인</a></li>
+			<% } else { %>
+			<li><a href="goMypage.do">마이페이지</a></li>
+			<li><a href="goLogout.do">로그아웃</a></li>
+			<% } %>
         </ul>
     </div>
 
