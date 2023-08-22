@@ -394,7 +394,7 @@ body h1 {
   margin-left: auto;
   margin-right: auto;
   padding: 0;
-  width: 740px;
+  width: 780px;
   text-align: center;
 }
 
@@ -514,6 +514,10 @@ body h1 {
 #search > #search_img{
   width: 20px;
 }
+.products > a{
+	margin-right : 10px;
+}
 .products > p, .products > a{
-	width : 225px;
+	width : 240px;
+	
 }

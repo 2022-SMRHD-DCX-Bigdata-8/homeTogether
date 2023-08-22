@@ -153,15 +153,15 @@
 	</div>
 
 	<div id="categori">
-		<ul>
-			<li><a href="#"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a></li>
-			<li><a href="#"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a></li>
-			<li><a href="#"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a></li>
-			<li><a href="#"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a></li>
-			<li><a href="#"><img src="img/logo/bed.png" alt="카테고리 사진"></a></li>
-			<li><a href="#"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a></li>
-		</ul>
-	</div>
+        <ul>
+            <li><a href="#"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a><strong>조명</strong></li>
+            <li><a href="#"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a><strong>테이블</strong></li>
+            <li><a href="#"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a><strong>서랍</strong></li>
+            <li><a href="#"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a><strong>소파/의자</strong></li>
+            <li><a href="#"><img src="img/logo/bed.png" alt="카테고리 사진"></a><strong>침구류</strong></li>
+            <li><a href="#"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a><strong>전자</strong></li>
+        </ul>
+    </div>
     <h1>Our new Products</h1>
     <div class="products">
     	<c:forEach var="mainlist" items="${mainlist}">
