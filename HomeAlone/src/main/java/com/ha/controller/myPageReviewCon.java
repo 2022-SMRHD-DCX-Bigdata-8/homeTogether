@@ -29,14 +29,16 @@ public class myPageReviewCon implements Controller {
 		TB_ReviewDAO dao = new TB_ReviewDAO();
 		List<TB_Review> list =dao.myPageReview(nick);
 		List<TB_Product> products = new ArrayList<>();
-		for(int i=0 ; i<list.size() ;i++) {
+		System.out.println("여기까지오나요?");
+		
+		//for(int i=0 ; i<list.size() ;i++) {
 			
-		TB_Product product=pdao.productName(list.get(i).getProd_seq());
-		products.add(product);
+		//TB_Product product=pdao.productName(list.get(i).getProd_seq());
+		//products.add(product);
 		
-		}
+		//}
 		
-		session.setAttribute("products", products);
+		//session.setAttribute("products", products);
 		
 		response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
 	      

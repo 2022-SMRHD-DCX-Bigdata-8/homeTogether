@@ -376,55 +376,39 @@
 	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
 	<script src="assets/js/myPage.js"></script>
 	<script>
-		$(document).ready(function() {
+	$(document).ready(function() {
+	    $('#review_QnA').on('click', function() {
+	        reviewList(); // 클릭 시 reviewList 함수 실행
+	    });
+	});
 
-			$('#review_QnA').on('click', reviewList());
-		});
-
-		function reviewList() {
-
-			
-			$.ajax({
-				url : 'myPageReview.do',
-				type : 'get',
-				data : {
-					
-				},
-				dataType : 'json',
-				success : function(res) {
-
-					
-
-					let review = $('#review>ul');
-					
-
-					for (let i = 0; i < res.length; i++) {
-											
-					
-
-						tr = "<li>"
-						tr += "<h1>리뷰</h1>"
-						tr += "<div><h5 class='rating star4'>상품평</h5>"
-						tr += "<span>" +${sessionScope.user.id}+ "</span></div>"
-						tr += "<h3>"+${sessionScope.products[i].prod_name}+"</h3>"
-						tr += "<p>"+res[i].review_content+"</p>"
-						tr +="</li>
-
-						// html('code') :덮어쓰기
-						// after('code'):닫는태그 바로뒤에 추가
-						// before('code'):여는태그 바로앞에 추가
-						// append('code'):자식요소로 추가
-						review.append(tr);
-
-					}
-
-				},
-				error : function(e) {
-					console.log('요청실패!!!');
-				}
-
-			});
-		}
+	function reviewList() {
+	    $.ajax({
+	        url : 'myPageReview.do',
+	        type : 'get',
+	        data : {},
+	        dataType : 'json',
+	        success : function(res) {
+	            let review = $('#review>ul');
+	            
+	            for (let i = 0; i < res.length; i++) {
+	                let tr = "<li>";
+	                tr += "<h1>리뷰</h1>";
+	                tr += "<div><h5 class='rating star4'>상품평</h5>";
+	                tr += "<span>" + "${sessionScope.user.id}" + "</span></div>";
+	                tr += "<h3></h3>";  //"${sessionScope.products[i].prod_name}"
+	                tr += "<p>" + res[i].review_content + "</p>";
+	                tr += "</li>";
+	                review.prepend(tr); 
+	                
+	                
+	            }
+	        },
+	        error : function(e) {
+	            console.log('요청실패!!!', e);
+	        }
+	    });
+	}
 	</script>
 
 
