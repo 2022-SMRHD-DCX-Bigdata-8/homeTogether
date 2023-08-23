@@ -419,6 +419,7 @@ body h1 {
 .price {	
   margin-top: 10px;
   font-size : 18px;
+  font-weight: bold;
 }
 
 .clearfix {
@@ -540,6 +541,9 @@ body > div.products > div > p:nth-child(2){
 	margin-bottom: 10px;
 	overflow: hidden;
 	border-radius : 25px;
+}
+.products > div > a > img{
+	cursor: pointer;
 }
 .products > div > a > img:hover{
 	transform : scale(1.1);
