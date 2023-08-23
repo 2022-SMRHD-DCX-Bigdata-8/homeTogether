@@ -139,7 +139,12 @@
         </ul>
     </nav>
     <div class="goods_list_title">
-        <h2>${product[0].prod_type}</h2>
+    <c:if test="${searched!=null}">
+        <h2>${searched}</h2>
+    </c:if>
+    <c:if test="${searched==null}">
+    	<h2>${product[0].prod_type}</h2>
+    </c:if>
     </div>
     <div id="filter_box">
         <ul id="filter">
@@ -187,10 +192,17 @@
             <div id="goods_paging">
                 <ul id="buttons">
                 
-
+				<c:if test="${searched ==null }">
 				<c:forEach var="i" begin="1" end="${page}">
     				<li><span><a href="${url}?page=${i}">${i}</a></span></li>
 				</c:forEach>
+				</c:if>
+				<c:if test="${searched !=null }">
+				<c:forEach var="i" begin="1" end="${page}">
+    				<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+				</c:forEach>
+				</c:if>
+				
                     
     				
                 </ul>

@@ -64,14 +64,17 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("gajun");
+		session.close();
 		
 		return list;
 	}
+	
 	public List<TB_Product> searchSelect(String search) {
 		
 		SqlSession session = factory.openSession(true);
-		List<TB_Product>list =  session.selectList("search", search);
+		List<TB_Product> list =  session.selectList("searched", search);
 		
+		session.close();
 		return list;
 		
 	}

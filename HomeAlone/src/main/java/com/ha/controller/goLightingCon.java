@@ -36,6 +36,12 @@ public class goLightingCon implements Controller {
 		
 		int start = (page_idx-1)*15;
 		int end = start+15;
+		if(end >list.size()) {
+			end=list.size();
+			
+		}
+		
+		
 		List<TB_Product> product = list.subList(start, end);
 		
 		String url = request.getRequestURL().toString();
@@ -46,6 +52,8 @@ public class goLightingCon implements Controller {
 		request.setAttribute("product", product);
 		request.setAttribute("page",page_cnt);
 		request.setAttribute("url", currenturl);
+		System.out.println(product.get(0).getProd_img());
+		
 		return "productPage";
 	}
 
