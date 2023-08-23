@@ -53,7 +53,7 @@ public class goStorageCon implements Controller {
 		request.setAttribute("product", product);
 		request.setAttribute("page",page_cnt);
 		request.setAttribute("url", currenturl);
-		
+		request.setAttribute("pagecnt", page_idx);
 		
 		return "productPage";
 		
