@@ -24,18 +24,27 @@ public class addAnswerCon implements Controller {
 		HttpSession session = request.getSession();
 		TB_Member member = (TB_Member) session.getAttribute("user");
 		String nick = member.getNick();	
+
 		
-		int q_seq = Integer.parseInt(request.getParameter("q_seq"));
+		String q_seq = request.getParameter("q_seq");
+		String[] q= q_seq.split("/");
+		
+		System.out.println(q[0]);
+		System.out.println(q[1]);
+		System.out.println(q[2]);
+		int qseq= Integer.parseInt(q[0]);
+		
+		System.out.println(q_seq);
 		String a_content = request.getParameter("a_content");
 		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
 		
 		TB_Answer answer = new TB_Answer();
 		
 		answer.setA_content(a_content);
-		answer.setQ_seq(q_seq);
+		answer.setQ_seq(qseq);
 		answer.setNick(nick);
 		answer.setProd_seq(prod_seq);
-		
+		System.out.println(answer);
 		TB_AnswerDAO dao = new TB_AnswerDAO();
 		int cnt = dao.insertAnswer(answer);
 		System.out.println(cnt);
@@ -46,7 +55,7 @@ public class addAnswerCon implements Controller {
 	    String json= gson.toJson(answer);
 		out.print(json);
 		
-	    out.print(json);
+	    
 	    
 	    
 		return null;

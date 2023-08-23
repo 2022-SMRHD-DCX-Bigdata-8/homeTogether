@@ -1,17 +1,50 @@
 package com.ha.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.ha.dao.TB_AnswerDAO;
+import com.ha.dao.TB_QNADAO;
+import com.ha.dao.TB_ReviewDAO;
+import com.ha.entity.TB_Answer;
+import com.ha.entity.TB_QNA;
+import com.ha.entity.TB_Review;
 
 public class goProductcell implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		int prod_seq = Integer.parseInt(request.getParameter("prod_seq"));
+		
+		TB_ReviewDAO reviewdao = new TB_ReviewDAO();
+		TB_QNADAO qnadao = new TB_QNADAO();
+		TB_AnswerDAO answerdao = new TB_AnswerDAO();
+		
+		TB_Review review = new TB_Review();
+		TB_QNA qna = new TB_QNA();
+		TB_Answer answer = new TB_Answer();
+		
+		review.setProd_seq(prod_seq);
+		qna.setProd_seq(prod_seq);
+		answer.setProd_seq(prod_seq);
+		
+		List<TB_Review> list = reviewdao.select(review);
+		List<TB_Answer>a_list = answerdao.selectAnswer(answer);
+		List<TB_QNA>qnalist = qnadao.selectQNA(qna);
+		
+		request.setAttribute("review", list);
+		request.setAttribute("qna", qnalist);
+		request.setAttribute("answer", a_list);
+		
+		System.out.println(a_list);
+		
+		
 		return "productcell";
 	}
 

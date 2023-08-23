@@ -7,18 +7,32 @@
 		insert into tb_answer(
 		q_seq,
 		a_content,
-		nick
+		nick,
+		prod_seq
 		)values(
 		#{q_seq},
 		#{a_content},
-		#{nick}
+		#{nick},
+		#{prod_seq}
 		)
 
 	</insert>
 
 
 
+	<select id="selectanswer" parameterType="com.ha.entity.TB_Answer" 
+	resultType="com.ha.entity.TB_Answer">
 
+		select a_seq
+		      ,q_seq
+		      ,a_content
+		      ,TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at
+		      ,nick
+		      ,prod_seq
+		from TB_answer
+		where prod_seq = #{prod_seq}
+	
+	</select>
 
 
 

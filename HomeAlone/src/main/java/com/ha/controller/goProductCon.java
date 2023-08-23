@@ -44,12 +44,6 @@ public class goProductCon implements Controller {
 		TB_QNADAO qnadao = new TB_QNADAO();
 		TB_AnswerDAO answerdao = new TB_AnswerDAO();
 		
-		
-		
-		
-		
-		
-		
 		List<TB_Review> list = reviewdao.select(review);
 		List<TB_QNA>qnalist = qnadao.selectQNA(qna);
 				
