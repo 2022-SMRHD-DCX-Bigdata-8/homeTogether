@@ -24,7 +24,12 @@
     #ad strong {
         font-size: 13px !important;
     }
-
+    #ad p {
+    	font-size : 16px !important;	
+    }
+	#ad > div > strong:nth-child(2){
+		color : #575252
+	}
     .total {
         width: 250px !important;
     }
@@ -42,9 +47,13 @@
         font-size: 15px !important;
     }
 
-    #ad strong {
+    #ad strong{
         font-size: 11px !important;
-    }
+    }	
+    
+    #ad > div > strong:nth-child(2){
+		color : #575252
+	}
 }
 
 
@@ -419,8 +428,14 @@ h2>a {
     margin-bottom: 100px;
 }
 
-#ad>p {
-    font-size: 20px;
+#ad p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#ad > div > strong:nth-child(2){
+	color : #575252;
+	margin-bottom : 5px;
 }
 
 #ad::after {
@@ -440,7 +455,7 @@ h2>a {
     width: 100%;
     display: block;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border-radius: 25%;
 }
 
