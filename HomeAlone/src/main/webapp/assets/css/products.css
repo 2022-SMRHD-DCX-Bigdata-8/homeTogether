@@ -9,7 +9,9 @@
 * {
   font-family: 'GmarketSansMedium' !important;
 }
-
+body{
+	margin: 0px 8px !important;
+}
 /* 글꼴 끝 */
 
 /* 로그인창 */
@@ -24,7 +26,6 @@
 
 #del>img {
   width: 100%;
-
 }
 
 #back {
@@ -34,7 +35,7 @@
   top: 50%;
   left: 67%;
   transform: translateY(-50%);
-  opacity: 0%;
+  display : none;
 }
 
 #back>img {
@@ -48,7 +49,8 @@
 #login_view>form>h1 {
   color: #b2b278;
   text-align: center;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 #login_view {
@@ -114,7 +116,8 @@
   width: 225px;
   color: #b2b278;
   text-align: center;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 #join>tbody>tr>:last-child {
@@ -639,5 +642,32 @@ button:hover:after {
 #foot_center>div>p {
   margin: 14px 0px;
 }
-
 /* footer 끝 */
+
+/* 검색 창 시작 */
+#menu{
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > form > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
+/* 검색 창 끝 */

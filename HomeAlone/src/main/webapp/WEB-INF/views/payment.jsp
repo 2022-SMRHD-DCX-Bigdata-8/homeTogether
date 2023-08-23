@@ -5,15 +5,6 @@
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
-    <meta charset="utf-8">
-    <title>HOMEWORK</title>
-    <link rel="stylesheet" href="http://mooozi.github.io/css/reset.css%22%3E">
-    <link rel="stylesheet" href="assets/css/payment.css">
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/payment.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-=======
 <meta charset="utf-8">
 <title>HOMEWORK</title>
 <link rel="stylesheet" href="payment.css">
@@ -302,8 +293,6 @@ table>tr>td {
 	
 }
 </style>
-
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 </head>
 
 <body>
@@ -522,18 +511,6 @@ table>tr>td {
 										</article>
 									</div>
 							</article>
-									<script
-										src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-									<script>
-                        function execDaumPostcode() {
-                          new daum.Postcode({
-                            oncomplete: function(data) {
-                              document.getElementById('zip').value = data.zonecode;
-                              document.getElementById('roadAddress').value = data.roadAddress;
-                            }
-                          }).open();
-                        }
-                      </script>
 						</form>
 					</section>
 				</main>

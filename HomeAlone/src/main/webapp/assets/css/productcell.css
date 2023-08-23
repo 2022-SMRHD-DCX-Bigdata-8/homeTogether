@@ -31,11 +31,6 @@
 }
 
 /* 아이콘 끝 */
-
-#login_view>form>h1 {
-    color: #b2b278;
-}
-
 #login_view {
     z-index: 1;
     position: fixed;
@@ -49,6 +44,8 @@
 
 #login_view>form>h1 {
     margin-bottom: 20px;
+    color: #b2b278;
+    font-size : 28px;
 }
 
 #login_view>form>table {
@@ -93,6 +90,7 @@
     margin: 45px auto 10px;
     width: 225px;
     color: #b2b278;
+    font-size : 28px;
 }
 
 #join>tbody {
@@ -207,6 +205,7 @@ button:hover:after {
 }
 #login_btn > button{
     width: 100% ;
+    line-height: 1.5em;
 }
 /* 버튼 끝 */
 

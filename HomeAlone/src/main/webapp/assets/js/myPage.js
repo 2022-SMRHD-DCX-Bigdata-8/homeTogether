@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    /* 폰 입력 js 시작 */
     function autoHypenPhone(str) {
         str = str.replace(/[^0-9]/g, '');
         var tmp = '';
@@ -33,6 +34,7 @@ $(document).ready(function(){
         var _val = this.value.trim();
         this.value = autoHypenPhone(_val);
     }
+    /* 폰 입력 js 끝 */
     $('#post_btn').on("mouseenter", function (e) {
         $(this).css("background-color", "#F8F8F8");
         $(this).css("color", "#b2b278");

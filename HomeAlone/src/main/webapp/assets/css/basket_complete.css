@@ -10,6 +10,9 @@
 * {
     font-family: 'GmarketSansMedium';
 }
+body{
+	margin:0px 8px;
+}
 
 
 @media (max-width: 1350px) {
@@ -72,25 +75,26 @@
   
   }
   
-  #back {
-    position: fixed;
-    width: 80px;
-    float: left;
-    top: 50%;
-    left: 67%;
-    transform: translateY(-50%);
-    opacity: 0%;
-  }
-  
-  #back>img {
-    width: 100%;
-    opacity: 0%;
-  }
+#back {
+  position: fixed;
+  width: 80px;
+  float: left;
+  top: 50%;
+  left: 67%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+#back>img {
+  width: 100%;
+  opacity: 0%;
+}
   
   /* 아이콘 끝 */
   
   #login_view>form>h1 {
-    color: #b2b278;
+  	font-size: 28px;
+  	font-weight: bold;
   }
   
   #login_view {
@@ -102,6 +106,7 @@
     right: 0px;
     opacity: 98%;
     width: 0%;
+    top:0px;
   }
   
   #login_view>form>h1 {
@@ -139,10 +144,11 @@
   #login_h1 {
     margin: 45px auto 0px;
     width: 225px;
-    font-size: 24px;
+    font-size: 28px;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
     height: 24px;
+    color : #b2b278;
   }
   
   #join {
@@ -155,9 +161,9 @@
     margin: 45px auto 10px;
     width: 225px;
     color: #b2b278;
-    font-size: 24px;
+    font-size: 28px;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
   }
   #join > tbody{
     padding-left: 80px;
@@ -384,8 +390,6 @@
 tbody>tr>td {
     position: relative;
 }
-
-.basket>td:nth-child(n+3)>h1 {}
 
 .number>h1 {
     left: 65px;
