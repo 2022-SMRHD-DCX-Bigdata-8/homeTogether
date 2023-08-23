@@ -86,6 +86,9 @@ public class FrontController extends HttpServlet {
 			//id 중복확인
 			handler.put("/idCheck.do", new idCheckCon());
 			
+			//검색기능
+			handler.put("/search.do", new searchCon());
+			
 			
 			
 			

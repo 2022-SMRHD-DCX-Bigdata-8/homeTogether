@@ -425,7 +425,7 @@
                         <div>
                             <a href="goProduct.do?prod_seq=${prodlist.prod_seq}"><img src="${prodlist.prod_img}" alt="쇼파1"></a>
                             <strong>${prodlist.prod_name}</strong><br>
-                            <strong>${prodlist.prod_price}</strong>
+                            <strong>${prodlist.prod_price}원</strong>
                         </div>
                         </c:forEach>
                         

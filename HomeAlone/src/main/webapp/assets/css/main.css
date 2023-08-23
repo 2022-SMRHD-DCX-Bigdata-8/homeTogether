@@ -498,7 +498,7 @@ body h1 {
   bottom: -5px;
   margin-bottom: 0px;
 }
-#menu > .on{
+#menu > form > .on{
   top: -10px;
   border-bottom: 1px solid black;
 }

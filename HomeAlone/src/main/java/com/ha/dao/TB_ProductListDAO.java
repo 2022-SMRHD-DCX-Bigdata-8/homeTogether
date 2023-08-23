@@ -18,6 +18,7 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("lighting");
+		session.close();
 		
 		return list;
 	}
@@ -26,6 +27,7 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("table");
+		session.close();
 		
 		return list;
 	}
@@ -34,6 +36,7 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("chair");
+		session.close();
 		
 		return list;
 	}
@@ -42,6 +45,7 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("storage");
+		session.close();
 		
 		return list;
 	}
@@ -50,6 +54,7 @@ public class TB_ProductListDAO {
 		SqlSession session = factory.openSession(true);
 		
 		List<TB_Product> list =  session.selectList("bedding");
+		session.close();
 		
 		return list;
 	}
@@ -61,6 +66,14 @@ public class TB_ProductListDAO {
 		List<TB_Product> list =  session.selectList("gajun");
 		
 		return list;
+	}
+	public List<TB_Product> searchSelect(String search) {
+		
+		SqlSession session = factory.openSession(true);
+		List<TB_Product>list =  session.selectList("search", search);
+		
+		return list;
+		
 	}
 	
 	

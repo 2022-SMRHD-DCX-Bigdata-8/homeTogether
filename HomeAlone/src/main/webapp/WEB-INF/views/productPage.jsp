@@ -1,6 +1,7 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 
@@ -13,7 +14,10 @@
 </head>
 
 <body>
-<% TB_Member user = (TB_Member)session.getAttribute("user"); %>
+<% TB_Member user = (TB_Member)session.getAttribute("user"); 
+	
+
+%>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -110,7 +114,7 @@
 
     </div>
     <header>
-        <a class="logo" href="#">
+        <a class="logo" href="main.do">
             <img src="img/logo/image2.png" height="75px">
         </a>
 		<ul id="menu">
@@ -126,12 +130,12 @@
     </header>
     <nav id="nav">
         <ul id="categori">
-            <li><a class="on" href="#"><span>조명</span></a></li>
-            <li><a href="#"><span>책상</span></a></li>
-            <li><a href="#"><span>테이블</span></a></li>
-            <li><a href="#"><span>소파</span></a></li>
-            <li><a href="#"><span>침구</span></a></li>
-            <li><a href="#"><span>전자</span></a></li>
+            <li><a class="on" href="goLighting.do"><span>조명</span></a></li>
+            <li><a href="goTable.do"><span>테이블</span></a></li>
+            <li><a href="goStorage.do"><span>수납</span></a></li>
+            <li><a href="goChair.do"><span>의자/소파</span></a></li>
+            <li><a href="goBedding.do"><span>침구류</span></a></li>
+            <li><a href="goGajun.do"><span>가전제품</span></a></li>
         </ul>
     </nav>
     <div class="goods_list_title">
@@ -149,7 +153,7 @@
     </div>
     <div id="sort_div">
         <ul id="sort_list">
-            <li><span>Total 2400item</span></li>
+            <li><span>Total ${total}</span></li>
             <li>
                 <ul id="sort">
                     <li class="li">
@@ -168,136 +172,27 @@
     <div id="content">
         <div>
             <ul id="goods_lists">
-                <!--  <c:forEach var="products" items="${product}">-->
-                <li>
-                    <a href="goProductcell.do?prod_seq=${product[1].prod_seq}" class="image_container">
-                        <img class="hover_image" src="${product[1].prod_img}" alt="랄로!?">
-                    </a>
-                    <div><span>${product[1].prod_name}</span></div>
-                    <div><strong>이게 되면 성공</strong></div>
-                    <div><strong>${product[1].prod_price}</strong></div>
-                </li>
-                <!--  </c:forEach>-->
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_08.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_07.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_06.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_05.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_04.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_03.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_02.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_01.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_01.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_02.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_03.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container"> 
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_04.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_05.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
+                <c:forEach var="products" items="${product}">
+                	<li>
+                   		<a href="goProductcell.do?prod_seq=${products.prod_seq}" class="image_container">
+                        <img class="hover_image" src="${products.prod_img}" alt="랄로!?">
+                    	</a>
+                    	<div><span>${products.prod_name}</span></div>
+                    	<div><strong>이게 되면 성공</strong></div>
+                    	<div><strong>${products.prod_price}원</strong></div>
+                	</li>
+                </c:forEach>
+                                
             </ul>
             <div id="goods_paging">
                 <ul id="buttons">
-                    <li class="click"><span>1</span></li>
-                    <li><span>2</span></li>
-                    <li><span>3</span></li>
-                    <li><span>4</span></li>
-                    <li><span>5</span></li>
+                
+
+				<c:forEach var="i" begin="1" end="${page}">
+    				<li><span><a href="${url}?page=${i}">${i}</a></span></li>
+				</c:forEach>
+                    
+    				
                 </ul>
             </div>
         </div>

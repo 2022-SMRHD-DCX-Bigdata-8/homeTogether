@@ -20,6 +20,7 @@
 
 	<%
 	TB_Member user = (TB_Member) session.getAttribute("user");
+	
 	%>
 
 
@@ -120,10 +121,12 @@
 			height="75px">
 		</a>
 		<ul id="menu">
+		<form action="search.do" method="post" >
 			<div id="search">
-				<span>Search</span> <input type="text" id="search_content">
+				<span>Search</span> <input type="text" id="search_content" name="search">
 				<input id="search_img" type="image" src="img/icon/search2.png">
 			</div>
+		</form>
 			<li id="search_btn"><a href="#home">검색</a></li>
 			<li><a href="goBasket.do">장바구니</a></li>
 			<%
@@ -155,12 +158,12 @@
 	<div id="categori">
         <ul>
 
-            <li><a href="#"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a><strong>조명</strong></li>
-            <li><a href="#"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a><strong>테이블</strong></li>
-            <li><a href="#"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a><strong>서랍</strong></li>
-            <li><a href="#"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a><strong>소파/의자</strong></li>
-            <li><a href="#"><img src="img/logo/bed.png" alt="카테고리 사진"></a><strong>침구류</strong></li>
-            <li><a href="#"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a><strong>전자</strong></li>
+            <li><a href="goLighting.do"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a><strong>조명</strong></li>
+            <li><a href="goTable.do"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a><strong>테이블</strong></li>
+            <li><a href="goStorage.do"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a><strong>수납</strong></li>
+            <li><a href="goChair.do"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a><strong>의자/소파</strong></li>
+            <li><a href="goBedding.do"><img src="img/logo/bed.png" alt="카테고리 사진"></a><strong>침구류</strong></li>
+            <li><a href="goGajun.do"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a><strong>가전제품</strong></li>
 
         </ul>
     </div>

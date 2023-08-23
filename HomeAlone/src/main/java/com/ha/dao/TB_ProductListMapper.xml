@@ -23,7 +23,7 @@
 	<select id="chair" resultType="com.ha.entity.TB_Product">
 	
 		select * from TB_Product
-		where prod_type = '의자/쇼파'
+		where prod_type = '의자/소파'
 		
 	
 	</select>
@@ -47,8 +47,14 @@
 	<select id="gajun" resultType="com.ha.entity.TB_Product">
 	
 		select * from TB_Product
-		where prod_type = '가전'
+		where prod_type = '가전제품'
 		
+	
+	</select>
+	
+	<select id="search" resultType="com.ha.entity.TB_Product">
+		select *  from TB_Product
+		where prod_name like '%#{search}%'
 	
 	</select>
 

@@ -44,9 +44,7 @@ public class goMainCon implements Controller {
 		
 		
 		request.setAttribute("mainlist", main_list);
-		
-		
-		
+			
 		
 		
 		

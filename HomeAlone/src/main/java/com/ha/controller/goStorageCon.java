@@ -16,10 +16,39 @@ public class goStorageCon implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		TB_ProductListDAO dao = new TB_ProductListDAO();
-		List<TB_Product> list = dao.StorageSelect();		
-		request.setAttribute("storage", list);
 		
+		TB_ProductListDAO dao = new TB_ProductListDAO();
+		List<TB_Product> list = dao.StorageSelect();
+		
+		int page_idx=0;
+		
+		if(request.getParameter("page") ==null) {
+			 page_idx = 1;
+		}else {
+		 page_idx = Integer.parseInt(request.getParameter("page")); 
+		}
+		
+		int page_cnt = 0;
+		
+		if(list.size()%15 != 0) {
+		 page_cnt = list.size()/15 +1;
+		}else {
+		 page_cnt = list.size()/15;	
+		}
+		
+		int start = (page_idx-1)*15;
+		int end = start+15;
+		List<TB_Product> product = list.subList(start, end);
+		
+		String url = request.getRequestURL().toString();
+		String[] parts = url.split("/");
+		String currenturl = parts[parts.length - 1];
+		System.out.println(currenturl);
+		
+		request.setAttribute("total", list.size());
+		request.setAttribute("product", product);
+		request.setAttribute("page",page_cnt);
+		request.setAttribute("url", currenturl);
 		
 		
 		return "productPage";

@@ -16,11 +16,18 @@ public class LogoutCon implements Controller {
 			throws ServletException, IOException {
 
 		String referer = request.getHeader("Referer"); //요청이온 url주소
+		System.out.println(referer);
 		HttpSession session = request.getSession();
 		session.removeAttribute("user");
 		session.removeAttribute("basket");
+		if(referer.equals("http://localhost:8081/HomeAlone/goMypage.do")) {
+			
+			return "redirect:/main.do";
+		}else {
+		
 		response.sendRedirect(referer);
 		return null;
+		}
 		
 	}
 
