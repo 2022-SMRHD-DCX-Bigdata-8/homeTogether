@@ -22,8 +22,10 @@ public class propertyCon implements Controller {
 		System.out.println("여기오냐?");
 		request.setCharacterEncoding("UTF-8");
 		int page = 1;
+		String text= request.getParameter("text");
 		try {
-			page = Integer.parseInt(request.getParameter("page"));
+			page = Integer.parseInt(request.getParameter("text"));
+			System.out.println(page);
 		}catch( NumberFormatException e ){
 			System.out.println("첫 번째 페이지");
 		}
@@ -39,6 +41,7 @@ public class propertyCon implements Controller {
 		// 전체 게시글 수 가져오는 거
 		int cnt = dao.count(property);
 		System.out.println("전체 상품 수 : " + cnt);
+		System.out.println(page);
 		
 		// 원하는 페이지 만큼만 List DB검색 
 		Paging p = new Paging();
@@ -52,6 +55,7 @@ public class propertyCon implements Controller {
 		JsonObject jo = new JsonObject();
 		jo.addProperty("total", cnt);
 		jo.add("product", gson.toJsonTree(list));
+		jo.add("text", gson.toJsonTree(text));
 		
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();

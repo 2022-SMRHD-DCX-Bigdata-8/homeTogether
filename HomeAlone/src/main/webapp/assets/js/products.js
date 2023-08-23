@@ -8,12 +8,53 @@ $(document).ready(function () {
         $(this).css("color", "black");
         $(this).css("background-color", "white");
     });
+    
     $("#nav > #categori > li > a > span").click(function(e){
         var text = $(e.target).text();
         $(".goods_list_title > h2").text(text);
         $("#nav > #categori > li > a").removeClass("on");
         $(e.target).parent().toggleClass("on");
     })
+    
+
+    
+    
+    /* 폰 입력 js 시작 */
+    function autoHypenPhone(str) {
+        str = str.replace(/[^0-9]/g, '');
+        var tmp = '';
+        if (str.length < 4) {
+            return str;
+        } else if (str.length < 7) {
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3);
+            return tmp;
+        } else if (str.length < 11) {
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3, 3);
+            tmp += '-';
+            tmp += str.substr(6);
+            return tmp;
+        } else {
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3, 4);
+            tmp += '-';
+            tmp += str.substr(7);
+            return tmp;
+        }
+        return str;
+    }
+
+    var cellPhone = document.getElementById('cellPhone');
+    cellPhone.onkeyup = function (event) {
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypenPhone(_val);
+    }
+    /* 폰 입력 js 끝 */
 
     /* $("#sort>li").on("click", function (e) {
         if ($("#sort>:last-child").css("visibility") == "hidden") {
@@ -71,10 +112,10 @@ $(document).ready(function () {
         target3.parent().parent().toggleClass("cate");
     })
 
-    $("#buttons > li > span").click(function(e){
+    $("#buttons > li > span > a").click(function(e){
         var target = $(e.target);
         $("#buttons > li").removeClass("click");
-        target.parent().toggleClass("click");
+        target.parent().paren().toggleClass("click");
     })
     /* $("#goods_lists> li > a > img").mouseenter(function(e){
         var target = $(e.target);
@@ -84,14 +125,17 @@ $(document).ready(function () {
     
     var $viewer = $("#login_view");
     function opener() {
-        $viewer.animate({ "width": "35%" }, 1000);
-        $("#back").animate({ "opacity": "50%" }, 500);
-        $('#back > img').css("opacity", "50%");
+        $('#back').css("display", "block");
+        $viewer.animate({ "width": "35%" }, 400);
+        $("#back > img").animate({ "opacity": "50%" }, 500);
     }
     function closer() {
-        $viewer.animate({ "width": "0%" }, 1000);
-        $("#back").animate({ "opacity": "0%" }, 500);
-    }$('#post_btn').on("mouseenter", function (e) {
+        $('#back').css("display", "none");
+        $viewer.animate({ "width": "0%" }, 400);
+        $("#back> img").animate({ "opacity": "0%" }, 500);
+    }
+    
+    $('#post_btn').on("mouseenter", function (e) {
         $(this).css("background-color", "white");
         $(this).css("color", "black");
     })
@@ -129,16 +173,27 @@ $(document).ready(function () {
     var $viewer = $("#login_view");
     function opener() {
         $viewer.animate({ "width": "35%" }, 400);
-        $("#back").animate({ "opacity": "50%" }, 500);
-        $('#back > img').css("opacity", "50%");
+        $("#back >img").animate({ "opacity": "50%" }, 500);
+        $('#back').css("display", "block");
     }
     function closer() {
         $viewer.animate({ "width": "0%" }, 400);
-        $("#back").animate({ "opacity": "0%" }, 500);
+        $("#back > img").animate({ "opacity": "0%" }, 500);
+        $('#back').css("display", "none");
     }
-
+	
+	$("#search_btn").click(function(){
+        $("#search").toggleClass("on")
+    })
+    
 	checkToggleClass();
-})
+	$("#buttons > li:nth-child(1)").addClass("click");
+	
+
+            
+            
+
+});
 
 function checkToggleClass(){
    var title_text = $(".goods_list_title > h2").text();
@@ -154,6 +209,3 @@ function checkToggleClass(){
    
 }
 
-
-
-	

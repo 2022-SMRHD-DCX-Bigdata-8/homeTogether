@@ -474,10 +474,7 @@
     </main>
 
 
-
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-    <script src="assets/js/products.js"></script>
     <script>
         function sample6_execDaumPostcode() {
             new daum.Postcode({
@@ -529,52 +526,54 @@
     </script>
    
    
-    
+      
       <script>
-      function autoHypenPhone(str) {
-          str = str.replace(/[^0-9]/g, '');
-          var tmp = '';
-          if (str.length < 4) {
-              return str;
-          } else if (str.length < 7) {
-              tmp += str.substr(0, 3);
-              tmp += '-';
-              tmp += str.substr(3);
-              return tmp;
-          } else if (str.length < 11) {
-              tmp += str.substr(0, 3);
-              tmp += '-';
-              tmp += str.substr(3, 3);
-              tmp += '-';
-              tmp += str.substr(6);
-              return tmp;
-          } else {
-              tmp += str.substr(0, 3);
-              tmp += '-';
-              tmp += str.substr(3, 4);
-              tmp += '-';
-              tmp += str.substr(7);
-              return tmp;
-          }
-          return str;
-      }
 
-      var cellPhone = document.getElementById('cellPhone');
-      cellPhone.onkeyup = function (event) {
-          event = event || window.event;
-          var _val = this.value.trim();
-          this.value = autoHypenPhone(_val);
-      }
       //--------------------------------------------------------
-         $(function() {
-            $("button").click(function() {
-               $(":checkbox").attr("checked", "checked")
+        $(document).ready(function () {
+            function autoHypenPhone(str) {
+                str = str.replace(/[^0-9]/g, '');
+                var tmp = '';
+                if (str.length < 4) {
+                    return str;
+                } else if (str.length < 7) {
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3);
+                    return tmp;
+                } else if (str.length < 11) {
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3, 3);
+                    tmp += '-';
+                    tmp += str.substr(6);
+                    return tmp;
+                } else {
+                    tmp += str.substr(0, 3);
+                    tmp += '-';
+                    tmp += str.substr(3, 4);
+                    tmp += '-';
+                    tmp += str.substr(7);
+                    return tmp;
+                }
+                return str;
+            };
+
+            var cellPhone = document.getElementById('cellPhone');
+            cellPhone.onkeyup = function (event) {
+                event = event || window.event;
+                var _val = this.value.trim();
+                this.value = autoHypenPhone(_val);
+            };
+            $(function () {
+                $("button").click(function () {
+                    $(":checkbox").attr("checked", "checked")
+                })
             });
             $("#search_btn").click(function () {
                 $("#search").toggleClass("on")
-
             });
-         });
+        })
       </script>
 
       <script>
@@ -724,7 +723,9 @@
             });
          });
       </script>
-    
+    	
+    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="assets/js/products.js"></script>
 
 </body>
 

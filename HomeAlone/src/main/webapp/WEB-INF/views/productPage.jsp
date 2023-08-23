@@ -118,7 +118,13 @@
             <img src="img/logo/image2.png" height="75px">
         </a>
 		<ul id="menu">
-			<li><a href="#home">검색</a></li>
+			<form action="search.do" method="post" >
+				<div id="search">
+					<span>Search</span> <input type="text" id="search_content" name="search">
+					<input id="search_img" type="image" src="img/icon/search2.png">
+				</div>
+			</form>
+			<li id="search_btn"><a href="#home">검색</a></li>
 			<li><a href="goBasket.do">장바구니</a></li>
 			<% if (user == null) {	%>
 			<li id=goLogin><a href="#">로그인</a></li>
@@ -218,7 +224,6 @@
                         <img class="hover_image" src="${products.prod_img}" alt="랄로!?">
                     	</a>
                     	<div><span>${products.prod_name}</span></div>
-                    	<div><strong>이게 되면 성공</strong></div>
                     	<div><strong>${products.prod_price}원</strong></div>
                 	</li>
                 </c:forEach>
@@ -279,107 +284,181 @@
             </div>
         </div>
     </footer>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function sample6_execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
+
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+								// 조합된 참고항목을 해당 필드에 넣는다.
+								document.getElementById("sample6_extraAddress").value = extraAddr;
+
+							} else {
+								document.getElementById("sample6_extraAddress").value = '';
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('sample6_postcode').value = data.zonecode;
+							document.getElementById("sample6_address").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("sample6_detailAddress")
+									.focus();
+						}
+					}).open();
+		}
+	</script>
 
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="assets/js/products.js"></script>
     <script type="text/javascript">
 	let property;
     
-	  $(document).ready(function() {
-		console.log('test')
-		
-     	$('#filter>li').on('click', function(){
-     		
-     		property = $(this).find('a').data('value');
-     		console.log(property);
-     		goProperty();
-     		
-     	});
-               
+	$(document).ready(function() {
+	    console.log('test');
 
-     });
+	    $('#filter>li').on('click', function(e){
+	        property = $(this).find('a').data('value');
+	        var text = 1;
+
+	        console.log(text);
+	        console.log(property);
+	        goProperty(text);
+	    });
+	});   
+		function goProperty(text) {
+	    	$.ajax({
+	                 url : 'property.do',
+	                 type : 'post',
+	                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	                 dataType : 'json',
+	                 data : {
+	                     "property" : property,
+	                     "text" : text
+	                 },
+	                 
+	                 success : function(response) {
+	                    console.log(response);
+	                    
+	                                        
+	            	    var total = response.total;
+	            	    var product = response.product;
+						var text = response.text;
+	            	    var url = response.url;
+	            	    
+	                    let ul = $('#goods_lists');
+	                    ul.html('');
+	                    console.log(product.length);
+						var tr="";
+	                    for (let i = 0; i < product.length; i++) {
+
+	                       tr = "<li>";
+	                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
+	                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
+	                       tr += "</a>" 
+	                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
+	                       tr += "<div><strong>이게 되면 성공</strong></div>"
+	                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
+	                       tr += "</li>";
+
+	                       
+	                       ul.append(tr)
+	                    }
+	                    
+	                    let totalcnt=$('#total');
+	                    totalcnt.html('');
+	                    
+	                    totalnum = "<span>Total"+ total+"</span>"
+	                    
+	                    totalcnt.append(totalnum);
+	                    
+	                    
+	                    
+	                    
+	                    let btns = $('#buttons');
+	                    btns.html('');
+	                    
+	                    if(parseInt(text/15) == 0){
+	                    	text = 1
+	                    }else{
+	                    	text = parseInt((text/15))+1
+	                    }
+	                    
+	                    if(total%15 !=0){
+	                    	total= total/15+1
+	                    }else{
+	                    	total=total/15
+	                    }
+	                    
+	                    
+	                    
+	                    for(var i = 1; i <= total; i++){	
+	                    	if(i==text){
+								btns.append(`
+									<li class="click">
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+									</li>
+								`);   
+	                    	}else{
+								btns.append(`
+										<li>
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+										</li>
+									`);  
+	                    	}
+	                    }
+	                    
+	                    
+	                    
+
+	                 },
+	                 error : function(e) {
+	                    console.log('요청실패!!!');
+	                 }
+	              });
+
+	     }
+
     
    
     
-    function goProperty(page) {
-    	$.ajax({
-                 url : 'property.do',
-                 type : 'post',
-                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                 dataType : 'json',
-                 data : {
-                     "property" : property,
-                     "page" : page
-                 },
-                 
-                 success : function(response) {
-                    console.log(response);
-                    
-                                        
-            	    var total = response.total;
-            	    var product = response.product;
-            	    var page = response.page;
-            	    var url = response.url;
-            	    
-                    let ul = $('#goods_lists');
-                    ul.html('');
-                    
-
-                    for (let i = 0; i < product.length; i++) {
-
-                       tr = "<li>";
-                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
-                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
-                       tr += "</a>" 
-                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
-                       tr += "<div><strong>이게 되면 성공</strong></div>"
-                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
-                       tr += "</li>";
-
-                       
-                       ul.append(tr);
-
-                    }
-                    let totalcnt=$('#total');
-                    totalcnt.html('');
-                    
-                    totalnum = "<span>Total"+ total+"</span>"
-                    
-                    totalcnt.append(totalnum);
-                    
-                    
-                    
-                    
-                    let btns = $('#buttons');
-                    btns.html('');
-                    if(total%15 !=0){
-                    	total= total/15+1
-                    }else{
-                    	total=total/15
-                    }
-                    
-                    for(var i = 1; i <= total; i++){
-						btns.append(`
-							<li>
-							<span>
-								<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
-							</span>
-							</li>
-						`);                    	
-                    }
-                    
-                    
-                    
-                    
-
-                 },
-                 error : function(e) {
-                    console.log('요청실패!!!');
-                 }
-              });
-
-     }
     
     </script>
     
