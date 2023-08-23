@@ -202,8 +202,3 @@ function checkToggleClass(){
    
 }
 
-
-
-
-
-

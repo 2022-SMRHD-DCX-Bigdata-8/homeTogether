@@ -14,8 +14,8 @@
 </head>
 
 <body>
-<% TB_Member user = (TB_Member)session.getAttribute("user"); 
-	
+<% 
+	TB_Member user = (TB_Member)session.getAttribute("user"); 
 
 %>
     <div id="login_view">
@@ -153,18 +153,53 @@
     </c:if>
     </div>
     <div id="filter_box">
+        <c:if test="${searched!=null}">
+        	<ul id="filter" style="visibility : hidden">
+            <li>뭐냐?</li>
+       	</c:if>
+        <c:if test="${product[0].prod_type =='조명'}">
         <ul id="filter">
-            <li><a href="#"><span>항목1</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목3</span></a></li>
+            <li><a href="#"><span>벽조명</span></a></li>
+            <li><a href="#"><span>스탠드조명</span></a></li>
+            <li><a href="#"><span>천장등</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='수납'}">
+        <ul id="filter">
+            <li><a href="#"><span>행거</span></a></li>
+            <li><a href="#"><span>선반</span></a></li>
+            <li><a href="#"><span>수납박스</span></a></li>
+            <li><a href="#"><span>서랍장</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='침구류'}">
+        <ul id="filter">
+            <li><a href="#"><span>침대</span></a></li>
+            <li><a href="#"><span>이불/베개</span></a></li>
+            <li><a href="#"><span>러그</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='가전제품'}">
+        <ul id="filter">
+            <li><a href="#"><span>주방가전</span></a></li>
+            <li><a href="#"><span>생활가전</span></a></li>            
+        </c:if>
+        <c:if test="${product[0].prod_type =='테이블'}">
+        <ul id="filter">
+            <li><a href="#"><span>좌식/접이식 테이블</span></a></li>
+            <li><a href="#"><span>사이드 테이블</span></a></li>
+            <li><a href="#"><span>일반테이블</span></a></li>
+        </c:if>
+         <c:if test="${product[0].prod_type =='의자/소파'}">
+         <ul id="filter">
+            <li><a href="#"><span>좌식의자</span></a></li>
+            <li><a href="#"><span>인테리어의자</span></a></li>
+            <li><a href="#"><span>사무용의자</span></a></li>
+            <li><a href="#"><span>소파</span></a></li>
+        </c:if>
+           
         </ul>
     </div>
     <div id="sort_div">
         <ul id="sort_list">
-            <li><span>Total ${total}</span></li>
+            <li id="total"><span>Total ${total}</span></li>
             <li>
                 <ul id="sort">
                     <li class="li">
@@ -310,6 +345,106 @@
 
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="assets/js/products.js"></script>
+    <script type="text/javascript">
+	let property;
+    
+	  $(document).ready(function() {
+		console.log('test')
+		
+     	$('#filter>li').on('click', function(){
+     		
+     		property = $(this).find('a>span').text(); 
+     		
+     		goProperty();
+     		
+     	});
+               
+
+     });
+    
+   
+    
+    function goProperty(page) {
+    	$.ajax({
+                 url : 'property.do',
+                 type : 'post',
+                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                 dataType : 'json',
+                 data : {
+                     "property" : property,
+                     "page" : page
+                 },
+                 
+                 success : function(response) {
+                    console.log(response);
+                    
+                                        
+            	    var total = response.total;
+            	    var product = response.product;
+            	    var page = response.page;
+            	    var url = response.url;
+            	    
+                    let ul = $('#goods_lists');
+                    ul.html('');
+                    
+
+                    for (let i = 0; i < product.length; i++) {
+
+                       tr = "<li>";
+                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
+                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
+                       tr += "</a>" 
+                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
+                       tr += "<div><strong>이게 되면 성공</strong></div>"
+                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
+                       tr += "</li>";
+
+                       
+                       ul.append(tr);
+
+                    }
+                    let totalcnt=$('#total');
+                    totalcnt.html('');
+                    
+                    totalnum = "<span>Total"+ total+"</span>"
+                    
+                    totalcnt.append(totalnum);
+                    
+                    
+                    
+                    
+                    let btns = $('#buttons');
+                    btns.html('');
+                    if(total%15 !=0){
+                    	total= total/15+1
+                    }else{
+                    	total=total/15
+                    }
+                    
+                    for(var i = 1; i <= total; i++){
+						btns.append(`
+							<li>
+							<span>
+								<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+							</span>
+							</li>
+						`);                    	
+                    }
+                    
+                    
+                    
+                    
+
+                 },
+                 error : function(e) {
+                    console.log('요청실패!!!');
+                 }
+              });
+
+     }
+    
+    </script>
+    
 
 </body>
 

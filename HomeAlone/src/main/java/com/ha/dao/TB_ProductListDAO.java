@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ha.database.SqlSessionManager;
+import com.ha.entity.Paging;
 import com.ha.entity.TB_Product;
 
 public class TB_ProductListDAO {
@@ -77,6 +78,30 @@ public class TB_ProductListDAO {
 		session.close();
 		return list;
 		
+	}
+	public List<TB_Product> propertySelect(String property) {
+		SqlSession session = factory.openSession(true);
+		List<TB_Product> list = session.selectList("property" , property);
+		session.close();
+		return list;
+		
+	}
+	
+	// 전체 수 가져오기
+	public int count(String property) {
+		SqlSession session = factory.openSession(true);
+		int cnt = session.selectOne("count" , property);
+		session.close();
+		return cnt;
+		
+	}
+	
+	// 페이징
+	public List<TB_Product> paging(Paging paging) {
+		SqlSession session = factory.openSession(true);
+		List<TB_Product> list = session.selectList("paging" , paging);
+		session.close();
+		return list;
 	}
 	
 	

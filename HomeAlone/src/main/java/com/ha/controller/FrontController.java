@@ -89,6 +89,9 @@ public class FrontController extends HttpServlet {
 			//검색기능
 			handler.put("/search.do", new searchCon());
 			
+			//상세카테고리
+			handler.put("/property.do", new propertyCon());
+			
 			
 			
 			

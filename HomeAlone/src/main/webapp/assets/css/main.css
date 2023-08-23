@@ -9,7 +9,12 @@
 * {
   font-family: 'GmarketSansMedium' !important;
 }
-
+@media(max-width : 1230px){
+	.products > div > a > img{
+		width : 210px;
+		height : 210px;
+	}
+}
 /* 글꼴 끝 */
 
 @media(max-width : 776px) {
