@@ -36,6 +36,10 @@ public class goGajunCon implements Controller {
 		
 		int start = (page_idx-1)*15;
 		int end = start+15;
+		if(end >list.size()) {
+			end=list.size();
+			
+		}
 		List<TB_Product> product = list.subList(start, end);
 		
 		String url = request.getRequestURL().toString();

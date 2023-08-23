@@ -52,9 +52,10 @@
 	
 	</select>
 	
-	<select id="search" resultType="com.ha.entity.TB_Product">
+	<select id="searched" resultType="com.ha.entity.TB_Product">
+		
 		select *  from TB_Product
-		where prod_name like '%#{search}%'
+		where prod_name like '%${search}%'
 	
 	</select>
 
