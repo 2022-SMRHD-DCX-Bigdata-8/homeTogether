@@ -52,8 +52,9 @@ public class goLightingCon implements Controller {
 		request.setAttribute("product", product);
 		request.setAttribute("page",page_cnt);
 		request.setAttribute("url", currenturl);
-		System.out.println(product.get(0).getProd_img());
 		
+		System.out.println(product.get(0).getProd_img());
+				
 		return "productPage";
 	}
 

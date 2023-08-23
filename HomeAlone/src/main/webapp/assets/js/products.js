@@ -137,5 +137,23 @@ $(document).ready(function () {
         $("#back").animate({ "opacity": "0%" }, 500);
     }
 
-
+	checkToggleClass();
 })
+
+function checkToggleClass(){
+   var title_text = $(".goods_list_title > h2").text();
+   var list_text = $("#nav > #categori > li > a > span");
+   var aTags = $("#nav > #categori > li > a");
+   var len = $("#nav > #categori > li > a > span").lenth;
+   list_text.each(function(index, element){
+      var text = $(element).text();
+      if(text === title_text){
+         aTags.eq(index).toggleClass("on");
+      }
+   });
+   
+}
+
+
+
+	

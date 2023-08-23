@@ -58,9 +58,24 @@
 		where prod_name like '%${search}%'
 	
 	</select>
+	
+	<select id="property" resultType="com.ha.entity.TB_Product">
+		select *  from TB_Product
+		where prod_detail= #{property}
+	
+	</select>
 
+	<select id="count" resultType="int">
+		select count(*) from TB_Product
+		where prod_detail= #{property}
+	</select>
 
-
+	<select id="paging" resultType="com.ha.entity.TB_Product" parameterType="com.ha.entity.Paging">
+		select * 
+		from (select prod_seq, prod_at, prod_detail, prod_img, prod_name, prod_price, prod_type, rownum as RN from TB_Product
+		        where prod_detail= #{property})
+		where RN BETWEEN #{page} and #{page}+14
+	</select>
 
 
 
