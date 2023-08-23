@@ -112,10 +112,10 @@ $(document).ready(function () {
         target3.parent().parent().toggleClass("cate");
     })
 
-    $("#buttons > li > span").click(function(e){
+    $("#buttons > li > span > a").click(function(e){
         var target = $(e.target);
         $("#buttons > li").removeClass("click");
-        target.parent().toggleClass("click");
+        target.parent().paren().toggleClass("click");
     })
     /* $("#goods_lists> li > a > img").mouseenter(function(e){
         var target = $(e.target);
@@ -185,7 +185,14 @@ $(document).ready(function () {
 	$("#search_btn").click(function(){
         $("#search").toggleClass("on")
     })
+    
 	checkToggleClass();
+	$("#buttons > li:nth-child(1)").addClass("click");
+	
+
+            
+            
+
 });
 
 function checkToggleClass(){

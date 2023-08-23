@@ -9,19 +9,23 @@
 * {
   font-family: 'GmarketSansMedium' !important;
 }
-@media(max-width : 1230px){
-	.products > div > a > img{
+/* 글꼴 끝 */
+
+@media(max-width : 1200px) {
+	body > .products > div > a > img{
 		width : 210px;
 		height : 210px;
 	}
-}
-/* 글꼴 끝 */
-
-@media(max-width : 776px) {
-  .logo>img {
-    height: 50px;
-  }
-
+	body > .products > div > a {
+		width : 210px;
+		height : 210px;
+	}
+	body > div.products > div > p:nth-child(2){
+		font-size : 14px;
+	}
+	.products > div > .price{
+		font-size : 16px;
+	}
 }
 
 * {
@@ -412,6 +416,7 @@ body h1 {
   width: 240px;
   height: 240px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .products > div {
@@ -547,9 +552,8 @@ body > div.products > div > p:nth-child(2){
 	overflow: hidden;
 	border-radius : 25px;
 }
-.products > div > a > img{
-	cursor: pointer;
-}
+
+
 .products > div > a > img:hover{
 	transform : scale(1.1);
 	transition : all 800ms ease;

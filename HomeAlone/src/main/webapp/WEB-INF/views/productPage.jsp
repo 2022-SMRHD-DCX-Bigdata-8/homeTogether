@@ -224,7 +224,6 @@
                         <img class="hover_image" src="${products.prod_img}" alt="랄로!?">
                     	</a>
                     	<div><span>${products.prod_name}</span></div>
-                    	<div><strong>이게 되면 성공</strong></div>
                     	<div><strong>${products.prod_price}원</strong></div>
                 	</li>
                 </c:forEach>
@@ -348,100 +347,118 @@
     <script type="text/javascript">
 	let property;
     
-	  $(document).ready(function() {
-		console.log('test')
-		
-     	$('#filter>li').on('click', function(){
-     		
-     		property = $(this).find('a').data('value');
-     		console.log(property);
-     		goProperty();
-     		
-     	});
-               
+	$(document).ready(function() {
+	    console.log('test');
 
-     });
+	    $('#filter>li').on('click', function(e){
+	        property = $(this).find('a').data('value');
+	        var text = 1;
+
+	        console.log(text);
+	        console.log(property);
+	        goProperty(text);
+	    });
+	});   
+		function goProperty(text) {
+	    	$.ajax({
+	                 url : 'property.do',
+	                 type : 'post',
+	                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	                 dataType : 'json',
+	                 data : {
+	                     "property" : property,
+	                     "text" : text
+	                 },
+	                 
+	                 success : function(response) {
+	                    console.log(response);
+	                    
+	                                        
+	            	    var total = response.total;
+	            	    var product = response.product;
+						var text = response.text;
+	            	    var url = response.url;
+	            	    
+	                    let ul = $('#goods_lists');
+	                    ul.html('');
+	                    console.log(product.length);
+						var tr="";
+	                    for (let i = 0; i < product.length; i++) {
+
+	                       tr = "<li>";
+	                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
+	                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
+	                       tr += "</a>" 
+	                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
+	                       tr += "<div><strong>이게 되면 성공</strong></div>"
+	                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
+	                       tr += "</li>";
+
+	                       
+	                       ul.append(tr)
+	                    }
+	                    
+	                    let totalcnt=$('#total');
+	                    totalcnt.html('');
+	                    
+	                    totalnum = "<span>Total"+ total+"</span>"
+	                    
+	                    totalcnt.append(totalnum);
+	                    
+	                    
+	                    
+	                    
+	                    let btns = $('#buttons');
+	                    btns.html('');
+	                    
+	                    if(parseInt(text/15) == 0){
+	                    	text = 1
+	                    }else{
+	                    	text = parseInt((text/15))+1
+	                    }
+	                    
+	                    if(total%15 !=0){
+	                    	total= total/15+1
+	                    }else{
+	                    	total=total/15
+	                    }
+	                    
+	                    
+	                    
+	                    for(var i = 1; i <= total; i++){	
+	                    	if(i==text){
+								btns.append(`
+									<li class="click">
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+									</li>
+								`);   
+	                    	}else{
+								btns.append(`
+										<li>
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+										</li>
+									`);  
+	                    	}
+	                    }
+	                    
+	                    
+	                    
+
+	                 },
+	                 error : function(e) {
+	                    console.log('요청실패!!!');
+	                 }
+	              });
+
+	     }
+
     
    
     
-    function goProperty(page) {
-    	$.ajax({
-                 url : 'property.do',
-                 type : 'post',
-                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                 dataType : 'json',
-                 data : {
-                     "property" : property,
-                     "page" : page
-                 },
-                 
-                 success : function(response) {
-                    console.log(response);
-                    
-                                        
-            	    var total = response.total;
-            	    var product = response.product;
-            	    var page = response.page;
-            	    var url = response.url;
-            	    
-                    let ul = $('#goods_lists');
-                    ul.html('');
-                    
-
-                    for (let i = 0; i < product.length; i++) {
-
-                       tr = "<li>";
-                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
-                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
-                       tr += "</a>" 
-                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
-                       tr += "<div><strong>이게 되면 성공</strong></div>"
-                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
-                       tr += "</li>";
-
-                       
-                       ul.append(tr);
-
-                    }
-                    let totalcnt=$('#total');
-                    totalcnt.html('');
-                    
-                    totalnum = "<span>Total"+ total+"</span>"
-                    
-                    totalcnt.append(totalnum);
-                    
-                    
-                    
-                    
-                    let btns = $('#buttons');
-                    btns.html('');
-                    if(total%15 !=0){
-                    	total= total/15+1
-                    }else{
-                    	total=total/15
-                    }
-                    
-                    for(var i = 1; i <= total; i++){
-						btns.append(`
-							<li>
-							<span>
-								<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
-							</span>
-							</li>
-						`);                    	
-                    }
-                    
-                    
-                    
-                    
-
-                 },
-                 error : function(e) {
-                    console.log('요청실패!!!');
-                 }
-              });
-
-     }
     
     </script>
     
