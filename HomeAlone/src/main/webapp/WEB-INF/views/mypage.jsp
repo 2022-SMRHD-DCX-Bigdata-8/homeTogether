@@ -353,13 +353,14 @@
        $('#review_QnA').on('click', function() {
           // qnaList();// 클릭 시 reviewList 함수 실행
            reviewList();
+           orderList();
        });
    });
 
   
-   function qnaList() {
+   function orderList() {
        $.ajax({
-           url : 'myPageQna.do',
+           url : 'myPageOrder.do',
            type : 'get',
            data : {},
            dataType : 'json',
@@ -372,6 +373,7 @@
            }
        });
    }
+   
    function reviewList() {
        $.ajax({
            url : 'myPageReview.do',

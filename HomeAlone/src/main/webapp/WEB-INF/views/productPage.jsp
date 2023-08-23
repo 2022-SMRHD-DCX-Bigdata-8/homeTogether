@@ -1,6 +1,7 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 
@@ -13,7 +14,10 @@
 </head>
 
 <body>
-<% TB_Member user = (TB_Member)session.getAttribute("user"); %>
+<% 
+	TB_Member user = (TB_Member)session.getAttribute("user"); 
+
+%>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -110,11 +114,17 @@
 
     </div>
     <header>
-        <a class="logo" href="#">
+        <a class="logo" href="main.do">
             <img src="img/logo/image2.png" height="75px">
         </a>
 		<ul id="menu">
-			<li><a href="#home">검색</a></li>
+			<form action="search.do" method="post" >
+				<div id="search">
+					<span>Search</span> <input type="text" id="search_content" name="search">
+					<input id="search_img" type="image" src="img/icon/search2.png">
+				</div>
+			</form>
+			<li id="search_btn"><a href="#home">검색</a></li>
 			<li><a href="goBasket.do">장바구니</a></li>
 			<% if (user == null) {	%>
 			<li id=goLogin><a href="#">로그인</a></li>
@@ -126,30 +136,70 @@
     </header>
     <nav id="nav">
         <ul id="categori">
-            <li><a class="on" href="#"><span>조명</span></a></li>
-            <li><a href="#"><span>책상</span></a></li>
-            <li><a href="#"><span>테이블</span></a></li>
-            <li><a href="#"><span>소파</span></a></li>
-            <li><a href="#"><span>침구</span></a></li>
-            <li><a href="#"><span>전자</span></a></li>
+            <li><a href="goLighting.do"><span>조명</span></a></li>
+            <li><a href="goTable.do"><span>테이블</span></a></li>
+            <li><a href="goStorage.do"><span>수납</span></a></li>
+            <li><a href="goChair.do"><span>의자/소파</span></a></li>
+            <li><a href="goBedding.do"><span>침구류</span></a></li>
+            <li><a href="goGajun.do"><span>가전제품</span></a></li>
         </ul>
     </nav>
     <div class="goods_list_title">
-        <h2>${product[0].prod_type}</h2>
+    <c:if test="${searched!=null}">
+        <h2>${searched}</h2>
+    </c:if>
+    <c:if test="${searched==null}">
+    	<h2>${product[0].prod_type}</h2>
+    </c:if>
     </div>
     <div id="filter_box">
+        <c:if test="${searched!=null}">
+        	<ul id="filter" style="visibility : hidden">
+            <li>뭐냐?</li>
+       	</c:if>
+        <c:if test="${product[0].prod_type =='조명'}">
         <ul id="filter">
-            <li><a href="#"><span>항목1</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목2</span></a></li>
-            <li><a href="#"><span>항목3</span></a></li>
+            <li><a href="#" data-value='벽조명'><span>벽조명</span></a></li>
+            <li><a href="#" data-value='스탠드조명'><span>스탠드조명</span></a></li>
+            <li><a href="#" data-value='천장등'><span>천장등</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='수납'}">
+        <ul id="filter">
+            <li><a href="#" data-value='행거'><span>행거</span></a></li>
+            <li><a href="#" data-value='선반'><span>선반</span></a></li>
+            <li><a href="#" data-value='수납박스'><span>수납박스</span></a></li>
+            <li><a href="#" data-value='서랍장'><span>서랍장</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='침구류'}">
+        <ul id="filter">
+            <li><a href="#" data-value='침대'><span>침대</span></a></li>
+            <li><a href="#" data-value='이불/베개'><span>이불/베개</span></a></li>
+            <li><a href="#" data-value='러그'><span>러그</span></a></li>
+        </c:if>
+        <c:if test="${product[0].prod_type =='가전제품'}">
+        <ul id="filter">
+            <li><a href="#" data-value='주방가전'><span>주방가전</span></a></li>
+            <li><a href="#" data-value='생활가전'><span>생활가전</span></a></li>            
+        </c:if>
+        <c:if test="${product[0].prod_type =='테이블'}">
+        <ul id="filter">
+            <li><a href="#" data-value='좌식/접이식 테이블'><span>좌식/접이식</span></a></li>
+            <li><a href="#" data-value='사이드 테이블'><span>사이드 테이블</span></a></li>
+            <li><a href="#" data-value='일반테이블'><span>일반테이블</span></a></li>
+        </c:if>
+         <c:if test="${product[0].prod_type =='의자/소파'}">
+         <ul id="filter">
+            <li><a href="#" data-value='좌식의자'><span>좌식의자</span></a></li>
+            <li><a href="#" data-value='인테리어의자'><span>인테리어의자</span></a></li>
+            <li><a href="#" data-value='사무용의자'><span>사무용의자</span></a></li>
+            <li><a href="#" data-value='소파'><span>소파</span></a></li>
+        </c:if>
+           
         </ul>
     </div>
     <div id="sort_div">
         <ul id="sort_list">
-            <li><span>Total 2400item</span></li>
+            <li id="total"><span>Total ${total}</span></li>
             <li>
                 <ul id="sort">
                     <li class="li">
@@ -168,136 +218,33 @@
     <div id="content">
         <div>
             <ul id="goods_lists">
-                <!--  <c:forEach var="products" items="${product}">-->
-                <li>
-                    <a href="goProductcell.do?prod_seq=${product[1].prod_seq}" class="image_container">
-                        <img class="hover_image" src="${product[1].prod_img}" alt="랄로!?">
-                    </a>
-                    <div><span>${product[1].prod_name}</span></div>
-                    <div><strong>이게 되면 성공</strong></div>
-                    <div><strong>${product[1].prod_price}</strong></div>
-                </li>
-                <!--  </c:forEach>-->
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_08.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_07.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_06.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_05.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_04.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_03.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_02.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481_01.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155802481.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_01.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_02.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_03.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container"> 
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_04.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
-                <li>
-                    <a href="" class="image_container">
-                        <img class="hover_image" src="img/test/KakaoTalk_20230817_155756756_05.jpg" alt="랄로!?">
-                    </a>
-                    <div><span>80억 날린 청년</span></div>
-                    <div><strong>랄로를 몰라!?</strong></div>
-                    <div><strong>80억</strong></div>
-                </li>
+                <c:forEach var="products" items="${product}">
+                	<li>
+                   		<a href="goProductcell.do?prod_seq=${products.prod_seq}" class="image_container">
+                        <img class="hover_image" src="${products.prod_img}" alt="랄로!?">
+                    	</a>
+                    	<div><span>${products.prod_name}</span></div>
+                    	<div><strong>${products.prod_price}원</strong></div>
+                	</li>
+                </c:forEach>
+                                
             </ul>
             <div id="goods_paging">
                 <ul id="buttons">
-                    <li class="click"><span>1</span></li>
-                    <li><span>2</span></li>
-                    <li><span>3</span></li>
-                    <li><span>4</span></li>
-                    <li><span>5</span></li>
+                
+				<c:if test="${searched ==null }">
+				<c:forEach var="i" begin="1" end="${page}">
+    				<li><span><a href="${url}?page=${i}">${i}</a></span></li>
+				</c:forEach>
+				</c:if>
+				<c:if test="${searched !=null }">
+				<c:forEach var="i" begin="1" end="${page}">
+    				<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+				</c:forEach>
+				</c:if>
+				
+                    
+    				
                 </ul>
             </div>
         </div>
@@ -337,10 +284,184 @@
             </div>
         </div>
     </footer>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function sample6_execDaumPostcode() {
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							var addr = ''; // 주소 변수
+							var extraAddr = ''; // 참고항목 변수
+
+							//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+								addr = data.roadAddress;
+							} else { // 사용자가 지번 주소를 선택했을 경우(J)
+								addr = data.jibunAddress;
+							}
+
+							// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+							if (data.userSelectedType === 'R') {
+								// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+								// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+								if (data.bname !== ''
+										&& /[동|로|가]$/g.test(data.bname)) {
+									extraAddr += data.bname;
+								}
+								// 건물명이 있고, 공동주택일 경우 추가한다.
+								if (data.buildingName !== ''
+										&& data.apartment === 'Y') {
+									extraAddr += (extraAddr !== '' ? ', '
+											+ data.buildingName
+											: data.buildingName);
+								}
+								// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+								if (extraAddr !== '') {
+									extraAddr = ' (' + extraAddr + ')';
+								}
+								// 조합된 참고항목을 해당 필드에 넣는다.
+								document.getElementById("sample6_extraAddress").value = extraAddr;
+
+							} else {
+								document.getElementById("sample6_extraAddress").value = '';
+							}
+
+							// 우편번호와 주소 정보를 해당 필드에 넣는다.
+							document.getElementById('sample6_postcode').value = data.zonecode;
+							document.getElementById("sample6_address").value = addr;
+							// 커서를 상세주소 필드로 이동한다.
+							document.getElementById("sample6_detailAddress")
+									.focus();
+						}
+					}).open();
+		}
+	</script>
 
     <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="assets/js/products.js"></script>
+    <script type="text/javascript">
+	let property;
+    
+	$(document).ready(function() {
+	    console.log('test');
+
+	    $('#filter>li').on('click', function(e){
+	        property = $(this).find('a').data('value');
+	        var text = 1;
+
+	        console.log(text);
+	        console.log(property);
+	        goProperty(text);
+	    });
+	});   
+		function goProperty(text) {
+	    	$.ajax({
+	                 url : 'property.do',
+	                 type : 'post',
+	                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	                 dataType : 'json',
+	                 data : {
+	                     "property" : property,
+	                     "text" : text
+	                 },
+	                 
+	                 success : function(response) {
+	                    console.log(response);
+	                    
+	                                        
+	            	    var total = response.total;
+	            	    var product = response.product;
+						var text = response.text;
+	            	    var url = response.url;
+	            	    
+	                    let ul = $('#goods_lists');
+	                    ul.html('');
+	                    console.log(product.length);
+						var tr="";
+	                    for (let i = 0; i < product.length; i++) {
+
+	                       tr = "<li>";
+	                       tr += "<a href="+"'goProductcell.do?prod_seq="+product[i].prod_seq+"' class='image_container'>"
+	                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
+	                       tr += "</a>" 
+	                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
+	                       tr += "<div><strong>이게 되면 성공</strong></div>"
+	                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
+	                       tr += "</li>";
+
+	                       
+	                       ul.append(tr)
+	                    }
+	                    
+	                    let totalcnt=$('#total');
+	                    totalcnt.html('');
+	                    
+	                    totalnum = "<span>Total"+ total+"</span>"
+	                    
+	                    totalcnt.append(totalnum);
+	                    
+	                    
+	                    
+	                    
+	                    let btns = $('#buttons');
+	                    btns.html('');
+	                    
+	                    if(parseInt(text/15) == 0){
+	                    	text = 1
+	                    }else{
+	                    	text = parseInt((text/15))+1
+	                    }
+	                    
+	                    if(total%15 !=0){
+	                    	total= total/15+1
+	                    }else{
+	                    	total=total/15
+	                    }
+	                    
+	                    
+	                    
+	                    for(var i = 1; i <= total; i++){	
+	                    	if(i==text){
+								btns.append(`
+									<li class="click">
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+									</li>
+								`);   
+	                    	}else{
+								btns.append(`
+										<li>
+										<span>
+											<a href="javascript:goProperty(` + (1 + 15*(i-1)) + `)">` + i + `</a>
+										</span>
+										</li>
+									`);  
+	                    	}
+	                    }
+	                    
+	                    
+	                    
+
+	                 },
+	                 error : function(e) {
+	                    console.log('요청실패!!!');
+	                 }
+	              });
+
+	     }
+
+    
+   
+    
+    
+    </script>
+    
 
 </body>
 

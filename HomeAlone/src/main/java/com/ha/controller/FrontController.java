@@ -83,8 +83,16 @@ public class FrontController extends HttpServlet {
 			handler.put("/myPageReview.do", new myPageReviewCon());
 			
 			
+			
+			
 			//id 중복확인
 			handler.put("/idCheck.do", new idCheckCon());
+			
+			//검색기능
+			handler.put("/search.do", new searchCon());
+			
+			//상세카테고리
+			handler.put("/property.do", new propertyCon());
 			
 			
 			

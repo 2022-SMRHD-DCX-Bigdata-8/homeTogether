@@ -9,14 +9,23 @@
 * {
   font-family: 'GmarketSansMedium' !important;
 }
-
 /* 글꼴 끝 */
 
-@media(max-width : 776px) {
-  .logo>img {
-    height: 50px;
-  }
-
+@media(max-width : 1200px) {
+	body > .products > div > a > img{
+		width : 210px;
+		height : 210px;
+	}
+	body > .products > div > a {
+		width : 210px;
+		height : 210px;
+	}
+	body > div.products > div > p:nth-child(2){
+		font-size : 14px;
+	}
+	.products > div > .price{
+		font-size : 16px;
+	}
 }
 
 * {
@@ -56,7 +65,7 @@ body {
   top: 50%;
   left: 67%;
   transform: translateY(-50%);
-  opacity: 0%;
+  display: none;
 }
 
 #back>img {
@@ -385,8 +394,8 @@ body h1 {
   text-align: center;
   margin-top: 60px;
   margin-bottom: 60px;
-  font-size: 24px;
-  font-style: bold;
+  font-size: 28px;
+  font-weight: bold;
   color: #545454;
 }
 
@@ -394,27 +403,33 @@ body h1 {
   margin-left: auto;
   margin-right: auto;
   padding: 0;
-  width: 780px;
+  width: 820px;
   text-align: center;
 }
-
-.products img {
-  width: 225px;
-  height: 225px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+.products::after{
+  content: "";
+  clear: both;
+  display: block;
 }
 
-.products a {
+.products > div > a > img {
+  width: 240px;
+  height: 240px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.products > div {
   text-decoration: none;
   color: black;
   float: left;
   font-size: 16px;
 }
 
-.price {
-  margin-top: 4px;
-  margin-bottom: 80px;
+.price {	
+  margin-top: 10px;
+  font-size : 18px;
+  font-weight: bold;
 }
 
 .clearfix {
@@ -498,7 +513,7 @@ body h1 {
   bottom: -5px;
   margin-bottom: 0px;
 }
-#menu > .on{
+#menu > form > .on{
   top: -10px;
   border-bottom: 1px solid black;
 }
@@ -514,10 +529,32 @@ body h1 {
 #search > #search_img{
   width: 20px;
 }
-.products > a{
+.products > div{
 	margin-right : 10px;
+	margin-top : 20px;
+	height : 330px;
+	box-sizing : border-bpx;
 }
-.products > p, .products > a{
-	width : 240px;
+body > div.products > div > p:nth-child(2){
+	color : #575252;
+	margin-top : 5px;
+
+}
+.products > div > p, .products div > a{
+	width : 260px;
 	
+}
+.products > div > a {
+	display : inline-block;
+	width : 240px;
+	height : 240px;
+	margin-bottom: 10px;
+	overflow: hidden;
+	border-radius : 25px;
+}
+
+
+.products > div > a > img:hover{
+	transform : scale(1.1);
+	transition : all 800ms ease;
 }
