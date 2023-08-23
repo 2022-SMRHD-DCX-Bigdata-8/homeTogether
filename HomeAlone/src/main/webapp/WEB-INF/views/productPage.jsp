@@ -153,40 +153,40 @@
        	</c:if>
         <c:if test="${product[0].prod_type =='조명'}">
         <ul id="filter">
-            <li><a href="#"><span>벽조명</span></a></li>
-            <li><a href="#"><span>스탠드조명</span></a></li>
-            <li><a href="#"><span>천장등</span></a></li>
+            <li><a href="#" data-value='벽조명'><span>벽조명</span></a></li>
+            <li><a href="#" data-value='스탠드조명'><span>스탠드조명</span></a></li>
+            <li><a href="#" data-value='천장등'><span>천장등</span></a></li>
         </c:if>
         <c:if test="${product[0].prod_type =='수납'}">
         <ul id="filter">
-            <li><a href="#"><span>행거</span></a></li>
-            <li><a href="#"><span>선반</span></a></li>
-            <li><a href="#"><span>수납박스</span></a></li>
-            <li><a href="#"><span>서랍장</span></a></li>
+            <li><a href="#" data-value='행거'><span>행거</span></a></li>
+            <li><a href="#" data-value='선반'><span>선반</span></a></li>
+            <li><a href="#" data-value='수납박스'><span>수납박스</span></a></li>
+            <li><a href="#" data-value='서랍장'><span>서랍장</span></a></li>
         </c:if>
         <c:if test="${product[0].prod_type =='침구류'}">
         <ul id="filter">
-            <li><a href="#"><span>침대</span></a></li>
-            <li><a href="#"><span>이불/베개</span></a></li>
-            <li><a href="#"><span>러그</span></a></li>
+            <li><a href="#" data-value='침대'><span>침대</span></a></li>
+            <li><a href="#" data-value='이불/베개'><span>이불/베개</span></a></li>
+            <li><a href="#" data-value='러그'><span>러그</span></a></li>
         </c:if>
         <c:if test="${product[0].prod_type =='가전제품'}">
         <ul id="filter">
-            <li><a href="#"><span>주방가전</span></a></li>
-            <li><a href="#"><span>생활가전</span></a></li>            
+            <li><a href="#" data-value='주방가전'><span>주방가전</span></a></li>
+            <li><a href="#" data-value='생활가전'><span>생활가전</span></a></li>            
         </c:if>
         <c:if test="${product[0].prod_type =='테이블'}">
         <ul id="filter">
-            <li><a href="#"><span>좌식/접이식 테이블</span></a></li>
-            <li><a href="#"><span>사이드 테이블</span></a></li>
-            <li><a href="#"><span>일반테이블</span></a></li>
+            <li><a href="#" data-value='좌식/접이식 테이블'><span>좌식/접이식</span></a></li>
+            <li><a href="#" data-value='사이드 테이블'><span>사이드 테이블</span></a></li>
+            <li><a href="#" data-value='일반테이블'><span>일반테이블</span></a></li>
         </c:if>
          <c:if test="${product[0].prod_type =='의자/소파'}">
          <ul id="filter">
-            <li><a href="#"><span>좌식의자</span></a></li>
-            <li><a href="#"><span>인테리어의자</span></a></li>
-            <li><a href="#"><span>사무용의자</span></a></li>
-            <li><a href="#"><span>소파</span></a></li>
+            <li><a href="#" data-value='좌식의자'><span>좌식의자</span></a></li>
+            <li><a href="#" data-value='인테리어의자'><span>인테리어의자</span></a></li>
+            <li><a href="#" data-value='사무용의자'><span>사무용의자</span></a></li>
+            <li><a href="#" data-value='소파'><span>소파</span></a></li>
         </c:if>
            
         </ul>
@@ -291,8 +291,8 @@
 		
      	$('#filter>li').on('click', function(){
      		
-     		property = $(this).find('a>span').text(); 
-     		
+     		property = $(this).find('a').data('value');
+     		console.log(property);
      		goProperty();
      		
      	});
