@@ -150,7 +150,7 @@
             </div>
             <div class="summary">
                <h2>
-                  상품번호 : <span id="prod_seq" data-value="${product.prod_seq}">${product.prod_seq}</span>
+                  상품번호 : P5761_<span id="prod_seq" data-value="${product.prod_seq}">${product.prod_seq}</span>
                </h2>
                <h1>(주)판매자명</h1>
 
@@ -222,7 +222,7 @@
             <table>
                <tr>
                   <td>상품번호</td>
-                  <td>11111111111</td>
+                  <td>P5761_${product.prod_seq}</td>
                </tr>
                <tr>
                   <td>상품상태</td>
@@ -252,23 +252,23 @@
             <table>
                <tr>
                   <td>제품소재</td>
-                  <td>상세정보 직접입력</td>
+                  <td>이미지 상세참조</td>
                </tr>
                <tr>
                   <td>색상</td>
-                  <td>상세정보 직접입력</td>
+                  <td>이미지 상세참조</td>
                </tr>
                <tr>
                   <td>치수</td>
-                  <td>상세정보 직접입력</td>
+                  <td>이미지 상세참조</td>
                </tr>
                <tr>
                   <td>제소사/수입국</td>
-                  <td>상세정보 직접입력</td>
+                  <td>한국</td>
                </tr>
                <tr>
                   <td>제조국</td>
-                  <td>상세정보 직접입력</td>
+                  <td>한국</td>
                </tr>
                <tr>
                   <td>취급시 주의사항</td>
@@ -276,7 +276,7 @@
                </tr>
                <tr>
                   <td>제조연월</td>
-                  <td>상세정보 직접입력</td>
+                  <td>관리자문의</td>
                </tr>
                <tr>
                   <td>품질보증기준</td>
@@ -284,11 +284,11 @@
                </tr>
                <tr>
                   <td>A/S 책임자와 전화번호</td>
-                  <td>상세정보 직접입력</td>
+                  <td>박현우 / 010-7298-5770</td>
                </tr>
                <tr>
                   <td>주문후 예상 배송기간</td>
-                  <td>상세정보 직접입력</td>
+                  <td>약 5-7일 </td>
                </tr>
                <tr>
                   <td colspan="2">구매, 교환, 반품, 배송, 설치 등과 관련하여 추가비용, 제한조건 등의
@@ -318,7 +318,7 @@
                         <span id="review_seq">${review.nick}
                            ${review.created_at}, ${review.review_seq}</span>
                      </div>
-                     <h3>상품명1/BLUE/L/상품평점:${review.ratings}</h3>
+                     <h3>${product.prod_type}/${product.prod_detail}/상품평점:${review.ratings}</h3>
                      <p>${review.review_content}</p> <c:if
                         test="${review.nick eq sessionScope.user.nick}">
                         <div class="review-buttons">
@@ -380,7 +380,7 @@
                         <span>${qna.q_seq}/${qna.nick}/${qna.created_at}</span>
                      </div>
                      <h3>
-                        상품명1/BLUE/L<a href="#" id="rep">답변하기<small></small></a>
+                        ${product.prod_type}/${product.prod_detail}<a href="#" id="rep">답변하기<small></small></a>
                      </h3>
                      <p>${qna.q_content}</p>
 
@@ -496,13 +496,13 @@
           // QNA
           $('#question').on('click', inQuestion);
           $('.answerButton').on('click', function() {
-        	   let isAdmin = "${sessionScope.user.m_type}" === 'A';
+              let isAdmin = "${sessionScope.user.m_type}" === 'A';
 
-        	   if (isAdmin) {
-        	      let row = $(this).closest('li'); 
-        	      row.find('.commentRow').toggle();
-        	   }
-        	});
+              if (isAdmin) {
+                 let row = $(this).closest('li'); 
+                 row.find('.commentRow').toggle();
+              }
+           });
            $('.addAnswerButton').on('click', addAnswer);
            $('#review_Button').on('click', inReview);
            $('.cart').on('click', inCart);
@@ -539,7 +539,7 @@ function redirectToPageWithParams(url, params) {
    
  //====================================================================================  
     function inCart() {
-    	let prod_cnt = $('#prod_cnt').val();
+       let prod_cnt = $('#prod_cnt').val();
         let prod_name = $('#prod_name').data('value');
         let prod_seq = $('#prod_seq').data('value');
         let prod_price = $('#prod_price').data('value');
@@ -826,7 +826,7 @@ function deleteReview() {
 
 //====================================================================================================================================        
       
-	   
+      
      function inQuestion() {
             let q_content = $('#q_content').val();
             let prod_seq = $('#prod_seq').data('value');
@@ -862,10 +862,10 @@ function deleteReview() {
             });
 
          }    
-	
+   
     //====================================================================================================================================        
 
-	
+   
     // 댓글 추가 함수
    function addAnswer() {
        let qnaItem = $(this).closest('li');

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ha.dao.TB_OrderDAO">
+
+
+	<insert id="insertorder" parameterType="com.ha.entity.TB_ORDER">
+		insert into tb_order(
+			nick,
+			created_at,
+			total_amount,
+			discount_amount,
+			pay_amount,
+			pay_method,
+			paid_amount,
+			order_status
+		)values(
+		#{nick},
+		SYSDATE,
+		#{total_amount},
+		#{discount_amount},
+		#{pay_amount},
+		#{pay_method},
+		#{order_status}
+		
+		)
+		
+	</insert>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

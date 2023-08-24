@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -439,11 +441,16 @@ input[type="submit"] {
 </head>
 
 <body>
+
+<%
+   TB_Member user = (TB_Member) session.getAttribute("user");
+List<String>buyer = (List<String>)session.getAttribute("buyer");
+   %>
 	<div id="login_view">
 		<div id="back">
 			<img src="img/icon/back.png">
 		</div>
-		<form action="#" method="post">
+		<form action="login.do" method="post">
 			<h1 id="login_h1">로그인</h1>
 			<table id="login">
 				<tbody>
@@ -463,7 +470,7 @@ input[type="submit"] {
 		</form>
 		<h1 id="join_h1">회원가입</h1>
 
-		<form action="#" method="post">
+		<form action="join.do" method="post">
 			<table id="join">
 				<tbody>
 					<tr>
@@ -534,7 +541,19 @@ input[type="submit"] {
 				<li><a href="#home">검색</a></li>
 				<li><a href="#html">게시판</a></li>
 				<li><a href="#css">장바구니</a></li>
-				<li id="goLogin"><a href="#javascript">로그인</a></li>
+				<%
+      if (user == null) {
+      %>
+		<li id="goLogin"><a href="#javascript">로그인</a></li>
+		<%
+      } else {
+      %>
+		<!-- ★마이페이지,로그아웃★ -->
+		<li><a href="goMypage.do">마이페이지</a></li>
+		<li><a href="goLogout.do">로그아웃</a></li>
+		<%
+      }
+      %>
 			</ul>
 		</div>
 		<main id="product">
@@ -667,7 +686,7 @@ input[type="submit"] {
 					</tr>
 					<tr>
 						<td>주문자/연락처</td>
-						<td>smhrd/010-1234-5678</td>
+						<td>${sessionScope.user.nick}/${sessionScope.user.phone}</td>
 					</tr>
 				</table>
 				<table id="order_price">
@@ -683,21 +702,21 @@ input[type="submit"] {
 				<table>
 					<tr>
 						<td>수취인</td>
-						<td>smhrd</td>
+						<td>${sessionScope.buyer[0]}</td>
 					</tr>
 					<tr>
 						<td>연락처</td>
-						<td>010-1234-5678</td>
+						<td>${sessionScope.buyer[1]}</td>
 					</tr>
 					<tr>
 						<td>배송지 주소</td>
-						<td>광주광역시 남구 송암로 60</td>
+						<td>${sessionScope.buyer[3]}${sessionScope.buyer[4]}</td>
 					</tr>
 				</table>
 			</article>
 
 			<div class="logo-container" style="text-align: center;">
-				<a href=""><input type="submit" value="홈으로"></a>
+				<a href="main.do"><input type="submit" value="홈으로"></a>
 			</div>
 
 			</div>
