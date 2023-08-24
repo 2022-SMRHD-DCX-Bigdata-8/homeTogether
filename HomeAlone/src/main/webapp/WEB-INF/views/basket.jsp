@@ -411,12 +411,12 @@
                             <table>
                                 <tr>
                                     <td>상품수</td>
-                                    <td id="selectedCount">상품을선택하세요</td>
+                                    <td id="selectedCount"></td>
 
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td id="productsPrice">상품을선택하세요</td>
+                                    <td id="productsPrice"></td>
 
                                 </tr>
 
@@ -427,7 +427,7 @@
 
                                 <tr>
                                     <td>전체주문금액</td>
-                                    <td id="totalPrice">0원</td>
+                                    <td id="totalPrice"></td>
 
                                 </tr>
                             </table>
@@ -549,7 +549,8 @@
 
       //--------------------------------------------------------
         $(document).ready(function () {
-            function autoHypenPhone(str) {
+            
+        	function autoHypenPhone(str) {
                 str = str.replace(/[^0-9]/g, '');
                 var tmp = '';
                 if (str.length < 4) {
@@ -591,6 +592,29 @@
             $("#search_btn").click(function () {
                 $("#search").toggleClass("on")
             });
+            //들어왔을때 상품체크박스에 체크된상태로
+            function initializeProductCheckboxes() {
+                var productCheckboxes = document.querySelectorAll('input[name="1"]');
+                for (var i = 0; i < productCheckboxes.length; i++) {
+                    var productId = productCheckboxes[i].getAttribute('data-product-id');
+                    if (isProductSelected(productId)) {
+                        productCheckboxes[i].checked = true;
+                    }
+                }
+            }
+
+            // 상품 선택 여부 확인 함수
+            function isProductSelected(productId) {
+                // productId를 사용하여 상품 선택 여부를 판단하는 로직 추가
+                // 여기서는 예시로 간단히 true 또는 false를 반환하도록 설정
+                return true; // 상품이 선택된 상태라면 true 반환, 선택되지 않았으면 false 반환
+            }
+
+            // 페이지 로드 시 각 상품 체크박스 상태 초기화
+            initializeProductCheckboxes();
+            updateSelectedCount();
+            updateTotalPrice();
+            updateSelectedCount()
         })
       </script>
 
