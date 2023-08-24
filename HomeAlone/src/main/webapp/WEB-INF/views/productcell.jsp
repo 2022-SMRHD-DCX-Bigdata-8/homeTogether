@@ -1,3 +1,5 @@
+<%@page import="com.ha.entity.TB_Product"%>
+<%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
@@ -9,40 +11,29 @@
 <meta charset="UTF-8">
 <title>HomeTogether</title>
 <link rel="stylesheet" href="assets/css/productcell.css">
-<style type="text/css">
-.buttons {
-   display: flex;
-   justify-content: flex-end;
-   gap: 5px;
-}
 
-.small {
-   font-size: 12px;
-   padding: 5px 10px;
-}
-</style>
 </head>
 
 <body>
-
-  <%
+   <%
    TB_Member user = (TB_Member) session.getAttribute("user");
+  
    %>
    <div id="login_view">
       <div id="back">
          <img src="img/icon/back.png">
       </div>
-      <form action="#" method="post">
+      <form action="login.do" method="post">
          <h1 id="login_h1">로그인</h1>
          <table id="login">
             <tbody>
                <tr>
                   <td>ID</td>
-                  <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                </tr>
                <tr>
                   <td>PW</td>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                </tr>
                <tr>
                   <td id="login_btn" colspan="2"><button>LOGIN</button></td>
@@ -52,48 +43,47 @@
       </form>
       <h1 id="join_h1">회원가입</h1>
 
-
       <form action="join.do" method="post">
          <table id="join">
             <tbody>
                <tr>
                   <td>ID</td>
-                  <td><input type="text" placeholder="아이디를 입력해주세요"></td>
+                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
                   <td></td>
                </tr>
                <tr>
                   <td>PW</td>
-                  <td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요" name="pw"></td>
                   <td></td>
                </tr>
                <tr>
                   <td>NICK</td>
-                  <td><input type="text" placeholder="닉네임을 입력해주세요"></td>
+                  <td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
                   <td></td>
                </tr>
                <tr>
                   <td>PHONE</td>
-                  <td><input type="text" name="cellPhone" id="cellPhone"
+                  <td><input type="text" name="phone" id="cellPhone"
                      placeholder="핸드폰번호 입력" maxlength="13" /></td>
                   <td></td>
                </tr>
                <tr>
                   <td>ADRESS</td>
-                  <td><input type="text" id="sample6_postcode"
+                  <td><input type="text" id="sample6_postcode" name="zipCode"
                      placeholder="우편번호" style="margin-right: 10px;"></td>
                   <td><input id="post_btn" type="button"
                      onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
                </tr>
                <tr>
                   <td></td>
-                  <td><input type="text" id="sample6_address" placeholder="주소">
-                     <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                  <td><input type="text" id="sample6_address" placeholder="주소" name="addr">
+                     <input type="text" id="sample6_detailAddress" placeholder="상세주소" name="addrDetail">
                   </td>
                   <td></td>
                </tr>
                <tr>
                   <td></td>
-                  <td><input type="text" id="sample6_extraAddress"
+                  <td><input type="text" id="sample6_extraAddress" name="text"
                      placeholder="참고항목"></td>
                   <td></td>
                </tr>
@@ -102,9 +92,9 @@
                <tr>
                   <td>GENDER</td>
                   <td><label class="test_obj"> <input type="radio"
-                        name="fruit" value="apple"> <span>남자</span>
-                  </label> <label class="test_obj"> <input type="radio" name="fruit"
-                        value="banana"> <span>여자</span>
+                        name="gender" value="M"> <span>남자</span>
+                  </label> <label class="test_obj"> <input type="radio" name="gender"
+                        value="W"> <span>여자</span>
                   </label></td>
                </tr>
                <tr>
@@ -138,29 +128,7 @@
          </ul>
       </div>
 
-<<<<<<< HEAD
-    </div>
-    <div>
-        <div id="wrapper">
-            <a class="logo" href="main.do">
-                <img src="img/logo/image2.png" height="75px">
-            </a>
-      <ul id="menu">
-         <li><a href="#home">검색</a></li>
-         <li><a href="goBasket.do">장바구니</a></li>
-         <% if (user == null) {   %>
-         <li id=goLogin><a href="#">로그인</a></li>
-         <% } else { %>
-         <li><a href="goMypage.do">마이페이지</a></li>
-         <li><a href="goLogout.do">로그아웃</a></li>
-         <% } %>
-      </ul>
-        </div>
-
-    </div>
-=======
    </div>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 
 
    </div>
@@ -173,31 +141,30 @@
          <nav>
             <h1>상품보기</h1>
             <p>
-               HOME >> <span>가구/의자</span> >> <strong>리클라이너</strong>
+               HOME >> <span>${product.prod_type}</span> >> <strong>${product.prod_detail}</strong>
             </p>
          </nav>
          <article class="info">
             <div class="image">
-               <img src="img/shopa/이미지10.jpg" alt="상품이미지">
+               <img src="${product.prod_img}" alt="상품이미지">
             </div>
             <div class="summary">
                <h2>
-                  상품번호 : <span id="prod_seq" data-value="5">5</span>
+                  상품번호 : <span id="prod_seq" data-value="${product.prod_seq}">${product.prod_seq}</span>
                </h2>
                <h1>(주)판매자명</h1>
 
                <nav>
-                  <h3 id="prod_name" data-value="사무용 의자">리클라이너 의자</h3>
+                  <h3 id="prod_name" data-value="${product.prod_name}">${product.prod_name}</h3>
                   <p>상품설명 출력</p>
 
                </nav>
                <nav id="price">
-                  <div class="org_price">
-                     <del>30,000</del>
-                     <span>10%</span>
+                  <div>                     
+                     <span>상품가격</span>
                   </div>
                   <div class="dis_price">
-                     <ins id="prod_price" data-value="27000">27,000</ins>
+                     <ins id="prod_price" data-value="${product.prod_price}">${product.prod_price}</ins>
                   </div>
                </nav>
                <nav id="free_baesong">
@@ -217,10 +184,10 @@
                   </button>
                </div>
                <div class="total">
-                  <span>27,000</span> <em>총 상품금액</em>
+                  <span>${product.prod_price}</span> <em>총 상품금액</em>
                </div>
                <div class="button">
-                  <input type="button" class="cart" id="damgi" value="장바구니"> <input
+                  <input type="button" class="cart" id="addToCart" value="장바구니"> <input
                      type="button" class="order" value="구매하기">
                </div>
             </div>
@@ -249,31 +216,9 @@
          </article>
          <article class="notice">
             <nav>
-<<<<<<< HEAD
-                <h1>상품보기</h1>
-                <p>
-                    HOME >>
-                    <span >${product.prod_type}</span>
-                    >>
-                    <strong>${product.prod_detail}</strong>
-                </p>
-=======
                <h1>상품 정보 제공 고시</h1>
                <p>[전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록된 정보입니다.</p>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
             </nav>
-<<<<<<< HEAD
-            <article class="info">
-                <div class="image">
-                    <img src="${product.prod_img}" alt="상품이미지">
-                </div>
-                <div class="summary">
-                    <h2>
-                        상품번호 :
-                        <span id="prod_seq" data-value="${product.prod_seq}">${product.prod_seq}</span>
-                    </h2>
-                    <h1>(주)스마트인재개발원</h1>
-=======
             <table>
                <tr>
                   <td>상품번호</td>
@@ -359,20 +304,13 @@
          </article>
          <article class="review">
             <div id=re-form>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 
-<<<<<<< HEAD
-                    <nav>
-                        <h3 id="prod_name" data-value="${product.prod_name}">${product.prod_name}</h3>
-                        <p>상품설명 출력</p>
-=======
                <nav>
                   <h2>상품 리뷰</h2>
                </nav>
             </div>
             <ul id="tbd">
-               <c:forEach var="review" items="${review}">
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+                <c:forEach var="review" items="${review}">
 
                   <li>
                      <div>
@@ -389,50 +327,6 @@
                            <button class="deleteButton"
                               data-review-id="${review.review_seq}">삭제</button>
                         </div>
-<<<<<<< HEAD
-                        <div class="dis_price">
-                            <ins id="prod_price" data-value="${product.prod_price}">${product.prod_price}</ins>
-                        </div>
-                    </nav>
-                    <nav id="free_baesong">
-                        <span class="delivery">무료배송</span>  						
-                        <span class="arrival">모레(일) 8/27 도착예정 </span>
-                        <span class="desc">본 상품은 국내배송만 가능합니다.</span>
-                    </nav>
-                    <nav>
-                        <span class="origin">원산지-상세설명 참조</span>
-                    </nav>
-                    <div class="count">
-                        <button class="decrease">-<i class="fas fa-minus"></i></button>
-                        <input type="text" id="prod_cnt" name="num" value="1" readonly >
-                        <button class="increase">+<i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="total">
-                        <span>${product.prod_price}</span>
-                        <em>총 상품금액</em>
-                    </div>
-                    <div class="button">
-                        <input type="button" class="cart" value="장바구니">
-                        <input type="button" class="order" value="구매하기">
-                    </div>
-                </div>
-            </article>
-            <article class="detail">
-                <div>
-                    <nav>
-                        <h1>상품정보</h1>
-                    </nav>
-                    <nav>
-                        <h1>상품 정보 제공 고시</h1>
-                    </nav>
-                    <nav>
-                        <h1>상품리뷰</h1>
-                    </nav>
-                    <nav>
-                        <h1>QnA</h1>
-                    </nav>
-                </div>
-=======
                      </c:if>
                      <div class="updateForm" style="display: none;">
                         <textarea class="updateContent"></textarea>
@@ -445,7 +339,7 @@
                </c:forEach>
             </ul>
             <ul>
-               	<div class="qa-form">
+                  <div class="qa-form">
                   <h2>리뷰 작성</h2>
                   <div class="input-container">
                      <input type="text" id="review_content"
@@ -455,7 +349,7 @@
                      <input type="number" id="ratings" step="0.5" min="0" max="5"
                         value="5.0">
                   </div>
-				</div>
+            </div>
 
                   <article class="next">
                      <div class="paging">
@@ -468,8 +362,8 @@
                         </span>
                      </div>
                  </article>
-           	</ul>
-         		</article>
+              </ul>
+               </article>
          <article class="QandA">
             <nav>
                <h1>상품 문의</h1>
@@ -477,49 +371,48 @@
 
             <div class="qa-list" id="qaList"></div>
 
-				<ul id="qna_tbd">
-					<c:forEach var="qna" items="${qna}">
+            <ul id="qna_tbd">
+               <c:forEach var="qna" items="${qna}">
 
-						<li>
-							<div>
-								<h5 class="QandA1"></h5>
-								<span>${qna.q_seq}/${qna.nick}/${qna.created_at}</span>
-							</div>
-							<h3>
-								상품명1/BLUE/L<a href="#" id="rep">답변하기<small></small></a>
-							</h3>
-							<p>${qna.q_content}</p>
+                  <li>
+                     <div>
+                        <h5 class="QandA1"></h5>
+                        <span>${qna.q_seq}/${qna.nick}/${qna.created_at}</span>
+                     </div>
+                     <h3>
+                        상품명1/BLUE/L<a href="#" id="rep">답변하기<small></small></a>
+                     </h3>
+                     <p>${qna.q_content}</p>
 
-							<div>
-								<c:if test="${sessionScope.user.m_type == 'A'}">
-									<button class=answerButton data-qna-id="${qna.q_seq}">댓글</button>
-								</c:if>
-							</div> <!-- 댓글 영역 -->
-							<div class="commentRow" style="display: none;">
-								<input type="text" class="a_content" placeholder="댓글 내용 입력">
-								<button class="addAnswerButton" data-qna-id="${qna.q_seq}">댓글
-									작성</button>
-							</div>
+                     <div>
+                        <c:if test="${sessionScope.user.m_type == 'A'}">
+                           <button class=answerButton data-qna-id="${qna.q_seq}">댓글</button>
+                        </c:if>
+                     </div> <!-- 댓글 영역 -->
+                     <div class="commentRow" style="display: none;">
+                        <input type="text" class="a_content" placeholder="댓글 내용 입력">
+                        <button class="addAnswerButton" data-qna-id="${qna.q_seq}">댓글
+                           작성</button>
+                     </div>
 
-						</li>
-						<c:forEach var="answer" items="${answer}">
-							<c:if test="${qna.q_seq==answer.q_seq}">
-								<li>
-									<div class="commentRow">
-										<div class="answer">${answer.a_content}</div>
-									</div>
-								</li>
-							</c:if>
-						</c:forEach>
-					</c:forEach>
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
-
+                  </li>
+                   <c:forEach var="answer" items="${answer}">
+                     <c:if test="${qna.q_seq==answer.q_seq}">
+                        <li>
+                           <div class="commentRow">
+                              <div class="answer">${answer.a_content}</div>
+                           </div>
+                        </li>
+                     </c:if>
+                  </c:forEach>
+               </c:forEach>
 
 
-				</ul>
+
+            </ul>
 
 
-			</article>
+         </article>
          <div class="qa-form">
             <h2>새 질문 작성</h2>
             <h3>${user.nick}</h3>
@@ -587,7 +480,7 @@
        <script src="assets/js/productCell.js"></script>
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script type="text/javascript">
-
+      
       
       
       
@@ -611,29 +504,15 @@
         	   }
         	});
            $('.addAnswerButton').on('click', addAnswer);
+           $('#review_Button').on('click', inReview);
+           $('.cart').on('click', inCart);     
       
       
       
       
       
-      
-      
-      
-      
-      });
-
-    
-<<<<<<< HEAD
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="assets/js/productCell.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    
-   <script type="text/javascript">
-    $(document).ready(function() {
-            $('#review_Button').on('click', inReview);
-            $('.cart').on('click', inCart);
-            
-        });
+      });   
+   
     
     function inCart() {
     	let prod_cnt = $('#prod_cnt').val();
@@ -641,7 +520,7 @@
         let prod_seq = $('#prod_seq').data('value');
         let prod_price = $('#prod_price').data('value');
         let prod_img = $('.image img').attr('src');
-      //====================================================================================================================================
+      
         $.ajax({
                  url : 'inCart.do',
                  type : 'post',
@@ -662,8 +541,7 @@
                  }
               });
      }
-=======
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
+
 //====================================================================================================================================        
         
    function sample6_execDaumPostcode() {
@@ -736,47 +614,22 @@
             updateTotalPrice();
         });
         
-<<<<<<< HEAD
+
         function updateTotalPrice() {
             const quantity = parseInt(inputField.value);
             const total = unitPrice * quantity;
             totalPriceElement.textContent = total // 총 가격을 적절한 형식으로 업데이트
         }
           
-=======
+
         
         
       //====================================================================================================================================           
              
-        function inCart() {
-            let prod_cnt = $('#prod_cnt').data('value');
-            let prod_name = $('#prod_name').data('value');
-            let prod_seq = $('#prod_seq').data('value');
-            let prod_price = $('#prod_price').data('value');
 
-            $.ajax({
-                     url : 'inCart.do',
-                     type : 'post',
-                     contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                     data : {
-                        "prod_cnt" : prod_cnt,
-                        "prod_seq" : prod_seq,
-                        "prod_name" : prod_name,
-                        "prod_price" : prod_price
-                     },
-                     dataType : 'json',
-                     success : function(res) {
-                        console.log('성공!!');
-                     },
-                     error : function(e) {
-                        console.log('요청실패!!!');
-                     }
-                  });
-         }          
->>>>>>> branch 'master' of https://github.com/2022-SMRHD-DCX-Bigdata-8/homeTogether.git
 //====================================================================================================================================           
         
-    function inReview() {
+   function inReview() {
             let review_content = $('#review_content').val();
             let prod_seq = $('#prod_seq').data('value');
             let ratings = $('#ratings').val();
@@ -823,12 +676,11 @@
 
          }
          
-         
      
 //====================================================================================================================================           
                 
        // 리뷰 수정 창 보이기
-   function showUpdateForm() {
+    function showUpdateForm() {
     let reviewId = $(this).data('review-id');
     let reviewContent = $(this).closest('li').find('.review-content').text();
     let ratings = $(this).closest('li').find('h3').text().match(/평점:(\d+\.\d+)/)[1];
@@ -843,13 +695,14 @@
          
  //======================================================================================================        
          
+         
        
          // 리뷰 수정
          function updateReview() {
             let reviewId = $(this).data('review-id');
             let updatedContent = $('.updateContent').val();
             let updatedRatings = $('.updateRatings').val();
-
+         
             // 세션에 저장된 사용자의 nick
             let userNick = "${sessionScope.user.nick}";
 
@@ -946,10 +799,11 @@ function deleteReview() {
 }
 
 
+
 //====================================================================================================================================        
       
 	   
-    function inQuestion() {
+     function inQuestion() {
             let q_content = $('#q_content').val();
             let prod_seq = $('#prod_seq').data('value');
 
@@ -984,18 +838,17 @@ function deleteReview() {
             });
 
          }    
-      
 	
     //====================================================================================================================================        
 
 	
     // 댓글 추가 함수
-	function addAnswer() {
-  	  let qnaItem = $(this).closest('li');
-  	  let q_seq = qnaItem.find('span:eq(0)').text(); // 문의번호 가져오기
-   	  let a_content = qnaItem.find('.a_content').val(); // 댓글 내용 가져오기
-   	 let prod_seq = $('#prod_seq').data('value');
-   	  console.log(q_seq);
+   function addAnswer() {
+       let qnaItem = $(this).closest('li');
+       let q_seq = qnaItem.find('span:eq(0)').text(); // 문의번호 가져오기
+        let a_content = qnaItem.find('.a_content').val(); // 댓글 내용 가져오기
+       let prod_seq = $('#prod_seq').data('value');
+        console.log(q_seq);
 
     $.ajax({
         url: 'addAnswer.do',
