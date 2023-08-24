@@ -54,8 +54,7 @@ public class goProductcell implements Controller {
       request.setAttribute("qna", qnalist);
       request.setAttribute("answer", a_list);
       request.setAttribute("product", product);
-      
-      
+
 
       
       

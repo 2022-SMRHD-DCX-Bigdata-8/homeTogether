@@ -27,6 +27,9 @@ public class addAnswerCon implements Controller {
 
 		
 		String q_seq = request.getParameter("q_seq");
+		System.out.println("===============================================================");
+		System.out.println(q_seq);
+		System.out.println("===============================================================");
 		String[] q= q_seq.split("/");
 		
 		System.out.println(q[0]);
