@@ -889,7 +889,6 @@ function deleteReview() {
 
             // 댓글 입력 필드 초기화
             qnaItem.find('.a_content').val('');
-            location.reload();
         },
         error: function(e) {
             console.log('댓글 추가 실패');
