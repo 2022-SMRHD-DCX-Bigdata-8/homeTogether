@@ -1,12 +1,14 @@
 package com.ha.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ha.entity.TB_Basket;
 import com.ha.entity.TB_Member;
 
 public class goPaymentCon implements Controller {
@@ -19,10 +21,24 @@ public class goPaymentCon implements Controller {
 		
 	     HttpSession session = request.getSession();
 	      TB_Member user =(TB_Member)session.getAttribute("user");
-	       
-		request.setAttribute("user", user);
+	      List<TB_Basket> list = (List<TB_Basket>) session.getAttribute("basket");
+	      
+	      if(user !=null) {
+				request.setAttribute("user_name", user.getNick());
+			}else {
+				request.setAttribute("user_name", "비회원");
+			}
+			
+			if (list == null || list.isEmpty()) {
+				
+				request.setAttribute("list_empty", true);
+				
+			}else {
+				request.setAttribute("list_empty", false);
+			}
+			request.setAttribute("user", user);
 	      
 		return "payment";
 	}
-
+ 
 }
