@@ -321,6 +321,7 @@
     </div>
 
     </div>
+    
     <main id="product">
         <div id="wrapper">
             <header>
@@ -344,7 +345,10 @@
                         </div>
                     </div>
 
-                    <form action="#">
+
+
+
+                    <form action="goPayment.do">
                         <table>
                             <tr>
                                 <td id="selectAll"><input type="checkbox" onclick="toggleAll(this)"></td>
@@ -418,9 +422,13 @@
 
                                 </tr>
                             </table>
-                            <input type="submit" value="주문하기">
+                            <input type="submit" value="주문하기" >
                         </div>
                     </form>
+
+
+
+
 
                     <div id="ad">
                         <p>추천 상품</p>

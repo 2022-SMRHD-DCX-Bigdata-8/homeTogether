@@ -1,11 +1,14 @@
 package com.ha.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.TB_Answer;
 import com.ha.entity.TB_QNA;
+import com.ha.entity.TB_Review;
 
 public class TB_AnswerDAO {
 
@@ -30,7 +33,17 @@ public class TB_AnswerDAO {
 	}
 	
 	
-	
+	public List<TB_Answer> selectAnswer(TB_Answer answer) {
+		
+		SqlSession session = factory.openSession(true);
+		
+		List<TB_Answer>list = session.selectList("selectanswer" , answer);
+		
+		session.close();
+		
+		return list;
+		
+	}
 	
 	
 	

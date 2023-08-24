@@ -49,7 +49,7 @@ public class inReviewCon implements Controller {
       System.out.println(num);
       
       List<TB_Review> list = dao.select(review);
-      
+
 
       response.setContentType("text/plain ; charset=UTF-8");// 프린트 라이터보다 위에서 인코딩을 해줘야 합니다!!
       

@@ -209,7 +209,7 @@
 				<p>
 					(주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
 					지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
-					<br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
+					<br> <a href="goProductcell.do?prod_seq=5">&copy</a> 2023 HomeTogether, Co., Ltd.All rights reserved
 				</p>
 			</div>
 		</div>

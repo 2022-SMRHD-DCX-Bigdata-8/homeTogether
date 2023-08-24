@@ -29,9 +29,11 @@ public class TB_ReviewDAO {
 
   public List<TB_Review> select(TB_Review review) {
 		SqlSession session = factory.openSession(true);
+		
 		List<TB_Review>list = session.selectList("review", review);
 	
 		session.close();
+	
 		return list;
 		
 	}

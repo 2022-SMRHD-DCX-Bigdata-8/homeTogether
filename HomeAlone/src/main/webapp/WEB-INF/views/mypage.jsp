@@ -19,8 +19,8 @@
 
 	<%
 	TB_Member user = (TB_Member) session.getAttribute("user");
-	String id=user.getId();
-	id=id.substring(0, 4);
+	//String id =user.getId();
+	//id=id.substring(0, 4);
 	
 	%>
 
