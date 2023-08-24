@@ -15,79 +15,19 @@
 
 
 
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-  
-  <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-  <script src="assets/js/products.js"></script>
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script>
-$(document).ready(function() {
-    $("#btn_payment").click(function() {
-        // class가 btn_payment인 태그를 선택했을 때 작동한다.
-        IMP.init('imp33005853');
-        
-        IMP.request_pay({
-            pg : 'html5_inicis',
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '(주)HomeTogether', // 결제창에서 보여질 이름
-            amount : 2400, // 실제 결제되는 가격
-            buyer_email : 'iamport@siot.do',
-            buyer_name : '${sessionScope.user.nick}',
-            buyer_tel : '${sessionScope.user.phone}',
-            buyer_addr : '${sessionScope.user.addr}',
-            buyer_postcode : '${sessionScope.user.zipCode}'
-        }, function(rsp) {
-            if (rsp.success) {
-                jQuery.ajax({
-                       url: "{서버의 결제 정보를 받는 가맹점 endpoint}", //
-                       method: "POST",
-                       headers: { "Content-Type": "application/json" },
-                       data: {
-                         imp_uid: rsp.imp_uid,            // 결제 고유번호
-                         merchant_uid: rsp.merchant_uid   // 주문번호
-                         
-                       }
-                     }).done(function (data) {
-                       // 가맹점 서버 결제 API 성공시 로직
-                        var msg = '결제가 완료되었습니다.';
-                          msg += '고유ID : ' + rsp.imp_uid;
-                          msg += '상점 거래ID : ' + rsp.merchant_uid;
-                          msg += '결제 금액 : ' + rsp.paid_amount;
-                          msg += '카드 승인번호 : ' + rsp.apply_num;
-                     })
-            } else {
-               var msg = '결제가 완료되었습니다.';
-               
-               
-               var orderer = $("input[name='orderer']").val();
-               var hp = $("input[name='hp']").val();
-               var zip = $("input[name='zip']").val();
-               var roadAddress = $("input[name='roadAddress']").val();
-               var addr2 = $("input[name='addr2']").val();
-               
-               
-               // 입력한 값을 세션에 저장
-               sessionStorage.setItem("orderer", orderer);
-               sessionStorage.setItem("hp", hp);
-               sessionStorage.setItem("zip", zip);
-               sessionStorage.setItem("roadAddress", roadAddress);
-               sessionStorage.setItem("addr2", addr2);
-               
-               
-               window.location.href = 'goComplete.do';
-            }
-            alert(msg);
-        });
-    });
+ 
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
 
 
 
-</script>
+
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -317,7 +257,7 @@ table>tr>td {
 		height="75px">
 	</a>
 	<ul id="menu">
-		<li><a href="#home">검색</a></li>
+		<li><a href="#home">검색</a></li>		
 		<li><a href="#html">게시판</a></li>
 		<li><a href="goBasket.do">장바구니</a></li>
 		<%
@@ -406,12 +346,12 @@ table>tr>td {
                             <table>
                                 <tr>
                                     <td>상품수</td>
-                                    <td id="selectedCount"></td>
+                                    <td id="selectedCount">0</td>
 
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td id="productsPrice"></td>
+                                    <td id="productsPrice">0</td>
 
                                 </tr>
 
@@ -422,11 +362,11 @@ table>tr>td {
 
                                 <tr>
                                     <td>전체주문금액</td>
-                                    <td id="totalPrice"></td>
+                                    <td id="totalPrice" data-value="5000">0</td>
 
                                 </tr>
                             </table>
-                            <input type="submit" value="주문하기" >
+                            <input type="submit" value="주문하기" id="btn_payment">
                         </div>
 					<div class="container">
 						<article class="delivery">
@@ -435,7 +375,7 @@ table>tr>td {
 							<table>
 								<tr>
 									<td>주문자</td>
-									<td><input type="text" name="orderer" value="${sessionScope.user.nick}" readonly></td>
+									<td><input type="text" id="nick" name="orderer" value="${sessionScope.user.nick}" readonly></td>
 								</tr>
 								<tr>
 									<td>휴대폰</td>
@@ -769,7 +709,7 @@ table>tr>td {
             var checkboxes = document
                   .querySelectorAll('input[type="checkbox"]:checked');
             var total = 0;
-
+            
             for (var i = 0; i < checkboxes.length; i++) {
                var row = checkboxes[i].parentNode.parentNode;
                var priceCell = row.querySelector('#price'); // 가격이 들어있는 열 선택
@@ -786,6 +726,13 @@ table>tr>td {
             document.getElementById('totalPrice').textContent = total
                   .toLocaleString()
                   + '원'; // 총 가격 표시
+            //var totalPriceElement = document.getElementById("totalPrice");
+            //totalPriceElement.setAttribute("data-value", total.toString()); 
+             
+            
+            // 새로운 값
+            
+            
          }
 
          $(function() {
@@ -848,6 +795,10 @@ table>tr>td {
         // 예를 들어, 선택된 값과 텍스트를 다른 곳에 표시할 수 있습니다.
     });
 </script>
+
+
+
+
 </body>
 
 
