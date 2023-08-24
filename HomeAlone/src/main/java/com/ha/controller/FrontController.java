@@ -91,12 +91,10 @@ public class FrontController extends HttpServlet {
 			
 			//상세카테고리
 			handler.put("/property.do", new propertyCon());
+
+
 			
-			
-			
-			
-			
-			
+
 
 	}
 	

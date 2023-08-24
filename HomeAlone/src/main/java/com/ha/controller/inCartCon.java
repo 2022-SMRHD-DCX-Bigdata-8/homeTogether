@@ -69,8 +69,8 @@ public class inCartCon implements Controller {
 
             session.setAttribute("basket", newBasketList); // 새로운 리스트를 세션에 저장
         }
-
-        // System.out.println(basket_List.get(0).getProd_name());
+        
+        
 
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
