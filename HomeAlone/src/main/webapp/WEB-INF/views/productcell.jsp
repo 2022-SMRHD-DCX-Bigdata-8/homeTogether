@@ -9,18 +9,6 @@
 <meta charset="UTF-8">
 <title>HomeTogether</title>
 <link rel="stylesheet" href="assets/css/productcell.css">
-<style type="text/css">
-.buttons {
-   display: flex;
-   justify-content: flex-end;
-   gap: 5px;
-}
-
-.small {
-   font-size: 12px;
-   padding: 5px 10px;
-}
-</style>
 </head>
 
 <body>
@@ -119,7 +107,13 @@
             height="75px">
          </a>
          <ul id="menu">
-            <li><a href="#home">검색</a></li>
+         	<form action="search.do" method="post" >
+				<div id="search">
+					<span>Search</span> <input type="text" id="search_content" name="search">
+					<input id="search_img" type="image" src="img/icon/search2.png">
+				</div>
+			</form>
+            <li id="search_btn"><a href="#home">검색</a></li>
             <li><a href="goBasket.do">장바구니</a></li>
             <%
             if (user == null) {
@@ -323,21 +317,26 @@
 
                   <li>
                      <div>
-                        <h5 class="rating star4">상품평</h5>
-                        <span id="review_seq">${review.nick}
-                           ${review.created_at}, ${review.review_seq}</span>
+                        <div id="review_wrap">
+                           	<p id="review_seq">${review.nick}
+                           		${review.created_at}, ${review.review_seq}
+                        	</p>
+                        	<div class="review-buttons">
+                           		<button class="updateButton"
+                              		data-review-id="${review.review_seq}">수정</button>
+                           		<button class="deleteButton"
+                              		data-review-id="${review.review_seq}">삭제</button>
+                        	</div>
+                        </div>
+
+                        
                      </div>
-                     <h3>상품명1/BLUE/L/상품평점:${review.ratings}</h3>
+                     <h3>상품명1&nbsp;/&nbsp;BLUE&nbsp;/&nbsp;L&nbsp;/&nbsp;상품평점:${review.ratings}</h3>
                      <p>${review.review_content}</p> <c:if
                         test="${review.nick eq sessionScope.user.nick}">
-                        <div class="review-buttons">
-                           <button class="updateButton"
-                              data-review-id="${review.review_seq}">수정</button>
-                           <button class="deleteButton"
-                              data-review-id="${review.review_seq}">삭제</button>
-                        </div>
+
                      </c:if>
-                     <div class="updateForm" style="display: none;">
+                     <div class="updateForm">
                         <textarea class="updateContent"></textarea>
                         <input type="number" class="updateRatings" step="0.5" min="0"
                            max="5" value="5.0">
@@ -383,37 +382,37 @@
 				<ul id="qna_tbd">
 					<c:forEach var="qna" items="${qna}">
 
-						<li>
+						<li class="main_content">
 							<div>
-								<h5 class="QandA1"></h5>
+								<h5 class="QandA1">
+									${qna.q_seq}/${qna.nick}/${qna.created_at}
+								</h5>
 								<span>${qna.q_seq}/${qna.nick}/${qna.created_at}</span>
+								<div id="ans_btn">
+									<c:if test="${sessionScope.user.m_type == 'A'}">
+										<button class=answerButton data-qna-id="${qna.q_seq}">댓글</button>
+									</c:if>
+								</div> <!-- 댓글 영역 -->
 							</div>
 							<h3>
 								상품명1/BLUE/L<a href="#" id="rep">답변하기<small></small></a>
 							</h3>
 							<p>${qna.q_content}</p>
-
-							<div>
-								<c:if test="${sessionScope.user.m_type == 'A'}">
-									<button class=answerButton data-qna-id="${qna.q_seq}">댓글</button>
+							<c:forEach var="answer" items="${answer}">
+								<c:if test="${qna.q_seq==answer.q_seq}">
+										<div class="commentRow">
+											<p class="answer"> A : ${answer.a_content}</p>
+										</div>
 								</c:if>
-							</div> <!-- 댓글 영역 -->
-							<div class="commentRow" style="display: none;">
+							</c:forEach>
+
+							<div class="commentRow" id="admin_content">
 								<input type="text" class="a_content" placeholder="댓글 내용 입력">
-								<button class="addAnswerButton" data-qna-id="${qna.q_seq}">댓글
-									작성</button>
+								<button class="addAnswerButton" data-qna-id="${qna.q_seq}">댓글 작성</button>
 							</div>
 
 						</li>
-						<c:forEach var="answer" items="${answer}">
-							<c:if test="${qna.q_seq==answer.q_seq}">
-								<li>
-									<div class="commentRow">
-										<div class="answer">${answer.a_content}</div>
-									</div>
-								</li>
-							</c:if>
-						</c:forEach>
+
 					</c:forEach>
 
 
@@ -509,12 +508,15 @@
 
         	   if (isAdmin) {
         	      let row = $(this).closest('li'); 
-        	      row.find('.commentRow').toggle();
+        	      row.find('#admin_content').toggleClass("admin_content");
         	   }
         	});
            $('.addAnswerButton').on('click', addAnswer);
       
       
+           
+           
+           
       
       
       
@@ -678,11 +680,17 @@
     let reviewId = $(this).data('review-id');
     let reviewContent = $(this).closest('li').find('.review-content').text();
     let ratings = $(this).closest('li').find('h3').text().match(/평점:(\d+\.\d+)/)[1];
+    var updateForm = $(this).closest('li').find('.updateForm');
+    var currentHeight = updateForm.height();
 
     $('.updateContent').val(reviewContent);
     $('.updateRatings').val(ratings);
-
-    $(this).closest('li').find('.updateForm').show();
+	
+    if (currentHeight === 0) {
+        updateForm.height(60);
+    } else {
+        updateForm.height(0);
+    }
     $(this).closest('li').find('.saveButton').data('review-id', reviewId);
    }
 
@@ -861,6 +869,7 @@ function deleteReview() {
 
             // 댓글 입력 필드 초기화
             qnaItem.find('.a_content').val('');
+            location.reload(); //새로고침
         },
         error: function(e) {
             console.log('댓글 추가 실패');

@@ -16,18 +16,18 @@
 /* 아이콘 */
 
 #back {
-    position: fixed;
-    width: 80px;
-    float: left;
-    top: 50%;
-    left: 67%;
-    transform: translateY(-50%);
-    opacity: 0%;
+  position: fixed;
+  width: 80px;
+  float: left;
+  top: 50%;
+  left: 67%;
+  transform: translateY(-50%);
+  display: none;
 }
 
 #back>img {
-    width: 100%;
-    opacity: 0%;
+  width: 100%;
+  opacity: 0%;
 }
 
 /* 아이콘 끝 */
@@ -252,6 +252,11 @@ button:hover:after {
 
 #menu>:last-child {
     border-right: hidden;
+}
+@media(max-width : 1250px){
+	#product{
+		width : 1215px;
+	}
 }
 
 #product>.view>article {
@@ -634,8 +639,74 @@ input[name="num"] {
     word-break: break-all;
     word-wrap: break-word;
     margin-top: 10px;
-
 }
+
+#review_wrap{
+	float : right;
+}
+
+#tbd > li >:fist-child {
+	margin-bottom : 15px;
+}
+#review_seq{
+	text-align : right;
+}
+
+#qna_tbd > .main_content{
+	border-bottom : 1px solid #999999;
+	margin-top : 10px;
+}
+#qna_tbd > li > h3 , #qna_tbd > li > p{
+	padding-left : 15px;
+}
+.QandA1{
+	display : inline-block;
+	font-size : 20px;
+	font-weight : bold;
+	margin : 10px 0px;
+}
+#ans_btn{
+	float : right;
+}
+.updateForm{
+	margin-top : 10px;
+	box-sizing : border-box;
+	margin-bottom : 10px;
+	height : 0px;
+	transition : all 800ms ease;	
+}
+
+.updateContent{
+	float : left;
+	height: 43px; 
+	width: 60%;
+}
+
+#update_wrap{
+	display : inline-block;
+	margin-left : 10px;
+	position : relative;
+	height : 43px;
+}
+.updateRatings{
+	position : relative;
+	top : -3px;
+	left : 0px;
+	height : 49px;
+	box-sizing : border-box;
+	margin-top : 3px;
+}
+
+.saveButton{
+	line-height : 49px;
+}
+
+.review-buttons > .updateButton,
+.review-buttons > .deleteButton{
+	font-size : 22px;
+	line-height : 1.4em;
+	padding : 2px 1.6em 0px;
+} 
 
 #product>.view>.review>.paging {
     width: 100%;
@@ -716,9 +787,34 @@ h1 {
 
 .answer {
     color: #666;
-    margin-bottom: 0;
+    margin-bottom: 16px;
+    padding-left : 45px;
+}
+#admin_content{
+	opacity : 0%;
+	width : 80%;
+	margin : 0 auto 20px;
+	height : 40px;  
+}
+#admin_content > .a_content{
+	margin-left : 5%;
+	box-sizing : border-box;
+	height : 35px;
+	width : 60%;
 }
 
+#admin_content > .addAnswerButton{
+	height : 35px;
+	box-sizing : border-box;
+	float : right;
+	right : 10%;
+	
+}
+
+.admin_content {
+    opacity : 100% !important;
+    transition: all 800ms ease-in-out; /* 예시로 0.3초의 시간을 가지는 트랜지션 효과 */
+}
 .qa-form {
     text-align: center;
 }
@@ -1022,30 +1118,30 @@ ul > li{
 
 /* 검색 창 시작 */
 #menu{
-    position: relative;
-  }
-  #search{
-    position: absolute;
-    left: -280px;
-    bottom: -5px;
-    margin-bottom: 0px;
-  }
-  #menu > .on{
-    top: -10px;
-    border-bottom: 1px solid black;
-  }
-  #search{
-    transition: all 800ms ease;
-    top: -100px;
-  }
-  #search > #search_content{
-      border: none 0;
-      outline: none;
-      padding: 0px;
-  }
-  #search > #search_img{
-    width: 20px;
-  }
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > form > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
   /* 검색 창 끝 */
   /* jsp에서 수정 시작 */
   .input-container > #number_check{
