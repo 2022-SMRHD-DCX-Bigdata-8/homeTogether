@@ -411,12 +411,12 @@
                             <table>
                                 <tr>
                                     <td>상품수</td>
-                                    <td id="selectedCount"></td>
+                                    <td id="selectedCount">상품을선택하세요</td>
 
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td id="productsPrice"></td>
+                                    <td id="productsPrice">상품을선택하세요</td>
 
                                 </tr>
 
@@ -427,7 +427,7 @@
 
                                 <tr>
                                     <td>전체주문금액</td>
-                                    <td id="totalPrice"></td>
+                                    <td id="totalPrice">0원</td>
 
                                 </tr>
                             </table>
