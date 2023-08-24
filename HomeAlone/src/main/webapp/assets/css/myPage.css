@@ -83,7 +83,9 @@
     
   }
 }
- 
+ #errorMessage > h3{
+ 	margin-bottom:30px;
+ }
 
  * {
 	font-family: 'GmarketSansMedium';
@@ -517,7 +519,7 @@ button{
   font-size: 1.6em;
   padding: 0 2em;
   cursor: pointer;
-  transition: 800ms ease all;
+  transition: none;
   outline: none;
   box-sizing: border-box;
   width: 100%;
