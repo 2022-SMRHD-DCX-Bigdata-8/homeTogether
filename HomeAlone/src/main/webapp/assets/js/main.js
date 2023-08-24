@@ -1,22 +1,23 @@
 $(document).ready(function () {
     var $list = $(".slideshow");
-    var $hero_header = $("#hero_header");
-    var timeID = window.setInterval(slide, 3500);
+    var timeID = window.setInterval(slide, 3000);
 
-    function slide() {
-        $list.animate({ "marginLeft": "-33.33333%" }, 1500, function () {
+
+	$list.on('mouseenter', stopSlide);
+    $list.on('mouseleave', startSlide);
+    
+	function stopSlide() {
+		clearInterval(timeID); // 슬라이더 멈춤
+	}
+	
+	function startSlide() {
+		timeID = setInterval(slide, 3000); // 슬라이더 재시작
+	}
+	function slide() {
+        $list.animate({ "marginLeft": "-33.45%" }, 1500, function () {
             $(this).css("marginLeft", 0).find("li:first").appendTo($list);
         });
     }
-
-    $hero_header.hover(
-        function () {
-            clearInterval(timeID);
-        },
-        function () {
-            timeID = window.setInterval(slide, 2500);
-        }
-    );
 
     function autoHypenPhone(str) {
         str = str.replace(/[^0-9]/g, '');

@@ -552,6 +552,7 @@
                  },
                  dataType : 'json',
                  success : function(res) {
+                	 
                     console.log('성공!!');
                  },
                  error : function(e) {

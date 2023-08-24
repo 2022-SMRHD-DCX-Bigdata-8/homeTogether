@@ -118,7 +118,6 @@
          </div>
       </form>
          <li id="search_btn"><a href="#home">검색</a></li>
-         <li><a href="#html">게시판</a></li>
          <li><a href="goBasket.do">장바구니</a></li>
          <%
          if (user == null) {
@@ -149,9 +148,14 @@
          <section class="cart">
             <div>
                <h1>주문내역</h1>
-               <h1 id="customer">주문자</h1>
+               <c:if test="${sessionScope.user!=null}">
+               <h1 id="customer">${user.nick}</h1>
+               </c:if>
+               <c:if test="${sessionScope.user==null}">
+               <h1 id="customer">비회원</h1>
+               </c:if>
             </div>
-            <span id="c_name">${user.nick}</span>
+            <span id="c_name"></span>
             <div class="flex-container">
                <p>HOME >> 장바구니 >> 주문내역</p>
             </div>
@@ -356,6 +360,37 @@
 
    <script>
    $(document).ready(function() {
+	   
+	    function initializeProductCheckboxes() {
+            var productCheckboxes = document.querySelectorAll('input[name="1"]');
+            for (var i = 0; i < productCheckboxes.length; i++) {
+                var productId = productCheckboxes[i].getAttribute('data-product-id');
+                if (isProductSelected(productId)) {
+                    productCheckboxes[i].checked = true;
+                }
+            }
+        }
+
+        // 상품 선택 여부 확인 함수
+        function isProductSelected(productId) {
+            // productId를 사용하여 상품 선택 여부를 판단하는 로직 추가
+            // 여기서는 예시로 간단히 true 또는 false를 반환하도록 설정
+            return true; // 상품이 선택된 상태라면 true 반환, 선택되지 않았으면 false 반환
+        }
+
+        // 페이지 로드 시 각 상품 체크박스 상태 초기화
+        initializeProductCheckboxes();
+        updateSelectedCount();
+        updateTotalPrice();
+        updateSelectedCount()
+	   
+	   
+	      
+	   
+	   
+	   
+	   //API
+	   
        $("#btn_payment").click(function() {
            // class가 btn_payment인 태그를 선택했을 때 작동한다.
            IMP.init('imp33005853');

@@ -5,26 +5,6 @@
     font-weight: normal;
     font-style: normal;
 }
-@media(max-width:1800px){
-    .total{
-        position: absolute;
-        right: 20px;
-        width: 250px !important;
-        box-sizing: border-box;
-        margin-left: 0px !important;
-    }
-
-    .total > table > tbody >:last-child > td {
-        font-size: 16px !important;
-        
-
-    }
-    #product > .cart > form > .container > .total > input[type=submit]{
-        margin-top: 15px;
-        height: 38px !important;
-        font-size: 20px !important;
-    }
-}
  @media(max-width:1505px){
  	#product>.cart>form>table{
  		width : 955px !important;	
@@ -300,7 +280,7 @@ header > nav{
     list-style-type: none;
     float: right;
     margin-right: 120px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 #menu > li
 {
@@ -314,6 +294,7 @@ header > nav{
   color: black;
   font-size: 18px;
   display: block;
+  padding : 10px;
 }
 #menu::after{
     content: "";
@@ -358,7 +339,7 @@ header > nav{
 .container {
     display: inline-block;
     margin-top: 30px;
-    width : 820px;
+    width : 1200px;
 }
 .container > .delivery{
 	
@@ -505,6 +486,7 @@ header > nav{
     border: 1px solid #d3d3d3;
     box-sizing: border-box;
     border-radius: 5px;
+    width : 250px;
 }
 
 #product>.cart>form>.container >.total>h2 {
@@ -529,8 +511,9 @@ header > nav{
 
 #product>.cart>form>.container >.total>table tr:nth-last-child(1) td:last-child {
     color: #ff006c;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
+    
 }
 
 #product>.cart>form >.container > .total > table > tbody > tr > td {
