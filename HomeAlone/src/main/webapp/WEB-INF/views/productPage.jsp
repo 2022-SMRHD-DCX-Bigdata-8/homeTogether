@@ -16,7 +16,6 @@
 <body>
 <% 
 	TB_Member user = (TB_Member)session.getAttribute("user"); 
-
 %>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
@@ -234,12 +233,23 @@
                 
 				<c:if test="${searched ==null }">
 				<c:forEach var="i" begin="1" end="${page}">
-    				<li><span><a href="${url}?page=${i}">${i}</a></span></li>
+					<c:if test="${pagecnt == i }"> 
+    					<li class="click"><span><a href="${url}?page=${i}">${i}</a></span></li>
+    				</c:if>
+    				<c:if test="${pagecnt != i }"> 
+    					<li><span><a href="${url}?page=${i}">${i}</a></span></li>
+    				</c:if>
 				</c:forEach>
 				</c:if>
+				
 				<c:if test="${searched !=null }">
 				<c:forEach var="i" begin="1" end="${page}">
-    				<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+					<c:if test="${pagecnt == i }"> 
+    					<li class="click"><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+    				</c:if>
+    				<c:if test="${pagecnt != i }"> 
+    					<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+    				</c:if>
 				</c:forEach>
 				</c:if>
 				

@@ -70,12 +70,14 @@ $(document).ready(function() {
                var roadAddress = $("input[name='roadAddress']").val();
                var addr2 = $("input[name='addr2']").val();
                
+               
                // 입력한 값을 세션에 저장
                sessionStorage.setItem("nick", orderer);
                sessionStorage.setItem("hp", hp);
                sessionStorage.setItem("zip", zip);
                sessionStorage.setItem("roadAddress", roadAddress);
                sessionStorage.setItem("addr2", addr2);
+               
                
                window.location.href = 'goComplete.do';
             }
@@ -441,7 +443,7 @@ table>tr>td {
 						</tr>
 				  		</c:if> 
 					  	<c:if test="${!list_empty}"> 
-						<c:forEach var="list" items="${sessionScope.basket }">
+						<c:forEach var="list" items="${sessionScope.basket }" varStatus="status">
 							<tr class="basket">
 								<td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
 								<td>
@@ -457,8 +459,8 @@ table>tr>td {
 									</article>
 								</td>
 
-							<td class="num">1</td>
-							<td class="number">${list.prod_seq}</td>
+							<td class="num">${status.index + 1}</td>
+							<td class="number">PHT-${list.prod_seq}</td>
 							<td>${list.prod_cnt}</td>
 							<td class="fr_send">무료배송</td>
 							<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
@@ -900,6 +902,23 @@ table>tr>td {
             });
          });
       </script>
+      
+      <script>
+    // 라디오 버튼이 변경될 때 이벤트 처리
+    $('input[type="radio"][name="payment"]').on('change', function() {
+        // 선택된 라디오 버튼의 값 가져오기
+        var selectedValue = $("input[type='radio'][name='payment']:checked").val();
+        
+        // 선택된 값에 따라 텍스트를 가져와서 표시
+        var selectedText = $(this).parent().text().trim();
+        
+        console.log("Selected Value: " + selectedValue);
+        console.log("Selected Text: " + selectedText);
+        
+        // 선택된 값과 텍스트를 사용하여 원하는 동작 수행
+        // 예를 들어, 선택된 값과 텍스트를 다른 곳에 표시할 수 있습니다.
+    });
+</script>
 </body>
 
 

@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     <title>HOMEWORK</title>
     <link rel="stylesheet" href="assets/css/basket_complete.css">
-    <link rel="stylesheet" href="http://mooozi.github.io/css/reset.css%22%3E">
+    <!--  <link rel="stylesheet" href="http://mooozi.github.io/css/reset.css%22%3E"> -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -366,7 +366,7 @@
                            </c:if>
 
                      <c:if test="${!list_empty}">
-                        <c:forEach var="list" items="${sessionScope.basket}">
+                        <c:forEach var="list" items="${sessionScope.basket}" varStatus="status">
 
                            <tr class="basket">
                               <td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
@@ -384,9 +384,9 @@
                                     </div>
                                  </article>
                               </td>
-
-                              <td><span></span></td>
-                              <td class="number"><span>${list.prod_seq}</span></td>
+							  
+                              <td><span>${status.index + 1}</span></td>
+                              <td class="number"><span>PHT-${list.prod_seq}</span></td>
                               <td><span>${list.prod_cnt}개</span></td>
                               <td class="fr_send"><span>무료배송</span></td>
                               <td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
