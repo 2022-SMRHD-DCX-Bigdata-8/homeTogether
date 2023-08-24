@@ -4,6 +4,7 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +20,10 @@
 
 	<%
 	TB_Member user = (TB_Member) session.getAttribute("user");
+	
+	// 비밀번호 삭제할 때 비교할 세션에 저장된 본인 비밀번호
+	String password = user.getPw();  
+	
 	//String id =user.getId();
 	//id=id.substring(0, 4);
 	
@@ -27,13 +32,17 @@
 	<div id="float">
 		<div>
 			<h1>회원탈퇴</h1>
-			<h3>정말로 탈퇴 하시겠습니까?</h3>
-			<h3>탈퇴 정보는 즉시 파기되어 복구하실 수 없습니다.</h3>
+				 <div id="errorMessage" style="display: none;">
+           			 <h3>비밀번호가 일치하지 않습니다. 취소 버튼을 누르고 다시 입력해주세요.</h3>
+       			 </div>
+       			  <div id="exitText">
+						<h3>정말로 탈퇴 하시겠습니까?</h3>
+						<h3>탈퇴 정보는 즉시 파기되어 복구하실 수 없습니다.</h3>
+				  </div>		
 			<div id="float_content">
 				<button id="ok">확인</button>
 				<button id="cancle">취소</button>
 			</div>
-
 		</div>
 	</div>
 	<header>
@@ -205,14 +214,16 @@
 									</tr>
 									<tr>
 										<td class="login_btn" colspan="2"><button>수정하기</button></td>
+										
 										<td class="login_btn" colspan="2">
 											<button type="button" id="widthraw">탈퇴하기</button>
 										</td>
 									</tr>
 									<tr id="hidden_line">
 										<td>비밀번호 :</td>
-										<td><input type="password" name="pw"></td>
-										<td><button type="button">확인</button></td>
+										<td><input type="password" name="pw" id="pw_input" 
+										placeholder="비밀번호를 입력하세요"></td>
+										<td><button type="button" id="pwOkButton">확인</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -349,6 +360,29 @@
 	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
 	<script src="assets/js/myPage.js"></script>
    <script>
+   
+   document.getElementById("pwOkButton").addEventListener("click", function () {
+	    var inputPassword = document.getElementById("pw_input").value; // 입력한 비밀번호
+	    var sessionPassword = "<%= password %>"; // 세션에서 가져온 비밀번호
+	    var errorMessageElement = document.getElementById("errorMessage");
+	    var exitTextElement = document.getElementById("exitText");
+
+	    // 비밀번호 검사
+	    if (inputPassword === sessionPassword) {
+	        // 비밀번호가 일치할 경우
+	        errorMessageElement.style.display = "none"; // 오류 메시지 숨김
+	        exitTextElement.style.display = "block"; // 회원탈퇴 화면 표시
+	    } else {
+	        // 비밀번호가 일치하지 않을 경우
+	        errorMessageElement.style.display = "block"; // 오류 메시지를 표시합니다.
+	        exitTextElement.style.display = "none"; // 회원탈퇴 화면 숨김
+	    }
+	});
+   
+   
+   //====================================================================
+   
+	   
    $(document).ready(function() {
        $('#review_QnA').on('click', function() {
           // qnaList();// 클릭 시 reviewList 함수 실행
