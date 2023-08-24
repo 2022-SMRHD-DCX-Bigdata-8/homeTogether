@@ -18,7 +18,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    
+    	@media(max-width:1510px){
+    		#wrapper{
+    			width: 1260px !important;
+    		}
+    	}
         #product>.cart>form>table {
             width: 100%;
             border-bottom: 1px solid #d3d3d3;
@@ -60,16 +64,19 @@
 
         #product>.cart>form>table td>article {
             padding: 6px;
+            margin-left: 10px;
             overflow: hidden;
         }
 
         #product>.cart>form>table td>article>a {
             float: left;
-            display: inline-block;
+            display: block;
+            margin-right : 10px;
         }
 
         #product>.cart>form>table td>article>a>img {
             width: 80px;
+            display: block;
         }
 
         #product>.cart>form>table td>article>div {
@@ -79,6 +86,7 @@
 
         #product>.cart>form>table td>article>div>h2 {
             text-align: left;
+            font-size : 16px;
         }
 
         #product>.cart>form>table td>article>div>p {
@@ -154,6 +162,7 @@
             color: #fff;
             box-sizing: border-box;
             margin-top: 10px;
+            cursor: pointer;
         }
 
         .cart {
