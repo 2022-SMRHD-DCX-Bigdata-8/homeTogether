@@ -394,6 +394,7 @@
        var errorMessageElement = document.getElementById("errorMessage");
        var exitTextElement = document.getElementById("exitText");
        var okButton = document.getElementById("ok");
+       var cancleButton = document.getElementById("cancle");
        
        // 비밀번호 검사
        if (inputPassword === sessionPassword) {
@@ -401,11 +402,15 @@
            errorMessageElement.style.display = "none"; // 오류 메시지 숨김
            exitTextElement.style.display = "block"; // 회원탈퇴 화면 표시
            okButton.style.display = "block"; // 확인 버튼 표시
+           cancleButton.style.width = "40%"; // 취소 버튼의 길이를 늘림
+           cancleButton.style.margin = "5%"; // 취소 버튼의 길이를 늘림
        } else {
            // 비밀번호가 일치하지 않을 경우
            errorMessageElement.style.display = "block"; // 오류 메시지를 표시합니다.
            exitTextElement.style.display = "none"; // 회원탈퇴 화면 숨김
            okButton.style.display = "none"; // 확인 버튼 숨김
+           cancleButton.style.width = "100%"; // 취소 버튼의 길이를 늘림
+           cancleButton.style.margin = "0"; // 취소 버튼의 길이를 늘림
        }
    });
    
