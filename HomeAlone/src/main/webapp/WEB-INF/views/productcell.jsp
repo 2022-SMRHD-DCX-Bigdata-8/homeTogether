@@ -507,7 +507,10 @@
            $('#review_Button').on('click', inReview);
            $('.cart').on('click', inCart);
            
-           $('.order').on('click', goPayment);
+           $('.order').on('click', async function() {
+               await inCartAndGoPayment(); 
+               
+           });
       
       
       
@@ -515,26 +518,20 @@
       
       }); 
  //====================================================================================
-  function goPayment() {
-    // 데이터를 준비하거나 가공하는 작업을 수행할 수 있습니다.
-    var product = "Product Name";
-    var amount = 100;
-    
-    // 페이지 이동과 함께 데이터를 URL 매개변수로 전달합니다.
-    var url = "goPayment.do";
-    var params = {
-        product: product,
-        amount: amount
-    };
-    
-    redirectToPageWithParams(url, params);
-}
+  
+    function goPayment() {
+     return new Promise(function(resolve, reject) {
+        window.location.href="goPayment.do"
+           
+       });    
+   }
+    async function inCartAndGoPayment() {
+          await inCart();   // 'incart' 함수를 비동기적으로 실행
+          goPayment();      // 'goPayment' 함수를 동기적으로 실행
+      }
 
-function redirectToPageWithParams(url, params) {
-   	var paramString = $.param(params);
-  	window.location.href = url + "?" + paramString;
-	}
-	
+   
+
 
    
  //====================================================================================  
@@ -892,6 +889,7 @@ function deleteReview() {
 
             // 댓글 입력 필드 초기화
             qnaItem.find('.a_content').val('');
+            location.reload();
         },
         error: function(e) {
             console.log('댓글 추가 실패');

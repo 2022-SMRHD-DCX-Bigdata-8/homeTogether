@@ -79,11 +79,6 @@ $(document).ready(function() {
     });
 
 
-    
-    
-
-    
-    
 
     $("button").click(function() {
         $(":checkbox").attr("checked", "checked");
