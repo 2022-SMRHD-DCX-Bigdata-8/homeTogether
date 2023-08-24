@@ -167,11 +167,11 @@
 
         </ul>
     </div>
-    <h1>Our new Products</h1>
+    <h1>Our new s</h1>
     <div class="products">
     	<c:forEach var="mainlist" items="${mainlist}">
         <div href="goProduct.do?prod_seq=${mainlist.prod_seq}">
-        	<a><img src="${mainlist.prod_img}"></a>
+        	<a href="goProductcell.do?prod_seq=${mainlist.prod_seq}"><img src="${mainlist.prod_img}"></a>
             <p>${mainlist.prod_name}</p>
             <p class="price">${mainlist.prod_price}원</p>
         </div>

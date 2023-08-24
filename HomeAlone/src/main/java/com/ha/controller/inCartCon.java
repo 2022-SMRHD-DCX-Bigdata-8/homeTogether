@@ -35,8 +35,8 @@ public class inCartCon implements Controller {
 		TB_Basket basket = new TB_Basket(prod_cnt, prod_seq, prod_name, prod_price);
 		basket_List.add(basket);
 		
-		TB_Basket basket2 = new TB_Basket(2, 1, "편안한 의자", 150000 );
-		basket_List.add(basket2);
+		//TB_Basket basket2 = new TB_Basket(2, 1, "편안한 의자", 150000 );
+		//basket_List.add(basket2);
 		HttpSession session = request.getSession();
 		session.setAttribute("basket", basket_List);
 		
