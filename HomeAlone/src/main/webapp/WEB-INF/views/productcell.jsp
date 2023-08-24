@@ -187,8 +187,8 @@
                   <span>${product.prod_price}</span> <em>총 상품금액</em>
                </div>
                <div class="button">
-                  <input type="button" class="cart" id="addToCart" value="장바구니"> <input
-                     type="button" class="order" value="구매하기">
+                  <input type="button" class="cart" id="addToCart" value="장바구니">
+                  <input type="button" class="order" value="구매하기" >
                </div>
             </div>
          </article>
@@ -505,15 +505,39 @@
         	});
            $('.addAnswerButton').on('click', addAnswer);
            $('#review_Button').on('click', inReview);
-           $('.cart').on('click', inCart);     
+           $('.cart').on('click', inCart);
+           
+           $('.order').on('click', goPayment);
       
       
       
       
       
-      });   
-   
+      }); 
+ //====================================================================================
+  function goPayment() {
+    // 데이터를 준비하거나 가공하는 작업을 수행할 수 있습니다.
+    var product = "Product Name";
+    var amount = 100;
     
+    // 페이지 이동과 함께 데이터를 URL 매개변수로 전달합니다.
+    var url = "goPayment.do";
+    var params = {
+        product: product,
+        amount: amount
+    };
+    
+    redirectToPageWithParams(url, params);
+}
+
+function redirectToPageWithParams(url, params) {
+   	var paramString = $.param(params);
+  	window.location.href = url + "?" + paramString;
+	}
+	
+
+   
+ //====================================================================================  
     function inCart() {
     	let prod_cnt = $('#prod_cnt').val();
         let prod_name = $('#prod_name').data('value');
