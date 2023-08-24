@@ -372,13 +372,13 @@
                               <td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
                               <td>
                                  <article>
-                                    <a href="goProduct.do?prod_seq=${list.prod_seq}"> <img
-                                       src="img/test/KakaoTalk_20230817_155756756_0${list.prod_seq}.jpg"
+                                    <a href="goProductcell.do?prod_seq=${list.prod_seq}"> <img
+                                       src="${list.prod_img}"
                                        alt="1">
                                     </a>
                                     <div>
                                        <h2>
-                                          <a href="goProduct.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
+                                          <a href="goProductcell.do?prod_seq=${list.prod_seq}">${list.prod_name}</a>
                                        </h2>
                                        <p>상품설명</p>
                                     </div>
@@ -434,7 +434,7 @@
                         <p>추천 상품</p>
                         <c:forEach var="prodlist" items="${prodlist}">
                         <div>
-                            <a href="goProduct.do?prod_seq=${prodlist.prod_seq}"><img src="${prodlist.prod_img}" alt="쇼파1"></a>
+                            <a href="goProductcell.do?prod_seq=${prodlist.prod_seq}"><img src="${prodlist.prod_img}" alt="쇼파1"></a>
                             <strong>${prodlist.prod_name}</strong>
                             <p>${prodlist.prod_price}원</p>
                         </div>
@@ -481,7 +481,8 @@
     </footer>
     </main>
 
-
+	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         function sample6_execDaumPostcode() {
@@ -732,8 +733,7 @@
          });
       </script>
     	
-    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-    <script src="assets/js/products.js"></script>
+   
 
 </body>
 

@@ -680,8 +680,11 @@ input[name="num"] {
 	float : left;
 	height: 43px; 
 	width: 60%;
+	margin-right : 5px;
 }
-
+.answerButton{
+	height : 40px;
+}
 #update_wrap{
 	display : inline-block;
 	margin-left : 10px;
@@ -791,6 +794,7 @@ h1 {
     padding-left : 45px;
 }
 #admin_content{
+	transition: all 800ms ease-in-out;
 	opacity : 0%;
 	width : 80%;
 	margin : 0 auto 20px;
@@ -799,12 +803,12 @@ h1 {
 #admin_content > .a_content{
 	margin-left : 5%;
 	box-sizing : border-box;
-	height : 35px;
+	height : 40px;
 	width : 60%;
 }
 
 #admin_content > .addAnswerButton{
-	height : 35px;
+	height : 40px;
 	box-sizing : border-box;
 	float : right;
 	right : 10%;
@@ -813,7 +817,7 @@ h1 {
 
 .admin_content {
     opacity : 100% !important;
-    transition: all 800ms ease-in-out; /* 예시로 0.3초의 시간을 가지는 트랜지션 효과 */
+    transition: all 800ms ease-in-out;
 }
 .qa-form {
     text-align: center;
