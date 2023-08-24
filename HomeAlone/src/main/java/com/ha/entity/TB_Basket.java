@@ -16,6 +16,7 @@ public class TB_Basket {
 	private int prod_seq;  // 제품 번호
 	private String prod_name; // 제품명
 	private int prod_price;   // 제품가격
+	private String prod_img;
 	
 	
 	

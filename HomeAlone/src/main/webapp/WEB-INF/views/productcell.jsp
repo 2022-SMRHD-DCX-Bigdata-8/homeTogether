@@ -13,7 +13,10 @@
 </head>
 
 <body>
-<%  TB_Member user=(TB_Member)session.getAttribute("user"); %>
+<%  
+	TB_Member user=(TB_Member)session.getAttribute("user"); 
+	 
+%>
     <div id="login_view">
         <div id="back"><img src="img/icon/back.png"></div>
         <form action="#" method="post">
@@ -111,7 +114,7 @@
     </div>
     <div>
         <div id="wrapper">
-            <a class="logo" href="#">
+            <a class="logo" href="main.do">
                 <img src="img/logo/image2.png" height="75px">
             </a>
       <ul id="menu">
@@ -142,24 +145,24 @@
                 <h1>상품보기</h1>
                 <p>
                     HOME >>
-                    <span >가구/의자</span>
+                    <span >${product.prod_type}</span>
                     >>
-                    <strong>리클라이너</strong>
+                    <strong>${product.prod_detail}</strong>
                 </p>
             </nav>
             <article class="info">
                 <div class="image">
-                    <img src="img/shopa/이미지10.jpg" alt="상품이미지">
+                    <img src="${product.prod_img}" alt="상품이미지">
                 </div>
                 <div class="summary">
                     <h2>
                         상품번호 :
-                        <span id="prod_seq" data-value="5">5</span>
+                        <span id="prod_seq" data-value="${product.prod_seq}">${product.prod_seq}</span>
                     </h2>
-                    <h1>(주)판매자명</h1>
+                    <h1>(주)스마트인재개발원</h1>
 
                     <nav>
-                        <h3 id="prod_name" data-value="사무용 의자">리클라이너 의자</h3>
+                        <h3 id="prod_name" data-value="${product.prod_name}">${product.prod_name}</h3>
                         <p>상품설명 출력</p>
 
                     </nav>
@@ -169,12 +172,12 @@
                             <span>10%</span>
                         </div>
                         <div class="dis_price">
-                            <ins id="prod_price" data-value="27000">27,000</ins>
+                            <ins id="prod_price" data-value="${product.prod_price}">${product.prod_price}</ins>
                         </div>
                     </nav>
                     <nav id="free_baesong">
-                        <span class="delivery">무료배송</span>
-                        <span class="arrival">모레(일) 8/27 도착예정</span>
+                        <span class="delivery">무료배송</span>  						
+                        <span class="arrival">모레(일) 8/27 도착예정 </span>
                         <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                     </nav>
                     <nav>
@@ -186,7 +189,7 @@
                         <button class="increase">+<i class="fas fa-plus"></i></button>
                     </div>
                     <div class="total">
-                        <span>27,000</span>
+                        <span>${product.prod_price}</span>
                         <em>총 상품금액</em>
                     </div>
                     <div class="button">
@@ -490,7 +493,37 @@
    <script type="text/javascript">
     $(document).ready(function() {
             $('#review_Button').on('click', inReview);
+            $('.cart').on('click', inCart);
+            
         });
+    
+    function inCart() {
+    	let prod_cnt = $('#prod_cnt').val();
+        let prod_name = $('#prod_name').data('value');
+        let prod_seq = $('#prod_seq').data('value');
+        let prod_price = $('#prod_price').data('value');
+        let prod_img = $('.image img').attr('src');
+      //====================================================================================================================================
+        $.ajax({
+                 url : 'inCart.do',
+                 type : 'post',
+                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                 data : {
+                    "prod_cnt" : prod_cnt,
+                    "prod_seq" : prod_seq,
+                    "prod_name" : prod_name,
+                    "prod_price" : prod_price,
+                    "prod_img" :prod_img
+                 },
+                 dataType : 'json',
+                 success : function(res) {
+                    console.log('성공!!');
+                 },
+                 error : function(e) {
+                    console.log('요청실패!!!');
+                 }
+              });
+     }
 //====================================================================================================================================        
         
    function sample6_execDaumPostcode() {
@@ -544,19 +577,31 @@
         const decreaseButton = document.querySelector('.decrease');
         const increaseButton = document.querySelector('.increase');
         const inputField = document.querySelector('input[name="num"]');
+        
+        
+        const totalPriceElement = document.querySelector('.total>span');
+        const unitPrice = parseFloat(document.getElementById('prod_price').getAttribute('data-value'));
 
         decreaseButton.addEventListener('click', () => {
             const currentValue = parseInt(inputField.value);
             if (currentValue > 1) {
                 inputField.value = currentValue - 1;
+                updateTotalPrice();
             }
         });
 
         increaseButton.addEventListener('click', () => {
             const currentValue = parseInt(inputField.value);
             inputField.value = currentValue + 1;
+            updateTotalPrice();
         });
-         
+        
+        function updateTotalPrice() {
+            const quantity = parseInt(inputField.value);
+            const total = unitPrice * quantity;
+            totalPriceElement.textContent = total // 총 가격을 적절한 형식으로 업데이트
+        }
+          
 //====================================================================================================================================           
         
      function inReview() {

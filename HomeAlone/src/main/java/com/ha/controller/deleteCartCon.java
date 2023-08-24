@@ -61,6 +61,7 @@ public class deleteCartCon implements Controller {
 			System.out.println("장바구니안에 상품이있어");
 		}else {
 			System.out.println("장바구니가 비어있어!");
+			session.removeAttribute("basket");
 		}
 		 
 		 if(list.size()==0) {
