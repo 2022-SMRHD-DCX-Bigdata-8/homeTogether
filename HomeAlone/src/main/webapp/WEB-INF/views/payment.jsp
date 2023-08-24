@@ -1,6 +1,6 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +14,10 @@
 </head>
 
 <body>
-	<%
+   <%
    TB_Member user = (TB_Member) session.getAttribute("user");
    %>
-	<div id="login_view">
+   <div id="login_view">
       <div id="back">
          <img src="img/icon/back.png">
       </div>
@@ -106,167 +106,167 @@
       </form>
 
    </div>
-   <div class="navbar">	
-		<a class="logo" href="main.do"> <img src="img/logo/image2.png"
-			height="75px">
-		</a>
-		<ul id="menu">
-		<form action="search.do" method="post" >
+   <div class="navbar">   
+      <a class="logo" href="main.do"> <img src="img/logo/image2.png"
+         height="75px">
+      </a>
+      <ul id="menu">
+      <form action="search.do" method="post" >
          <div id="search">
             <span>Search</span> <input type="text" id="search_content" name="search">
             <input id="search_img" type="image" src="img/icon/search2.png">
          </div>
       </form>
-			<li id="search_btn"><a href="#home">검색</a></li>
-			<li><a href="#html">게시판</a></li>
-			<li><a href="goBasket.do">장바구니</a></li>
-			<%
-	      if (user == null) {
-	      %>
-			<li id="goLogin"><a href="#javascript">로그인</a></li>
-			<%
-	      } else {
-	      %>
-			<!-- ★마이페이지,로그아웃★ -->
-			<li><a href="goMypage.do">마이페이지</a></li>
-			<li><a href="goLogout.do">로그아웃</a></li>
-			<%
-	      }
-	      %>
-		</ul>
-	</div>
+         <li id="search_btn"><a href="#home">검색</a></li>
+         <li><a href="#html">게시판</a></li>
+         <li><a href="goBasket.do">장바구니</a></li>
+         <%
+         if (user == null) {
+         %>
+         <li id="goLogin"><a href="#javascript">로그인</a></li>
+         <%
+         } else {
+         %>
+         <!-- ★마이페이지,로그아웃★ -->
+         <li><a href="goMypage.do">마이페이지</a></li>
+         <li><a href="goLogout.do">로그아웃</a></li>
+         <%
+         }
+         %>
+      </ul>
+   </div>
 
-	<div id="wrapper">
-		<main id="product">
-			<aside>
-				<ul class="category">
-
-
-
-				</ul>
-			</aside>
-
-			<section class="cart">
-				<div>
-					<h1>주문내역</h1>
-					<h1 id="customer">주문자</h1>
-				</div>
-				<span id="c_name">${user.nick}</span>
-				<div class="flex-container">
-					<p>HOME >> 장바구니 >> 주문내역</p>
-				</div>
-
-				<form action="#">
-					<table border="0">
-						<tr>
-							<td id="selectAll"><input type="checkbox" onclick="toggleAll(this)"></td>
-							<th>상품명</th>
-							<th>상품번호</th>
-							<th>제품번호</th>
-							<th>총수량</th>
-							<th>배송비</th>
-							<th>소계</th>
-						</tr>
-			  			<c:if test="${list_empty}"> 
-						<tr class="empty">
-							<td colspan="7">장바구니에 상품이 없습니다.</td>
-						</tr>
-				  		</c:if> 
-					  	<c:if test="${!list_empty}"> 
-						<c:forEach var="list" items="${sessionScope.basket }" varStatus="status">
-							<tr class="basket">
-								<td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
-								<td>
-									<article>
-										<a href="goProductcell.do?prod_seq=${list.prod_seq}"> <img src="${list.prod_img}" alt="1">
-										</a>
-										<div>
-											<h2>
-												<a>${list.prod_name}</a>
-											</h2>
-											<p>상품설명</p>
-										</div>
-									</article>
-								</td>
-
-							<td class="num">${status.index + 1}</td>
-							<td class="number">PHT-${list.prod_seq}</td>
-							<td>${list.prod_cnt}</td>
-							<td class="fr_send">무료배송</td>
-							<td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
-							</tr>
-						</c:forEach>
-					  	</c:if>				
-						
-
-					</table>
-					<input type="button" name="del" value="선택삭제" onclick="deleteSelected()">
+   <div id="wrapper">
+      <main id="product">
+         <aside>
+            <ul class="category">
 
 
-					<div class="container"><!-- 1차 컨테이너 시작 -->
-						<article class="delivery">
 
-							<h1>배송정보</h1>
-							<table>
-								<tr>
-									<td>주문자</td>
-									<td><input type="text" name="orderer" value="${sessionScope.user.nick}" readonly></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>휴대폰</td>
-									<td><input type="text" name="hp" value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력"></td>
-									<td></td>
-								</tr>
+            </ul>
+         </aside>
 
-								<tr>
-									<td>우편번호</td>
-									<td><input type="text" id="zip" name="zip" value="${sessionScope.user.zipCode}" placeholder="우편번호"></td>
-									<td><input type="button" onclick="execDaumPostcode()" value="우편번호 검색"></td>
-								</tr>
-								<tr>
-									<td>도로명주소</td>
-									<td><input type="text" id="roadAddress" name="roadAddress" value="${sessionScope.user.addr}" placeholder="주소"></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td>상세주소</td>
-									<td><input type="text" name="addr2" value="${sessionScope.user.addrDetail}" placeholder="상세주소"></td>
-									<td></td>
-								</tr>
-							</table>
-						</article>
-						<article class="payment">
-						<h1>결제방법</h1>
-							<article class="payment">
-								<h1>결제방법</h1>
-								<div class="payment-method">
-									<span><font color='royalblue'>신용카드</font></span><br> <label>
-										<input type="radio" name="payment" value="type1">ISP
-										결제
-									</label> <label> <input type="radio" name="payment"
-										value="type2">체크카드 결제
-									</label>
-								</div>
-								<div class="payment-method">
-									<span><font color='royalblue'>계좌이체</font></span><br> <label>
-										<input type="radio" name="payment" value="type3">실시간
-										계좌이체
-									</label> <label> <input type="radio" name="payment"
-										value="type4">무통장 입금
-									</label>
-								</div>
-								<div class="payment-method">
-									<span><font color='royalblue'>기타</font></span><br> <label>
-										<input type="radio" name="payment" value="type4">휴대폰
-										결제
-									</label> <label> <input type="radio" name="payment"
-										value="type5">카카오페이 <img src="" alt="">
-									</label>
-								</div>
-							</article>
-					</article>
-										<div class="total">
+         <section class="cart">
+            <div>
+               <h1>주문내역</h1>
+               <h1 id="customer">주문자</h1>
+            </div>
+            <span id="c_name">${user.nick}</span>
+            <div class="flex-container">
+               <p>HOME >> 장바구니 >> 주문내역</p>
+            </div>
+
+            <form action="#">
+               <table border="0">
+                  <tr>
+                     <td id="selectAll"><input type="checkbox" onclick="toggleAll(this)"></td>
+                     <th>상품명</th>
+                     <th>상품번호</th>
+                     <th>제품번호</th>
+                     <th>총수량</th>
+                     <th>배송비</th>
+                     <th>소계</th>
+                  </tr>
+                    <c:if test="${list_empty}"> 
+                  <tr class="empty">
+                     <td colspan="7">장바구니에 상품이 없습니다.</td>
+                  </tr>
+                    </c:if> 
+                    <c:if test="${!list_empty}"> 
+                  <c:forEach var="list" items="${sessionScope.basket }" varStatus="status">
+                     <tr class="basket">
+                        <td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
+                        <td>
+                           <article>
+                              <a href="goProductcell.do?prod_seq=${list.prod_seq}"> <img src="${list.prod_img}" alt="1">
+                              </a>
+                              <div>
+                                 <h2>
+                                    <a>${list.prod_name}</a>
+                                 </h2>
+                                 <p>상품설명</p>
+                              </div>
+                           </article>
+                        </td>
+
+                     <td class="num">${status.index + 1}</td>
+                     <td class="number">PHT-${list.prod_seq}</td>
+                     <td>${list.prod_cnt}</td>
+                     <td class="fr_send">무료배송</td>
+                     <td id="price"><span>${list.prod_price * list.prod_cnt }원</span></td>
+                     </tr>
+                  </c:forEach>
+                    </c:if>            
+                  
+
+               </table>
+               <input type="button" name="del" value="선택삭제" onclick="deleteSelected()">
+
+
+               <div class="container"><!-- 1차 컨테이너 시작 -->
+                  <article class="delivery">
+
+                     <h1>배송정보</h1>
+                     <table>
+                        <tr>
+                           <td>주문자</td>
+                           <td><input type="text" name="orderer" value="${sessionScope.user.nick}" readonly></td>
+                           <td></td>
+                        </tr>
+                        <tr>
+                           <td>휴대폰</td>
+                           <td><input type="text" name="hp" value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력"></td>
+                           <td></td>
+                        </tr>
+
+                        <tr>
+                           <td>우편번호</td>
+                           <td><input type="text" id="zip" name="zip" value="${sessionScope.user.zipCode}" placeholder="우편번호"></td>
+                           <td><input type="button" onclick="execDaumPostcode()" value="우편번호 검색"></td>
+                        </tr>
+                        <tr>
+                           <td>도로명주소</td>
+                           <td><input type="text" id="roadAddress" name="roadAddress" value="${sessionScope.user.addr}" placeholder="주소"></td>
+                           <td></td>
+                        </tr>
+                        <tr>
+                           <td>상세주소</td>
+                           <td><input type="text" name="addr2" value="${sessionScope.user.addrDetail}" placeholder="상세주소"></td>
+                           <td></td>
+                        </tr>
+                     </table>
+                  </article>
+                  <article class="payment">
+                  <h1>결제방법</h1>
+                     <article class="payment">
+                        <h1>결제방법</h1>
+                        <div class="payment-method">
+                           <span><font color='royalblue'>신용카드</font></span><br> <label>
+                              <input type="radio" name="payment" value="type1">ISP
+                              결제
+                           </label> <label> <input type="radio" name="payment"
+                              value="type2">체크카드 결제
+                           </label>
+                        </div>
+                        <div class="payment-method">
+                           <span><font color='royalblue'>계좌이체</font></span><br> <label>
+                              <input type="radio" name="payment" value="type3">실시간
+                              계좌이체
+                           </label> <label> <input type="radio" name="payment"
+                              value="type4">무통장 입금
+                           </label>
+                        </div>
+                        <div class="payment-method">
+                           <span><font color='royalblue'>기타</font></span><br> <label>
+                              <input type="radio" name="payment" value="type4">휴대폰
+                              결제
+                           </label> <label> <input type="radio" name="payment"
+                              value="type5">카카오페이 <img src="" alt="">
+                           </label>
+                        </div>
+                     </article>
+               </article>
+                              <div class="total">
                             <h2>전체합계</h2>
                             <table>
                                 <tr>
@@ -293,11 +293,11 @@
                             </table>
                             <input type="submit" value="주문하기" >
                     </div><!-- total 종료  -->
-					</div><!-- 1차 컨테이너 종료 -->
-					
-					<script
-						src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-					<script>
+               </div><!-- 1차 컨테이너 종료 -->
+               
+               <script
+                  src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+               <script>
                         function execDaumPostcode() {
                           new daum.Postcode({
                             oncomplete: function(data) {
@@ -307,116 +307,116 @@
                           }).open();
                         }
                       </script>
-				</form>
-			</section>
-		</main>
+            </form>
+         </section>
+      </main>
 
 
-	</div>
+   </div>
 
 
-	<footer id="footer">
-		<div id="foot_wrap">
-			<div id="foot_left">
-				<div>
-					<Strong>고객센터</Strong>
-				</div>
-				<div>
-					<p>010-8927-0775</p>
-					<p>09:00~18:00</p>
-				</div>
-				<div>
-					<p>
-						평일 : 전체 문의 상담 가능<br> 주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
-					</p>
-				</div>
-			</div>
-			<div id="foot_center">
-				<div>
-					<p>상호명: HomeTogether</p>
-					<p>대표자: 김찬호</p>
-					<p>광주 남구 송암로 60 CGI 센터 2400층</p>
-					<p>사업자 등록번호 : 2400-2400-2400</p>
-				</div>
-			</div>
-			<div id="foot_right">
-				<p>
-					(주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
-					지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
-					<br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
-				</p>
-			</div>
-		</div>
-	</footer>
+   <footer id="footer">
+      <div id="foot_wrap">
+         <div id="foot_left">
+            <div>
+               <Strong>고객센터</Strong>
+            </div>
+            <div>
+               <p>010-8927-0775</p>
+               <p>09:00~18:00</p>
+            </div>
+            <div>
+               <p>
+                  평일 : 전체 문의 상담 가능<br> 주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
+               </p>
+            </div>
+         </div>
+         <div id="foot_center">
+            <div>
+               <p>상호명: HomeTogether</p>
+               <p>대표자: 김찬호</p>
+               <p>광주 남구 송암로 60 CGI 센터 2400층</p>
+               <p>사업자 등록번호 : 2400-2400-2400</p>
+            </div>
+         </div>
+         <div id="foot_right">
+            <p>
+               (주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
+               지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
+               <br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
+            </p>
+         </div>
+      </div>
+   </footer>
 
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-	<script src="assets/js/products.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+   <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+   <script src="assets/js/products.js"></script>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-	<script>
-	$(document).ready(function() {
-	    $("#btn_payment").click(function() {
-	        // class가 btn_payment인 태그를 선택했을 때 작동한다.
-	        IMP.init('imp33005853');
-	        
-	        IMP.request_pay({
-	            pg : 'html5_inicis',
-	            pay_method : 'card',
-	            merchant_uid : 'merchant_' + new Date().getTime(),
-	            name : '(주)HomeTogether', // 결제창에서 보여질 이름
-	            amount : 2400, // 실제 결제되는 가격
-	            buyer_email : 'iamport@siot.do',
-	            buyer_name : '${sessionScope.user.nick}',
-	            buyer_tel : '${sessionScope.user.phone}',
-	            buyer_addr : '${sessionScope.user.addr}',
-	            buyer_postcode : '${sessionScope.user.zipCode}'
-	        }, function(rsp) {
-	            if (rsp.success) {
-	                jQuery.ajax({
-	                       url: "{서버의 결제 정보를 받는 가맹점 endpoint}", //
-	                       method: "POST",
-	                       headers: { "Content-Type": "application/json" },
-	                       data: {
-	                         imp_uid: rsp.imp_uid,            // 결제 고유번호
-	                         merchant_uid: rsp.merchant_uid   // 주문번호
-	                         
-	                       }
-	                     }).done(function (data) {
-	                       // 가맹점 서버 결제 API 성공시 로직
-	                        var msg = '결제가 완료되었습니다.';
-	                          msg += '고유ID : ' + rsp.imp_uid;
-	                          msg += '상점 거래ID : ' + rsp.merchant_uid;
-	                          msg += '결제 금액 : ' + rsp.paid_amount;
-	                          msg += '카드 승인번호 : ' + rsp.apply_num;
-	                     })
-	            } else {
-	               var msg = '결제가 완료되었습니다.';
-	               
-	               
-	               var orderer = $("input[name='orderer']").val();
-	               var hp = $("input[name='hp']").val();
-	               var zip = $("input[name='zip']").val();
-	               var roadAddress = $("input[name='roadAddress']").val();
-	               var addr2 = $("input[name='addr2']").val();
-	               
-	               
-	               // 입력한 값을 세션에 저장
-	               sessionStorage.setItem("orderer", orderer);
-	               sessionStorage.setItem("hp", hp);
-	               sessionStorage.setItem("zip", zip);
-	               sessionStorage.setItem("roadAddress", roadAddress);
-	               sessionStorage.setItem("addr2", addr2);
-	               
-	               
-	               window.location.href = 'goComplete.do';
-	            }
-	            alert(msg);
-	        });
-	    });
-	});
-	</script>
-	<script>
+   <script>
+   $(document).ready(function() {
+       $("#btn_payment").click(function() {
+           // class가 btn_payment인 태그를 선택했을 때 작동한다.
+           IMP.init('imp33005853');
+           
+           IMP.request_pay({
+               pg : 'html5_inicis',
+               pay_method : 'card',
+               merchant_uid : 'merchant_' + new Date().getTime(),
+               name : '(주)HomeTogether', // 결제창에서 보여질 이름
+               amount : 2400, // 실제 결제되는 가격
+               buyer_email : 'iamport@siot.do',
+               buyer_name : '${sessionScope.user.nick}',
+               buyer_tel : '${sessionScope.user.phone}',
+               buyer_addr : '${sessionScope.user.addr}',
+               buyer_postcode : '${sessionScope.user.zipCode}'
+           }, function(rsp) {
+               if (rsp.success) {
+                   jQuery.ajax({
+                          url: "{서버의 결제 정보를 받는 가맹점 endpoint}", //
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          data: {
+                            imp_uid: rsp.imp_uid,            // 결제 고유번호
+                            merchant_uid: rsp.merchant_uid   // 주문번호
+                            
+                          }
+                        }).done(function (data) {
+                          // 가맹점 서버 결제 API 성공시 로직
+                           var msg = '결제가 완료되었습니다.';
+                             msg += '고유ID : ' + rsp.imp_uid;
+                             msg += '상점 거래ID : ' + rsp.merchant_uid;
+                             msg += '결제 금액 : ' + rsp.paid_amount;
+                             msg += '카드 승인번호 : ' + rsp.apply_num;
+                        })
+               } else {
+                  var msg = '결제가 완료되었습니다.';
+                  
+                  
+                  var orderer = $("input[name='orderer']").val();
+                  var hp = $("input[name='hp']").val();
+                  var zip = $("input[name='zip']").val();
+                  var roadAddress = $("input[name='roadAddress']").val();
+                  var addr2 = $("input[name='addr2']").val();
+                  
+                  
+                  // 입력한 값을 세션에 저장
+                  sessionStorage.setItem("orderer", orderer);
+                  sessionStorage.setItem("hp", hp);
+                  sessionStorage.setItem("zip", zip);
+                  sessionStorage.setItem("roadAddress", roadAddress);
+                  sessionStorage.setItem("addr2", addr2);
+                  
+                  
+                  window.location.href = 'goComplete.do';
+               }
+               alert(msg);
+           });
+       });
+   });
+   </script>
+   <script>
                 function sample6_execDaumPostcode() {
                     new daum.Postcode({
                         oncomplete: function (data) {
@@ -465,8 +465,8 @@
                     }).open();
                 }
     </script>
-	
-	<script>
+   
+   <script>
                 function execDaumPostcode() {
                     new daum.Postcode({
                         oncomplete: function (data) {
