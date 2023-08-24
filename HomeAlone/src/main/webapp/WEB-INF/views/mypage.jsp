@@ -293,29 +293,7 @@
                         </p>
                         <p>감사합니다.</p>
                      </div>
-                     <div class="email-box">
-                        <p>
-                           안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-                        </p>
-                        <h3>결제 내역</h3>
-                        <table>
-                           <tr>
-                              <td><span>푹신푹신 쇼파</span></td>
-                              <td><span>￦9,000</span>원</td>
-                           </tr>
-                           <tr>
-                              <td><span>반짝반짝 조명</span></td>
-                              <td>￦9,000원</td>
-                           </tr>
-                        </table>
-                        <p>
-                           전체 결제금액 <span>￦18,000</span>원
-                        </p>
-                        <p>
-                           구매일 <span>2023-08-17 11:11:11</span>
-                        </p>
-                        <p>감사합니다.</p>
-                     </div>
+
                   </div>
                </div>
    </header>
