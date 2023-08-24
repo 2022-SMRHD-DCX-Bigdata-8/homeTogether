@@ -29,7 +29,7 @@ public class searchCon implements Controller {
 		System.out.println(page_idx);
 		
 		
-		String search=request.getParameter("search");
+		String search = request.getParameter("search");
 		
 		System.out.println(search);
 		TB_ProductListDAO dao =  new TB_ProductListDAO();
@@ -58,12 +58,13 @@ public class searchCon implements Controller {
 		String currenturl = parts[parts.length - 1];
 		
 		System.out.println(currenturl);
-		
+		System.out.println(page_idx);
 		request.setAttribute("total", list.size());
 		request.setAttribute("page",page_cnt);
 		request.setAttribute("url", currenturl);
 		request.setAttribute("product", product);
 		request.setAttribute("searched", search);
+		request.setAttribute("pagecnt", page_idx);
 		
 		
 		return "productPage";

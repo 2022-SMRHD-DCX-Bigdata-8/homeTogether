@@ -156,12 +156,14 @@
         	<ul id="filter" style="visibility : hidden">
             <li>뭐냐?</li>
        	</c:if>
+       	
         <c:if test="${product[0].prod_type =='조명'}">
         <ul id="filter">
             <li><a href="#" data-value='벽조명'><span>벽조명</span></a></li>
             <li><a href="#" data-value='스탠드조명'><span>스탠드조명</span></a></li>
             <li><a href="#" data-value='천장등'><span>천장등</span></a></li>
         </c:if>
+        
         <c:if test="${product[0].prod_type =='수납'}">
         <ul id="filter">
             <li><a href="#" data-value='행거'><span>행거</span></a></li>
@@ -232,25 +234,25 @@
                 <ul id="buttons">
                 
 				<c:if test="${searched ==null }">
-				<c:forEach var="i" begin="1" end="${page}">
-					<c:if test="${pagecnt == i }"> 
-    					<li class="click"><span><a href="${url}?page=${i}">${i}</a></span></li>
-    				</c:if>
-    				<c:if test="${pagecnt != i }"> 
-    					<li><span><a href="${url}?page=${i}">${i}</a></span></li>
-    				</c:if>
-				</c:forEach>
+					<c:forEach var="i" begin="1" end="${page}">
+						<c:if test="${pagecnt == i }"> 
+	    					<li class="click"><span><a href="${url}?page=${i}">${i}</a></span></li>
+	    				</c:if>
+	    				<c:if test="${pagecnt != i }"> 
+	    					<li><span><a href="${url}?page=${i}">${i}</a></span></li>
+	    				</c:if>
+					</c:forEach>
 				</c:if>
 				
-				<c:if test="${searched !=null }">
-				<c:forEach var="i" begin="1" end="${page}">
-					<c:if test="${pagecnt == i }"> 
-    					<li class="click"><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
-    				</c:if>
-    				<c:if test="${pagecnt != i }"> 
-    					<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
-    				</c:if>
-				</c:forEach>
+				<c:if test="${searched != null }">
+					<c:forEach var="i" begin="1" end="${page}">
+						<c:if test="${pagecnt == i }"> 
+	    					<li class="click"><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+	    				</c:if>
+	    				<c:if test="${pagecnt != i }"> 
+	    					<li><span><a href="${url}?page=${i}&search=${searched}">${i}</a></span></li>
+	    				</c:if>
+					</c:forEach>
 				</c:if>
 				
                     
