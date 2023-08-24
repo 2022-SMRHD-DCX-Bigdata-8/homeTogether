@@ -13,26 +13,30 @@
         box-sizing: border-box;
         margin-left: 0px !important;
     }
-    .delivery{
-    margin-right: 10px;
-    width: 40% !important;
-    }
+
     .total > table > tbody >:last-child > td {
         font-size: 16px !important;
         
 
     }
-    #product > .cart > form > .total > input[type=submit]{
+    #product > .cart > form > .container > .total > input[type=submit]{
         margin-top: 15px;
         height: 38px !important;
         font-size: 20px !important;
     }
 }
- 
+ @media(max-width:1505px){
+ 	#product>.cart>form>table{
+ 		width : 955px !important;	
+ 	}
+ }
 
  * {
 	font-family: 'GmarketSansMedium';
 } 
+body{
+	margin : 0px 8px;
+}
 /* 로그인창 */
 
 /* 아이콘 */
@@ -55,7 +59,7 @@
     top: 50%;
     left: 67%;
     transform: translateY(-50%);
-    opacity: 0%;
+    display:none;
   }
   
   #back>img {
@@ -285,10 +289,11 @@ header > nav{
     top: 30px;
 }
 .logo{
-    width: 130px;
+    display:inline-block;
 }
 .logo> img{
     width: 130px;
+    display:block;
 }
 
 #menu{
@@ -308,6 +313,7 @@ header > nav{
   text-decoration: none;
   color: black;
   font-size: 18px;
+  display: block;
 }
 #menu::after{
     content: "";
@@ -339,21 +345,38 @@ header > nav{
     margin-bottom: 0px ;
     margin-top: 60px;
 }
+#product > section > form > div.container > article.delivery > table > tbody > tr > td{
+	height : 40px;
+	
+}
+.container::after{
+	content: "";
+	clear: both;
+	display: block;
+}
 
 .container {
-    display: flex;
-    justify-content: space-between;
+    display: inline-block;
     margin-top: 30px;
+    width : 820px;
+}
+.container > .delivery{
+	
+	height : 404px;
+	box-sizing : border-box;
+}
+#product > section > form > div.container > article.delivery > table > tbody > tr > td{
+	height : 40px;
 }
 
 .delivery,
 .payment {
-    width: 100%;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    float : left;
 }
 
 .payment-method {
@@ -455,6 +478,7 @@ header > nav{
 
 #product>.cart>form>table td>article>div>h2 {
     text-align: left;
+    font-size : 14px;
 }
 
 #product>.cart>form>table td>article>div>p {
@@ -471,21 +495,19 @@ header > nav{
     padding: 6px 11px;
     border-width: 1px;
     margin-top: 6px;
+    display : block;
 }
 
-#product>.cart>form>.total {
-    float: right;
-    width: 360px;
-    height: 415px;
+#product>.cart>form> .container > .total {
+    float: left;
     padding: 20px;
-    margin-top: 30px;
     background: #fff;
     border: 1px solid #d3d3d3;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
-#product>.cart>form>.total>h2 {
+#product>.cart>form>.container >.total>h2 {
     width: 100%;
     font-weight: bold;
     font-size: 18px;
@@ -497,7 +519,7 @@ header > nav{
     text-align: center;
 }
 
-#product>.cart>form>.total>table {
+#product>.cart>form> .container>.total>table {
     width: 100%;
 }
 
@@ -505,23 +527,23 @@ header > nav{
     font-size: 20px;
 }
 
-#product>.cart>form>.total>table tr:nth-last-child(1) td:last-child {
+#product>.cart>form>.container >.total>table tr:nth-last-child(1) td:last-child {
     color: #ff006c;
     font-size: 20px;
     font-weight: bold;
 }
 
-#product>.cart>form>.total > table > tbody > tr > td {
+#product>.cart>form >.container > .total > table > tbody > tr > td {
     font-size: 16px;
     color: #555;
     padding-bottom: 20px;
 }
 
-#product>.cart>form>.total>table td:last-child {
+#product>.cart>form> .container >.total>table td:last-child {
     text-align: right;
 }
 
-#product>.cart>form>.total>input[type=submit] {
+#product>.cart>form> .container > .total>input[type=submit] {
     width: 100%;
     height: 56px;
     font-size: 26px;
@@ -541,7 +563,6 @@ header > nav{
 }
 .total{
     margin-left: 30px;
-    margin-top: 40px;
 }
 
 /* 콘텐트 내부 수정 끝 */
@@ -610,6 +631,33 @@ header > nav{
     margin-top: 40px;
 }
 /* footer 끝 */
+/* 검색 창 시작 */
+#menu{
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > form > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
+/* 검색 창 끝 */
 #send_tb>tbody>tr>td{
     margin: 10px;
 }
@@ -622,10 +670,7 @@ header > nav{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
 }
-.delivery{
-    width: 50% !important;
-    margin-right: 30px;
-}
+
 .cart{
     width: 65%;
 }

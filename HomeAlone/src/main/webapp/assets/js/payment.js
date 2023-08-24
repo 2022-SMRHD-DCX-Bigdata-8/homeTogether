@@ -74,16 +74,20 @@ $(document).ready(function(){
         opener();
         /* $("#back").css("visibility", "visible"); */
     })
+
     //-------------------------------------------------
     var $viewer = $("#login_view");
     function opener() {
+        $('#back').css("display", "block");
         $viewer.animate({ "width": "35%" }, 400);
-        $("#back").animate({ "opacity": "50%" }, 500);
-        $('#back > img').css("opacity", "50%");
+        $("#back > img").animate({ "opacity": "50%" }, 500);
     }
     function closer() {
+        $('#back').css("display", "none");
         $viewer.animate({ "width": "0%" }, 400);
-        $("#back").animate({ "opacity": "0%" }, 500);
+        $("#back > img").animate({ "opacity": "0%" }, 500);
     }
+
+
 
 })

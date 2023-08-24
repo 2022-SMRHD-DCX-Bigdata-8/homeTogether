@@ -4,6 +4,12 @@
   <artifactId>HomeAlone</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  <repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>    
+</repositories>
 
 
   	<dependencies>
@@ -64,6 +70,15 @@
           <version>1.18.28</version>
           <scope>provided</scope>
       </dependency>
+      
+      
+     <dependency>
+    <groupId>com.github.iamport</groupId>
+    <artifactId>iamport-rest-client-java</artifactId>
+    <version>0.2.14</version>
+	</dependency>
+      
+      
  
  
  
