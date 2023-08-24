@@ -272,6 +272,7 @@ button:hover:after {
   text-decoration: none;
   color: black;
   font-size: 18px;
+  padding : 10px;
 }
 
 #menu::after {
