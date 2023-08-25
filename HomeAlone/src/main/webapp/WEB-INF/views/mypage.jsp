@@ -47,7 +47,7 @@ jsonOrders += "]";
 
    
    %>
-   console.log(order);
+   
    <div id="float">
       <div>
          <h1>회원탈퇴</h1>
@@ -73,7 +73,14 @@ jsonOrders += "]";
             </a>
 
             <ul id="menu">
-               <li><a href="#home">검색</a></li>
+            <form action="search.do" method="post" >
+         		<div id="search">
+            		<span>Search</span>
+            		<input type="text" id="search_content" name="search">
+            		<input id="search_img" type="image" src="img/icon/search2.png">
+         		</div>
+     		 </form>
+               <li id="search_btn"><a href="#home">검색</a></li>
                <li><a href="goBasket.do">장바구니</a></li>
                <%
                if (user == null) {
