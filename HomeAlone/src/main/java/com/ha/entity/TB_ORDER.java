@@ -1,5 +1,12 @@
 package com.ha.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class TB_ORDER {
 
 	private int order_seq;			//주문순번
