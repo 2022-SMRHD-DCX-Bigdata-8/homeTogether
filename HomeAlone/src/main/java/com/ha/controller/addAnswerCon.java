@@ -27,27 +27,31 @@ public class addAnswerCon implements Controller {
 
 		
 		String q_seq = request.getParameter("q_seq");
+		String a_content = request.getParameter("a_content");
+		System.out.println(a_content);
+		
 		System.out.println("===============================================================");
 		System.out.println(q_seq);
 		System.out.println("===============================================================");
 		String[] q= q_seq.split("/");
-		
 		System.out.println(q[0]);
 		System.out.println(q[1]);
 		System.out.println(q[2]);
-		int qseq= Integer.parseInt(q[0]);
+		String qq =q[0].replace(" ", "");
+		System.out.println(qq);
 		
-		System.out.println(q_seq);
-		String a_content = request.getParameter("a_content");
+		int qseq= Integer.parseInt(qq);
+		
+		System.out.println(qseq);
+		System.out.println(a_content);
 		int prod_seq=Integer.parseInt(request.getParameter("prod_seq"));
-		
+		System.out.println(prod_seq);
 		TB_Answer answer = new TB_Answer();
 		
 		answer.setA_content(a_content);
 		answer.setQ_seq(qseq);
 		answer.setNick(nick);
 		answer.setProd_seq(prod_seq);
-		System.out.println(answer);
 		TB_AnswerDAO dao = new TB_AnswerDAO();
 		int cnt = dao.insertAnswer(answer);
 		System.out.println(cnt);

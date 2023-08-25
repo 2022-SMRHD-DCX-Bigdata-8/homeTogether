@@ -373,8 +373,7 @@
 
                   <li class="main_content">
                      <div>
-                        <h5 class="QandA1">
-                        	${qna.q_seq}/${qna.nick}/${qna.created_at}
+                        <h5 class="QandA1">${qna.q_seq}/${qna.nick}/${qna.created_at}
                         </h5>
                         
                         <div id="ans_btn">
@@ -870,11 +869,12 @@ function deleteReview() {
     // 댓글 추가 함수
    function addAnswer() {
        let qnaItem = $(this).closest('li');
-       let q_seq = qnaItem.find('span:eq(0)').text(); // 문의번호 가져오기
-        let a_content = qnaItem.find('.a_content').val(); // 댓글 내용 가져오기
+       let q_seq = qnaItem.find('.QandA1:eq(0)').text(); // 문의번호 가져오기
+       let a_content = qnaItem.find('.a_content').val(); // 댓글 내용 가져오기
        let prod_seq = $('#prod_seq').data('value');
         console.log(q_seq);
-
+        console.log(a_content);
+		
     $.ajax({
         url: 'addAnswer.do',
         type: 'post',
