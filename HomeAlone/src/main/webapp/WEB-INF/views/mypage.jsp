@@ -1,4 +1,5 @@
 
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ha.entity.TB_ORDER"%>
 <%@page import="com.ha.entity.TB_QNA"%>
@@ -22,11 +23,12 @@
 
    <% 
    TB_Member user = (TB_Member) session.getAttribute("user");
-   List<TB_ORDER>orders = (List<TB_ORDER>)request.getAttribute("order");
+   List<TB_ORDER> orders = (List<TB_ORDER>)request.getAttribute("order");
    // 비밀번호 삭제할 때 비교할 세션에 저장된 본인 비밀번호
    String password = user.getPw();  
    //String id =user.getId();
    //id=id.substring(0, 4);
+   System.out.println(orders);
 
 String jsonOrders = "[";
 for (TB_ORDER order : orders) { // 여기서 변수명을 `orders`가 아니라 `order`로 사용합니다.
@@ -273,7 +275,8 @@ jsonOrders += "]";
                </div>
                
                <div id="email_boxes">
-                  <c:forEach var="orderlist" items="${orders}">
+              
+    <c:forEach var="orderlist" items ="${orders}">
     <div class="email-box">
         <p>
             안녕하세요. <strong>${orderlist.nick}</strong>님의 결제내역입니다.
@@ -298,7 +301,6 @@ jsonOrders += "]";
         <p><strong>${orderlist.order_status}</strong></p>
     </div>
 </c:forEach>
-                    
                   </div>
                   
         </div>

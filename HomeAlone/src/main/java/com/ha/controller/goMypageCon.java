@@ -29,7 +29,7 @@ public class goMypageCon implements Controller {
 		
 		TB_OrderDAO dao = new TB_OrderDAO();
 		
-		List<TB_ORDER>list = dao.select(order);
+		List<TB_ORDER> list = dao.select(order);
 		
 		request.setAttribute("order", list);
 		
