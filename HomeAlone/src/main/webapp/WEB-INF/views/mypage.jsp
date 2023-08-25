@@ -1,10 +1,12 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.ha.entity.TB_ORDER"%>
 <%@page import="com.ha.entity.TB_QNA"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+   pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,371 +20,418 @@
 
 <body>
 
-	<%
-	TB_Member user = (TB_Member) session.getAttribute("user");
-	
-	// 비밀번호 삭제할 때 비교할 세션에 저장된 본인 비밀번호
-	String password = user.getPw();  
-	
-	//String id =user.getId();
-	//id=id.substring(0, 4);
-	
-	%>
+   <% 
+   TB_Member user = (TB_Member) session.getAttribute("user");
+   List<TB_ORDER>orders = (List<TB_ORDER>)request.getAttribute("order");
+   // 비밀번호 삭제할 때 비교할 세션에 저장된 본인 비밀번호
+   String password = user.getPw();  
+   //String id =user.getId();
+   //id=id.substring(0, 4);
 
-	<div id="float">
-		<div>
-			<h1>회원탈퇴</h1>
-				 <div id="errorMessage" style="display: none;">
-           			 <h3>비밀번호가 일치하지 않습니다. 취소 버튼을 누르고 다시 입력해주세요.</h3>
-       			 </div>
-       			  <div id="exitText">
-						<h3>정말로 탈퇴 하시겠습니까?</h3>
-						<h3>탈퇴 정보는 즉시 파기되어 복구하실 수 없습니다.</h3>
-				  </div>		
-			<div id="float_content">
-				<button id="ok">확인</button>
-				<button id="cancle">취소</button>
-			</div>
-		</div>
-	</div>
-	<header>
-		<div>
-			<div id="wrapper">
-
-				<a class="logo" href="main.do"> <img src="img/logo/image2.png"
-					height="75px">
-				</a>
-
-				<ul id="menu">
-					<li><a href="#home">검색</a></li>
-					<li><a href="goBasket.do">장바구니</a></li>
-					<%
-					if (user == null) {
-					%>
-					<li id=goLogin><a href="#">로그인</a></li>
-					<%
-					} else {
-					%>
-					<li><a href="goMypage.do">마이페이지</a></li>
-					<li><a href="goLogout.do">로그아웃</a></li>
-					<%
-					}
-					%>
-
-				</ul>
-			</div>
-
-		</div>
-		<main id="product">
-			<div class="wrap">
-				<div class="Container">
-					<div class="centered">
-						<div class="name">MY PAGE</div>
-					</div>
-					<div class="modify"></div>
-				</div>
-				<div class="summaryContainer"></div>
-				<div class="shippingStatusContainer">
-					<div class="title">
-						주문/배송조회
-						<h3>나의 주문처리 현황(최근 3개월 기준)</h3>
-					</div>
-					<div class="status">
-
-						<div class="item">
-							<div>
-								<div class="number">0</div>
-								<div class="text">장바구니</div>
-							</div>
-							<div class="icon">></div>
-						</div>
-						<div class="item">
-							<div>
-								<div class="number">3</div>
-								<div class="text">결제완료</div>
-							</div>
-							<div class="icon">></div>
-						</div>
-						<div class="item">
-							<div>
-								<div class="number">0</div>
-								<div class="text">배송중</div>
-							</div>
-							<div class="icon">></div>
-						</div>
-						<div class="item">
-							<div>
-								<div class="number">1</div>
-								<div class="text">구매확정</div>
-							</div>
-						</div>
-					</div>
-				</div>
+String jsonOrders = "[";
+for (TB_ORDER order : orders) { // 여기서 변수명을 `orders`가 아니라 `order`로 사용합니다.
+    jsonOrders += "{";
+    jsonOrders += "\"order_seq\": " + order.getOrder_seq() + ",";
+    jsonOrders += "\"nick\": \"" + order.getNick() + "\",";
+    jsonOrders += "\"total_amount\": " + order.getTotal_amount() + ",";
+    // 다른 주문 정보도 추가할 수 있습니다.
+    jsonOrders += "\"order_status\": \"" + order.getOrder_status() + "\"";
+    jsonOrders += "},";
+}
+// 마지막 쉼표(,)를 제거합니다.
+if (jsonOrders.endsWith(",")) {
+    jsonOrders = jsonOrders.substring(0, jsonOrders.length() - 1);
+}
+jsonOrders += "]";
 
 
-				<div id="content_wrap">
-					<div class="listContainer">
-						<a href="#" class="item" id="order_list">
-							<div class="icon">ii</div>
-							<div class="text">
-								주문내역<span class="circle"></span>
-							</div>
-						</a> <a href="#" class="item" id="review_QnA">
-							<div class="icon">ii</div>
-							<div class="text">리뷰 및 QnA 기록</div>
-						</a> <a href="goBasket.do" class="item" id="basket">
-							<div class="icon">ii</div>
-							<div class="text">장바구니</div>
-						</a> <a href="#" class="item" id="member_data">
-							<div class="icon">ii</div>
-							<div class="text">회원정보 변경</div>
-						</a>
-					</div>
-					<div id="login_view" style="display: none;">
-						<h1 id="join_h1">회원정보 수정</h1>
-						<form action="update.do" method="post">
-							<table id="join">
-								<tbody>
+   
+   %>
+   
+   <div id="float">
+      <div>
+         <h1>회원탈퇴</h1>
+             <div id="errorMessage" style="display: none;">
+                     <h3>비밀번호가 일치하지 않습니다. 취소 버튼을 누르고 다시 입력해주세요.</h3>
+                 </div>
+                  <div id="exitText">
+                  <h3>정말로 탈퇴 하시겠습니까?</h3>
+                  <h3>탈퇴 정보는 즉시 파기되어 복구하실 수 없습니다.</h3>
+              </div>      
+         <div id="float_content">
+            <button id="ok">확인</button>
+            <button id="cancle">취소</button>
+         </div>
+      </div>
+   </div>
+   <header>
+      <div>
+         <div id="wrapper">
+
+            <a class="logo" href="main.do"> <img src="img/logo/image2.png"
+               height="75px">
+            </a>
+
+            <ul id="menu">
+            <form action="search.do" method="post" >
+         		<div id="search">
+            		<span>Search</span>
+            		<input type="text" id="search_content" name="search">
+            		<input id="search_img" type="image" src="img/icon/search2.png">
+         		</div>
+     		 </form>
+               <li id="search_btn"><a href="#home">검색</a></li>
+               <li><a href="goBasket.do">장바구니</a></li>
+               <%
+               if (user == null) {
+               %>
+               <li id=goLogin><a href="#">로그인</a></li>
+               <%
+               } else {
+               %>
+               <li><a href="goMypage.do">마이페이지</a></li>
+               <li><a href="goLogout.do">로그아웃</a></li>
+               <%
+               }
+               %>
+
+            </ul>
+         </div>
+
+      </div>
+      <main id="product">
+         <div class="wrap">
+            <div class="Container">
+               <div class="centered">
+                  <div class="name">MY PAGE</div>
+               </div>
+               <div class="modify"></div>
+            </div>
+            <div class="summaryContainer"></div>
+            <div class="shippingStatusContainer">
+               <div class="title">
+                  주문/배송조회
+                  <h3>나의 주문처리 현황(최근 3개월 기준)</h3>
+               </div>
+               		<div class="status">
+
+                  <div class="item">
+                     <div>
+                        <div class="number">0</div>
+                        <div class="text">장바구니</div>
+                     </div>
+                     <div class="icon">></div>
+                  </div>
+                  <div class="item payment-complete">
+                     <div>
+                        <div class="number">0</div>
+                        <div class="text">결제완료</div>
+                     </div>
+                     <div class="icon">></div>
+                  </div>
+                   <div class="item in-delivery">
+                     <div>
+                        <div class="number">0</div>
+                        <div class="text">배송중</div>
+                     </div>
+                     <div class="icon">></div>
+                  </div>
+                 <div class="item delivered">
+                     <div>
+                        <div class="number">0</div>
+                        <div class="text">배송완료</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+            <div id="content_wrap">
+               <div class="listContainer">
+                  <a href="#" class="item" id="order_list">
+                     <div class="icon">ii</div>
+                     <div class="text">
+                        주문내역<span class="circle"></span>
+                     </div>
+                  </a> <a href="#" class="item" id="review_QnA">
+                     <div class="icon">ii</div>
+                     <div class="text">리뷰 및 QnA 기록</div>
+                  </a> <a href="goBasket.do" class="item" id="basket">
+                     <div class="icon">ii</div>
+                     <div class="text">장바구니</div>
+                  </a> <a href="#" class="item" id="member_data">
+                     <div class="icon">ii</div>
+                     <div class="text">회원정보 변경</div>
+                  </a>
+               </div>
+               <div id="login_view" style="display: none;">
+                  <h1 id="join_h1">회원정보 수정</h1>
+                  <form action="update.do" method="post">
+                     <table id="join">
+                        <tbody>
 
 
 
 
 
 
-									<tr>
-										<td>ID</td>
-										<td><input type="text" readonly
-											value="${sessionScope.user.id }" name="id"></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>PW</td>
-										<td><input type="password"
-											value="${sessionScope.user.pw}" placeholder="비밀번호를 입력해주세요"
-											name="pw"></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>NICK</td>
-										<td><input type="text" value="${sessionScope.user.nick}"
-											 name="nick" readonly></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>PHONE</td>
-										<td><input type="text" id="cellPhone"
-											value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력"
-											maxleangth="13" name="phone"></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>ADRESS</td>
-										<td><input type="text" id="sample6_postcode"
-											value="${sessionScope.user.zipCode}" placeholder="우편번호"
-											style="margin-right: 10px;" name="zipCode"></td>
-										<td><input id="post_btn" type="button"
-											onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-										</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="text" id="sample6_address"
-											value="${sessionScope.user.addr}" placeholder="주소"
-											name="addr"> <input type="text"
-											id="sample6_detailAddress"
-											value="${sessionScope.user.addrDetail}" placeholder="상세주소"
-											name="addrDetail"></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><input type="text" id="sample6_extraAddress"
-											value="${sessionScope.user.text}" placeholder="참고항목"
-											name="text"></td>
-										<td></td>
-									</tr>
+                           <tr>
+                              <td>ID</td>
+                              <td><input type="text" readonly
+                                 value="${sessionScope.user.id }" name="id"></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td>PW</td>
+                              <td><input type="password"
+                                 value="${sessionScope.user.pw}" placeholder="비밀번호를 입력해주세요"
+                                 name="pw"></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td>NICK</td>
+                              <td><input type="text" value="${sessionScope.user.nick}"
+                                  name="nick" readonly></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td>PHONE</td>
+                              <td><input type="text" id="cellPhone"
+                                 value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력"
+                                 maxleangth="13" name="phone"></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td>ADRESS</td>
+                              <td><input type="text" id="sample6_postcode"
+                                 value="${sessionScope.user.zipCode}" placeholder="우편번호"
+                                 style="margin-right: 10px;" name="zipCode"></td>
+                              <td><input id="post_btn" type="button"
+                                 onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                              </td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td><input type="text" id="sample6_address"
+                                 value="${sessionScope.user.addr}" placeholder="주소"
+                                 name="addr"> <input type="text"
+                                 id="sample6_detailAddress"
+                                 value="${sessionScope.user.addrDetail}" placeholder="상세주소"
+                                 name="addrDetail"></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td><input type="text" id="sample6_extraAddress"
+                                 value="${sessionScope.user.text}" placeholder="참고항목"
+                                 name="text"></td>
+                              <td></td>
+                           </tr>
 
 
-									<tr>
-										<td>GENDER</td>
-										<td><label class="test_obj"> 
-										<input type="radio" name="gender" value="M"> 
-											<span>남자</span>
-										</label><label class="test_obj"> 
-											<input type="radio"	name="gender" value="W"> <span>여자</span>
-										</label></td>
-									</tr>
-									<tr>
-										<td class="login_btn" colspan="2"><button>수정하기</button></td>
-										
-										<td class="login_btn" colspan="2">
-											<button type="button" id="widthraw">탈퇴하기</button>
-										</td>
-									</tr>
-									<tr id="hidden_line">
-										<td>비밀번호 :</td>
-										<td><input type="password" name="pw" id="pw_input" 
-										placeholder="비밀번호를 입력하세요"></td>
-										<td><button type="button" id="pwOkButton">확인</button></td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
+                           <tr>
+                              <td>GENDER</td>
+                              <td><label class="test_obj"> 
+                              <input type="radio" name="gender" value="M"> 
+                                 <span>남자</span>
+                              </label><label class="test_obj"> 
+                                 <input type="radio"   name="gender" value="W"> <span>여자</span>
+                              </label></td>
+                           </tr>
+                           <tr>
+                              <td class="login_btn" colspan="2"><button>수정하기</button></td>
+                              
+                              <td class="login_btn" colspan="2">
+                                 <button type="button" id="widthraw">탈퇴하기</button>
+                              </td>
+                           </tr>
+                           <tr id="hidden_line">
+                              <td>비밀번호 :</td>
+                              <td><input type="password" name="pw" id="pw_input" 
+                              placeholder="비밀번호를 입력하세요"></td>
+                              <td><button type="button" id="pwOkButton">확인</button></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </form>
 
-					</div>
+               </div>
 
-					<div id="review" style="display: none;">
-						<ul>
-							
-							<article class="next">
-								<div class="paging">
-									<span class="prev"> <a href="#">이전</a>
-									</span> <span class="num"> <a href="#" class="on">1</a> <a
-										href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
-										<a href="#">6</a> <a href="#">7</a>
-									</span> <span class="next"> <a href="#">다음 ></a>
-									</span>
-								</div>
-						</ul>
-					</div>
-					<div id="email_boxes">
-						<div class="email-box">
-							<p>
-								 안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-							</p>
-							<h3>결제 내역</h3>
-							<table>
-								<tr>
-									<td><span>푹신푹신 쇼파</span></td>
-									<td><span>￦9,000</span>원</td>
-								</tr>
-								<tr>
-									<td><span>반짝반짝 조명</span></td>
-									<td>￦9,000원</td>
-								</tr>
-							</table>
-							<p>
-								전체 결제금액 <span>￦18,000</span>원
-							</p>
-							<p>
-								구매일 <span>2023-08-17 11:11:11</span>
-							</p>
-							<p>감사합니다.</p>
-						</div>
-						
-							<div class="email-box">
-								<p>
-									안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-								</p>
-								<h3>결제 내역</h3>
-								<table>
-									<tr>
-										<td><span>푹신푹신 쇼파</span></td>
-										<td><span>￦9,000</span>원</td>
-									</tr>
-									<tr>
-										<td><span>반짝반짝 조명</span></td>
-										<td>￦9,000원</td>
-									</tr>
-								</table>
-								<p>
-									전체 결제금액 <span>￦18,000</span>원
-								</p>
-								<p>
-									구매일 <span>2023-08-17 11:11:11</span>
-								</p>
-								<p>감사합니다.</p>
-							</div>
-							<div class="email-box">
-								<p>
-									안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-								</p>
-								<h3>결제 내역</h3>
-								<table>
-									<tr>
-										<td><span>푹신푹신 쇼파</span></td>
-										<td><span>￦9,000</span>원</td>
-									</tr>
-									<tr>
-										<td><span>반짝반짝 조명</span></td>
-										<td>￦9,000원</td>
-									</tr>
-								</table>
-								<p>
-									전체 결제금액 <span>￦18,000</span>원
-								</p>
-								<p>
-									구매일 <span>2023-08-17 11:11:11</span>
-								</p>
-								<p>감사합니다.</p>
-							</div>
-						</div>
-					</div>
-	</header>
-	<footer id="footer">
-		<div id="foot_wrap">
-			<div id="foot_left">
-				<div>
-					<Strong>고객센터</Strong>
-				</div>
-				<div>
-					<p>010-8927-0775</p>
-					<p>09:00~18:00</p>
-				</div>
-				<div>
-					<p>
-						평일 : 전체 문의 상담 가능<br> 주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
-					</p>
-				</div>
-			</div>
-			<div id="foot_center">
-				<div>
-					<p>상호명: HomeTogether</p>
-					<p>대표자: 김찬호</p>
-					<p>광주 남구 송암로 60 CGI 센터 2400층</p>
-					<p>사업자 등록번호 : 2400-2400-2400</p>
-				</div>
-			</div>
-			<div id="foot_right">
-				<p>
-					(주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
-					지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
-					<br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
-				</p>
-			</div>
-		</div>
-	</footer>
-							
-	
-	
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
-	<script src="assets/js/myPage.js"></script>
+               <div id="review" style="display: none;">
+                  <ul>
+                     
+                     <article class="next">
+                        <div class="paging">
+                           <span class="prev"> <a href="#">이전</a>
+                           </span> <span class="num"> <a href="#" class="on">1</a> <a
+                              href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a>
+                              <a href="#">6</a> <a href="#">7</a>
+                           </span> <span class="next"> <a href="#">다음 ></a>
+                           </span>
+                        </div>
+                  </ul>
+               </div>
+               
+               <div id="email_boxes">
+                  <c:forEach var="orderlist" items="${orders}">
+    <div class="email-box">
+        <p>
+            안녕하세요. <strong>${orderlist.nick}</strong>님의 결제내역입니다.
+        </p>
+        <h3>결제 내역</h3>
+        <table>
+            <tr>
+                <td><span>총 결제금액</span></td>
+                <td><span>${orderlist.total_amount}</span>원</td>
+            </tr>
+            <tr>
+                <td><span>할인 금액</span></td>
+                <td>￦ ${orderlist.discount_amount}</td>
+            </tr>
+        </table>
+        <p>
+            전체 결제금액 <span>${orderlist.paid_amount}</span>원
+        </p>
+        <p>
+            구매일 <span>${orderlist.created_at}</span>
+        </p>
+        <p><strong>${orderlist.order_status}</strong></p>
+    </div>
+</c:forEach>
+                    
+                  </div>
+                  
+        </div>
+   </header>
+   <footer id="footer">
+      <div id="foot_wrap">
+         <div id="foot_left">
+            <div>
+               <Strong>고객센터</Strong>
+            </div>
+            <div>
+               <p>010-8927-0775</p>
+               <p>09:00~18:00</p>
+            </div>
+            <div>
+               <p>
+                  평일 : 전체 문의 상담 가능<br> 주말, 공휴일: 제품 A/S 및 기타 문의 상담 가능
+               </p>
+            </div>
+         </div>
+         <div id="foot_center">
+            <div>
+               <p>상호명: HomeTogether</p>
+               <p>대표자: 김찬호</p>
+               <p>광주 남구 송암로 60 CGI 센터 2400층</p>
+               <p>사업자 등록번호 : 2400-2400-2400</p>
+            </div>
+         </div>
+         <div id="foot_right">
+            <p>
+               (주)HomeTogether는 통신판매중개자로 거래당사자가아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을
+               지지 않습니다. 단, (주)HomeTogether가 판매자로 등록 판매한 상품은 판매자로 책임을 부담합니다. <br>
+               <br> &copy 2023 HomeTogether, Co., Ltd.All rights reserved
+            </p>
+         </div>
+      </div>
+   </footer>
+                     
+   
+   
+   <script
+      src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+   <script src="assets/js/myPage.js"></script>
    <script>
    
-   document.getElementById("pwOkButton").addEventListener("click", function () {
+   
+   document.addEventListener("DOMContentLoaded", function() {
+	    // 카운트 업데이트 코드 여기에 추가
+	
+   var orders = <%= jsonOrders %>;
+   
+// 주문 상태 카운트를 초기화합니다.
+   var paymentCompleteCount = 0;
+   var inDeliveryCount = 0;
+   var deliveredCount = 0;
+   
+// 주문 목록을 반복하면서 각 상태에 따라 카운트를 증가합니다.
+   for (var i = 0; i < orders.length; i++) {
+       var orderStatus = orders[i].order_status;
+       console.log(orders[i].order_status)
+       if (orderStatus === "결제완료") {
+           paymentCompleteCount++;
+       } else if (orderStatus === "배송중") {
+           inDeliveryCount++;
+       } else if (orderStatus === "배송완료") {
+           deliveredCount++;
+       }
+   }
+   // 계산된 숫자를 HTML에 삽입합니다.
+   document.querySelector(".payment-complete .number").textContent = paymentCompleteCount;
+   document.querySelector(".in-delivery .number").textContent = inDeliveryCount;
+   document.querySelector(".delivered .number").textContent = deliveredCount;
+   });
+   
+  //========================================================================================================= 
+   
+   document.getElementById("ok").addEventListener("click", function () {
 	    var inputPassword = document.getElementById("pw_input").value; // 입력한 비밀번호
-	    var sessionPassword = "<%= password %>"; // 세션에서 가져온 비밀번호
-	    var errorMessageElement = document.getElementById("errorMessage");
-	    var exitTextElement = document.getElementById("exitText");
 
-	    // 비밀번호 검사
-	    if (inputPassword === sessionPassword) {
-	        // 비밀번호가 일치할 경우
-	        errorMessageElement.style.display = "none"; // 오류 메시지 숨김
-	        exitTextElement.style.display = "block"; // 회원탈퇴 화면 표시
-	    } else {
-	        // 비밀번호가 일치하지 않을 경우
-	        errorMessageElement.style.display = "block"; // 오류 메시지를 표시합니다.
-	        exitTextElement.style.display = "none"; // 회원탈퇴 화면 숨김
-	    }
+	    $.ajax({
+	        url: 'delete.do',
+	        type: 'POST',
+	        dataType: 'html', // HTML로 응답을 처리
+	        data: { password: inputPassword }, // 비밀번호를 'password' 파라미터로 전송
+	        dataType: 'json',
+	        success: function (res) {
+	           
+	            console.log('요청 성공!!!', res);
+	            $("#float").hide();
+	            window.location.href = "main.do";
+	        },
+	        error: function (e) {
+	            console.log('요청 실패!!!', e);
+	            $("#float").hide();
+	            window.location.href = "main.do";
+	        }
+	    });
 	});
+	    
+	    
+   
+   //==================================================================== 
+   document.getElementById("pwOkButton").addEventListener("click", function () {
+       var inputPassword = document.getElementById("pw_input").value; // 입력한 비밀번호
+       var sessionPassword = "<%= password %>"; // 세션에서 가져온 비밀번호
+       var errorMessageElement = document.getElementById("errorMessage");
+       var exitTextElement = document.getElementById("exitText");
+       var okButton = document.getElementById("ok");
+       var cancleButton = document.getElementById("cancle");
+       
+       // 비밀번호 검사
+       if (inputPassword === sessionPassword) {
+           // 비밀번호가 일치할 경우
+           errorMessageElement.style.display = "none"; // 오류 메시지 숨김
+           exitTextElement.style.display = "block"; // 회원탈퇴 화면 표시
+           okButton.style.display = "block"; // 확인 버튼 표시
+           cancleButton.style.width = "40%"; // 취소 버튼의 길이를 늘림
+           cancleButton.style.margin = "5%"; // 취소 버튼의 길이를 늘림
+       } else {
+           // 비밀번호가 일치하지 않을 경우
+           errorMessageElement.style.display = "block"; // 오류 메시지를 표시합니다.
+           exitTextElement.style.display = "none"; // 회원탈퇴 화면 숨김
+           okButton.style.display = "none"; // 확인 버튼 숨김
+           cancleButton.style.width = "100%"; // 취소 버튼의 길이를 늘림
+           cancleButton.style.margin = "0"; // 취소 버튼의 길이를 늘림
+       }
+   });
    
    
    //====================================================================
    
-	   
+      
    $(document).ready(function() {
        $('#review_QnA').on('click', function() {
           // qnaList();// 클릭 시 reviewList 함수 실행
@@ -432,7 +481,7 @@
                    tr += "<h3>" + reviewProd[i].prod_name + "</h3>"                           
                    tr += "<p>"+reviewList[i].review_content+"</p>";
                    tr += "</li>";
-               	   review.prepend(tr);                                 
+                     review.prepend(tr);                                 
                }
                for (let i = 0; i < qnaList.length; i++) {
                    let tr = "<li>";
@@ -442,7 +491,7 @@
                    tr += "<h3>" + qnaProd[i].prod_name + "</h3>"                           
                    tr += "<p>"+qnaList[i].q_content+"</p>";
                    tr += "</li>";
-               	   review.prepend(tr);                                 
+                     review.prepend(tr);                                 
                } 
               
                
@@ -511,9 +560,9 @@
                }).open();
       }
    </script>
-	
+   
 
-	
+   
 </body>
 
 </html>

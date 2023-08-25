@@ -625,7 +625,8 @@ header > nav{
   margin-bottom: 0px;
 }
 #menu > form > .on{
-  top: -10px;
+  height: 33px;	
+  top: 5px;
   border-bottom: 1px solid black;
 }
 #search{

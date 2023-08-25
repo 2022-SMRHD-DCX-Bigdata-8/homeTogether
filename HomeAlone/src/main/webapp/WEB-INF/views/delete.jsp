@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	
+
 			<% 	// 아이디를 띄우기 위해 세션 사용
 				TB_Member user = (TB_Member)session.getAttribute("user");
 			%>

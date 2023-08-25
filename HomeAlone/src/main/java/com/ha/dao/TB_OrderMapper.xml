@@ -5,29 +5,42 @@
 
 	<insert id="insertorder" parameterType="com.ha.entity.TB_ORDER">
 		insert into tb_order(
-			nick,
-			created_at,
-			total_amount,
-			discount_amount,
-			pay_amount,
-			pay_method,
-			paid_amount,
-			order_status
+		nick,
+		total_amount,
+		discount_amount,
+		pay_amount,
+		pay_method,
+		order_status
 		)values(
 		#{nick},
-		SYSDATE,
 		#{total_amount},
 		#{discount_amount},
 		#{pay_amount},
 		#{pay_method},
 		#{order_status}
-		
+
 		)
-		
+
 	</insert>
 
-	
 
+	<select id="orderlist" resultType="com.ha.entity.TB_ORDER" parameterType="com.ha.entity.TB_ORDER">
+
+		 select order_seq
+				,nick
+				,TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at
+				,total_amount
+				,discount_amount
+				,pay_amount
+				,pay_method
+				,paid_amount
+				,order_status
+			from tb_order
+			where nick = #{nick}
+			order by order_seq desc
+
+
+	</select>
 
 
 

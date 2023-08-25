@@ -21,19 +21,19 @@ public class deleteCon implements Controller {
 		// 세션에 저장되어있는 사용자 정보를 가져오기 위해서
 		HttpSession session = request.getSession();
 		TB_Member user = (TB_Member) session.getAttribute("user");
-
+		System.out.println(user);
 		// 파라미터로 비밀번호 가져오기
-		String pw = request.getParameter("pw");
+		String pw = request.getParameter("password");
 
 		TB_MemberDAO dao = new TB_MemberDAO();
 
 		if (pw.equals(user.getPw())) {
+			int cnt = dao.delete(user);
 			session.removeAttribute("user");
-			dao.delete(user);
-
+			System.out.println(cnt + " = 삭제성공(1),실패(0)");
 			return "redirect:/main.do";
 		} else {
-			return "redirect:/goUpdate.do";
+			return "redirect:/goMypage.do";
 		}
 
 	}

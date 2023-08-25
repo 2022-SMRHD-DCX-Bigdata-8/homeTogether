@@ -314,18 +314,17 @@
 	                        <p id="review_seq">${review.nick}
 	                           ${review.created_at}, ${review.review_seq}
 	                        </p>
+                     <c:if test="${review.nick eq sessionScope.user.nick}">
 	                        <div class="review-buttons">
 	                           <button class="updateButton" data-review-id="${review.review_seq}">수정</button>
 	                           <button class="deleteButton" data-review-id="${review.review_seq}">삭제</button>
 	                        </div>
+                     </c:if>
 	                 	</div>
                      </div>
                      
                      <h3>${product.prod_type}/${product.prod_detail}/상품평점:${review.ratings}</h3>
-                     <p>${review.review_content}</p> <c:if
-                        test="${review.nick eq sessionScope.user.nick}">
-
-                     </c:if>
+                     <p>${review.review_content}</p> 
                      <div class="updateForm">
                         <textarea class="updateContent"></textarea>
                         <input type="number" class="updateRatings" step="0.5" min="0"
@@ -339,7 +338,7 @@
             <ul>
                   <div class="qa-form">
                   <h2>리뷰 작성</h2>
-                  <div class="input-container">
+                  <div class="input-container"> 
                      <input type="text" id="review_content"
                         placeholder="고객님의 리뷰는 힘이 됩니다.">
                      <button id="insert">작성하기</button>
@@ -377,7 +376,7 @@
                         <h5 class="QandA1">
                         	${qna.q_seq}/${qna.nick}/${qna.created_at}
                         </h5>
-                        <span>${qna.q_seq}/${qna.nick}/${qna.created_at}</span>
+                        
                         <div id="ans_btn">
                         	<c:if test="${sessionScope.user.m_type == 'A'}">
                            		<button class=answerButton data-qna-id="${qna.q_seq}">답변</button>

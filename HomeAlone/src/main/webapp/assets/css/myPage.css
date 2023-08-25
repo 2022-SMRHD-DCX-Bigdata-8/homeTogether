@@ -83,7 +83,9 @@
     
   }
 }
- 
+ #errorMessage > h3{
+ 	margin-bottom:30px;
+ }
 
  * {
 	font-family: 'GmarketSansMedium';
@@ -517,7 +519,7 @@ button{
   font-size: 1.6em;
   padding: 0 2em;
   cursor: pointer;
-  transition: 800ms ease all;
+  transition: none;
   outline: none;
   box-sizing: border-box;
   width: 100%;
@@ -593,4 +595,30 @@ button:hover:after {
 }
 
 /* 회원정보 수정 끝 */
-
+/* 검색 창 시작 */
+#menu{
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > form > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
+/* 검색 창 끝 */

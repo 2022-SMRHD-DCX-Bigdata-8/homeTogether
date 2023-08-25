@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var $list = $(".slideshow");
-    var timeID = window.setInterval(slide, 3000);
+    var timeID = window.setInterval(slide, 4000);
 
 
 	$list.on('mouseenter', stopSlide);
@@ -11,10 +11,10 @@ $(document).ready(function () {
 	}
 	
 	function startSlide() {
-		timeID = setInterval(slide, 3000); // 슬라이더 재시작
+		timeID = setInterval(slide, 4000); // 슬라이더 재시작
 	}
 	function slide() {
-        $list.animate({ "marginLeft": "-33.45%" }, 1500, function () {
+        $list.animate({ "marginLeft": "-33.45%" }, 2000, function () {
             $(this).css("marginLeft", 0).find("li:first").appendTo($list);
         });
     }
