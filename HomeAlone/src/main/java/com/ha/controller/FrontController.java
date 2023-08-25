@@ -91,6 +91,12 @@ public class FrontController extends HttpServlet {
 			
 			//상세카테고리
 			handler.put("/property.do", new propertyCon());
+			handler.put("/goComplete2.do", new goComplete2Con());
+			
+			
+			handler.put("/deleteSession.do", new deleteSessionCon());
+			
+			
 
 
 			

@@ -2,6 +2,7 @@
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -444,94 +445,97 @@ input[type="submit"] {
 
 <%
    TB_Member user = (TB_Member) session.getAttribute("user");
-List<String>buyer = (List<String>)session.getAttribute("buyer");
+
    %>
-	<div id="login_view">
-		<div id="back">
-			<img src="img/icon/back.png">
-		</div>
-		<form action="login.do" method="post">
-			<h1 id="login_h1">로그인</h1>
-			<table id="login">
-				<tbody>
-					<tr>
-						<td>ID</td>
-						<td><input type="text" placeholder="아이디를 입력해주세요"></td>
-					</tr>
-					<tr>
-						<td>PW</td>
-						<td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
-					</tr>
-					<tr>
-						<td id="login_btn" colspan="2"><button>LOGIN</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
-		<h1 id="join_h1">회원가입</h1>
+	 <div id="login_view">
+      <div id="back">
+         <img src="img/icon/back.png">
+      </div>
+      <form action="login.do" method="post">
+         <h1 id="login_h1">로그인</h1>
+         <table id="login">
+            <tbody>
+               <tr>
+                  <td>ID</td>
+                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
+               </tr>
+               <tr>
+                  <td>PW</td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요"
+                     name="pw"></td>
+               </tr>
+               <tr>
+                  <td id="login_btn" colspan="2"><button>LOGIN</button></td>
+               </tr>
+            </tbody>
+         </table>
+      </form>
+      <h1 id="join_h1">회원가입</h1>
 
-		<form action="join.do" method="post">
-			<table id="join">
-				<tbody>
-					<tr>
-						<td>ID</td>
-						<td><input type="text" placeholder="아이디를 입력해주세요"></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>PW</td>
-						<td><input type="password" placeholder="비밀번호를 입력해주세요"></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>NICK</td>
-						<td><input type="text" placeholder="닉네임을 입력해주세요"></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>PHONE</td>
-						<td><input type="text" name="cellPhone" id="cellPhone"
-							placeholder="핸드폰번호 입력" maxlength="13" /></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>ADRESS</td>
-						<td><input type="text" id="sample6_postcode"
-							placeholder="우편번호" style="margin-right: 10px;"></td>
-						<td><input id="post_btn" type="button"
-							onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="text" id="sample6_address" placeholder="주소">
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td><input type="text" id="sample6_extraAddress"
-							placeholder="참고항목"></td>
-						<td></td>
-					</tr>
+      <form action="join.do" method="post">
+         <table id="join">
+            <tbody>
+               <tr>
+                  <td>ID</td>
+                  <td><input type="text" placeholder="아이디를 입력해주세요" name="id"></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>PW</td>
+                  <td><input type="password" placeholder="비밀번호를 입력해주세요"
+                     name="pw"></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>NICK</td>
+                  <td><input type="text" placeholder="닉네임을 입력해주세요" name="nick"></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>PHONE</td>
+                  <td><input type="text" name="phone" id="cellPhone"
+                     placeholder="핸드폰번호 입력" maxlength="13" /></td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td>ADRESS</td>
+                  <td><input type="text" id="sample6_postcode" name="zipCode"
+                     placeholder="우편번호" style="margin-right: 10px;"></td>
+                  <td><input id="post_btn" type="button"
+                     onclick="sample6_execDaumPostcode()" value="우편번호 찾기"></td>
+               </tr>
+               <tr>
+                  <td></td>
+                  <td><input type="text" id="sample6_address" name="addr"
+                     placeholder="주소"> <input type="text"
+                     id="sample6_detailAddress" name="addrDetail" placeholder="상세주소">
+                  </td>
+                  <td></td>
+               </tr>
+               <tr>
+                  <td></td>
+                  <td><input type="text" id="sample6_extraAddress" name="text"
+                     placeholder="참고항목"></td>
+                  <td></td>
+               </tr>
 
 
-					<tr>
-						<td>GENDER</td>
-						<td><label class="test_obj"> <input type="radio"
-								name="fruit" value="apple"> <span>남자</span>
-						</label> <label class="test_obj"> <input type="radio" name="fruit"
-								value="banana"> <span>여자</span>
-						</label></td>
-					</tr>
-					<tr>
-						<td id="login_btn" colspan="2"><button>JOIN US</button></td>
-					</tr>
-				</tbody>
-			</table>
-		</form>
+               <tr>
+                  <td>GENDER</td>
+                  <td><label class="test_obj"> <input type="radio"
+                        name="gender" value="M"> <span>남자</span>
+                  </label> <label class="test_obj"> <input type="radio"
+                        name="gender" value="W"> <span>여자</span>
+                  </label></td>
+               </tr>
+               <tr>
+                  <td id="login_btn" colspan="2"><button>JOIN US</button></td>
+               </tr>
+            </tbody>
+         </table>
+      </form>
 
-	</div>
+   </div>
 	<header>
 		<div class="navbar">
 			<a class="logo" href="#"> <img src="/img/logo/image2.png"
@@ -539,8 +543,8 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 			</a>
 			<ul id="menu">
 				<li><a href="#home">검색</a></li>
-				<li><a href="#html">게시판</a></li>
-				<li><a href="#css">장바구니</a></li>
+				
+				<li><a href="goBasket.do">장바구니</a></li>
 				<%
       if (user == null) {
       %>
@@ -573,12 +577,12 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 				<h2>
 					고객님의 주문이 정상적으로 완료되었습니다. <i class="far fa-smile" aria-hidden="true"></i>
 				</h2>
-				<p>즐거운 쇼핑이 되셨습니까? 항상 고객님을 최우선으로 생각하는 HomeTogether가 되겠습니다.</p>
+				<p>항상 고객님을 최우선으로 생각하는 HomeTogether가 되겠습니다.</p>
 				<div class="logo-container">
 
 					<div>
-						<p>주문번호: 202300000000</p>
-						<p>주문일자: 2023-08-17 12:00:00</p>
+						<p>주문번호: ${sessionScope.order.ordernum }</p>
+						<p>주문일자: 2023-08-25 ${sessionScope.order.date}</p>
 					</div>
 				</div>
 				<div>
@@ -598,64 +602,33 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 						<th>수량</th>
 						<th>주문금액</th>
 					</tr>
+					<c:forEach var="basket" items="${sessionScope.basket}">
 					<tr>
 						<td>
 							<article>
-								<img src="img/shopa/이미지1.jpg" alt="">
+								<img src="${basket.prod_img}" alt="">
 								<div>
 									<h2>
-										<a href="#">상품명</a>
+										<a href="#">${basket.prod_name}</a>
 									</h2>
 									<p>상품설명</p>
 								</div>
 							</article>
 						</td>
 						<td>2023-08-25</td>
-						<td>9,000원</td>
-						<td>1</td>
-						<td class="price"><span>9,000원</span></td>
+						<td></td>
+						<td></td>
+						<td class="price"><span>${basket.prod_price}</span></td>
 					</tr>
-					<tr>
-						<td>
-							<article>
-								<img src="img/shopa/이미지10.jpg" alt="">
-								<div>
-									<h2>
-										<a href="#">상품명</a>
-									</h2>
-									<p>상품설명</p>
-								</div>
-							</article>
-						</td>
-						<td>2023-08-25</td>
-						<td>9,000원</td>
-						<td>1</td>
-						<td class="price"><span>9,000원</span></td>
-					</tr>
-					<tr>
-						<td>
-							<article>
-								<img src="img/shopa/이미지13.jpg" alt="">
-								<div>
-									<h2>
-										<a href="#">상품명</a>
-									</h2>
-									<p>상품설명</p>
-								</div>
-							</article>
-						</td>
-						<td>2023-08-25</td>
-						<td>9,000원</td>
-						<td>1</td>
-						<td class="price"><span>9,000원</span></td>
-					</tr>
+					</c:forEach>
+					
 					<tr class="total">
 						<td colspan="1"></td>
 						<td>
 							<table id="center_tb">
 								<tr>
 									<td class="left_text">총 상품금액</td>
-									<td><span>27,000원</span></td>
+									<td><span>${sessionScope.order.total}</span></td>
 								</tr>
 
 								<tr>
@@ -664,7 +637,7 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 								</tr>
 								<tr>
 									<td class="left_text">총 결제금액</td>
-									<td><span>27,000</span>원</td>
+									<td><span>${sessionScope.order.total}</span></td>
 								</tr>
 							</table>
 						</td>
@@ -686,13 +659,13 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 					</tr>
 					<tr>
 						<td>주문자/연락처</td>
-						<td>${sessionScope.user.nick}/${sessionScope.user.phone}</td>
+						<td>${sessionScope.order.orderer}/${sessionScope.order.hp}</td>
 					</tr>
 				</table>
 				<table id="order_price">
 					<tr style="font-size: 22px;">
 						<td>총 결제금액</td>
-						<td><span>27,000</span>원</td>
+						<td><span>${sessionScope.order.total}</span></td>
 					</tr>
 				</table>
 			</article>
@@ -702,21 +675,21 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 				<table>
 					<tr>
 						<td>수취인</td>
-						<td>${sessionScope.buyer[0]}</td>
+						<td>${sessionScope.order.orderer}</td>
 					</tr>
 					<tr>
 						<td>연락처</td>
-						<td>${sessionScope.buyer[1]}</td>
+						<td>${sessionScope.order.hp}</td>
 					</tr>
 					<tr>
 						<td>배송지 주소</td>
-						<td>${sessionScope.buyer[3]}${sessionScope.buyer[4]}</td>
+						<td>${sessionScope.user.addr}/${sessionScope.order.addr2}</td> <!-- 주소가안넘어와서 user꺼써버림-->
 					</tr>
 				</table>
 			</article>
 
 			<div class="logo-container" style="text-align: center;">
-				<a href="main.do"><input type="submit" value="홈으로"></a>
+				<a href="main.do"><input type="submit" value="홈으로" id="home"></a>
 			</div>
 
 			</div>
@@ -759,6 +732,45 @@ List<String>buyer = (List<String>)session.getAttribute("buyer");
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		$('#home').on('click', SessionDelete()); 
+	
+	 function gogoComplete() {
+	     return new Promise(function(resolve, reject) {
+	        window.location.href="main.do"
+	           
+	       });    
+	   }
+	        async function SessionDelete() {
+	            await deletSession();   // 'incart' 함수를 비동기적으로 실행
+	            gogoComplete();      // 'goPayment' 함수를 동기적으로 실행
+	        }
+	
+	
+	
+		
+		function deleteSession(){
+			$.ajax({
+                url : 'deleteSession.do',
+                type : 'post',
+                
+                contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                data : {                  
+                },
+                dataType : 'json',
+                
+                success : function(res) {
+               	 
+                   console.log('성공!!');
+                   
+                },
+                error : function(e) {
+                   console.log('요청실패!!!');
+                }
+             });
+			
+			
+			
+		}
 		function sample6_execDaumPostcode() {
 			new daum.Postcode(
 					{

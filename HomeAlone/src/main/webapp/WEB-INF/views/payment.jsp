@@ -177,7 +177,7 @@
                   </tr>
                     </c:if> 
                     <c:if test="${!list_empty}"> 
-                  <c:forEach var="list" items="${sessionScope.basket }" varStatus="status">
+                  <c:forEach var="list" items="${sessionScope.basket}" varStatus="status">
                      <tr class="basket">
                         <td><input type="checkbox" name="1" data-product-id="${list.prod_seq}"></td>
                         <td>
@@ -214,28 +214,28 @@
                      <table>
                         <tr>
                            <td>주문자</td>
-                           <td><input type="text" name="orderer" value="${sessionScope.user.nick}" readonly></td>
+                           <td><input type="text" name="orderer" value="${sessionScope.user.nick}" placeholder="아이디를 입력해주세요" id="order"></td>
                            <td></td>
                         </tr>
                         <tr>
                            <td>휴대폰</td>
-                           <td><input type="text" name="hp" value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력"></td>
+                           <td><input type="text" name="hp" value="${sessionScope.user.phone}" placeholder="핸드폰번호 입력" id="hp"></td>
                            <td></td>
                         </tr>
 
                         <tr>
                            <td>우편번호</td>
-                           <td><input type="text" id="zip" name="zip" value="${sessionScope.user.zipCode}" placeholder="우편번호"></td>
+                           <td><input type="text" id="zip" name="zip" value="${sessionScope.user.zipCode}" placeholder="우편번호" id="p_zipcode"></td>
                            <td><input type="button" onclick="execDaumPostcode()" value="우편번호 검색"></td>
                         </tr>
                         <tr>
                            <td>도로명주소</td>
-                           <td><input type="text" id="roadAddress" name="roadAddress" value="${sessionScope.user.addr}" placeholder="주소"></td>
+                           <td><input type="text" id="roadAddress" name="roadAddress" value="${sessionScope.user.addr}" placeholder="주소" id="p_addr"></td>
                            <td></td>
                         </tr>
                         <tr>
                            <td>상세주소</td>
-                           <td><input type="text" name="addr2" value="${sessionScope.user.addrDetail}" placeholder="상세주소"></td>
+                           <td><input type="text" name="addr2" value="${sessionScope.user.addrDetail}" placeholder="상세주소" id="p_addr_detail"></td>
                            <td></td>
                         </tr>
                      </table>
@@ -295,7 +295,7 @@
 
                                 </tr>
                             </table>
-                            <input type="submit" value="주문하기" >
+                            <input type="submit" value="주문하기" id="btn_payment" >
                     </div><!-- total 종료  -->
                </div><!-- 1차 컨테이너 종료 -->
                
@@ -359,6 +359,7 @@
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
    <script>
+   
    $(document).ready(function() {
 	   
 	    function initializeProductCheckboxes() {
@@ -384,7 +385,58 @@
         updateTotalPrice();
         updateSelectedCount()
 	   
+	   //클릭시 두개함수 
+	 function gogoComplete() {
+     return new Promise(function(resolve, reject) {
+        window.location.href="goComplete2.do"
+           
+       });    
+   }
+        async function goCompleteTwofucntion() {
+            await goComplete();   // 'incart' 함수를 비동기적으로 실행
+            gogoComplete();      // 'goPayment' 함수를 동기적으로 실행
+        }
 	   
+	   
+	   
+    function goComplete() {
+        	var orderer = $("#order").val();
+            var hp = $("#hp").val();
+            var zip = $("#p_zipcode").val();
+            var addr1 = $("#p_addr").val();
+            var addr2 = $("#p_addr_detail").val();
+            var totalp = $("#totalPrice").text();
+            var currentDate = new Date();
+       
+         $.ajax({
+                  url : 'goComplete.do',
+                  type : 'post',
+                  
+                  contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+                  data : {
+                     "orderer" : orderer,
+                     "hp" : hp,
+                     "zip" : zip,
+                     "addr1" : addr1,
+                     "addr2" : addr2,
+                     "totalp": totalp,
+                     "date" : currentDate
+                  },
+                  dataType : 'json',
+                  async: false,
+                  success : function(res) {
+                 	 
+                     console.log('성공!!');
+                     window.location.href = 'goComplete2.do'
+                  },
+                  error : function(e) {
+                     console.log('요청실패!!!');
+                  }
+               });
+      }
+
+
+   
 	      
 	   
 	   
@@ -393,29 +445,29 @@
 	   
        $("#btn_payment").click(function() {
            // class가 btn_payment인 태그를 선택했을 때 작동한다.
-           IMP.init('imp33005853');
+           IMP.init('imp38772884');
            
            IMP.request_pay({
-               pg : 'html5_inicis',
-               pay_method : 'card',
-               merchant_uid : 'merchant_' + new Date().getTime(),
-               name : '(주)HomeTogether', // 결제창에서 보여질 이름
-               amount : 2400, // 실제 결제되는 가격
-               buyer_email : 'iamport@siot.do',
-               buyer_name : '${sessionScope.user.nick}',
-               buyer_tel : '${sessionScope.user.phone}',
-               buyer_addr : '${sessionScope.user.addr}',
-               buyer_postcode : '${sessionScope.user.zipCode}'
+        	   pg: "html5_inicis",
+               pay_method: "card",
+               merchant_uid: "ORD20180131-0000011",
+               name: "(주)HoMeToGeTHeR",
+               amount: 64900,
+               buyer_email: "gildong@gmail.com",
+               buyer_name: "홍길동",
+               buyer_tel: "010-4242-4242",
+               buyer_addr: "서울특별시 강남구 신사동",
+               buyer_postcode: "01181"
            }, function(rsp) {
                if (rsp.success) {
-                   jQuery.ajax({
+                   $.ajax({
                           url: "{서버의 결제 정보를 받는 가맹점 endpoint}", //
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
-                          data: {
+                           data: {
                             imp_uid: rsp.imp_uid,            // 결제 고유번호
-                            merchant_uid: rsp.merchant_uid   // 주문번호
-                            
+                           merchant_uid: rsp.merchant_uid   // 주문번호
+                          
                           }
                         }).done(function (data) {
                           // 가맹점 서버 결제 API 성공시 로직
@@ -426,25 +478,9 @@
                              msg += '카드 승인번호 : ' + rsp.apply_num;
                         })
                } else {
-                  var msg = '결제가 완료되었습니다.';
                   
-                  
-                  var orderer = $("input[name='orderer']").val();
-                  var hp = $("input[name='hp']").val();
-                  var zip = $("input[name='zip']").val();
-                  var roadAddress = $("input[name='roadAddress']").val();
-                  var addr2 = $("input[name='addr2']").val();
-                  
-                  
-                  // 입력한 값을 세션에 저장
-                  sessionStorage.setItem("orderer", orderer);
-                  sessionStorage.setItem("hp", hp);
-                  sessionStorage.setItem("zip", zip);
-                  sessionStorage.setItem("roadAddress", roadAddress);
-                  sessionStorage.setItem("addr2", addr2);
-                  
-                  
-                  window.location.href = 'goComplete.do';
+            	   goCompleteTwofucntion();
+            	   
                }
                alert(msg);
            });
