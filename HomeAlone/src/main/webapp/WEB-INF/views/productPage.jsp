@@ -396,7 +396,7 @@
 	                       tr += "<img class='hover_image' src='"+product[i].prod_img+"' alt='랄로!?'>"
 	                       tr += "</a>" 
 	                       tr += "<div><span>"+product[i].prod_name+"</span></div>"
-	                       tr += "<div><strong>이게 되면 성공</strong></div>"
+	                       tr += "<div><strong></strong></div>"
 	                       tr += "<div><strong>"+product[i].prod_price+"원</strong></div>"
 	                       tr += "</li>";
 
