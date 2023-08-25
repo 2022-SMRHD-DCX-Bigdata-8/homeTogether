@@ -26,18 +26,18 @@
 }
 
 #back {
-	position: fixed;
-	width: 80px;
-	float: left;
-	top: 50%;
-	left: 67%;
-	transform: translateY(-50%);
-	opacity: 0%;
+  position: fixed;
+  width: 80px;
+  float: left;
+  top: 50%;
+  left: 67%;
+  transform: translateY(-50%);
+  display: none;
 }
 
 #back>img {
-	width: 100%;
-	opacity: 0%;
+  width: 100%;
+  opacity: 0%;
 }
 
 /* 아이콘 끝 */
@@ -293,8 +293,10 @@ button:hover:before, button:hover:after {
 
 #product>.complete>.info table tr>td div {
 	float: left;
-	margin-left: 10px;
+	margin-left: 25px;
 	text-align: left;
+	width:60%;
+	font-size : 12px;
 }
 
 #product>.complete>.info table tr>td div>p {
@@ -538,11 +540,17 @@ input[type="submit"] {
    </div>
 	<header>
 		<div class="navbar">
-			<a class="logo" href="#"> <img src="/img/logo/image2.png"
-				height="75px">
+			<a class="logo" href="#"> 
+				<img src="img/logo/image2.png" height="75px">
 			</a>
 			<ul id="menu">
-				<li><a href="#home">검색</a></li>
+				<form action="search.do" method="post" >
+         			<div id="search">
+	            		<span>Search</span> <input type="text" id="search_content" name="search">
+	            		<input id="search_img" type="image" src="img/icon/search2.png">
+         			</div>
+      			</form>
+				<li id="search_btn"><a href="#">검색</a></li>
 				
 				<li><a href="goBasket.do">장바구니</a></li>
 				<%
@@ -585,66 +593,10 @@ input[type="submit"] {
 						<p>주문일자: 2023-08-25 ${sessionScope.order.date}</p>
 					</div>
 				</div>
-				<div>
-					<h1 id="customer">주문완료</h1>
-					<p>HOME >> 장바구니 >> 주문내역 >> 주문완료</p>
-				</div>
+
 			</article>
 
 			<!-- 상품정보 -->
-			<article class="info">
-				<h1>상품정보</h1>
-				<table border="0">
-					<tr>
-						<th>상품명</th>
-						<th>주문날짜</th>
-						<th>상품금액</th>
-						<th>수량</th>
-						<th>주문금액</th>
-					</tr>
-					<c:forEach var="basket" items="${sessionScope.basket}">
-					<tr>
-						<td>
-							<article>
-								<img src="${basket.prod_img}" alt="">
-								<div>
-									<h2>
-										<a href="#">${basket.prod_name}</a>
-									</h2>
-									<p>상품설명</p>
-								</div>
-							</article>
-						</td>
-						<td>2023-08-25</td>
-						<td></td>
-						<td></td>
-						<td class="price"><span>${basket.prod_price}</span></td>
-					</tr>
-					</c:forEach>
-					
-					<tr class="total">
-						<td colspan="1"></td>
-						<td>
-							<table id="center_tb">
-								<tr>
-									<td class="left_text">총 상품금액</td>
-									<td><span>${sessionScope.order.total}</span></td>
-								</tr>
-
-								<tr>
-									<td class="left_text">배송비</td>
-									<td><span>0원</span></td>
-								</tr>
-								<tr>
-									<td class="left_text">총 결제금액</td>
-									<td><span>${sessionScope.order.total}</span></td>
-								</tr>
-							</table>
-						</td>
-						<td colspan="1"></td>
-					</tr>
-				</table>
-			</article>
 			<!-- 주문정보 -->
 			<article class="order">
 				<h1>주문정보</h1>
