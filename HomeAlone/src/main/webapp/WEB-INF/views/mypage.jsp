@@ -1,10 +1,12 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.ha.entity.TB_ORDER"%>
 <%@page import="com.ha.entity.TB_QNA"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,17 +20,34 @@
 
 <body>
 
-   <%
+   <% 
    TB_Member user = (TB_Member) session.getAttribute("user");
-   
+   List<TB_ORDER>orders = (List<TB_ORDER>)request.getAttribute("order");
    // 비밀번호 삭제할 때 비교할 세션에 저장된 본인 비밀번호
    String password = user.getPw();  
-   
    //String id =user.getId();
    //id=id.substring(0, 4);
+
+String jsonOrders = "[";
+for (TB_ORDER order : orders) { // 여기서 변수명을 `orders`가 아니라 `order`로 사용합니다.
+    jsonOrders += "{";
+    jsonOrders += "\"order_seq\": " + order.getOrder_seq() + ",";
+    jsonOrders += "\"nick\": \"" + order.getNick() + "\",";
+    jsonOrders += "\"total_amount\": " + order.getTotal_amount() + ",";
+    // 다른 주문 정보도 추가할 수 있습니다.
+    jsonOrders += "\"order_status\": \"" + order.getOrder_status() + "\"";
+    jsonOrders += "},";
+}
+// 마지막 쉼표(,)를 제거합니다.
+if (jsonOrders.endsWith(",")) {
+    jsonOrders = jsonOrders.substring(0, jsonOrders.length() - 1);
+}
+jsonOrders += "]";
+
+
    
    %>
-
+   console.log(order);
    <div id="float">
       <div>
          <h1>회원탈퇴</h1>
@@ -87,7 +106,7 @@
                   주문/배송조회
                   <h3>나의 주문처리 현황(최근 3개월 기준)</h3>
                </div>
-               <div class="status">
+               		<div class="status">
 
                   <div class="item">
                      <div>
@@ -96,24 +115,24 @@
                      </div>
                      <div class="icon">></div>
                   </div>
-                  <div class="item">
+                  <div class="item payment-complete">
                      <div>
-                        <div class="number">3</div>
+                        <div class="number">0</div>
                         <div class="text">결제완료</div>
                      </div>
                      <div class="icon">></div>
                   </div>
-                  <div class="item">
+                   <div class="item in-delivery">
                      <div>
                         <div class="number">0</div>
                         <div class="text">배송중</div>
                      </div>
                      <div class="icon">></div>
                   </div>
-                  <div class="item">
+                 <div class="item delivered">
                      <div>
-                        <div class="number">1</div>
-                        <div class="text">구매확정</div>
+                        <div class="number">0</div>
+                        <div class="text">배송완료</div>
                      </div>
                   </div>
                </div>
@@ -245,57 +264,37 @@
                         </div>
                   </ul>
                </div>
+               
                <div id="email_boxes">
-                  <div class="email-box">
-                     <p>
-                         안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-                     </p>
-                     <h3>결제 내역</h3>
-                     <table>
-                        <tr>
-                           <td><span>푹신푹신 쇼파</span></td>
-                           <td><span>￦9,000</span>원</td>
-                        </tr>
-                        <tr>
-                           <td><span>반짝반짝 조명</span></td>
-                           <td>￦9,000원</td>
-                        </tr>
-                     </table>
-                     <p>
-                        전체 결제금액 <span>￦18,000</span>원
-                     </p>
-                     <p>
-                        구매일 <span>2023-08-17 11:11:11</span>
-                     </p>
-                     <p>감사합니다.</p>
+                  <c:forEach var="orderlist" items="${orders}">
+    <div class="email-box">
+        <p>
+            안녕하세요. <strong>${orderlist.nick}</strong>님의 결제내역입니다.
+        </p>
+        <h3>결제 내역</h3>
+        <table>
+            <tr>
+                <td><span>총 결제금액</span></td>
+                <td><span>${orderlist.total_amount}</span>원</td>
+            </tr>
+            <tr>
+                <td><span>할인 금액</span></td>
+                <td>￦ ${orderlist.discount_amount}</td>
+            </tr>
+        </table>
+        <p>
+            전체 결제금액 <span>${orderlist.paid_amount}</span>원
+        </p>
+        <p>
+            구매일 <span>${orderlist.created_at}</span>
+        </p>
+        <p><strong>${orderlist.order_status}</strong></p>
+    </div>
+</c:forEach>
+                    
                   </div>
                   
-                     <div class="email-box">
-                        <p>
-                           안녕하세요. <strong>smhrd</strong>님의 결제내역입니다.
-                        </p>
-                        <h3>결제 내역</h3>
-                        <table>
-                           <tr>
-                              <td><span>푹신푹신 쇼파</span></td>
-                              <td><span>￦9,000</span>원</td>
-                           </tr>
-                           <tr>
-                              <td><span>반짝반짝 조명</span></td>
-                              <td>￦9,000원</td>
-                           </tr>
-                        </table>
-                        <p>
-                           전체 결제금액 <span>￦18,000</span>원
-                        </p>
-                        <p>
-                           구매일 <span>2023-08-17 11:11:11</span>
-                        </p>
-                        <p>감사합니다.</p>
-                     </div>
-
-                  </div>
-               </div>
+        </div>
    </header>
    <footer id="footer">
       <div id="foot_wrap">
@@ -339,6 +338,36 @@
    <script src="assets/js/myPage.js"></script>
    <script>
    
+   
+   document.addEventListener("DOMContentLoaded", function() {
+	    // 카운트 업데이트 코드 여기에 추가
+	
+   var orders = <%= jsonOrders %>;
+   
+// 주문 상태 카운트를 초기화합니다.
+   var paymentCompleteCount = 0;
+   var inDeliveryCount = 0;
+   var deliveredCount = 0;
+   
+// 주문 목록을 반복하면서 각 상태에 따라 카운트를 증가합니다.
+   for (var i = 0; i < orders.length; i++) {
+       var orderStatus = orders[i].order_status;
+       console.log(orders[i].order_status)
+       if (orderStatus === "결제완료") {
+           paymentCompleteCount++;
+       } else if (orderStatus === "배송중") {
+           inDeliveryCount++;
+       } else if (orderStatus === "배송완료") {
+           deliveredCount++;
+       }
+   }
+   // 계산된 숫자를 HTML에 삽입합니다.
+   document.querySelector(".payment-complete .number").textContent = paymentCompleteCount;
+   document.querySelector(".in-delivery .number").textContent = inDeliveryCount;
+   document.querySelector(".delivered .number").textContent = deliveredCount;
+   });
+   
+  //========================================================================================================= 
    
    document.getElementById("ok").addEventListener("click", function () {
 	    var inputPassword = document.getElementById("pw_input").value; // 입력한 비밀번호
