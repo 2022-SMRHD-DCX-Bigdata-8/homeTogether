@@ -116,10 +116,9 @@
    </div>
 
    <div class="navbar">
-
-      <a class="logo" href="#"> <img src="img/logo/image2.png"
-         height="75px">
-      </a>
+   		<a class="logo" href="#"> 
+   			<img src="img/logo/image2.png" height="75px">
+      	</a>
       <ul id="menu">
       <form action="search.do" method="post" >
          <div id="search">

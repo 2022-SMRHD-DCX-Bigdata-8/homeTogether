@@ -364,6 +364,7 @@ body{
     float: right;
     margin-bottom: 0px !important;
     margin-top: 50px !important;
+    display:none;
 }
 
 #span_block {
@@ -548,3 +549,30 @@ h2>a {
     margin-top: 40px;
 }
 /* footer 끝 */
+/* 검색 창 시작*/
+#menu{
+  position: relative;
+}
+#search{
+  position: absolute;
+  left: -280px;
+  bottom: -5px;
+  margin-bottom: 0px;
+}
+#menu > form > .on{
+  top: -10px;
+  border-bottom: 1px solid black;
+}
+#search{
+  transition: all 800ms ease;
+  top: -100px;
+}
+#search > #search_content{
+    border: none 0;
+    outline: none;
+    padding: 0px;
+}
+#search > #search_img{
+  width: 20px;
+}
+/* 검색 창 끝*/
