@@ -27,19 +27,16 @@
 		)
 	</insert>
 
-	<select id="login" parameterType="com.ha.entity.TB_Member"
-		resultType="com.ha.entity.TB_Member">
-
+	<select id="login" parameterType="com.ha.entity.TB_Member" resultType="com.ha.entity.TB_Member">
 		select * from tb_member
 		where id=#{id}
 		and pw=#{pw}
-
 	</select>
 
 	<update id="update" parameterType="com.ha.entity.TB_Member">
-
 		UPDATE tb_member
-		SET pw =#{pw},
+		SET
+		pw =#{pw},
 		nick = #{nick},
 		zipCode = #{zipCode},
 		addr = #{addr},
@@ -50,7 +47,6 @@
 		where id=#{id}
 	</update>
 
-
 	<delete id="delete" parameterType="com.ha.entity.TB_Member">
 		delete from TB_MEMBER
 		where
@@ -58,21 +54,15 @@
 		and pw= #{pw}
 	</delete>
 
-
-
-	
 	<select id="getMemberInfo" parameterType="string"
 		resultType="com.ha.entity.TB_Member">
 		SELECT * FROM tb_member WHERE id=#{id}
 	</select>
 
-	
 	<!-- id 중복확인 -->
 	<select id="check" resultType="com.ha.entity.TB_Member">
-		
 		select * from TB_MEMBER
 		where id= #{id}	
-	
 	</select>
 
 

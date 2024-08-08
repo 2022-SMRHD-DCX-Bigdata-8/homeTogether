@@ -40,7 +40,6 @@
          </table>
       </form>
       <h1 id="join_h1">회원가입</h1>
-
       <form action="join.do" method="post">
          <table id="join">
             <tbody>
@@ -87,8 +86,6 @@
                      placeholder="참고항목"></td>
                   <td></td>
                </tr>
-
-
                <tr>
                   <td>GENDER</td>
                   <td><label class="test_obj"> <input type="radio"
@@ -131,10 +128,18 @@
          <%
          }
          %>
-
       </ul>
    </div>
-
+   <div id="categori">
+      <ul>
+         <li><a href="goLighting.do"><img src="img/logo/LIGHT.png" alt=""></a><strong>조명</strong></li>
+         <li><a href="goTable.do"><img src="img/logo/table2.PNG" alt=""></a><strong>테이블</strong></li>
+         <li><a href="goStorage.do"><img src="img/logo/DRAWER.png" alt=""></a><strong>수납</strong></li>
+         <li><a href="goChair.do"><img src="img/logo/CHIAR.png" alt=""></a><strong>의자/소파</strong></li>
+         <li><a href="goBedding.do"><img src="img/logo/bed.png" alt=""></a><strong>침구류</strong></li>
+         <li><a href="goGajun.do"><img src="img/logo/COOKER.png" alt=""></a><strong>가전제품</strong></li>
+      </ul>
+   </div>
    <div class="hero_header">
       <ul class="slideshow">
          <!-- Add the .slideshow class here -->
@@ -145,18 +150,7 @@
       </ul>
    </div>
 
-   <div id="categori">
-        <ul>
 
-            <li><a href="goLighting.do"><img src="img/logo/LIGHT.png" alt="카테고리 사진"></a><strong>조명</strong></li>
-            <li><a href="goTable.do"><img src="img/logo/table2.PNG" alt="카테고리 사진"></a><strong>테이블</strong></li>
-            <li><a href="goStorage.do"><img src="img/logo/DRAWER.png" alt="카테고리 사진"></a><strong>수납</strong></li>
-            <li><a href="goChair.do"><img src="img/logo/CHIAR.png" alt="카테고리 사진"></a><strong>의자/소파</strong></li>
-            <li><a href="goBedding.do"><img src="img/logo/bed.png" alt="카테고리 사진"></a><strong>침구류</strong></li>
-            <li><a href="goGajun.do"><img src="img/logo/COOKER.png" alt="카테고리 사진"></a><strong>가전제품</strong></li>
-
-        </ul>
-    </div>
     <h1>Our new Products</h1>
     <div class="products">
        <c:forEach var="mainlist" items="${mainlist}">

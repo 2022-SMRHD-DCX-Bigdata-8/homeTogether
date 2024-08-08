@@ -3,58 +3,46 @@
 <mapper namespace="com.ha.dao.TB_QNADAO">
 
 	<insert id="insertqna" parameterType="com.ha.entity.TB_QNA">
-		insert into tb_qna(
-		prod_seq,
-		q_content,
-		nick,
-		created_at
-		
+			insert into tb_qna(
+			prod_seq,
+			q_content,
+			nick,
+			created_at
 		)values(
-		#{prod_seq},
-		#{q_content},
-		#{nick},
-		SYSDATE
+			#{prod_seq},
+			#{q_content},
+			#{nick},
+			SYSDATE
 		)
-
 	</insert>
 
-
-
-
 	<select id="qna" parameterType="com.ha.entity.TB_QNA" resultType="com.ha.entity.TB_QNA" >
-
-		select q_seq,
-		       TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at,
-		       nick,
-		       q_content,
-		       prod_seq
+		select
+			q_seq,
+			TO_CHAR(created_at, 'YYYY-MM-DD') AS created_at,
+			nick,
+			q_content,
+			prod_seq
 		from tb_qna
 		where prod_seq = #{prod_seq}
 		order by q_seq desc 
-
 	</select>
-
 
 	<update id="updateqna" parameterType="com.ha.entity.TB_QNA">
 		update tb_qna
 		set q_content = #{q_content}
 		where q_seq = #{q_seq}
 	</update>
-	
-	
-	
+
 	<delete id="deleteqna" parameterType="com.ha.entity.TB_QNA">
 		delete from tb_qna
 		where q_seq = #{q_seq}
 	</delete>
 
 	<!-- mypage Qna출력 -->
-	
 	<select id="myPageQnaSelect" resultType="com.ha.entity.TB_QNA">
-		
 		select * from tb_qna
 		where nick=#{nick}
-		
 	</select>
 
 

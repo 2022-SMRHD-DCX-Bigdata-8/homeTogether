@@ -2,27 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ha.dao.TB_ReviewDAO">
 
-
-
 	<insert id="insert" parameterType="com.ha.entity.TB_Review">
 		insert into tb_review(
-		prod_seq,
-		review_content,
-		nick,
-		ratings
-		
+			prod_seq,
+			review_content,
+			nick,
+			ratings
 		)values(
-		#{prod_seq},
-		#{review_content},
-		#{nick},
-		#{ratings}
-
+			#{prod_seq},
+			#{review_content},
+			#{nick},
+			#{ratings}
 		)
-
 	</insert>
 
 	<select id="review" parameterType="com.ha.entity.TB_Review" resultType="com.ha.entity.TB_Review" >
-
 		select review_seq
 		      ,prod_seq
 		      ,review_content
@@ -32,7 +26,6 @@
 		from TB_review
 		where prod_seq = #{prod_seq}
 		order by review_seq desc 
-
 	</select>
 	
 	<update id="updateReview" parameterType="com.ha.entity.TB_Review">
@@ -41,18 +34,14 @@
 		ratings = #{ratings}
 		where review_seq = #{review_seq}
 	</update>
-	
-	
-	
+
 	<delete id="deleteReview" parameterType="com.ha.entity.TB_Review">
 		delete from tb_review
 		where review_seq = #{review_seq}
 	</delete>
 	
 	<!-- mypage 리뷰출력 -->
-	
 	<select id="myPageReviewSelect" resultType="com.ha.entity.TB_Review">
-		
 		select review_seq
 		      ,prod_seq
 		      ,review_content
@@ -61,12 +50,6 @@
 		      ,ratings
         from tb_review
 		where nick=#{nick}
-		
 	</select>
-
-
-
-
-
 
 </mapper>
