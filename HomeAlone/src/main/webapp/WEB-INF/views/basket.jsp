@@ -1,11 +1,6 @@
 <%@page import="com.ha.entity.TB_Member"%>
-<%@page import="java.util.List"%>
-<%@page import="java.io.PrintWriter"%>
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.ha.entity.TB_Basket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>

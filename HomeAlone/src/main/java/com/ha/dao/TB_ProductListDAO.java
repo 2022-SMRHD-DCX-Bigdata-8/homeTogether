@@ -1,13 +1,12 @@
 package com.ha.dao;
 
-import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.Paging;
 import com.ha.entity.TB_Product;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import java.util.List;
 
 public class TB_ProductListDAO {
 

@@ -1,12 +1,9 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
 <%@page import="com.ha.entity.TB_Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="utf-8">
-
 <head>
 <title>SimpleShop</title>
 <meta charset="utf-8" />
@@ -15,16 +12,10 @@
 <style>
 </style>
 </head>
-
 <body>
-
    <%
    TB_Member user = (TB_Member) session.getAttribute("user");
-   
    %>
-
-
-
    <div id="login_view">
       <div id="back">
          <img src="img/icon/back.png">
@@ -107,7 +98,7 @@
                   </label></td>
                </tr>
                <tr>
-                  <td id="login_btn" colspan="2"><button>JOIN US</button></td>
+                  <td id="join_btn" colspan="2"><button>JOIN US</button></td>
                </tr>
             </tbody>
          </table>
@@ -277,10 +268,7 @@
       }
    </script>
    <!-- 스크립트 -->
-
    <script src="assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
    <script src="assets/js/main.js"></script>
-
 </body>
-
 </html>

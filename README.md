@@ -1,2 +1,0 @@
-# homeTogether
-NewsData Project

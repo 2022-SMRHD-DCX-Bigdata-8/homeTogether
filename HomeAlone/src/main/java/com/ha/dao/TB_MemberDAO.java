@@ -1,10 +1,9 @@
 package com.ha.dao;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import com.ha.database.SqlSessionManager;
 import com.ha.entity.TB_Member;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 
 public class TB_MemberDAO {

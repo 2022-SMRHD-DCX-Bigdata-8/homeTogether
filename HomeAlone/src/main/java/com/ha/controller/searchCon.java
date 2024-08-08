@@ -1,14 +1,13 @@
 package com.ha.controller;
 
-import java.io.IOException;
-import java.util.List;
+import com.ha.dao.TB_ProductListDAO;
+import com.ha.entity.TB_Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.ha.dao.TB_ProductListDAO;
-import com.ha.entity.TB_Product;
+import java.io.IOException;
+import java.util.List;
 
 public class searchCon implements Controller {
 

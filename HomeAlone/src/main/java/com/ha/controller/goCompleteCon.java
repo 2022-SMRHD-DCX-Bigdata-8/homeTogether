@@ -1,16 +1,13 @@
 package com.ha.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import com.ha.entity.OrderComplete;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.ha.entity.OrderComplete;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class goCompleteCon implements Controller {
 

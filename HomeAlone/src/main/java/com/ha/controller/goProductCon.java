@@ -1,21 +1,17 @@
 package com.ha.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.ha.dao.TB_AnswerDAO;
-import com.ha.dao.TB_ProductDAO;
 import com.ha.dao.TB_QNADAO;
 import com.ha.dao.TB_ReviewDAO;
 import com.ha.entity.TB_Answer;
 import com.ha.entity.TB_QNA;
 import com.ha.entity.TB_Review;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 public class goProductCon implements Controller {
 

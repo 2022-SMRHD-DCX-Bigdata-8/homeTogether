@@ -6,88 +6,67 @@
   <packaging>war</packaging>
   <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>    
-</repositories>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+  <dependencies>
+    <!--JSON-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.13.4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+      <version>1.9.13</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.9</version>
+    </dependency>
 
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-  	<dependencies>
-<!--JSON-->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-databind</artifactId>
-    <version>2.9.3</version>
-</dependency>
-<dependency>
-    <groupId>org.codehaus.jackson</groupId>
-    <artifactId>jackson-mapper-asl</artifactId>
-    <version>1.9.13</version>
-</dependency>
+    <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc6</artifactId>
+      <version>11.2.0.4</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.28</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.iamport</groupId>
+      <artifactId>iamport-rest-client-java</artifactId>
+      <version>0.2.14</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
 
-
-
-
-
-
-
-
-
-
-
-
-
-		<dependency>
-    		<groupId>com.google.code.gson</groupId>
-    		<artifactId>gson</artifactId>
-    		<version>2.8.9</version>
-		</dependency>
-       <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>jstl</artifactId>
-          <version>1.2</version>
-      </dependency>
-      
-      <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
-      <dependency>
-          <groupId>com.oracle.database.jdbc</groupId>
-          <artifactId>ojdbc6</artifactId>
-          <version>11.2.0.4</version>
-      </dependency>
-
-      <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
-      <dependency>
-          <groupId>org.mybatis</groupId>
-          <artifactId>mybatis</artifactId>
-          <version>3.5.9</version>
-      </dependency>
-
-      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-      <dependency>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-          <version>1.18.28</version>
-          <scope>provided</scope>
-      </dependency>
-      
-      
-     <dependency>
-    <groupId>com.github.iamport</groupId>
-    <artifactId>iamport-rest-client-java</artifactId>
-    <version>0.2.14</version>
-	</dependency>
-      
-      
- 
- 
- 
- 
- 
- 
   </dependencies>
-  
-
   <build>
     <plugins>
       <plugin>
@@ -102,5 +81,14 @@
         <version>3.2.3</version>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.properties</include>
+        </includes>
+      </resource>
+    </resources>
   </build>
 </project>

@@ -1,17 +1,6 @@
 
 package com.ha.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.ha.dao.TB_ProductDAO;
@@ -21,6 +10,15 @@ import com.ha.entity.TB_Member;
 import com.ha.entity.TB_Product;
 import com.ha.entity.TB_QNA;
 import com.ha.entity.TB_Review;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class myPageReviewCon implements Controller {
 

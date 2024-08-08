@@ -1,12 +1,11 @@
 package com.ha.dao;
 
-import java.util.List;
-
+import com.ha.database.SqlSessionManager;
+import com.ha.entity.TB_Review;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.ha.database.SqlSessionManager;
-import com.ha.entity.TB_Review;
+import java.util.List;
 
 public class TB_ReviewDAO {
 	

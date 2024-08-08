@@ -1,16 +1,13 @@
 package com.ha.controller;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.ha.controller.Controller;
+import java.io.IOException;
+import java.util.HashMap;
 
 // FrontController 디자인패턴
 // 단 한개의 서블릿(FrontController)만 사용
